@@ -1,0 +1,11 @@
+{
+  "asOfKst": "2026-04-23T08:20:50+09:00",
+  "source": "us-treasury-textview",
+  "sourceUrl": "https://home.treasury.gov/resource-center/data-chart-center/interest-rates/daily-treasury-rates.csv/2026/all?type=daily_treasury_yield_curve&field_tdr_date_value=2026&page&_format=csv",
+  "latest": {
+    "date": "04/22/2026",
+    "2Y": "3.79",
+    "10Y": "4.30",
+    "2Y10Y_SPREAD": 0.51
+  }
+}

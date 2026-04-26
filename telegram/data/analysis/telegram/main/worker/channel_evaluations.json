@@ -1,0 +1,164 @@
+{
+  "meta": {
+    "purpose": "Accumulate per-channel factual reliability, inference quality, timing value, domain strength, and failure modes.",
+    "updatedAtKst": "2026-04-03T21:42:00+09:00"
+  },
+  "channels": {
+    "트릴리온__3402415038": {
+      "chat_title": "트릴리온",
+      "status": "watch",
+      "notes": [
+        "Do not treat as disposable or casual-noise channel.",
+        "Likely high interpretive value in Iran war / Hormuz / oil / military escalation reading.",
+        "Current pipeline likely underweights this channel because of short-form and conversational style."
+      ],
+      "domain_strengths": [
+        "Iran war",
+        "Hormuz",
+        "oil/geopolitics",
+        "military escalation interpretation"
+      ],
+      "timing_value": "Potentially early on escalation framing; needs more cumulative verification.",
+      "failure_modes": [
+        "Can sound overconfident",
+        "May compress evidence into short directional assertions"
+      ],
+      "open_questions": [
+        "How often are directional military escalation calls correct?",
+        "How early does the channel identify oil-risk persistence versus polished summaries?"
+      ]
+    },
+    "미래에셋증권_시황_김석환__1926884456": {
+      "chat_title": "미래에셋증권 시황 김석환",
+      "status": "watch",
+      "notes": [
+        "High value as structured market wrap and snapshot layer.",
+        "Useful for broad market framing, cross-asset linkage, and daily summary structure."
+      ],
+      "domain_strengths": [
+        "global market wrap",
+        "cross-asset summary",
+        "Korea market framing",
+        "AI market narrative"
+      ],
+      "timing_value": "Strong for morning and wrap-style synthesis; not always first, but often clean and usable.",
+      "failure_modes": [
+        "Can be too polished and consensus-like",
+        "May summarize well without adding distinctive edge"
+      ]
+    },
+    "가투방_dctg_저장소__1370641552": {
+      "chat_title": "가투방(DCTG) 저장소",
+      "status": "watch",
+      "notes": [
+        "High volume channel with many ideas; can surface useful semis and Korea equity narratives.",
+        "Needs filtering because conviction and noise coexist."
+      ],
+      "domain_strengths": [
+        "Korea equities",
+        "semiconductors",
+        "earnings expectation shifts",
+        "thematic idea flow"
+      ],
+      "timing_value": "Can surface sector enthusiasm early, but needs validation.",
+      "failure_modes": [
+        "Narrative overreach",
+        "repeat posting around same thesis",
+        "can translate structure into bullishness too quickly"
+      ]
+    },
+    "김찰저의_관심과_생각_저장소__1861520498": {
+      "chat_title": "김찰저의 관심과 생각 저장소",
+      "status": "watch",
+      "notes": [
+        "Useful where shipping, LNG, diesel, and industrial chain interpretation matter.",
+        "Can be valuable for bottleneck-style industry reading."
+      ],
+      "domain_strengths": [
+        "LNG",
+        "shipping",
+        "diesel",
+        "industrial bottlenecks"
+      ],
+      "timing_value": "Good when energy-logistics chain matters; should be compared against objective commodity moves.",
+      "failure_modes": [
+        "Can be niche and scenario-heavy",
+        "may overstate structural persistence"
+      ]
+    },
+    "급등일보_미국주식_속보_리서치__1586367974": {
+      "chat_title": "급등일보 미국주식 속보·리서치",
+      "status": "watch",
+      "notes": [
+        "Fast-moving source for US and China-linked news flow.",
+        "Useful as a speed sensor, not as a standalone judgment source."
+      ],
+      "domain_strengths": [
+        "fast headlines",
+        "US equity flow",
+        "China-linked industrial updates",
+        "semiconductor snippets"
+      ],
+      "timing_value": "Often early on headline arrival.",
+      "failure_modes": [
+        "headline fragmentation",
+        "context can be thin",
+        "importance often needs downstream interpretation"
+      ]
+    },
+    "시장_이야기_by_제이슨__1192351807": {
+      "chat_title": "시장 이야기 by 제이슨",
+      "status": "watch",
+      "notes": [
+        "Useful for broader strategy framing and periodic market interpretation.",
+        "Can offer perspective beyond immediate headlines."
+      ],
+      "domain_strengths": [
+        "strategy framing",
+        "monthly/periodic synthesis",
+        "Korea market context"
+      ],
+      "timing_value": "Better for frame-setting than intraday urgency.",
+      "failure_modes": [
+        "Can be too broad for immediate trading relevance",
+        "may lag fast-changing situations"
+      ]
+    },
+    "granit34의_투자스토리__1776506878": {
+      "chat_title": "Granit34의 투자스토리",
+      "status": "watch",
+      "notes": [
+        "Useful for Korea industrial names and practical sector watchlists.",
+        "Can help detect what domestic thematic investors are clustering around."
+      ],
+      "domain_strengths": [
+        "power equipment",
+        "Korea industrial names",
+        "sector watchlist curation"
+      ],
+      "timing_value": "Helpful for thematic clustering, less useful for macro regime calls.",
+      "failure_modes": [
+        "can be list-like rather than analytical",
+        "stock selection logic may be lighter than narrative conviction"
+      ]
+    },
+    "키움증권_전략_시황_한지영__1304649917": {
+      "chat_title": "키움증권 전략 시황 한지영",
+      "status": "watch",
+      "notes": [
+        "Useful as a clean pre-market Korea strategy memo source.",
+        "More helpful for starting frame than for differentiated edge."
+      ],
+      "domain_strengths": [
+        "pre-market framing",
+        "Korea strategy",
+        "overnight market digest"
+      ],
+      "timing_value": "Strong in the morning slot.",
+      "failure_modes": [
+        "can be conventional",
+        "less useful when market regime shifts intraday"
+      ]
+    }
+  }
+}

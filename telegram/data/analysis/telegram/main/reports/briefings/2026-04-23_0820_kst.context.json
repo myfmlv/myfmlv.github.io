@@ -1,0 +1,438 @@
+{
+  "context_profile": "compact",
+  "generated_at_kst": "2026-04-23T08:20:50+09:00",
+  "window_start_kst": "2026-04-22T17:10:00+09:00",
+  "window_end_kst": "2026-04-23T08:20:00+09:00",
+  "cutoff_kst": "2026-04-22T17:10:00+09:00",
+  "briefing_slot_kst": "08:20",
+  "cutoff_mode": "requested_schedule_window",
+  "market_snapshot_file": "market_snapshots/2026-04-23_0820_nokey_kst.json | market_snapshots/treasury_nokey_latest.json",
+  "snapshot": {
+    "WTI": "92.45",
+    "Brent": "101.4000015258789",
+    "Gold": "4729.465",
+    "Copper": "613.28",
+    "DXY": "98.41000366210938",
+    "USDKRW_NDF_1M": "1476.58",
+    "USDJPY": "159.4505",
+    "US_2Y": "3.79",
+    "US_10Y": "4.30",
+    "US_10Y_2Y_BP": "51.0bp",
+    "SPX": "7137.9",
+    "NASDAQ": "24657.57"
+  },
+  "macro_snapshot": {
+    "WTI": "92.45",
+    "Brent": "101.4000015258789",
+    "Gold": "4729.465",
+    "Copper": "613.28",
+    "DXY": "98.41000366210938",
+    "USDKRW_NDF_1M": "1476.58",
+    "USDJPY": "159.4505",
+    "US_2Y": "3.79",
+    "US_10Y": "4.30",
+    "US_10Y_2Y_BP": "51.0bp",
+    "SPX": "7137.9",
+    "NASDAQ": "24657.57"
+  },
+  "macro_state": {
+    "energy_stress": true,
+    "fx_stress": true,
+    "rate_stress": true
+  },
+  "regime_shift": "중동 변수는 협상 headline보다 유가·환율·통항으로 확인되는 위험 프리미엄 문제로 다시 좁혀졌다.",
+  "theme_items": [
+    {
+      "label": "실적",
+      "chat": "키움증권 전략/시황 한지영",
+      "text": "[4 / 23, 장 시작 전 생각: 호재 속 변동성, 키움 한지영] - 다우 +0.7%, S&P500 +1.1%, 나스닥 +1.6% - 엔비디아 +1.3%, 마이크론 +8.5%",
+      "score": 13
+    },
+    {
+      "label": "에너지",
+      "chat": "트릴리온",
+      "text": "원자재는 차트를 베이스로 접근하지 않는다고 예전부터 이야기를 했고 이번에도 유가가 계속 떨어질거고 오르지 못한다는 이야기는 주변에서도 수없이 들었습니다만 결국에 80불 하단을 찍고 13불이나",
+      "score": 10
+    },
+    {
+      "label": "에너지",
+      "chat": "트릴리온",
+      "text": "유가도 저점 잡은거 잘 가고 있고 광통신 poet nvts도 잘가고있고 바이오도 괜찮아. 혼재하는 시장으로 보고있고 현재 딜레이된 유가로 인한 인플레이션 데이터들의 경우 2분기 이후가 되어서야",
+      "score": 14
+    },
+    {
+      "label": "지정학",
+      "chat": "에테르의 일본&미국 리서치",
+      "text": "이란, 트럼프 '휴전연장' 선언 직후 호르무즈 선박 공격 | 연합뉴스 그만해 미친놈들아",
+      "score": 13
+    }
+  ],
+  "house_view": [
+    "개장 전 기본 판단은 밤사이 많이 나온 뉴스보다 한국 장에서 바로 가격으로 번역될 변수만 먼저 반영하는 것이다.",
+    "지금은 엇갈리는 headline 목록보다 유가와 물류비 변수가 먼저 가격에 번역되는 구간이다."
+  ],
+  "analyst_memos": [
+    "트릴리온: 혼재하는 시장으로 보고있고 현재 딜레이된 유가로 인한 인플레이션 데이터들의 경우 2분기 이후가 되어서야",
+    "에테르의 일본&미국 리서치: 07:35:03 기업명: SK하이닉스(시가총액: 871조 6,350억) A000660 보고서명:",
+    "키움증권 전략/시황 한지영: 동시에 어제 모건 스탠리에서는 삼성전자 영업이익 추정치를 26년 428조원(기존 299조원)",
+    "하나 중국/신흥국 전략 김경환: SK 하이닉스는 AI 붐에 힘입어 1분기 영업이익이 YoY 기준 5배 이상 급증, 사상 최고치를 기록했음"
+  ],
+  "consensus_conflict": [
+    "합의: 여러 방에서 반복된 핵심 축은 반도체 관련 이슈였다.",
+    "갈림길: 실적, 에너지 쪽 단독 시그널은 후속 가격 확인이 붙을 때만 무게가 커진다."
+  ],
+  "evidence_status": [
+    "원문 미확인: 이번 실행은 링크 대상을 열지 않았다. 링크가 붙은 주장은 텔레그램 본문 기준으로만 취급했다."
+  ],
+  "numbers_to_watch": [
+    "WTI 92.45: 100 재돌파면 에너지 프리미엄 재확대",
+    "미10년물 4.3: 4.35 위면 성장주 부담 재확대",
+    "원달러환율(현물) 1476.58: 1500 재상회면 국내 리스크온 약화"
+  ],
+  "common_signals": [
+    {
+      "kind": "common",
+      "label": "반도체",
+      "tag": "semis",
+      "chat_count": 2,
+      "score": 10,
+      "reasons": [
+        "cross-channel repetition",
+        "rate-sensitive macro backdrop"
+      ],
+      "message": {
+        "chat": "하나 중국/신흥국 전략 김경환",
+        "chat_slug": "하나_중국_신흥국_전략_김경환__1306052516",
+        "message_id": 60988,
+        "message_id_end": 60988,
+        "source_message_ids": [
+          60988
+        ],
+        "source_message_count": 1,
+        "timestamp_kst": "2026-04-23T08:18:52+09:00",
+        "timestamp_kst_end": "2026-04-23T08:18:52+09:00",
+        "views": 181,
+        "topics": [
+          "반도체",
+          "실적"
+        ],
+        "text": "SK하이닉스, AI 수요 폭발로 영업이익 5배 급증 “이젠 추론 사이클” (중국언론) •SK 하이닉스는 AI 붐에 힘입어 1분기 영업이익이 YoY 기준 5배 이상 급증, 사상 최고치를 기록했음"
+      },
+      "evidence_count": 0,
+      "evidence": []
+    }
+  ],
+  "outlier_signals": [
+    {
+      "kind": "outlier",
+      "label": "실적",
+      "tag": "earnings",
+      "chat_count": 1,
+      "score": 14,
+      "reasons": [
+        "cross-channel repetition",
+        "rate-sensitive macro backdrop",
+        "source linked"
+      ],
+      "message": {
+        "chat": "에테르의 일본&미국 리서치",
+        "chat_slug": "에테르의_일본_미국_리서치__1909745040",
+        "message_id": 21472,
+        "message_id_end": 21472,
+        "source_message_ids": [
+          21472
+        ],
+        "source_message_count": 1,
+        "timestamp_kst": "2026-04-23T07:36:30+09:00",
+        "timestamp_kst_end": "2026-04-23T07:36:30+09:00",
+        "views": 593,
+        "topics": [
+          "실적",
+          "반도체"
+        ],
+        "text": "07:35:03 기업명: SK하이닉스(시가총액: 871조 6,350억) A000660 보고서명: 연결재무제표기준영업(잠정)실적(공정공시) 매출액 : 525,763억(예상치 : 517,268억+"
+      },
+      "evidence_count": 0,
+      "evidence": []
+    },
+    {
+      "kind": "outlier",
+      "label": "에너지",
+      "tag": "energy",
+      "chat_count": 1,
+      "score": 14,
+      "reasons": [
+        "cross-channel repetition",
+        "energy-sensitive macro backdrop",
+        "rate-sensitive macro backdrop"
+      ],
+      "message": {
+        "chat": "트릴리온",
+        "chat_slug": "트릴리온__3402415038",
+        "message_id": 4361,
+        "message_id_end": 4361,
+        "source_message_ids": [
+          4361
+        ],
+        "source_message_count": 1,
+        "timestamp_kst": "2026-04-23T01:29:37+09:00",
+        "timestamp_kst_end": "2026-04-23T01:29:37+09:00",
+        "views": 236,
+        "topics": [
+          "에너지",
+          "금리"
+        ],
+        "text": "유가도 저점 잡은거 잘 가고 있고 광통신 poet nvts도 잘가고있고 바이오도 괜찮아. 혼재하는 시장으로 보고있고 현재 딜레이된 유가로 인한 인플레이션 데이터들의 경우 2분기 이후가 되어서야"
+      },
+      "evidence_count": 0,
+      "evidence": []
+    },
+    {
+      "kind": "outlier",
+      "label": "실적",
+      "tag": "earnings",
+      "chat_count": 1,
+      "score": 13,
+      "reasons": [
+        "cross-channel repetition",
+        "energy-sensitive macro backdrop",
+        "rate-sensitive macro backdrop"
+      ],
+      "message": {
+        "chat": "키움증권 전략/시황 한지영",
+        "chat_slug": "키움증권_전략_시황_한지영__1304649917",
+        "message_id": 2786,
+        "message_id_end": 2786,
+        "source_message_ids": [
+          2786
+        ],
+        "source_message_count": 1,
+        "timestamp_kst": "2026-04-23T07:51:05+09:00",
+        "timestamp_kst_end": "2026-04-23T07:51:05+09:00",
+        "views": 3395,
+        "topics": [
+          "실적",
+          "지정학",
+          "반도체",
+          "에너지"
+        ],
+        "text": "[4 / 23, 장 시작 전 생각: 호재 속 변동성, 키움 한지영] - 다우 +0.7%, S&P500 +1.1%, 나스닥 +1.6% - 엔비디아 +1.3%, 마이크론 +8.5%"
+      },
+      "evidence_count": 0,
+      "evidence": []
+    }
+  ],
+  "channel_insights_total": 5,
+  "channel_insights_omitted": 0,
+  "channel_insights": [
+    {
+      "chat": "트릴리온",
+      "chat_slug": "트릴리온__3402415038",
+      "desk_role": "에너지 데스크",
+      "message_count": 6,
+      "top_topics": [
+        "에너지",
+        "금리"
+      ],
+      "analyst_score": 14,
+      "evidence_backed_highlights": 0,
+      "highlights": [
+        {
+          "message_id": 4361,
+          "message_id_end": 4361,
+          "source_message_ids": [
+            4361
+          ],
+          "source_message_count": 1,
+          "timestamp_kst": "2026-04-23T01:29:37+09:00",
+          "topics": [
+            "에너지",
+            "금리"
+          ],
+          "score": 14,
+          "reasons": [
+            "cross-channel repetition",
+            "energy-sensitive macro backdrop",
+            "rate-sensitive macro backdrop"
+          ],
+          "text": "유가도 저점 잡은거 잘 가고 있고 광통신 poet nvts도 잘가고있고 바이오도 괜찮아. 혼재하는 시장으로 보고있고 현재 딜레이된 유가로 인한 인플레이션 데이터들의 경우 2분기"
+        }
+      ]
+    },
+    {
+      "chat": "에테르의 일본&미국 리서치",
+      "chat_slug": "에테르의_일본_미국_리서치__1909745040",
+      "desk_role": "지정학 데스크",
+      "message_count": 5,
+      "top_topics": [
+        "지정학",
+        "해운/물류",
+        "반도체"
+      ],
+      "analyst_score": 14,
+      "evidence_backed_highlights": 0,
+      "highlights": [
+        {
+          "message_id": 21472,
+          "message_id_end": 21472,
+          "source_message_ids": [
+            21472
+          ],
+          "source_message_count": 1,
+          "timestamp_kst": "2026-04-23T07:36:30+09:00",
+          "topics": [
+            "실적",
+            "반도체"
+          ],
+          "score": 14,
+          "reasons": [
+            "cross-channel repetition",
+            "rate-sensitive macro backdrop",
+            "source linked"
+          ],
+          "text": "07:35:03 기업명: SK하이닉스(시가총액: 871조 6,350억) A000660 보고서명: 연결재무제표기준영업(잠정)실적(공정공시) 매출액 : 525,763억(예상치 :"
+        }
+      ]
+    },
+    {
+      "chat": "키움증권 전략/시황 한지영",
+      "chat_slug": "키움증권_전략_시황_한지영__1304649917",
+      "desk_role": "실적 데스크",
+      "message_count": 1,
+      "top_topics": [
+        "실적",
+        "지정학",
+        "반도체"
+      ],
+      "analyst_score": 13,
+      "evidence_backed_highlights": 0,
+      "highlights": [
+        {
+          "message_id": 2786,
+          "message_id_end": 2786,
+          "source_message_ids": [
+            2786
+          ],
+          "source_message_count": 1,
+          "timestamp_kst": "2026-04-23T07:51:05+09:00",
+          "topics": [
+            "실적",
+            "지정학",
+            "반도체",
+            "에너지"
+          ],
+          "score": 13,
+          "reasons": [
+            "cross-channel repetition",
+            "energy-sensitive macro backdrop",
+            "rate-sensitive macro backdrop"
+          ],
+          "text": "[4 / 23, 장 시작 전 생각: 호재 속 변동성, 키움 한지영] - 다우 +0.7%, S&P500 +1.1%, 나스닥 +1.6% - 엔비디아 +1.3%, 마이크론 +8.5%"
+        }
+      ]
+    },
+    {
+      "chat": "하나 중국/신흥국 전략 김경환",
+      "chat_slug": "하나_중국_신흥국_전략_김경환__1306052516",
+      "desk_role": "반도체 데스크",
+      "message_count": 2,
+      "top_topics": [
+        "반도체",
+        "실적"
+      ],
+      "analyst_score": 10,
+      "evidence_backed_highlights": 0,
+      "highlights": [
+        {
+          "message_id": 60988,
+          "message_id_end": 60988,
+          "source_message_ids": [
+            60988
+          ],
+          "source_message_count": 1,
+          "timestamp_kst": "2026-04-23T08:18:52+09:00",
+          "topics": [
+            "반도체",
+            "실적"
+          ],
+          "score": 10,
+          "reasons": [
+            "cross-channel repetition",
+            "rate-sensitive macro backdrop"
+          ],
+          "text": "SK하이닉스, AI 수요 폭발로 영업이익 5배 급증 “이젠 추론 사이클” (중국언론) •SK 하이닉스는 AI 붐에 힘입어 1분기 영업이익이 YoY 기준 5배 이상 급증"
+        }
+      ]
+    },
+    {
+      "chat": "시장 이야기 by 제이슨",
+      "chat_slug": "시장_이야기_by_제이슨__1192351807",
+      "desk_role": "실적 데스크",
+      "message_count": 2,
+      "top_topics": [
+        "실적"
+      ],
+      "analyst_score": 9,
+      "evidence_backed_highlights": 0,
+      "highlights": [
+        {
+          "message_id": 54201,
+          "message_id_end": 54201,
+          "source_message_ids": [
+            54201
+          ],
+          "source_message_count": 1,
+          "timestamp_kst": "2026-04-23T08:09:02+09:00",
+          "topics": [
+            "실적"
+          ],
+          "score": 9,
+          "reasons": [
+            "cross-channel repetition"
+          ],
+          "text": "한국 통신업 골드만 ✅ KT — Buy | TP: 72,000원 1Q 매출 6.7조(-1% YoY), OP 4,970억(-28% YoY)"
+        }
+      ]
+    }
+  ],
+  "evidence_registry_total": 6,
+  "evidence_registry_omitted": 0,
+  "evidence_registry": [
+    {
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260423800001",
+      "kind": "link",
+      "verified": false,
+      "note": "link_fetch_disabled"
+    },
+    {
+      "url": "https://finance.naver.com/item/main.nhn?code=000660",
+      "kind": "link",
+      "verified": false,
+      "note": "link_fetch_disabled"
+    },
+    {
+      "url": "https://www.yna.co.kr/view/AKR20260422141000009",
+      "kind": "link",
+      "verified": false,
+      "note": "link_fetch_disabled"
+    },
+    {
+      "url": "https://www.yna.co.kr/view/AKR20260422160200009",
+      "kind": "link",
+      "verified": false,
+      "note": "link_fetch_disabled"
+    },
+    {
+      "url": "https://siliconangle.com/2026/04/22/google-unveils-new-tpus-power-next-wave-ai-training-inference/",
+      "kind": "link",
+      "verified": false,
+      "note": "link_fetch_disabled"
+    },
+    {
+      "url": "https://www.axios.com/2026/04/22/trump-iran-war-power-struggle-ceasefire",
+      "kind": "link",
+      "verified": false,
+      "note": "link_fetch_disabled"
+    }
+  ]
+}

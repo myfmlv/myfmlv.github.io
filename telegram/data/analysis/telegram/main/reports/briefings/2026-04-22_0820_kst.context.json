@@ -1,0 +1,638 @@
+{
+  "context_profile": "compact",
+  "generated_at_kst": "2026-04-22T11:15:02+09:00",
+  "window_start_kst": "2026-04-21T17:10:00+09:00",
+  "window_end_kst": "2026-04-22T08:20:00+09:00",
+  "cutoff_kst": "2026-04-21T17:10:00+09:00",
+  "briefing_slot_kst": "08:20",
+  "cutoff_mode": "requested_schedule_window",
+  "market_snapshot_file": "market_snapshots/2026-04-21_2313_nokey_kst.json | market_snapshots/treasury_nokey_latest.json",
+  "snapshot": {
+    "WTI": "87.75",
+    "Brent": "90.93000030517578",
+    "Gold": "4778.295",
+    "Copper": "606.33",
+    "DXY": "98.20099639892578",
+    "USDKRW_NDF_1M": "1469.3",
+    "USDJPY": "159.0805",
+    "US_2Y": "3.78",
+    "US_10Y": "4.30",
+    "US_10Y_2Y_BP": "52.0bp",
+    "SPX": "7133.5",
+    "NASDAQ": "24504.434"
+  },
+  "macro_snapshot": {
+    "WTI": "87.75",
+    "Brent": "90.93000030517578",
+    "Gold": "4778.295",
+    "Copper": "606.33",
+    "DXY": "98.20099639892578",
+    "USDKRW_NDF_1M": "1469.3",
+    "USDJPY": "159.0805",
+    "US_2Y": "3.78",
+    "US_10Y": "4.30",
+    "US_10Y_2Y_BP": "52.0bp",
+    "SPX": "7133.5",
+    "NASDAQ": "24504.434"
+  },
+  "macro_state": {
+    "energy_stress": true,
+    "fx_stress": true,
+    "rate_stress": true
+  },
+  "regime_shift": "반도체와 실적 재료는 단순 테마가 아니라 공급망·가이던스로 검증되는 구간으로 남아 있다.",
+  "theme_items": [
+    {
+      "label": "반도체",
+      "chat": "하나 중국/신흥국 전략 김경환",
+      "text": "모건스탠리: DDR4보다 MLC NAND와 NOR Flash를 더 유망하게 평가하며 최선호주로 Macronix(TP 202TWD), AP메모리(TP 777TWD)로 제시. • 삼성",
+      "score": 18
+    },
+    {
+      "label": "실적",
+      "chat": "시장 이야기 by 제이슨",
+      "text": "LG에너지솔루션 제이피모건 1. 주가 급등 배경 (4월 21일 기준 +13.0%) 📈 계약 공식 확인: 메르세데스-벤츠의 LFP(리튬인산철) 전기차 배터리 공급업체로 선정되었다는 사실을 공식",
+      "score": 15
+    },
+    {
+      "label": "반도체",
+      "chat": "카이에 de market",
+      "text": "\"투자금액의 증가 = 그만큼 공급량 증가\"로 단순 해석하면 안되는 이유 - JPM은 27년 글로벌 메모리 capex를 기존보다 74% 상향했지만 실제 비트 증가율은 15%도 되지 않을 것으로 전망",
+      "score": 14
+    },
+    {
+      "label": "반도체",
+      "chat": "카이에 de market",
+      "text": "* TSMC 2나노 수율 90% TSMC의 2나노 초기 수율은 이미 80%를 돌파, 90% 안정화를 한 것으로 파악된다",
+      "score": 15
+    },
+    {
+      "label": "반도체",
+      "chat": "한투증권 중국/신흥국 정정영",
+      "text": "~ 주목되는 대목은 장비 라인업 확장 방식이다. 나우라는 개별 장비 판매를 넘어 인수합병을 통해 공정 생태계 통합에 나서고 있다. 세정 분야 강자인 킹세미를 인수해 세정 장비 경쟁력을 보강했고",
+      "score": 17
+    },
+    {
+      "label": "지정학",
+      "chat": "한투증권 중국/신흥국 정정영",
+      "text": "* 밴스 부통령, 파키스탄 방문 계획 잠정 중단 ======================== ~ Vice President JD Vance has for now paused plans to",
+      "score": 11
+    },
+    {
+      "label": "기타",
+      "chat": "AWAKE - 실시간 주식 공시 정리채널",
+      "text": "단기과열 / 투자경고 종목 현황 종목명 : 대우건설 2026-04-21 : [투자주의]투자경고종목 지정예고 공시링크 : 단기과열",
+      "score": -5
+    }
+  ],
+  "house_view": [
+    "개장 전 기본 판단은 밤사이 많이 나온 뉴스보다 한국 장에서 바로 가격으로 번역될 변수만 먼저 반영하는 것이다.",
+    "지금은 산업 서사보다 실적 추정치와 공급망 숫자가 실제로 따라오는 재료를 우선해야 한다."
+  ],
+  "analyst_memos": [
+    "[메리츠 Tech 김선우, 양승수, 김동관]: 22 (수) [메리츠증권 반도체 / 디스플레이 김선우] ★ 메모리 스팟가격 DRAM(DDR4 8Gb: 1D",
+    "한투증권 중국/신흥국 정정영: 세정 분야 강자인 킹세미를 인수해 세정 장비 경쟁력을 보강했고",
+    "에테르의 일본&미국 리서치: 미 재무부장관 베센트 트윗 트럼프대통령이 분명히 밝혔듯이",
+    "[ IT는 SK ]: 하반기 60% 초과 가능성이 제기되는 가운데 P5 팹2 병행 구축 계획도 수립 중 삼성전자·SK하이닉스"
+  ],
+  "consensus_conflict": [
+    "합의: 여러 방에서 반복된 핵심 축은 지정학, 반도체 관련 이슈였다.",
+    "갈림길: 반도체, 무역 쪽 단독 시그널은 후속 가격 확인이 붙을 때만 무게가 커진다."
+  ],
+  "evidence_status": [
+    "원문 미확인: 이번 실행은 링크 대상을 열지 않았다. 링크가 붙은 주장은 텔레그램 본문 기준으로만 취급했다."
+  ],
+  "numbers_to_watch": [
+    "WTI 87.75: 100 재돌파면 에너지 프리미엄 재확대",
+    "미10년물 4.3: 4.35 위면 성장주 부담 재확대",
+    "원달러환율(현물) 1469.3: 1500 재상회면 국내 리스크온 약화"
+  ],
+  "common_signals": [
+    {
+      "kind": "common",
+      "label": "지정학",
+      "tag": "geopolitics",
+      "chat_count": 3,
+      "score": 16,
+      "reasons": [
+        "cross-channel repetition",
+        "energy-sensitive macro backdrop",
+        "rate-sensitive macro backdrop"
+      ],
+      "message": {
+        "chat": "에테르의 일본&미국 리서치",
+        "chat_slug": "에테르의_일본_미국_리서치__1909745040",
+        "message_id": 21440,
+        "message_id_end": 21440,
+        "source_message_ids": [
+          21440
+        ],
+        "source_message_count": 1,
+        "timestamp_kst": "2026-04-22T07:11:19+09:00",
+        "timestamp_kst_end": "2026-04-22T07:11:19+09:00",
+        "views": 707,
+        "topics": [
+          "지정학",
+          "무역",
+          "해운/물류"
+        ],
+        "text": "미 재무부장관 베센트 트윗 트럼프대통령이 분명히 밝혔듯이, 미국 해군은 이란 항구에 대한 봉쇄를 계속할 것입니다"
+      },
+      "evidence_count": 0,
+      "evidence": []
+    },
+    {
+      "kind": "common",
+      "label": "반도체",
+      "tag": "semis",
+      "chat_count": 3,
+      "score": 15,
+      "reasons": [
+        "cross-channel repetition",
+        "rate-sensitive macro backdrop"
+      ],
+      "message": {
+        "chat": "하나 중국/신흥국 전략 김경환",
+        "chat_slug": "하나_중국_신흥국_전략_김경환__1306052516",
+        "message_id": 60922,
+        "message_id_end": 60922,
+        "source_message_ids": [
+          60922
+        ],
+        "source_message_count": 1,
+        "timestamp_kst": "2026-04-22T08:17:53+09:00",
+        "timestamp_kst_end": "2026-04-22T08:17:53+09:00",
+        "views": 279,
+        "topics": [
+          "반도체",
+          "실적"
+        ],
+        "text": "모건스탠리: DDR4보다 MLC NAND와 NOR Flash를 더 유망하게 평가하며 최선호주로 Macronix(TP 202TWD), AP메모리(TP 777TWD)로 제시. • 삼성"
+      },
+      "evidence_count": 0,
+      "evidence": []
+    }
+  ],
+  "outlier_signals": [
+    {
+      "kind": "outlier",
+      "label": "반도체",
+      "tag": "semis",
+      "chat_count": 1,
+      "score": 18,
+      "reasons": [
+        "cross-channel repetition",
+        "energy-sensitive macro backdrop",
+        "rate-sensitive macro backdrop"
+      ],
+      "message": {
+        "chat": "[메리츠 Tech 김선우, 양승수, 김동관]",
+        "chat_slug": "메리츠_tech_김선우_양승수_김동관__1104504651",
+        "message_id": 16553,
+        "message_id_end": 16553,
+        "source_message_ids": [
+          16553
+        ],
+        "source_message_count": 1,
+        "timestamp_kst": "2026-04-22T07:48:14+09:00",
+        "timestamp_kst_end": "2026-04-22T07:48:14+09:00",
+        "views": 188,
+        "topics": [
+          "반도체",
+          "지정학"
+        ],
+        "text": "22 (수) [메리츠증권 반도체 / 디스플레이 김선우] ★ 메모리 스팟가격 DRAM(DDR4 8Gb: 1D 0.00%, 1W -1.38%"
+      },
+      "evidence_count": 0,
+      "evidence": []
+    },
+    {
+      "kind": "outlier",
+      "label": "반도체",
+      "tag": "semis",
+      "chat_count": 1,
+      "score": 17,
+      "reasons": [
+        "cross-channel repetition",
+        "energy-sensitive macro backdrop",
+        "rate-sensitive macro backdrop"
+      ],
+      "message": {
+        "chat": "한투증권 중국/신흥국 정정영",
+        "chat_slug": "한투증권_중국_신흥국_정정영__1250493882",
+        "message_id": 29603,
+        "message_id_end": 29603,
+        "source_message_ids": [
+          29603
+        ],
+        "source_message_count": 1,
+        "timestamp_kst": "2026-04-21T17:23:20+09:00",
+        "timestamp_kst_end": "2026-04-21T17:23:20+09:00",
+        "views": 281,
+        "topics": [
+          "반도체",
+          "지정학"
+        ],
+        "text": "~ 주목되는 대목은 장비 라인업 확장 방식이다. 나우라는 개별 장비 판매를 넘어 인수합병을 통해 공정 생태계 통합에 나서고 있다. 세정 분야 강자인 킹세미를 인수해 세정 장비 경쟁력을 보강했고"
+      },
+      "evidence_count": 0,
+      "evidence": []
+    },
+    {
+      "kind": "outlier",
+      "label": "반도체",
+      "tag": "semis",
+      "chat_count": 1,
+      "score": 14,
+      "reasons": [
+        "cross-channel repetition",
+        "rate-sensitive macro backdrop"
+      ],
+      "message": {
+        "chat": "카이에 de market",
+        "chat_slug": "카이에_de_market__1883361144",
+        "message_id": 9297,
+        "message_id_end": 9297,
+        "source_message_ids": [
+          9297
+        ],
+        "source_message_count": 1,
+        "timestamp_kst": "2026-04-22T07:55:35+09:00",
+        "timestamp_kst_end": "2026-04-22T07:55:35+09:00",
+        "views": 879,
+        "topics": [
+          "반도체",
+          "실적"
+        ],
+        "text": "\"투자금액의 증가 = 그만큼 공급량 증가\"로 단순 해석하면 안되는 이유 - JPM은 27년 글로벌 메모리 capex를 기존보다 74% 상향했지만 실제 비트 증가율은 15%도 되지 않을 것으로 전망"
+      },
+      "evidence_count": 0,
+      "evidence": []
+    },
+    {
+      "kind": "outlier",
+      "label": "무역",
+      "tag": "trade",
+      "chat_count": 1,
+      "score": 14,
+      "reasons": [
+        "cross-channel repetition",
+        "rate-sensitive macro backdrop",
+        "source linked"
+      ],
+      "message": {
+        "chat": "에테르의 일본&미국 리서치",
+        "chat_slug": "에테르의_일본_미국_리서치__1909745040",
+        "message_id": 21435,
+        "message_id_end": 21435,
+        "source_message_ids": [
+          21435
+        ],
+        "source_message_count": 1,
+        "timestamp_kst": "2026-04-21T22:02:27+09:00",
+        "timestamp_kst_end": "2026-04-21T22:02:27+09:00",
+        "views": 848,
+        "topics": [
+          "무역"
+        ],
+        "text": "트럼프: 아마존, 애플이 관세 환급을 청구하지 않는다면 훌륭할 것 -관세 환급을 청구하지 않는 기업들을 기억해 둘 것"
+      },
+      "evidence_count": 0,
+      "evidence": []
+    }
+  ],
+  "channel_insights_total": 11,
+  "channel_insights_omitted": 3,
+  "channel_insights": [
+    {
+      "chat": "[메리츠 Tech 김선우, 양승수, 김동관]",
+      "chat_slug": "메리츠_tech_김선우_양승수_김동관__1104504651",
+      "desk_role": "반도체 데스크",
+      "message_count": 1,
+      "top_topics": [
+        "반도체",
+        "지정학"
+      ],
+      "analyst_score": 18,
+      "evidence_backed_highlights": 0,
+      "highlights": [
+        {
+          "message_id": 16553,
+          "message_id_end": 16553,
+          "source_message_ids": [
+            16553
+          ],
+          "source_message_count": 1,
+          "timestamp_kst": "2026-04-22T07:48:14+09:00",
+          "topics": [
+            "반도체",
+            "지정학"
+          ],
+          "score": 18,
+          "reasons": [
+            "cross-channel repetition",
+            "energy-sensitive macro backdrop",
+            "rate-sensitive macro backdrop"
+          ],
+          "text": "22 (수) [메리츠증권 반도체 / 디스플레이 김선우] ★ 메모리 스팟가격 DRAM(DDR4 8Gb: 1D 0.00%, 1W -1.38%"
+        }
+      ]
+    },
+    {
+      "chat": "한투증권 중국/신흥국 정정영",
+      "chat_slug": "한투증권_중국_신흥국_정정영__1250493882",
+      "desk_role": "지정학 데스크",
+      "message_count": 6,
+      "top_topics": [
+        "지정학",
+        "반도체",
+        "에너지"
+      ],
+      "analyst_score": 17,
+      "evidence_backed_highlights": 0,
+      "highlights": [
+        {
+          "message_id": 29603,
+          "message_id_end": 29603,
+          "source_message_ids": [
+            29603
+          ],
+          "source_message_count": 1,
+          "timestamp_kst": "2026-04-21T17:23:20+09:00",
+          "topics": [
+            "반도체",
+            "지정학"
+          ],
+          "score": 17,
+          "reasons": [
+            "cross-channel repetition",
+            "energy-sensitive macro backdrop",
+            "rate-sensitive macro backdrop"
+          ],
+          "text": "~ 주목되는 대목은 장비 라인업 확장 방식이다. 나우라는 개별 장비 판매를 넘어 인수합병을 통해 공정 생태계 통합에 나서고 있다"
+        }
+      ]
+    },
+    {
+      "chat": "에테르의 일본&미국 리서치",
+      "chat_slug": "에테르의_일본_미국_리서치__1909745040",
+      "desk_role": "지정학 데스크",
+      "message_count": 5,
+      "top_topics": [
+        "무역",
+        "지정학",
+        "해운/물류"
+      ],
+      "analyst_score": 16,
+      "evidence_backed_highlights": 0,
+      "highlights": [
+        {
+          "message_id": 21440,
+          "message_id_end": 21440,
+          "source_message_ids": [
+            21440
+          ],
+          "source_message_count": 1,
+          "timestamp_kst": "2026-04-22T07:11:19+09:00",
+          "topics": [
+            "지정학",
+            "무역",
+            "해운/물류"
+          ],
+          "score": 16,
+          "reasons": [
+            "cross-channel repetition",
+            "energy-sensitive macro backdrop",
+            "rate-sensitive macro backdrop"
+          ],
+          "text": "미 재무부장관 베센트 트윗 트럼프대통령이 분명히 밝혔듯이, 미국 해군은 이란 항구에 대한 봉쇄를 계속할 것입니다"
+        }
+      ]
+    },
+    {
+      "chat": "[ IT는 SK ]",
+      "chat_slug": "it는_sk__1879996318",
+      "desk_role": "반도체 데스크",
+      "message_count": 1,
+      "top_topics": [
+        "반도체",
+        "무역",
+        "실적"
+      ],
+      "analyst_score": 16,
+      "evidence_backed_highlights": 0,
+      "highlights": [
+        {
+          "message_id": 3737,
+          "message_id_end": 3737,
+          "source_message_ids": [
+            3737
+          ],
+          "source_message_count": 1,
+          "timestamp_kst": "2026-04-22T07:23:09+09:00",
+          "topics": [
+            "반도체",
+            "무역",
+            "실적"
+          ],
+          "score": 16,
+          "reasons": [
+            "cross-channel repetition",
+            "rate-sensitive macro backdrop",
+            "source linked"
+          ],
+          "text": "삼성전자, 낸드 증설 P5 투입 결정 - 2028년 중반 가동·10세대 낸드 라인 구축 5년 만의 신규 낸드 증설로 클린룸 착공 일정을 연내로 앞당겼으며"
+        }
+      ]
+    },
+    {
+      "chat": "카이에 de market",
+      "chat_slug": "카이에_de_market__1883361144",
+      "desk_role": "반도체 데스크",
+      "message_count": 5,
+      "top_topics": [
+        "반도체",
+        "실적",
+        "정책"
+      ],
+      "analyst_score": 15,
+      "evidence_backed_highlights": 0,
+      "highlights": [
+        {
+          "message_id": 9293,
+          "message_id_end": 9293,
+          "source_message_ids": [
+            9293
+          ],
+          "source_message_count": 1,
+          "timestamp_kst": "2026-04-22T07:03:50+09:00",
+          "topics": [
+            "반도체"
+          ],
+          "score": 15,
+          "reasons": [
+            "cross-channel repetition",
+            "rate-sensitive macro backdrop",
+            "source linked"
+          ],
+          "text": "* TSMC 2나노 수율 90% TSMC의 2나노 초기 수율은 이미 80%를 돌파, 90% 안정화를 한 것으로 파악된다"
+        }
+      ]
+    },
+    {
+      "chat": "시장 이야기 by 제이슨",
+      "chat_slug": "시장_이야기_by_제이슨__1192351807",
+      "desk_role": "실적 데스크",
+      "message_count": 1,
+      "top_topics": [
+        "실적",
+        "지정학"
+      ],
+      "analyst_score": 15,
+      "evidence_backed_highlights": 0,
+      "highlights": [
+        {
+          "message_id": 54194,
+          "message_id_end": 54194,
+          "source_message_ids": [
+            54194
+          ],
+          "source_message_count": 1,
+          "timestamp_kst": "2026-04-22T08:15:09+09:00",
+          "topics": [
+            "실적",
+            "지정학"
+          ],
+          "score": 15,
+          "reasons": [
+            "cross-channel repetition",
+            "energy-sensitive macro backdrop"
+          ],
+          "text": "LG에너지솔루션 제이피모건 1. 주가 급등 배경 (4월 21일 기준 +13.0%) 📈 계약 공식 확인: 메르세데스-벤츠의 LFP(리튬인산철) 전기차 배터리 공급업체로 선정되었다는"
+        }
+      ]
+    },
+    {
+      "chat": "하나 중국/신흥국 전략 김경환",
+      "chat_slug": "하나_중국_신흥국_전략_김경환__1306052516",
+      "desk_role": "반도체 데스크",
+      "message_count": 1,
+      "top_topics": [
+        "반도체",
+        "실적"
+      ],
+      "analyst_score": 15,
+      "evidence_backed_highlights": 0,
+      "highlights": [
+        {
+          "message_id": 60922,
+          "message_id_end": 60922,
+          "source_message_ids": [
+            60922
+          ],
+          "source_message_count": 1,
+          "timestamp_kst": "2026-04-22T08:17:53+09:00",
+          "topics": [
+            "반도체",
+            "실적"
+          ],
+          "score": 15,
+          "reasons": [
+            "cross-channel repetition",
+            "rate-sensitive macro backdrop"
+          ],
+          "text": "모건스탠리: DDR4보다 MLC NAND와 NOR Flash를 더 유망하게 평가하며 최선호주로 Macronix(TP 202TWD), AP메모리(TP 777TWD)로 제시"
+        }
+      ]
+    },
+    {
+      "chat": "키움증권 전략/시황 한지영",
+      "chat_slug": "키움증권_전략_시황_한지영__1304649917",
+      "desk_role": "지정학 데스크",
+      "message_count": 1,
+      "top_topics": [
+        "지정학",
+        "금리",
+        "실적"
+      ],
+      "analyst_score": 14,
+      "evidence_backed_highlights": 0,
+      "highlights": [
+        {
+          "message_id": 2785,
+          "message_id_end": 2785,
+          "source_message_ids": [
+            2785
+          ],
+          "source_message_count": 1,
+          "timestamp_kst": "2026-04-22T07:46:14+09:00",
+          "topics": [
+            "지정학",
+            "금리",
+            "실적",
+            "반도체"
+          ],
+          "score": 14,
+          "reasons": [
+            "cross-channel repetition",
+            "energy-sensitive macro backdrop",
+            "rate-sensitive macro backdrop"
+          ],
+          "text": "[4 / 22, 장 시작 전 생각: 단기 피로감 대응, 키움 한지영] - 다우 -0.6%, S&P500 -0.6%, 나스닥 -0.6% - 엔비디아 -1.1%, 테슬라 -1.5%"
+        }
+      ]
+    }
+  ],
+  "evidence_registry_total": 8,
+  "evidence_registry_omitted": 0,
+  "evidence_registry": [
+    {
+      "url": "https://buly.kr/44zfrD7",
+      "kind": "link",
+      "verified": false,
+      "note": "link_fetch_disabled"
+    },
+    {
+      "url": "https://buly.kr/Aari9pg",
+      "kind": "link",
+      "verified": false,
+      "note": "link_fetch_disabled"
+    },
+    {
+      "url": "https://buly.kr/90ctKcK",
+      "kind": "link",
+      "verified": false,
+      "note": "link_fetch_disabled"
+    },
+    {
+      "url": "https://buly.kr/8pi8Lf4",
+      "kind": "link",
+      "verified": false,
+      "note": "link_fetch_disabled"
+    },
+    {
+      "url": "https://buly.kr/C0Bm0To",
+      "kind": "link",
+      "verified": false,
+      "note": "link_fetch_disabled"
+    },
+    {
+      "url": "https://buly.kr/9tCgEhe",
+      "kind": "link",
+      "verified": false,
+      "note": "link_fetch_disabled"
+    },
+    {
+      "url": "https://buly.kr/DEb4s6A",
+      "kind": "link",
+      "verified": false,
+      "note": "link_fetch_disabled"
+    },
+    {
+      "url": "https://buly.kr/uW2D2K",
+      "kind": "link",
+      "verified": false,
+      "note": "link_fetch_disabled"
+    }
+  ]
+}

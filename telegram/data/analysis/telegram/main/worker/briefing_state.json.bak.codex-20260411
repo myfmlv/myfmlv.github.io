@@ -1,0 +1,17 @@
+{
+  "timezone": "Asia/Seoul",
+  "schedule_kst": [
+    "07:30",
+    "12:00",
+    "15:45",
+    "21:00"
+  ],
+  "last_briefing_ts_kst": "2026-04-11T16:26:45+09:00",
+  "last_briefing_file": "reports/briefings/2026-04-10_2100_kst.md",
+  "last_market_snapshot_file": "market_snapshots/2026-04-10_2100_nokey_kst.json | market_snapshots/treasury_nokey_latest.json",
+  "notes": "Raw Telegram archive retains 30 days. Keep reports/briefings/*.md and *.context.json long-term. reports/latest.md and reports/latest.context.json are the stable delivery targets. Backup and restore this state only for manual verification runs that should not move the live cutoff.",
+  "last_briefing_context_file": "reports/briefings/2026-04-10_2100_kst.context.json",
+  "last_briefing_cutoff_kst": "2026-04-10T00:00:00+09:00",
+  "last_briefing_slot_kst": "21:00",
+  "last_briefing_window_end_kst": "2026-04-10T21:00:00+09:00"
+}

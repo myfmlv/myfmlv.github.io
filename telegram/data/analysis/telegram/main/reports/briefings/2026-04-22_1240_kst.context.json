@@ -1,0 +1,563 @@
+{
+  "context_profile": "compact",
+  "generated_at_kst": "2026-04-22T13:08:48+09:00",
+  "window_start_kst": "2026-04-22T08:20:00+09:00",
+  "window_end_kst": "2026-04-22T12:40:00+09:00",
+  "cutoff_kst": "2026-04-22T08:20:00+09:00",
+  "briefing_slot_kst": "12:40",
+  "cutoff_mode": "requested_schedule_window",
+  "market_snapshot_file": "market_snapshots/2026-04-22_1114_nokey_kst.json | market_snapshots/treasury_nokey_latest.json",
+  "snapshot": {
+    "WTI": "89.37",
+    "Brent": "92.9000015258789",
+    "Gold": "4755.855",
+    "Copper": "603.73",
+    "DXY": "98.34700012207031",
+    "USDKRW_NDF_1M": "1478.24",
+    "USDJPY": "159.2555",
+    "US_2Y": "3.78",
+    "US_10Y": "4.30",
+    "US_10Y_2Y_BP": "52.0bp",
+    "SPX": "7064.01",
+    "NASDAQ": "24259.96"
+  },
+  "macro_snapshot": {
+    "WTI": "89.37",
+    "Brent": "92.9000015258789",
+    "Gold": "4755.855",
+    "Copper": "603.73",
+    "DXY": "98.34700012207031",
+    "USDKRW_NDF_1M": "1478.24",
+    "USDJPY": "159.2555",
+    "US_2Y": "3.78",
+    "US_10Y": "4.30",
+    "US_10Y_2Y_BP": "52.0bp",
+    "SPX": "7064.01",
+    "NASDAQ": "24259.96"
+  },
+  "macro_state": {
+    "energy_stress": true,
+    "fx_stress": true,
+    "rate_stress": true
+  },
+  "regime_shift": "반도체와 실적 재료는 단순 테마가 아니라 공급망·가이던스로 검증되는 구간으로 남아 있다.",
+  "theme_items": [
+    {
+      "label": "반도체",
+      "chat": "[메리츠 Tech 김선우, 양승수, 김동관]",
+      "text": "IT 소재장비: 가보지 않은 길 안녕하십니까 메리츠증권 IT 소재장비 담당 김동관 연구원입니다. IT 소재장비 인뎁스 보고서를 발간합니다",
+      "score": 14
+    },
+    {
+      "label": "실적",
+      "chat": "AWAKE - 실시간 주식 공시 정리채널",
+      "text": "추정치 상향종목 정리(2026-04-22 기준) - 1주 전 대비 추정치 변화 상향된 종목 리스트 (기업명 / 예상실적 / 전주대비) SK하이닉스 / 36.87조 / +4.4% 삼성SDI",
+      "score": 8
+    },
+    {
+      "label": "반도체",
+      "chat": "에테르의 일본&미국 리서치",
+      "text": "삼성전자 HBM5E용 ‘7세대 D램 공정’ 양산 계획 철회 삼성전자가 10나노미터(㎚)급 7세대 D램(1d D램, 이하 D1d)의 양산 계획을 철회했다",
+      "score": 16
+    },
+    {
+      "label": "환율",
+      "chat": "한투증권 중국/신흥국 정정영",
+      "text": "* 중국석화 자회사는 화요일 종가대비 -3.8% 낮은 가격으로 CATL 홍콩주식 매각. 이를 통해 7.6억달러 회수",
+      "score": 12
+    },
+    {
+      "label": "실적",
+      "chat": "한투증권 중국/신흥국 정정영",
+      "text": "* BHP: 중국광산자원그룹(CMRG)과 철광석 계약 합의 必和必拓宣布：已与中国矿产资源集团达成铁矿石销售协议 必和必拓集团（BHP",
+      "score": 10
+    },
+    {
+      "label": "해운/물류",
+      "chat": "하나 중국/신흥국 전략 김경환",
+      "text": "무역 대기업 경고: 호르무즈 해협 사태, 에너지 위기→식량 위기로 확산 •글로벌 무역업체들은 호르무즈 해협 혼란이 지속될 경우 에너지 위기를 넘어 식량 위기로 확산될 수 있다고 경고했음",
+      "score": 16
+    },
+    {
+      "label": "반도체",
+      "chat": "하나 중국/신흥국 전략 김경환",
+      "text": "~중국 메모리 반도체 기업 CXMT의 고대역폭 메모리(HBM3) 양산 계획이 사실상 좌초했다. 21일(현지시간) IT 매체 컴퓨터베이스(ComputerBase) 보도에 따르면",
+      "score": 16
+    }
+  ],
+  "house_view": [
+    "점심 시점 판단은 오전에 나온 재료 중 가격으로 확인된 해석만 남기고, 확인되지 않은 서사는 과감히 낮추는 것이다.",
+    "지금은 산업 서사보다 실적 추정치와 공급망 숫자가 실제로 따라오는 재료를 우선해야 한다."
+  ],
+  "analyst_memos": [
+    "하나 중국/신흥국 전략 김경환: 한편으로는 천연가스 공급 차질로 비료 생산이 크게 감소하면서 작물 생산량에 직접적인 타격이 발생할 수 있음",
+    "카이에 de market: SK하이닉스는 이미 D1d 개발을 완료하고 50% 이상의 안정적인 양산 수율을 확보한 것으로 파악된다",
+    "[메리츠 Tech 김선우, 양승수, 김동관]: 이 기간 진행되는 멀티플의 확장은 점차 12MF EPS 상향 조정과 함께 정당화될 것입니다",
+    "에테르의 일본&미국 리서치: 6세대부터 8세대(HBM4·HBM4E·HBM5)까지는 1c D램으로 대응이 가능하지만"
+  ],
+  "consensus_conflict": [
+    "합의: 여러 방에서 반복된 핵심 축은 반도체, 지정학 관련 이슈였다.",
+    "갈림길: 해운/물류, 반도체 쪽 단독 시그널은 후속 가격 확인이 붙을 때만 무게가 커진다."
+  ],
+  "evidence_status": [
+    "원문 미확인: 이번 실행은 링크 대상을 열지 않았다. 링크가 붙은 주장은 텔레그램 본문 기준으로만 취급했다."
+  ],
+  "numbers_to_watch": [
+    "WTI 89.37: 100 재돌파면 에너지 프리미엄 재확대",
+    "미10년물 4.3: 4.35 위면 성장주 부담 재확대",
+    "원달러환율(현물) 1478.24: 1500 재상회면 국내 리스크온 약화"
+  ],
+  "common_signals": [
+    {
+      "kind": "common",
+      "label": "반도체",
+      "tag": "semis",
+      "chat_count": 3,
+      "score": 13,
+      "reasons": [
+        "cross-channel repetition",
+        "rate-sensitive macro backdrop",
+        "source linked"
+      ],
+      "message": {
+        "chat": "에테르의 일본&미국 리서치",
+        "chat_slug": "에테르의_일본_미국_리서치__1909745040",
+        "message_id": 21447,
+        "message_id_end": 21447,
+        "source_message_ids": [
+          21447
+        ],
+        "source_message_count": 1,
+        "timestamp_kst": "2026-04-22T09:43:04+09:00",
+        "timestamp_kst_end": "2026-04-22T09:43:04+09:00",
+        "views": 532,
+        "topics": [
+          "반도체",
+          "정책"
+        ],
+        "text": "삼성전자 HBM5E용 ‘7세대 D램 공정’ 양산 계획 철회 삼성전자가 10나노미터(㎚)급 7세대 D램(1d D램, 이하 D1d)의 양산 계획을 철회했다"
+      },
+      "evidence_count": 0,
+      "evidence": []
+    },
+    {
+      "kind": "common",
+      "label": "지정학",
+      "tag": "geopolitics",
+      "chat_count": 2,
+      "score": 7,
+      "reasons": [
+        "cross-channel repetition",
+        "energy-sensitive macro backdrop"
+      ],
+      "message": {
+        "chat": "하나 중국/신흥국 전략 김경환",
+        "chat_slug": "하나_중국_신흥국_전략_김경환__1306052516",
+        "message_id": 60925,
+        "message_id_end": 60925,
+        "source_message_ids": [
+          60925
+        ],
+        "source_message_count": 1,
+        "timestamp_kst": "2026-04-22T08:55:09+09:00",
+        "timestamp_kst_end": "2026-04-22T08:55:09+09:00",
+        "views": 846,
+        "topics": [
+          "지정학",
+          "해운/물류"
+        ],
+        "text": "이란: 군사 충돌 일시 중단 동의, 그러나 전쟁은 아직 끝나지 않음 •현지 시간 4월 22일 새벽, 트럼프의 휴전 연장 발언과 관련해 이란 국영 TV는 이란이 전장에서 승리를 거두었다고 주장했음"
+      },
+      "evidence_count": 0,
+      "evidence": []
+    }
+  ],
+  "outlier_signals": [
+    {
+      "kind": "outlier",
+      "label": "해운/물류",
+      "tag": "shipping",
+      "chat_count": 1,
+      "score": 16,
+      "reasons": [
+        "cross-channel repetition",
+        "energy-sensitive macro backdrop",
+        "rate-sensitive macro backdrop"
+      ],
+      "message": {
+        "chat": "하나 중국/신흥국 전략 김경환",
+        "chat_slug": "하나_중국_신흥국_전략_김경환__1306052516",
+        "message_id": 60931,
+        "message_id_end": 60931,
+        "source_message_ids": [
+          60931
+        ],
+        "source_message_count": 1,
+        "timestamp_kst": "2026-04-22T09:54:52+09:00",
+        "timestamp_kst_end": "2026-04-22T09:54:52+09:00",
+        "views": 732,
+        "topics": [
+          "해운/물류",
+          "지정학",
+          "무역"
+        ],
+        "text": "무역 대기업 경고: 호르무즈 해협 사태, 에너지 위기→식량 위기로 확산 •글로벌 무역업체들은 호르무즈 해협 혼란이 지속될 경우 에너지 위기를 넘어 식량 위기로 확산될 수 있다고 경고했음"
+      },
+      "evidence_count": 0,
+      "evidence": []
+    },
+    {
+      "kind": "outlier",
+      "label": "반도체",
+      "tag": "semis",
+      "chat_count": 1,
+      "score": 16,
+      "reasons": [
+        "cross-channel repetition",
+        "rate-sensitive macro backdrop",
+        "source linked"
+      ],
+      "message": {
+        "chat": "하나 중국/신흥국 전략 김경환",
+        "chat_slug": "하나_중국_신흥국_전략_김경환__1306052516",
+        "message_id": 60935,
+        "message_id_end": 60935,
+        "source_message_ids": [
+          60935
+        ],
+        "source_message_count": 1,
+        "timestamp_kst": "2026-04-22T11:28:10+09:00",
+        "timestamp_kst_end": "2026-04-22T11:28:10+09:00",
+        "views": 575,
+        "topics": [
+          "반도체"
+        ],
+        "text": "~중국 메모리 반도체 기업 CXMT의 고대역폭 메모리(HBM3) 양산 계획이 사실상 좌초했다. 21일(현지시간) IT 매체 컴퓨터베이스(ComputerBase) 보도에 따르면"
+      },
+      "evidence_count": 0,
+      "evidence": []
+    },
+    {
+      "kind": "outlier",
+      "label": "반도체",
+      "tag": "semis",
+      "chat_count": 1,
+      "score": 15,
+      "reasons": [
+        "cross-channel repetition",
+        "rate-sensitive macro backdrop",
+        "source linked"
+      ],
+      "message": {
+        "chat": "카이에 de market",
+        "chat_slug": "카이에_de_market__1883361144",
+        "message_id": 9301,
+        "message_id_end": 9301,
+        "source_message_ids": [
+          9301
+        ],
+        "source_message_count": 1,
+        "timestamp_kst": "2026-04-22T09:25:07+09:00",
+        "timestamp_kst_end": "2026-04-22T09:25:07+09:00",
+        "views": 1357,
+        "topics": [
+          "반도체"
+        ],
+        "text": "22일 삼성전자 내부 소식에 정통한 관계자에 따르면 삼성전자 경영진은 최근 D1d의 수율과 ROI를 검토한 결과 양산이 부적합하다는 결론을 내렸다"
+      },
+      "evidence_count": 0,
+      "evidence": []
+    }
+  ],
+  "channel_insights_total": 7,
+  "channel_insights_omitted": 0,
+  "channel_insights": [
+    {
+      "chat": "하나 중국/신흥국 전략 김경환",
+      "chat_slug": "하나_중국_신흥국_전략_김경환__1306052516",
+      "desk_role": "FX 데스크",
+      "message_count": 8,
+      "top_topics": [
+        "지정학",
+        "해운/물류",
+        "환율"
+      ],
+      "analyst_score": 16,
+      "evidence_backed_highlights": 0,
+      "highlights": [
+        {
+          "message_id": 60931,
+          "message_id_end": 60931,
+          "source_message_ids": [
+            60931
+          ],
+          "source_message_count": 1,
+          "timestamp_kst": "2026-04-22T09:54:52+09:00",
+          "topics": [
+            "해운/물류",
+            "지정학",
+            "무역"
+          ],
+          "score": 16,
+          "reasons": [
+            "cross-channel repetition",
+            "energy-sensitive macro backdrop",
+            "rate-sensitive macro backdrop"
+          ],
+          "text": "무역 대기업 경고: 호르무즈 해협 사태, 에너지 위기→식량 위기로 확산 •글로벌 무역업체들은 호르무즈 해협 혼란이 지속될 경우 에너지 위기를 넘어 식량 위기로 확산될 수 있다고"
+        }
+      ]
+    },
+    {
+      "chat": "카이에 de market",
+      "chat_slug": "카이에_de_market__1883361144",
+      "desk_role": "반도체 데스크",
+      "message_count": 2,
+      "top_topics": [
+        "반도체"
+      ],
+      "analyst_score": 15,
+      "evidence_backed_highlights": 0,
+      "highlights": [
+        {
+          "message_id": 9301,
+          "message_id_end": 9301,
+          "source_message_ids": [
+            9301
+          ],
+          "source_message_count": 1,
+          "timestamp_kst": "2026-04-22T09:25:07+09:00",
+          "topics": [
+            "반도체"
+          ],
+          "score": 15,
+          "reasons": [
+            "cross-channel repetition",
+            "rate-sensitive macro backdrop",
+            "source linked"
+          ],
+          "text": "22일 삼성전자 내부 소식에 정통한 관계자에 따르면 삼성전자 경영진은 최근 D1d의 수율과 ROI를 검토한 결과 양산이 부적합하다는 결론을 내렸다"
+        }
+      ]
+    },
+    {
+      "chat": "[메리츠 Tech 김선우, 양승수, 김동관]",
+      "chat_slug": "메리츠_tech_김선우_양승수_김동관__1104504651",
+      "desk_role": "반도체 데스크",
+      "message_count": 2,
+      "top_topics": [
+        "반도체",
+        "실적",
+        "정책"
+      ],
+      "analyst_score": 14,
+      "evidence_backed_highlights": 0,
+      "highlights": [
+        {
+          "message_id": 16555,
+          "message_id_end": 16555,
+          "source_message_ids": [
+            16555
+          ],
+          "source_message_count": 1,
+          "timestamp_kst": "2026-04-22T08:30:22+09:00",
+          "topics": [
+            "반도체",
+            "실적"
+          ],
+          "score": 14,
+          "reasons": [
+            "cross-channel repetition",
+            "rate-sensitive macro backdrop",
+            "source linked"
+          ],
+          "text": "IT 소재장비: 가보지 않은 길 안녕하십니까 메리츠증권 IT 소재장비 담당 김동관 연구원입니다. IT 소재장비 인뎁스 보고서를 발간합니다"
+        }
+      ]
+    },
+    {
+      "chat": "에테르의 일본&미국 리서치",
+      "chat_slug": "에테르의_일본_미국_리서치__1909745040",
+      "desk_role": "반도체 데스크",
+      "message_count": 1,
+      "top_topics": [
+        "반도체",
+        "정책"
+      ],
+      "analyst_score": 13,
+      "evidence_backed_highlights": 0,
+      "highlights": [
+        {
+          "message_id": 21447,
+          "message_id_end": 21447,
+          "source_message_ids": [
+            21447
+          ],
+          "source_message_count": 1,
+          "timestamp_kst": "2026-04-22T09:43:04+09:00",
+          "topics": [
+            "반도체",
+            "정책"
+          ],
+          "score": 13,
+          "reasons": [
+            "cross-channel repetition",
+            "rate-sensitive macro backdrop",
+            "source linked"
+          ],
+          "text": "삼성전자 HBM5E용 ‘7세대 D램 공정’ 양산 계획 철회 삼성전자가 10나노미터(㎚)급 7세대 D램(1d D램, 이하 D1d)의 양산 계획을 철회했다"
+        }
+      ]
+    },
+    {
+      "chat": "트릴리온",
+      "chat_slug": "트릴리온__3402415038",
+      "desk_role": "지정학 데스크",
+      "message_count": 6,
+      "top_topics": [
+        "지정학",
+        "에너지",
+        "정책"
+      ],
+      "analyst_score": 12,
+      "evidence_backed_highlights": 0,
+      "highlights": [
+        {
+          "message_id": 4352,
+          "message_id_end": 4352,
+          "source_message_ids": [
+            4352
+          ],
+          "source_message_count": 1,
+          "timestamp_kst": "2026-04-22T10:52:23+09:00",
+          "topics": [
+            "에너지"
+          ],
+          "score": 12,
+          "reasons": [
+            "cross-channel repetition",
+            "energy-sensitive macro backdrop",
+            "source linked"
+          ],
+          "text": "루프트한자는 유가 급등에 따른 연료비 절감을 위해 2만 편의 항공편을 감축했습니다. 이번 조치는 유럽 교통 장관들이 해당 지역의 항공유 부족 사태를 막기 위한 계획을 논의하기"
+        }
+      ]
+    },
+    {
+      "chat": "한투증권 중국/신흥국 정정영",
+      "chat_slug": "한투증권_중국_신흥국_정정영__1250493882",
+      "desk_role": "지정학 데스크",
+      "message_count": 5,
+      "top_topics": [
+        "지정학",
+        "해운/물류",
+        "환율"
+      ],
+      "analyst_score": 12,
+      "evidence_backed_highlights": 0,
+      "highlights": [
+        {
+          "message_id": 29626,
+          "message_id_end": 29626,
+          "source_message_ids": [
+            29626
+          ],
+          "source_message_count": 1,
+          "timestamp_kst": "2026-04-22T10:28:25+09:00",
+          "topics": [
+            "환율"
+          ],
+          "score": 12,
+          "reasons": [
+            "cross-channel repetition",
+            "fx-sensitive macro backdrop",
+            "source linked"
+          ],
+          "text": "* 중국석화 자회사는 화요일 종가대비 -3.8% 낮은 가격으로 CATL 홍콩주식 매각. 이를 통해 7.6억달러 회수"
+        }
+      ]
+    },
+    {
+      "chat": "시장 이야기 by 제이슨",
+      "chat_slug": "시장_이야기_by_제이슨__1192351807",
+      "desk_role": "실적 데스크",
+      "message_count": 1,
+      "top_topics": [
+        "실적"
+      ],
+      "analyst_score": 9,
+      "evidence_backed_highlights": 0,
+      "highlights": [
+        {
+          "message_id": 54195,
+          "message_id_end": 54195,
+          "source_message_ids": [
+            54195
+          ],
+          "source_message_count": 1,
+          "timestamp_kst": "2026-04-22T09:45:15+09:00",
+          "topics": [
+            "실적"
+          ],
+          "score": 9,
+          "reasons": [
+            "cross-channel repetition"
+          ],
+          "text": "우리는 투자자들이 미국 주식 포트폴리오를 광범위한 경제 성장에 연동된 종목보다는, 전력 인프라 투자와 연관된 기업처럼 독자적인 실적 성장 동력을 보유하고 AI disruption"
+        }
+      ]
+    }
+  ],
+  "evidence_registry_total": 8,
+  "evidence_registry_omitted": 0,
+  "evidence_registry": [
+    {
+      "url": "https://wallstreetcn.com/articles/3770551#from=ios",
+      "kind": "link",
+      "verified": false,
+      "note": "link_fetch_disabled"
+    },
+    {
+      "url": "http://m.g-enews.com/view.php?ud=202604221020256800fbbec65dfb_1",
+      "kind": "link",
+      "verified": false,
+      "note": "link_fetch_disabled"
+    },
+    {
+      "url": "https://it.chosun.com/news/articleView.html?idxno=2023092160720",
+      "kind": "link",
+      "verified": false,
+      "note": "link_fetch_disabled"
+    },
+    {
+      "url": "https://vo.la/3IQIiU8",
+      "kind": "link",
+      "verified": false,
+      "note": "link_fetch_disabled"
+    },
+    {
+      "url": "https://x.com/i/status/2046622175717904872",
+      "kind": "link",
+      "verified": false,
+      "note": "link_fetch_disabled"
+    },
+    {
+      "url": "https://buly.kr/FWUvdBM",
+      "kind": "link",
+      "verified": false,
+      "note": "link_fetch_disabled"
+    },
+    {
+      "url": "https://wallstreetcn.com/articles/3770558#from=ios",
+      "kind": "link",
+      "verified": false,
+      "note": "link_fetch_disabled"
+    },
+    {
+      "url": "https://www.ft.com/content/bd0e3253-74ca-4ef3-86b4-ce61d7c714ed?syn-25a6b1a6=1",
+      "kind": "link",
+      "verified": false,
+      "note": "link_fetch_disabled"
+    }
+  ]
+}

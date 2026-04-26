@@ -1,0 +1,26 @@
+{
+  "timezone": "Asia/Seoul",
+  "schedule_kst": [
+    "08:20",
+    "12:40",
+    "17:10"
+  ],
+  "last_market_snapshot_file": "market_snapshots/2026-04-23_0820_nokey_kst.json | market_snapshots/treasury_nokey_latest.json",
+  "notes": "Raw Telegram archive retains 7 days. Keep reports/briefings/*.md and *.context.json long-term. reports/latest.md and reports/latest.context.json are the stable delivery targets. Backup and restore this state only for manual verification runs that should not move the live cutoff.",
+  "last_briefing": {
+    "status": "generated",
+    "slot_kst": "08:20",
+    "generated_at_kst": "2026-04-23T08:20:50+09:00",
+    "window": {
+      "start_kst": "2026-04-22T17:10:00+09:00",
+      "end_kst": "2026-04-23T08:20:00+09:00"
+    },
+    "market_snapshot_file": "market_snapshots/2026-04-23_0820_nokey_kst.json | market_snapshots/treasury_nokey_latest.json",
+    "skip": null,
+    "outputs": {
+      "briefing_file": "reports/briefings/2026-04-23_0820_kst.md",
+      "context_file": "reports/briefings/2026-04-23_0820_kst.context.json",
+      "bundle_file": "reports/bundles/2026-04-23_0820_kst.bundle.md"
+    }
+  }
+}

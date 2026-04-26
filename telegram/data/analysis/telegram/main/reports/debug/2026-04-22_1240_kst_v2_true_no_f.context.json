@@ -1,0 +1,211 @@
+{
+  "message_count": 27,
+  "forced_fact_count": 11,
+  "validated_group_count": 3,
+  "classified_messages": [
+    {
+      "chat_slug": "하나_중국_신흥국_전략_김경환__1306052516",
+      "message_id": 60924,
+      "original_label": "commentary",
+      "forced_label": "actionable_news"
+    },
+    {
+      "chat_slug": "하나_중국_신흥국_전략_김경환__1306052516",
+      "message_id": 60925,
+      "original_label": "commentary",
+      "forced_label": "actionable_news"
+    },
+    {
+      "chat_slug": "하나_중국_신흥국_전략_김경환__1306052516",
+      "message_id": 60926,
+      "original_label": "broker_note_roundup",
+      "forced_label": "actionable_news"
+    },
+    {
+      "chat_slug": "하나_중국_신흥국_전략_김경환__1306052516",
+      "message_id": 60928,
+      "original_label": "broker_note_actionable",
+      "forced_label": "broker_note_actionable"
+    },
+    {
+      "chat_slug": "하나_중국_신흥국_전략_김경환__1306052516",
+      "message_id": 60929,
+      "original_label": "commentary",
+      "forced_label": "actionable_news"
+    },
+    {
+      "chat_slug": "하나_중국_신흥국_전략_김경환__1306052516",
+      "message_id": 60931,
+      "original_label": "broker_note_actionable",
+      "forced_label": "broker_note_actionable"
+    },
+    {
+      "chat_slug": "하나_중국_신흥국_전략_김경환__1306052516",
+      "message_id": 60935,
+      "original_label": "commentary",
+      "forced_label": "actionable_news"
+    },
+    {
+      "chat_slug": "하나_중국_신흥국_전략_김경환__1306052516",
+      "message_id": 60936,
+      "original_label": "noise",
+      "forced_label": "actionable_news"
+    },
+    {
+      "chat_slug": "시장_이야기_by_제이슨__1192351807",
+      "message_id": 54195,
+      "original_label": "actionable_news",
+      "forced_label": "actionable_news"
+    },
+    {
+      "chat_slug": "메리츠_tech_김선우_양승수_김동관__1104504651",
+      "message_id": 16555,
+      "original_label": "broker_note_actionable",
+      "forced_label": "broker_note_actionable"
+    },
+    {
+      "chat_slug": "메리츠_tech_김선우_양승수_김동관__1104504651",
+      "message_id": 16558,
+      "original_label": "commentary",
+      "forced_label": "actionable_news"
+    },
+    {
+      "chat_slug": "한투증권_중국_신흥국_정정영__1250493882",
+      "message_id": 29623,
+      "original_label": "commentary",
+      "forced_label": "actionable_news"
+    },
+    {
+      "chat_slug": "한투증권_중국_신흥국_정정영__1250493882",
+      "message_id": 29624,
+      "original_label": "commentary",
+      "forced_label": "actionable_news"
+    },
+    {
+      "chat_slug": "한투증권_중국_신흥국_정정영__1250493882",
+      "message_id": 29625,
+      "original_label": "commentary",
+      "forced_label": "actionable_news"
+    },
+    {
+      "chat_slug": "한투증권_중국_신흥국_정정영__1250493882",
+      "message_id": 29626,
+      "original_label": "broker_note_actionable",
+      "forced_label": "broker_note_actionable"
+    },
+    {
+      "chat_slug": "한투증권_중국_신흥국_정정영__1250493882",
+      "message_id": 29627,
+      "original_label": "broker_note_actionable",
+      "forced_label": "broker_note_actionable"
+    },
+    {
+      "chat_slug": "트릴리온__3402415038",
+      "message_id": 4351,
+      "original_label": "commentary",
+      "forced_label": "actionable_news"
+    },
+    {
+      "chat_slug": "트릴리온__3402415038",
+      "message_id": 4352,
+      "original_label": "commentary",
+      "forced_label": "actionable_news"
+    },
+    {
+      "chat_slug": "트릴리온__3402415038",
+      "message_id": 4353,
+      "original_label": "commentary",
+      "forced_label": "actionable_news"
+    },
+    {
+      "chat_slug": "트릴리온__3402415038",
+      "message_id": 4355,
+      "original_label": "commentary",
+      "forced_label": "actionable_news"
+    },
+    {
+      "chat_slug": "트릴리온__3402415038",
+      "message_id": 4356,
+      "original_label": "commentary",
+      "forced_label": "actionable_news"
+    },
+    {
+      "chat_slug": "트릴리온__3402415038",
+      "message_id": 4358,
+      "original_label": "commentary",
+      "forced_label": "actionable_news"
+    },
+    {
+      "chat_slug": "카이에_de_market__1883361144",
+      "message_id": 9300,
+      "original_label": "commentary",
+      "forced_label": "actionable_news"
+    },
+    {
+      "chat_slug": "카이에_de_market__1883361144",
+      "message_id": 9301,
+      "original_label": "commentary",
+      "forced_label": "actionable_news"
+    },
+    {
+      "chat_slug": "에테르의_일본_미국_리서치__1909745040",
+      "message_id": 21447,
+      "original_label": "commentary",
+      "forced_label": "actionable_news"
+    },
+    {
+      "chat_slug": "awake_실시간_주식_공시_정리채널__1066938528",
+      "message_id": 138282,
+      "original_label": "utility_roundup",
+      "forced_label": "actionable_news"
+    },
+    {
+      "chat_slug": "awake_실시간_주식_공시_정리채널__1066938528",
+      "message_id": 138287,
+      "original_label": "utility_actionable_filing",
+      "forced_label": "utility_actionable_filing"
+    }
+  ],
+  "selected_groups": [
+    "HJ중공업은 한국토지주택공사와 남양주왕숙2 A-6BL 및 A-7BL 통합형 민간참여 공공주택 건설사업 공급계약을 체결했고 계약금액은 682억 원, 매출 대비 3.41%라고 공시했다",
+    "중국석화 자회사는 화요일 종가대비 -3.8% 낮은 가격으로 CATL 홍콩주식 매각했다",
+    "BHP는 중국광산자원그룹과 철광석 계약에 합의했다"
+  ],
+  "rejected_groups": [
+    {
+      "signature": "관련 기업 update uncategorized 45%",
+      "reason": "incomplete_clause",
+      "summary": "~ 중국 글로벌타임스는 21일 항공 테이터 업체 유메트립를 인용해 20일 기준으로 노동절 연휴에 중국에서 일본으로 가는 항공편 약 45%가 취소됐다고 보도했다 ~ 선양-오사카, 톈진-오사카, 푸저우-나고야, 닝보-오사카"
+    },
+    {
+      "signature": "tv는 update geopolitics",
+      "reason": "insufficient_evidence",
+      "summary": "현지 시간 4월 22일 새벽, 트럼프의 휴전 연장 발언과 관련해 이란 국영 TV는 이란이 전장에서 승리를 거두었다고 주장했다"
+    },
+    {
+      "signature": "관련 기업 update trade",
+      "reason": "insufficient_evidence",
+      "summary": "글로벌 무역업체들은 호르무즈 해협 혼란이 지속될 경우 에너지 위기를 넘어 식량 위기로 확산될 수 있다고 경고했다"
+    },
+    {
+      "signature": "cxmt의 update semis",
+      "reason": "insufficient_evidence",
+      "summary": "~중국 메모리 반도체 기업 CXMT의 고대역폭 메모리(HBM3) 양산 계획이 사실상 좌초했다"
+    },
+    {
+      "signature": "관련 기업 update uncategorized",
+      "reason": "insufficient_evidence",
+      "summary": "공정 난도가 기하급수적으로 올라가 안정적인 제품 품질을 보장하기 어려운 상황에서 무리하게 라인을 가동하지 않겠다는 판단이다"
+    },
+    {
+      "signature": "삼성전자 update semis",
+      "reason": "insufficient_evidence",
+      "summary": "삼성전자 HBM5E용 ‘7세대 D램 공정’ 양산 계획 철회 삼성전자가 10나노미터(㎚)급 7세대 D램(1d D램, 이하 D1d)의 양산 계획을 철회했다"
+    },
+    {
+      "signature": "catl update uncategorized",
+      "reason": "insufficient_evidence",
+      "summary": "페트로차이나,는 CATL H주 지분을 매각했다"
+    }
+  ]
+}

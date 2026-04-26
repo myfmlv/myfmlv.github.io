@@ -1,0 +1,142 @@
+{
+  "VIX": [
+    {
+      "candidate": "^vix",
+      "result": {
+        "symbol": "^VIX",
+        "date": "N/D",
+        "time": "N/D",
+        "open": "N/D",
+        "high": "N/D",
+        "low": "N/D",
+        "close": "N/D"
+      }
+    },
+    {
+      "candidate": "vix",
+      "result": {
+        "symbol": "VIX",
+        "date": "N/D",
+        "time": "N/D",
+        "open": "N/D",
+        "high": "N/D",
+        "low": "N/D",
+        "close": "N/D"
+      }
+    }
+  ],
+  "Brent": [
+    {
+      "candidate": "b.f",
+      "result": {
+        "symbol": "B.F",
+        "date": "N/D",
+        "time": "N/D",
+        "open": "N/D",
+        "high": "N/D",
+        "low": "N/D",
+        "close": "N/D"
+      }
+    },
+    {
+      "candidate": "brent",
+      "result": {
+        "symbol": "BRENT",
+        "date": "N/D",
+        "time": "N/D",
+        "open": "N/D",
+        "high": "N/D",
+        "low": "N/D",
+        "close": "N/D"
+      }
+    },
+    {
+      "candidate": "brent.f",
+      "result": {
+        "symbol": "BRENT.F",
+        "date": "N/D",
+        "time": "N/D",
+        "open": "N/D",
+        "high": "N/D",
+        "low": "N/D",
+        "close": "N/D"
+      }
+    }
+  ],
+  "Gold": [
+    {
+      "candidate": "gold",
+      "result": {
+        "symbol": "GOLD",
+        "date": "N/D",
+        "time": "N/D",
+        "open": "N/D",
+        "high": "N/D",
+        "low": "N/D",
+        "close": "N/D"
+      }
+    },
+    {
+      "candidate": "xauusd",
+      "result": {
+        "symbol": "XAUUSD",
+        "date": "20260403",
+        "time": "062148",
+        "open": "4676.4",
+        "high": "4676.4",
+        "low": "4676.3",
+        "close": "4676.3"
+      }
+    },
+    {
+      "candidate": "gc.f",
+      "result": {
+        "symbol": "GC.F",
+        "date": "20260403",
+        "time": "000914",
+        "open": "4679.7",
+        "high": "4679.7",
+        "low": "4679.7",
+        "close": "4679.7"
+      }
+    }
+  ],
+  "Copper": [
+    {
+      "candidate": "copper",
+      "result": {
+        "symbol": "COPPER",
+        "date": "N/D",
+        "time": "N/D",
+        "open": "N/D",
+        "high": "N/D",
+        "low": "N/D",
+        "close": "N/D"
+      }
+    },
+    {
+      "candidate": "hg.f",
+      "result": {
+        "symbol": "HG.F",
+        "date": "20260403",
+        "time": "000845",
+        "open": "558.35",
+        "high": "558.35",
+        "low": "558.35",
+        "close": "558.35"
+      }
+    },
+    {
+      "candidate": "cpr.f",
+      "result": {
+        "symbol": "CPR.F",
+        "date": "N/D",
+        "time": "N/D",
+        "open": "N/D",
+        "high": "N/D",
+        "low": "N/D",
+        "close": "N/D"
+      }
+    }
+  ]
+}

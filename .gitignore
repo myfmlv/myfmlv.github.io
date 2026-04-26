@@ -2,6 +2,14 @@
 node_modules/
 .cache/
 .env*
+!.env*.example
 .pw-*/
 *.swp
 PROJECT_CONTEXT.md
+telegram/.venv*/
+telegram/.pytest_cache/
+telegram/**/__pycache__/
+telegram/**/*.pyc
+telegram/data/archives/
+telegram/data/analysis/telegram/main/normalized/
+telegram/data/analysis/telegram/main/worker/market_api_keys.local.json

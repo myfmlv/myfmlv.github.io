@@ -1,0 +1,11 @@
+.env
+.env.krx
+.env.nim
+.venv-telegram-export/
+.pw-profile-krx/
+.pw-probe*/
+logs/
+tmp/
+data/archives/telegram/test/telegram_archive.env
+data/archives/telegram/test/session/*.session
+data/archives/telegram/test/session/*.session-journal

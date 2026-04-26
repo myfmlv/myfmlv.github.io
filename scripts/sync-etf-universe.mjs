@@ -1,4 +1,4 @@
-import { mkdir, writeFile } from 'node:fs/promises'
+import { mkdir, readFile, writeFile } from 'node:fs/promises'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
@@ -7,8 +7,10 @@ const projectRoot = path.resolve(__dirname, '..')
 const dataDir = path.resolve(projectRoot, 'data')
 const NAVER_BASE_URL = 'https://stock.naver.com/api'
 const NAVER_CHART_BASE_URL = 'https://api.stock.naver.com/chart/domestic/item'
+const WISEREPORT_ETF_BASE_URL = 'https://navercomp.wisereport.co.kr/v2/ETF/index.aspx'
 const PAGE_SIZE = 100
 const CHART_CONCURRENCY = 8
+const HOLDINGS_CONCURRENCY = 6
 
 const issuerMap = [
   ['KODEX', '삼성자산운용'],
@@ -122,6 +124,28 @@ function numberValue(value) {
   return Number(String(value ?? '').replace(/,/g, '')) || 0
 }
 
+function normalizeHoldingName(name) {
+  return String(name ?? '').trim().replace(/\s+/g, ' ').toUpperCase()
+}
+
+async function loadStockNameMap() {
+  const map = new Map()
+  try {
+    const payload = JSON.parse(await readFile(path.join(dataDir, 'stock-meta.json'), 'utf8'))
+    Object.entries(payload).forEach(([ticker, meta]) => {
+      if (meta?.name) map.set(normalizeHoldingName(meta.name), String(ticker).padStart(6, '0'))
+    })
+  } catch {
+    // stock-meta.json is optional for ETF sync; unresolved holdings still keep their names.
+  }
+
+  holdingTemplates.flatMap(({ holdings }) => holdings).forEach(([name, ticker]) => {
+    if (name && ticker) map.set(normalizeHoldingName(name), String(ticker))
+  })
+
+  return map
+}
+
 function issuerFromName(name) {
   const matched = issuerMap.find(([prefix]) => name.startsWith(prefix))
   return matched?.[1] ?? '운용사 미확인'
@@ -210,6 +234,38 @@ async function fetchEtfChart(code) {
   }
 }
 
+function parseWiseReportHoldings(html, nameToTicker) {
+  const match = html.match(/var\s+CU_data\s*=\s*(\{"grid_data":.*?\});/s)
+  if (!match) return []
+
+  try {
+    const payload = JSON.parse(match[1])
+    const rows = Array.isArray(payload.grid_data) ? payload.grid_data : []
+    return rows
+      .map((row) => {
+        const name = String(row.STK_NM_KOR ?? '').trim()
+        const ratio = roundedNumber(row.ETF_WEIGHT)
+        if (!name || !ratio || /원화현금|현금|예수금|CASH/i.test(name)) return null
+        return [name, nameToTicker.get(normalizeHoldingName(name)) ?? '', ratio]
+      })
+      .filter(Boolean)
+      .sort((a, b) => b[2] - a[2])
+  } catch {
+    return []
+  }
+}
+
+async function fetchEtfHoldings(code, nameToTicker) {
+  try {
+    const query = new URLSearchParams({ cmp_cd: code })
+    const html = await fetchText(`${WISEREPORT_ETF_BASE_URL}?${query}`)
+    return parseWiseReportHoldings(html, nameToTicker)
+  } catch (error) {
+    console.warn(`ETF holdings skipped ${code}: ${error.message}`)
+    return []
+  }
+}
+
 async function mapWithConcurrency(items, limit, mapper) {
   const results = Array(items.length)
   let nextIndex = 0
@@ -226,7 +282,7 @@ async function mapWithConcurrency(items, limit, mapper) {
   return results
 }
 
-function normalizeEtf(item, usListedCodes, chart) {
+function normalizeEtf(item, usListedCodes, chart, holdings) {
   const usListed = usListedCodes.has(item.itemCode)
   const marketCap = numberValue(item.totalNetAssets)
   const chartPrice = chart?.history?.at(-1)?.[1]
@@ -248,8 +304,14 @@ function normalizeEtf(item, usListedCodes, chart) {
     dayTrend: chart?.dayTrend ?? [],
     priceHistory: chart?.history ?? [],
     latestCandle: chart?.latestCandle ?? null,
-    holdings: inferHoldings(item),
-    source: chart ? 'Naver stock ETF API + Naver chart dayCandle' : 'Naver stock ETF API',
+    holdings,
+    source: holdings.length > 0 && chart
+      ? 'Naver stock ETF API + Naver chart dayCandle + WiseReport ETF holdings'
+      : holdings.length > 0
+        ? 'Naver stock ETF API + WiseReport ETF holdings'
+        : chart
+          ? 'Naver stock ETF API + Naver chart dayCandle'
+          : 'Naver stock ETF API',
   }
 }
 
@@ -262,6 +324,17 @@ async function fetchJson(url) {
   })
   if (!response.ok) throw new Error(`${url} failed: ${response.status}`)
   return response.json()
+}
+
+async function fetchText(url) {
+  const response = await fetch(url, {
+    headers: {
+      Accept: 'text/html',
+      'User-Agent': 'Mozilla/5.0',
+    },
+  })
+  if (!response.ok) throw new Error(`${url} failed: ${response.status}`)
+  return response.text()
 }
 
 async function fetchDomesticEtfs(params = {}) {
@@ -298,15 +371,27 @@ allItems.forEach((item) => deduped.set(item.itemCode, item))
 usListedItems.forEach((item) => deduped.set(item.itemCode, { ...deduped.get(item.itemCode), ...item }))
 
 const rawEtfs = [...deduped.values()]
+const stockNameMap = await loadStockNameMap()
 const chartEntries = await mapWithConcurrency(rawEtfs, CHART_CONCURRENCY, async (item, index) => {
   const chart = await fetchEtfChart(item.itemCode)
   if ((index + 1) % 100 === 0) console.log(`Fetched ETF charts ${index + 1}/${rawEtfs.length}`)
   return [item.itemCode, chart]
 })
 const chartByCode = new Map(chartEntries)
+const holdingEntries = await mapWithConcurrency(rawEtfs, HOLDINGS_CONCURRENCY, async (item, index) => {
+  const holdings = await fetchEtfHoldings(item.itemCode, stockNameMap)
+  if ((index + 1) % 100 === 0) console.log(`Fetched ETF holdings ${index + 1}/${rawEtfs.length}`)
+  return [item.itemCode, holdings]
+})
+const holdingsByCode = new Map(holdingEntries)
 
 const etfs = rawEtfs
-  .map((item) => normalizeEtf(item, usListedCodes, chartByCode.get(item.itemCode)))
+  .map((item) => normalizeEtf(
+    item,
+    usListedCodes,
+    chartByCode.get(item.itemCode),
+    holdingsByCode.get(item.itemCode) ?? [],
+  ))
   .sort((a, b) => b.amount - a.amount)
 
 await mkdir(dataDir, { recursive: true })
@@ -315,13 +400,15 @@ await writeFile(path.join(dataDir, 'etf-universe.json'), `${JSON.stringify({
   source: [
     'https://stock.naver.com/api/stockSecurity/etfs/v1/domestic',
     'https://api.stock.naver.com/chart/domestic/item/{code}?periodType=dayCandle',
+    'https://navercomp.wisereport.co.kr/v2/ETF/index.aspx?cmp_cd={code}',
   ],
   totalCount: etfs.length,
   usListedCount: usListedCodes.size,
   chartCount: etfs.filter((item) => item.priceHistory.length > 0).length,
+  holdingCount: etfs.filter((item) => item.holdings.length > 0).length,
   themes,
   leverageTypes,
   etfs,
 }, null, 2)}\n`)
 
-console.log(`Synced ${etfs.length} ETF(s), domestic-listed US ETF ${usListedCodes.size}, charts ${etfs.filter((item) => item.priceHistory.length > 0).length}`)
+console.log(`Synced ${etfs.length} ETF(s), domestic-listed US ETF ${usListedCodes.size}, charts ${etfs.filter((item) => item.priceHistory.length > 0).length}, holdings ${etfs.filter((item) => item.holdings.length > 0).length}`)

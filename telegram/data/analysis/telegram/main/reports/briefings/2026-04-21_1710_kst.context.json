@@ -1,0 +1,617 @@
+{
+  "context_profile": "compact",
+  "generated_at_kst": "2026-04-21T18:05:50+09:00",
+  "window_start_kst": "2026-04-21T12:40:00+09:00",
+  "window_end_kst": "2026-04-21T17:10:00+09:00",
+  "cutoff_kst": "2026-04-21T12:40:00+09:00",
+  "briefing_slot_kst": "17:10",
+  "cutoff_mode": "requested_schedule_window",
+  "market_snapshot_file": "market_snapshots/2026-04-21_1710_nokey_kst.json | market_snapshots/treasury_nokey_latest.json",
+  "snapshot": {
+    "WTI": "86.57",
+    "Brent": "90.0199966430664",
+    "Gold": "4780.865",
+    "Copper": "602.87",
+    "DXY": "98.22599792480469",
+    "USDKRW_NDF_1M": "1469.3",
+    "USDJPY": "159.1155",
+    "US_2Y": "3.72",
+    "US_10Y": "4.26",
+    "US_10Y_2Y_BP": "54.0bp",
+    "SPX": "7109.14",
+    "NASDAQ": "24404.39"
+  },
+  "macro_snapshot": {
+    "WTI": "86.57",
+    "Brent": "90.0199966430664",
+    "Gold": "4780.865",
+    "Copper": "602.87",
+    "DXY": "98.22599792480469",
+    "USDKRW_NDF_1M": "1469.3",
+    "USDJPY": "159.1155",
+    "US_2Y": "3.72",
+    "US_10Y": "4.26",
+    "US_10Y_2Y_BP": "54.0bp",
+    "SPX": "7109.14",
+    "NASDAQ": "24404.39"
+  },
+  "macro_state": {
+    "energy_stress": true,
+    "fx_stress": true,
+    "rate_stress": false
+  },
+  "regime_shift": "중동 변수는 협상 headline보다 유가·환율·통항으로 확인되는 위험 프리미엄 문제로 다시 좁혀졌다.",
+  "theme_items": [
+    {
+      "label": "무역",
+      "chat": "한투증권 중국/신흥국 정정영",
+      "text": "유가 하락. 이란은 지역 관계자에 화요일 파키스탄으로 대표단 출발 & 미국과 2차 협상 진행할 것으로 통지 国际油价跌超1%，报道称伊朗将出席巴基斯坦的第二轮和平谈判",
+      "score": 17
+    },
+    {
+      "label": "정책",
+      "chat": "에테르의 일본&미국 리서치",
+      "text": "일본 정부, 방산 수출 규제 완화 '5개 용도 제한’ 폐지 결정으로 방산기업 수혜 안녕하세요. 삼성증권 리서치센터에서 일본 주식시장을 담당하고 있는 이창희입니다.오늘의 일본 소식 공유해 드리오니",
+      "score": 15
+    },
+    {
+      "label": "실적",
+      "chat": "한투증권 중국/신흥국 정정영",
+      "text": "~ 카자흐스탄 당국은 러시아 국영 원전기업 로사톰과 첫 번째 원전건설 계약을 맺고 지난해 8월 착공했다 ~ 또 두 번째와 세 번째 원전 건설 사업자로 중국 국영기업 중국핵공업집단공사(CNNC)를",
+      "score": 14
+    },
+    {
+      "label": "에너지",
+      "chat": "한투증권 중국/신흥국 정정영",
+      "text": "~ 중국은 10영업일마다 국제 유가 변동을 반영해 정부가 정제유 가격 상한선을 조정하고 있습니다 ~ 최근 국제 유가가 급등락을 거듭했지만",
+      "score": 12
+    },
+    {
+      "label": "지정학",
+      "chat": "에테르의 일본&미국 리서치",
+      "text": "백악관, 폭스 뉴스에 \"이란과 '좋은 합의' 도달에 근접\"",
+      "score": 9
+    },
+    {
+      "label": "실적",
+      "chat": "하나 중국/신흥국 전략 김경환",
+      "text": "JPMorgan은 S&P 500의 2026년 말 목표치를 기존 7,200포인트에서 7,600포인트로 상향 조정 >摩根大通将标普500指数2026年年底的目标价从7,200点上调至7,600点。",
+      "score": 8
+    },
+    {
+      "label": "정책",
+      "chat": "올바른",
+      "text": "문샷 AI Kimi K2.6, Artificial Analysis Index 54점 : 환각률 39%. Claude Opus 4.7(36%)",
+      "score": 8
+    }
+  ],
+  "house_view": [
+    "마감 기준 판단은 종가까지 확인된 가격 반응을 다음 세션의 기본 시나리오로 가져가고, 장중 소음은 버리는 것이다.",
+    "지금은 엇갈리는 headline 목록보다 유가와 물류비 변수가 먼저 가격에 번역되는 구간이다."
+  ],
+  "analyst_memos": [
+    "하나 중국/신흥국 전략 김경환 / FX 데스크: 국제 유가 1% 이상 하락 이란, 파키스탄 2차 평화 협상 참석 보도 •WTI 원유 선물은 1.1% 하락해 배럴당 86.46달러를 기록 | 담당 범위=환율, 반도체, 에너지",
+    "한투증권 중국/신흥국 정정영 / 에너지 데스크: 유가 하락. 이란은 지역 관계자에 화요일 파키스탄으로 대표단 출발 & 미국과 2차 협상 진행할 것으로 통지 国际油价跌超1%，报道称伊朗将出席巴基斯坦的第二轮和平谈判 | 담당 범위=에너지, 지정학, 무역",
+    "에테르의 일본&미국 리서치 / 지정학 데스크: 일본 정부, 방산 수출 규제 완화 '5개 용도 제한’ 폐지 결정으로 방산기업 수혜 안녕하세요. 삼성증권 리서치센터에서 일본 주식시장을 담당하고 있는 이창희입니다.오늘의 일본 소식 공유해 드리오니 | 담당 범위=지정학, 정책, 무역",
+    "올바른 / 정책 데스크: 문샷 AI Kimi K2.6, Artificial Analysis Index 54점 : 환각률 39%. Claude Opus 4.7(36%) | 담당 범위=정책"
+  ],
+  "consensus_conflict": [
+    "합의: 무역, 정책, 실적가 여러 방에서 반복됐다.",
+    "갈림길: 에너지, 지정학 단독 시그널은 후속 가격 확인이 붙을 때만 무게가 커진다."
+  ],
+  "evidence_status": [
+    "원문 미확인: 이번 실행은 링크 대상을 열지 않았다. 링크가 붙은 주장은 텔레그램 본문 기준으로만 취급했다."
+  ],
+  "numbers_to_watch": [
+    "WTI 86.57: 100 재돌파면 에너지 프리미엄 재확대",
+    "미10년물 4.26: 4.35 위면 성장주 부담 재확대",
+    "원달러환율(현물) 1469.3: 1500 재상회면 국내 리스크온 약화"
+  ],
+  "common_signals": [
+    {
+      "kind": "common",
+      "label": "무역",
+      "tag": "trade",
+      "chat_count": 3,
+      "score": 14,
+      "reasons": [
+        "cross-channel repetition",
+        "energy-sensitive macro backdrop",
+        "source linked"
+      ],
+      "message": {
+        "chat": "한투증권 중국/신흥국 정정영",
+        "chat_slug": "한투증권_중국_신흥국_정정영__1250493882",
+        "message_id": 29597,
+        "message_id_end": 29597,
+        "source_message_ids": [
+          29597
+        ],
+        "source_message_count": 1,
+        "timestamp_kst": "2026-04-21T13:39:50+09:00",
+        "timestamp_kst_end": "2026-04-21T13:39:50+09:00",
+        "views": 4762,
+        "topics": [
+          "에너지",
+          "지정학",
+          "무역"
+        ],
+        "text": "유가 하락. 이란은 지역 관계자에 화요일 파키스탄으로 대표단 출발 & 미국과 2차 협상 진행할 것으로 통지 国际油价跌超1%，报道称伊朗将出席巴基斯坦的第二轮和平谈判"
+      },
+      "evidence_count": 0,
+      "evidence": []
+    },
+    {
+      "kind": "common",
+      "label": "정책",
+      "tag": "policy",
+      "chat_count": 3,
+      "score": 12,
+      "reasons": [
+        "cross-channel repetition",
+        "energy-sensitive macro backdrop",
+        "source linked"
+      ],
+      "message": {
+        "chat": "에테르의 일본&미국 리서치",
+        "chat_slug": "에테르의_일본_미국_리서치__1909745040",
+        "message_id": 21422,
+        "message_id_end": 21422,
+        "source_message_ids": [
+          21422
+        ],
+        "source_message_count": 1,
+        "timestamp_kst": "2026-04-21T13:22:39+09:00",
+        "timestamp_kst_end": "2026-04-21T13:22:39+09:00",
+        "views": 457,
+        "topics": [
+          "지정학",
+          "정책",
+          "무역"
+        ],
+        "text": "일본 정부, 방산 수출 규제 완화 '5개 용도 제한’ 폐지 결정으로 방산기업 수혜 안녕하세요. 삼성증권 리서치센터에서 일본 주식시장을 담당하고 있는 이창희입니다.오늘의 일본 소식 공유해 드리오니"
+      },
+      "evidence_count": 0,
+      "evidence": []
+    },
+    {
+      "kind": "common",
+      "label": "실적",
+      "tag": "earnings",
+      "chat_count": 3,
+      "score": 11,
+      "reasons": [
+        "cross-channel repetition",
+        "source linked"
+      ],
+      "message": {
+        "chat": "한투증권 중국/신흥국 정정영",
+        "chat_slug": "한투증권_중국_신흥국_정정영__1250493882",
+        "message_id": 29598,
+        "message_id_end": 29598,
+        "source_message_ids": [
+          29598
+        ],
+        "source_message_count": 1,
+        "timestamp_kst": "2026-04-21T15:07:31+09:00",
+        "timestamp_kst_end": "2026-04-21T15:07:31+09:00",
+        "views": 1022,
+        "topics": [
+          "실적"
+        ],
+        "text": "~ 카자흐스탄 당국은 러시아 국영 원전기업 로사톰과 첫 번째 원전건설 계약을 맺고 지난해 8월 착공했다 ~ 또 두 번째와 세 번째 원전 건설 사업자로 중국 국영기업 중국핵공업집단공사(CNNC)를"
+      },
+      "evidence_count": 0,
+      "evidence": []
+    }
+  ],
+  "outlier_signals": [
+    {
+      "kind": "outlier",
+      "label": "에너지",
+      "tag": "energy",
+      "chat_count": 1,
+      "score": 14,
+      "reasons": [
+        "cross-channel repetition",
+        "energy-sensitive macro backdrop",
+        "fx-sensitive macro backdrop"
+      ],
+      "message": {
+        "chat": "하나 중국/신흥국 전략 김경환",
+        "chat_slug": "하나_중국_신흥국_전략_김경환__1306052516",
+        "message_id": 60892,
+        "message_id_end": 60892,
+        "source_message_ids": [
+          60892
+        ],
+        "source_message_count": 1,
+        "timestamp_kst": "2026-04-21T13:47:36+09:00",
+        "timestamp_kst_end": "2026-04-21T13:47:36+09:00",
+        "views": 1,
+        "topics": [
+          "에너지",
+          "환율",
+          "지정학",
+          "무역"
+        ],
+        "text": "국제 유가 1% 이상 하락 이란, 파키스탄 2차 평화 협상 참석 보도 •WTI 원유 선물은 1.1% 하락해 배럴당 86.46달러를 기록"
+      },
+      "evidence_count": 0,
+      "evidence": []
+    },
+    {
+      "kind": "outlier",
+      "label": "지정학",
+      "tag": "geopolitics",
+      "chat_count": 1,
+      "score": 9,
+      "reasons": [
+        "cross-channel repetition",
+        "energy-sensitive macro backdrop"
+      ],
+      "message": {
+        "chat": "에테르의 일본&미국 리서치",
+        "chat_slug": "에테르의_일본_미국_리서치__1909745040",
+        "message_id": 21423,
+        "message_id_end": 21423,
+        "source_message_ids": [
+          21423
+        ],
+        "source_message_count": 1,
+        "timestamp_kst": "2026-04-21T14:35:23+09:00",
+        "timestamp_kst_end": "2026-04-21T14:35:23+09:00",
+        "views": 542,
+        "topics": [
+          "지정학"
+        ],
+        "text": "백악관, 폭스 뉴스에 \"이란과 '좋은 합의' 도달에 근접\""
+      },
+      "evidence_count": 0,
+      "evidence": []
+    },
+    {
+      "kind": "outlier",
+      "label": "실적",
+      "tag": "earnings",
+      "chat_count": 1,
+      "score": 8,
+      "reasons": [
+        "cross-channel repetition"
+      ],
+      "message": {
+        "chat": "하나 중국/신흥국 전략 김경환",
+        "chat_slug": "하나_중국_신흥국_전략_김경환__1306052516",
+        "message_id": 60894,
+        "message_id_end": 60894,
+        "source_message_ids": [
+          60894
+        ],
+        "source_message_count": 1,
+        "timestamp_kst": "2026-04-21T14:18:53+09:00",
+        "timestamp_kst_end": "2026-04-21T14:18:53+09:00",
+        "views": 663,
+        "topics": [
+          "실적"
+        ],
+        "text": "JPMorgan은 S&P 500의 2026년 말 목표치를 기존 7,200포인트에서 7,600포인트로 상향 조정 >摩根大通将标普500指数2026年年底的目标价从7,200点上调至7,600点。"
+      },
+      "evidence_count": 0,
+      "evidence": []
+    }
+  ],
+  "channel_insights_total": 8,
+  "channel_insights_omitted": 0,
+  "channel_insights": [
+    {
+      "chat": "하나 중국/신흥국 전략 김경환",
+      "chat_slug": "하나_중국_신흥국_전략_김경환__1306052516",
+      "desk_role": "FX 데스크",
+      "message_count": 7,
+      "top_topics": [
+        "환율",
+        "반도체",
+        "에너지"
+      ],
+      "analyst_score": 14,
+      "evidence_backed_highlights": 0,
+      "highlights": [
+        {
+          "message_id": 60892,
+          "message_id_end": 60892,
+          "source_message_ids": [
+            60892
+          ],
+          "source_message_count": 1,
+          "timestamp_kst": "2026-04-21T13:47:36+09:00",
+          "topics": [
+            "에너지",
+            "환율",
+            "지정학",
+            "무역"
+          ],
+          "score": 14,
+          "reasons": [
+            "cross-channel repetition",
+            "energy-sensitive macro backdrop",
+            "fx-sensitive macro backdrop"
+          ],
+          "text": "국제 유가 1% 이상 하락 이란, 파키스탄 2차 평화 협상 참석 보도 •WTI 원유 선물은 1.1% 하락해 배럴당 86.46달러를 기록"
+        }
+      ]
+    },
+    {
+      "chat": "한투증권 중국/신흥국 정정영",
+      "chat_slug": "한투증권_중국_신흥국_정정영__1250493882",
+      "desk_role": "에너지 데스크",
+      "message_count": 6,
+      "top_topics": [
+        "에너지",
+        "지정학",
+        "무역"
+      ],
+      "analyst_score": 14,
+      "evidence_backed_highlights": 0,
+      "highlights": [
+        {
+          "message_id": 29597,
+          "message_id_end": 29597,
+          "source_message_ids": [
+            29597
+          ],
+          "source_message_count": 1,
+          "timestamp_kst": "2026-04-21T13:39:50+09:00",
+          "topics": [
+            "에너지",
+            "지정학",
+            "무역"
+          ],
+          "score": 14,
+          "reasons": [
+            "cross-channel repetition",
+            "energy-sensitive macro backdrop",
+            "source linked"
+          ],
+          "text": "유가 하락. 이란은 지역 관계자에 화요일 파키스탄으로 대표단 출발 & 미국과 2차 협상 진행할 것으로 통지 国际油价跌超1%，报道称伊朗将出席巴基斯坦的第二轮和平谈判"
+        }
+      ]
+    },
+    {
+      "chat": "에테르의 일본&미국 리서치",
+      "chat_slug": "에테르의_일본_미국_리서치__1909745040",
+      "desk_role": "지정학 데스크",
+      "message_count": 3,
+      "top_topics": [
+        "지정학",
+        "정책",
+        "무역"
+      ],
+      "analyst_score": 12,
+      "evidence_backed_highlights": 0,
+      "highlights": [
+        {
+          "message_id": 21422,
+          "message_id_end": 21422,
+          "source_message_ids": [
+            21422
+          ],
+          "source_message_count": 1,
+          "timestamp_kst": "2026-04-21T13:22:39+09:00",
+          "topics": [
+            "지정학",
+            "정책",
+            "무역"
+          ],
+          "score": 12,
+          "reasons": [
+            "cross-channel repetition",
+            "energy-sensitive macro backdrop",
+            "source linked"
+          ],
+          "text": "일본 정부, 방산 수출 규제 완화 '5개 용도 제한’ 폐지 결정으로 방산기업 수혜 안녕하세요"
+        }
+      ]
+    },
+    {
+      "chat": "올바른",
+      "chat_slug": "올바른__1867624760",
+      "desk_role": "정책 데스크",
+      "message_count": 2,
+      "top_topics": [
+        "정책"
+      ],
+      "analyst_score": 8,
+      "evidence_backed_highlights": 0,
+      "highlights": [
+        {
+          "message_id": 8673,
+          "message_id_end": 8673,
+          "source_message_ids": [
+            8673
+          ],
+          "source_message_count": 1,
+          "timestamp_kst": "2026-04-21T15:23:04+09:00",
+          "topics": [
+            "정책"
+          ],
+          "score": 8,
+          "reasons": [
+            "cross-channel repetition",
+            "source linked"
+          ],
+          "text": "문샷 AI Kimi K2.6, Artificial Analysis Index 54점 : 환각률 39%. Claude Opus 4.7(36%)"
+        }
+      ]
+    },
+    {
+      "chat": "[메리츠 Tech 김선우, 양승수, 김동관]",
+      "chat_slug": "메리츠_tech_김선우_양승수_김동관__1104504651",
+      "desk_role": "정책 데스크",
+      "message_count": 1,
+      "top_topics": [
+        "정책",
+        "반도체"
+      ],
+      "analyst_score": 8,
+      "evidence_backed_highlights": 0,
+      "highlights": [
+        {
+          "message_id": 16551,
+          "message_id_end": 16551,
+          "source_message_ids": [
+            16551
+          ],
+          "source_message_count": 1,
+          "timestamp_kst": "2026-04-21T15:07:30+09:00",
+          "topics": [
+            "정책",
+            "반도체"
+          ],
+          "score": 8,
+          "reasons": [
+            "cross-channel repetition",
+            "source linked"
+          ],
+          "text": "Google's AI chip push targets inference boom as battle with Nvidia enters new phase - AI 시장이 학습에서"
+        }
+      ]
+    },
+    {
+      "chat": "카이에 de market",
+      "chat_slug": "카이에_de_market__1883361144",
+      "desk_role": "일반 소싱",
+      "message_count": 1,
+      "top_topics": [],
+      "analyst_score": 4,
+      "evidence_backed_highlights": 0,
+      "highlights": [
+        {
+          "message_id": 9291,
+          "message_id_end": 9291,
+          "source_message_ids": [
+            9291
+          ],
+          "source_message_count": 1,
+          "timestamp_kst": "2026-04-21T15:19:32+09:00",
+          "topics": [
+            "기타"
+          ],
+          "score": 4,
+          "reasons": [
+            "source linked"
+          ],
+          "text": "관련 상품은 증권신고서·상장심사 등을 거쳐 이르면 다음달 22일부터 거래될 예정이다. 상품유형은 단일종목 ±2배 레버리지·인버스 ETF·ETN(상장지수증권)뿐만 아니라 단일종목"
+        }
+      ]
+    },
+    {
+      "chat": "트릴리온",
+      "chat_slug": "트릴리온__3402415038",
+      "desk_role": "일반 소싱",
+      "message_count": 1,
+      "top_topics": [],
+      "analyst_score": 0,
+      "evidence_backed_highlights": 0,
+      "highlights": [
+        {
+          "message_id": 4304,
+          "message_id_end": 4304,
+          "source_message_ids": [
+            4304
+          ],
+          "source_message_count": 1,
+          "timestamp_kst": "2026-04-21T15:19:18+09:00",
+          "topics": [
+            "기타"
+          ],
+          "score": 0,
+          "reasons": [],
+          "text": "미디어텍이 전력 소모가 훨씬 적은 마이크로LED로 단거리 네트워킹에 사용되는 레이저(VCSEL 또는 EML) 및 실리콘 포토닉스 칩을 대체하려는 노력에 동참했다고 언론이"
+        }
+      ]
+    },
+    {
+      "chat": "AWAKE - 실시간 주식 공시 정리채널",
+      "chat_slug": "awake_실시간_주식_공시_정리채널__1066938528",
+      "desk_role": "실적 데스크",
+      "message_count": 1,
+      "top_topics": [
+        "실적"
+      ],
+      "analyst_score": -1,
+      "evidence_backed_highlights": 0,
+      "highlights": [
+        {
+          "message_id": 138222,
+          "message_id_end": 138222,
+          "source_message_ids": [
+            138222
+          ],
+          "source_message_count": 1,
+          "timestamp_kst": "2026-04-21T16:50:04+09:00",
+          "topics": [
+            "실적"
+          ],
+          "score": -1,
+          "reasons": [
+            "cross-channel repetition",
+            "source linked"
+          ],
+          "text": "16:50:02 기업명: 와이엠씨(시가총액: 749억) A155650 보고서명: 기업가치제고계획(자율공시) 계획서 명칭 : 2026년 와이엠씨(주) 기업가치 제고 계획 * 주요"
+        }
+      ]
+    }
+  ],
+  "evidence_registry_total": 8,
+  "evidence_registry_omitted": 0,
+  "evidence_registry": [
+    {
+      "url": "https://www.wsj.com/livecoverage/iran-war-israel-us-strait-hormuz-2026/card/iran-plans-to-send-negotiating-team-to-pakistan-on-tuesday-lDOMKaGhVljBy5fylDPg",
+      "kind": "link",
+      "verified": false,
+      "note": "link_fetch_disabled"
+    },
+    {
+      "url": "https://t.me/samsungpe",
+      "kind": "link",
+      "verified": false,
+      "note": "link_fetch_disabled"
+    },
+    {
+      "url": "https://n.news.naver.com/article/422/0000857336?sid=104",
+      "kind": "link",
+      "verified": false,
+      "note": "link_fetch_disabled"
+    },
+    {
+      "url": "https://n.news.naver.com/article/001/0016033929?sid=104",
+      "kind": "link",
+      "verified": false,
+      "note": "link_fetch_disabled"
+    },
+    {
+      "url": "https://buly.kr/GkuEFKu",
+      "kind": "link",
+      "verified": false,
+      "note": "link_fetch_disabled"
+    },
+    {
+      "url": "https://t.me/Samsung_Global_AI_SW",
+      "kind": "link",
+      "verified": false,
+      "note": "link_fetch_disabled"
+    },
+    {
+      "url": "http://bbs2.shinhansec.com/board/message/file.pdf.do?attachmentId=350933",
+      "kind": "link",
+      "verified": false,
+      "note": "link_fetch_disabled"
+    },
+    {
+      "url": "https://wallstreetcn.com/articles/3770480#from=ios",
+      "kind": "link",
+      "verified": false,
+      "note": "link_fetch_disabled"
+    }
+  ]
+}

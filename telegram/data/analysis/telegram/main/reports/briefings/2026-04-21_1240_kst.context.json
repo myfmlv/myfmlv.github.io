@@ -1,0 +1,599 @@
+{
+  "context_profile": "compact",
+  "generated_at_kst": "2026-04-21T12:40:38+09:00",
+  "window_start_kst": "2026-04-21T08:20:00+09:00",
+  "window_end_kst": "2026-04-21T12:40:00+09:00",
+  "cutoff_kst": "2026-04-21T08:20:00+09:00",
+  "briefing_slot_kst": "12:40",
+  "cutoff_mode": "requested_schedule_window",
+  "market_snapshot_file": "market_snapshots/2026-04-21_1240_nokey_kst.json | market_snapshots/treasury_nokey_latest.json",
+  "snapshot": {
+    "WTI": "86.72",
+    "Brent": "94.9800033569336",
+    "Gold": "4794.845",
+    "Copper": "600.8",
+    "DXY": "98.13999938964844",
+    "USDKRW_NDF_1M": "1472.14",
+    "USDJPY": "158.9765",
+    "US_2Y": "3.72",
+    "US_10Y": "4.26",
+    "US_10Y_2Y_BP": "54.0bp",
+    "SPX": "7109.14",
+    "NASDAQ": "24404.39"
+  },
+  "macro_snapshot": {
+    "WTI": "86.72",
+    "Brent": "94.9800033569336",
+    "Gold": "4794.845",
+    "Copper": "600.8",
+    "DXY": "98.13999938964844",
+    "USDKRW_NDF_1M": "1472.14",
+    "USDJPY": "158.9765",
+    "US_2Y": "3.72",
+    "US_10Y": "4.26",
+    "US_10Y_2Y_BP": "54.0bp",
+    "SPX": "7109.14",
+    "NASDAQ": "24404.39"
+  },
+  "macro_state": {
+    "energy_stress": true,
+    "fx_stress": true,
+    "rate_stress": false
+  },
+  "regime_shift": "중동 변수는 협상 headline보다 유가·환율·통항으로 확인되는 위험 프리미엄 문제로 다시 좁혀졌다.",
+  "theme_items": [
+    {
+      "label": "실적",
+      "chat": "[메리츠 Tech 김선우, 양승수, 김동관]",
+      "text": "凱崴3月每股賺0.08元 年增2.3倍 - 대만 드릴비트 업체 Key Ware 3월 매출 1.61억 대만달러(+48% YoY), 순이익 0.16억 대만달러(+231% YoY)",
+      "score": 19
+    },
+    {
+      "label": "에너지",
+      "chat": "하나 중국/신흥국 전략 김경환",
+      "text": "중국 폴리실리콘 선물 개장 +5.4% •금주 거래대금 4배 급증 •이제 철근 차례인가? •물가+반내권(反内卷)+탄소저감+고유가",
+      "score": 15
+    },
+    {
+      "label": "환율",
+      "chat": "[메리츠 Tech 김선우, 양승수, 김동관]",
+      "text": "2026년 4월 반도체 수출입통계 잠정치 발표 (~4.20) (MoM 증감률은 1~20일 기준) 1) 메모리 - 수출 금액: 118억 2,446만 달러 (+299.1% YoY",
+      "score": 10
+    },
+    {
+      "label": "무역",
+      "chat": "한투증권 중국/신흥국 정정영",
+      "text": "~ 보도에 따르면 오는 24일부터 다음 달 3일까지 열리는 '2026 베이징 오토쇼'에서는 BMW가 중국 기술이 들어간 전기 스포츠유틸리티차(SUV) iX3를 선보일 예정이다 ~ 자율주행 기술기업",
+      "score": 9
+    },
+    {
+      "label": "실적",
+      "chat": "AWAKE - 실시간 주식 공시 정리채널",
+      "text": "추정치 상향종목 정리(2026-04-21 기준) - 1주 전 대비 추정치 변화 상향된 종목 리스트 (기업명 / 예상실적 / 전주대비) SK하이닉스 / 35.72조 / +1.5% 삼성SDI",
+      "score": 2
+    }
+  ],
+  "house_view": [
+    "점심 시점 판단은 오전에 나온 재료 중 가격으로 확인된 해석만 남기고, 확인되지 않은 서사는 과감히 낮추는 것이다.",
+    "지금은 엇갈리는 headline 목록보다 유가와 물류비 변수가 먼저 가격에 번역되는 구간이다."
+  ],
+  "analyst_memos": [
+    "한투증권 중국/신흥국 정정영 / 무역 데스크: ~ 블룸버그는 중국 원자재 시장분석·컨설팅업체 JLC를 인용해 중국의 4월 미국산 에탄 수입량이 그간 월평균보다 60%가량 늘어난 80만t에 달해 역대 최대치를 기록할 것으로 예상된다고 전했다 ~ | 담당 범위=무역, 실적, 지정학",
+    "하나 중국/신흥국 전략 김경환 / 무역 데스크: 중국 폴리실리콘 선물 개장 +5.4% •금주 거래대금 4배 급증 •이제 철근 차례인가? •물가+반내권(反内卷)+탄소저감+고유가 | 담당 범위=무역, 실적, 에너지",
+    "[메리츠 Tech 김선우, 양승수, 김동관] / FX 데스크: 凱崴3月每股賺0.08元 年增2.3倍 - 대만 드릴비트 업체 Key Ware 3월 매출 1.61억 대만달러(+48% YoY), 순이익 0.16억 대만달러(+231% YoY) | 담당 범위=환율, 정책, 실적",
+    "카이에 de market / 실적 데스크: 모건 스탠리, 4월 19일자 * 에이전트AI가 CPU, 메모리, ABF 기판의 TAM에 미치는 영향 1. CPU - 첫 ​​번째는 헤드 노드 CPU로 | 담당 범위=실적, 환율, 반도체"
+  ],
+  "consensus_conflict": [
+    "합의: 실적, 에너지가 여러 방에서 반복됐다.",
+    "갈림길: 지정학, 실적 단독 시그널은 후속 가격 확인이 붙을 때만 무게가 커진다."
+  ],
+  "evidence_status": [
+    "원문 미확인: 이번 실행은 링크 대상을 열지 않았다. 링크가 붙은 주장은 텔레그램 본문 기준으로만 취급했다."
+  ],
+  "numbers_to_watch": [
+    "WTI 86.72: 100 재돌파면 에너지 프리미엄 재확대",
+    "미10년물 4.26: 4.35 위면 성장주 부담 재확대",
+    "원달러환율(현물) 1472.14: 1500 재상회면 국내 리스크온 약화"
+  ],
+  "common_signals": [
+    {
+      "kind": "common",
+      "label": "실적",
+      "tag": "earnings",
+      "chat_count": 7,
+      "score": 12,
+      "reasons": [
+        "cross-channel repetition",
+        "fx-sensitive macro backdrop",
+        "source linked"
+      ],
+      "message": {
+        "chat": "[메리츠 Tech 김선우, 양승수, 김동관]",
+        "chat_slug": "메리츠_tech_김선우_양승수_김동관__1104504651",
+        "message_id": 16520,
+        "message_id_end": 16520,
+        "source_message_ids": [
+          16520
+        ],
+        "source_message_count": 1,
+        "timestamp_kst": "2026-04-21T10:03:36+09:00",
+        "timestamp_kst_end": "2026-04-21T10:03:36+09:00",
+        "views": 395,
+        "topics": [
+          "실적",
+          "환율",
+          "정책"
+        ],
+        "text": "凱崴3月每股賺0.08元 年增2.3倍 - 대만 드릴비트 업체 Key Ware 3월 매출 1.61억 대만달러(+48% YoY), 순이익 0.16억 대만달러(+231% YoY)"
+      },
+      "evidence_count": 0,
+      "evidence": []
+    },
+    {
+      "kind": "common",
+      "label": "에너지",
+      "tag": "energy",
+      "chat_count": 2,
+      "score": 13,
+      "reasons": [
+        "cross-channel repetition",
+        "energy-sensitive macro backdrop",
+        "merged thought block"
+      ],
+      "message": {
+        "chat": "하나 중국/신흥국 전략 김경환",
+        "chat_slug": "하나_중국_신흥국_전략_김경환__1306052516",
+        "message_id": 60877,
+        "message_id_end": 60878,
+        "source_message_ids": [
+          60877,
+          60878
+        ],
+        "source_message_count": 2,
+        "timestamp_kst": "2026-04-21T10:18:17+09:00",
+        "timestamp_kst_end": "2026-04-21T10:20:23+09:00",
+        "views": 1814,
+        "topics": [
+          "에너지"
+        ],
+        "text": "중국 폴리실리콘 선물 개장 +5.4% •금주 거래대금 4배 급증 •이제 철근 차례인가? •물가+반내권(反内卷)+탄소저감+고유가"
+      },
+      "evidence_count": 0,
+      "evidence": []
+    }
+  ],
+  "outlier_signals": [
+    {
+      "kind": "outlier",
+      "label": "지정학",
+      "tag": "geopolitics",
+      "chat_count": 1,
+      "score": 14,
+      "reasons": [
+        "cross-channel repetition",
+        "energy-sensitive macro backdrop",
+        "source linked"
+      ],
+      "message": {
+        "chat": "한투증권 중국/신흥국 정정영",
+        "chat_slug": "한투증권_중국_신흥국_정정영__1250493882",
+        "message_id": 29592,
+        "message_id_end": 29592,
+        "source_message_ids": [
+          29592
+        ],
+        "source_message_count": 1,
+        "timestamp_kst": "2026-04-21T11:41:51+09:00",
+        "timestamp_kst_end": "2026-04-21T11:41:51+09:00",
+        "views": 101,
+        "topics": [
+          "지정학",
+          "무역"
+        ],
+        "text": "~ 블룸버그는 중국 원자재 시장분석·컨설팅업체 JLC를 인용해 중국의 4월 미국산 에탄 수입량이 그간 월평균보다 60%가량 늘어난 80만t에 달해 역대 최대치를 기록할 것으로 예상된다고 전했다 ~"
+      },
+      "evidence_count": 0,
+      "evidence": []
+    },
+    {
+      "kind": "outlier",
+      "label": "실적",
+      "tag": "earnings",
+      "chat_count": 1,
+      "score": 11,
+      "reasons": [
+        "cross-channel repetition",
+        "fx-sensitive macro backdrop",
+        "merged thought block"
+      ],
+      "message": {
+        "chat": "카이에 de market",
+        "chat_slug": "카이에_de_market__1883361144",
+        "message_id": 9288,
+        "message_id_end": 9290,
+        "source_message_ids": [
+          9288,
+          9289,
+          9290
+        ],
+        "source_message_count": 3,
+        "timestamp_kst": "2026-04-21T09:15:57+09:00",
+        "timestamp_kst_end": "2026-04-21T09:15:57+09:00",
+        "views": 628,
+        "topics": [
+          "실적",
+          "환율",
+          "반도체"
+        ],
+        "text": "모건 스탠리, 4월 19일자 * 에이전트AI가 CPU, 메모리, ABF 기판의 TAM에 미치는 영향 1. CPU - 첫 ​​번째는 헤드 노드 CPU로"
+      },
+      "evidence_count": 0,
+      "evidence": []
+    },
+    {
+      "kind": "outlier",
+      "label": "무역",
+      "tag": "trade",
+      "chat_count": 1,
+      "score": 9,
+      "reasons": [
+        "cross-channel repetition",
+        "source linked"
+      ],
+      "message": {
+        "chat": "한투증권 중국/신흥국 정정영",
+        "chat_slug": "한투증권_중국_신흥국_정정영__1250493882",
+        "message_id": 29594,
+        "message_id_end": 29594,
+        "source_message_ids": [
+          29594
+        ],
+        "source_message_count": 1,
+        "timestamp_kst": "2026-04-21T11:58:52+09:00",
+        "timestamp_kst_end": "2026-04-21T11:58:52+09:00",
+        "views": 1,
+        "topics": [
+          "무역"
+        ],
+        "text": "~ 보도에 따르면 오는 24일부터 다음 달 3일까지 열리는 '2026 베이징 오토쇼'에서는 BMW가 중국 기술이 들어간 전기 스포츠유틸리티차(SUV) iX3를 선보일 예정이다 ~ 자율주행 기술기업"
+      },
+      "evidence_count": 0,
+      "evidence": []
+    }
+  ],
+  "channel_insights_total": 9,
+  "channel_insights_omitted": 1,
+  "channel_insights": [
+    {
+      "chat": "한투증권 중국/신흥국 정정영",
+      "chat_slug": "한투증권_중국_신흥국_정정영__1250493882",
+      "desk_role": "무역 데스크",
+      "message_count": 5,
+      "top_topics": [
+        "무역",
+        "실적",
+        "지정학"
+      ],
+      "analyst_score": 14,
+      "evidence_backed_highlights": 0,
+      "highlights": [
+        {
+          "message_id": 29592,
+          "message_id_end": 29592,
+          "source_message_ids": [
+            29592
+          ],
+          "source_message_count": 1,
+          "timestamp_kst": "2026-04-21T11:41:51+09:00",
+          "topics": [
+            "지정학",
+            "무역"
+          ],
+          "score": 14,
+          "reasons": [
+            "cross-channel repetition",
+            "energy-sensitive macro backdrop",
+            "source linked"
+          ],
+          "text": "~ 블룸버그는 중국 원자재 시장분석·컨설팅업체 JLC를 인용해 중국의 4월 미국산 에탄 수입량이 그간 월평균보다 60%가량 늘어난 80만t에 달해 역대 최대치를 기록할 것으로"
+        }
+      ]
+    },
+    {
+      "chat": "하나 중국/신흥국 전략 김경환",
+      "chat_slug": "하나_중국_신흥국_전략_김경환__1306052516",
+      "desk_role": "무역 데스크",
+      "message_count": 6,
+      "top_topics": [
+        "무역",
+        "실적",
+        "에너지"
+      ],
+      "analyst_score": 13,
+      "evidence_backed_highlights": 0,
+      "highlights": [
+        {
+          "message_id": 60877,
+          "message_id_end": 60878,
+          "source_message_ids": [
+            60877,
+            60878
+          ],
+          "source_message_count": 2,
+          "timestamp_kst": "2026-04-21T10:18:17+09:00",
+          "topics": [
+            "에너지"
+          ],
+          "score": 13,
+          "reasons": [
+            "cross-channel repetition",
+            "energy-sensitive macro backdrop",
+            "merged thought block"
+          ],
+          "text": "중국 폴리실리콘 선물 개장 +5.4% •금주 거래대금 4배 급증 •이제 철근 차례인가? •물가+반내권(反内卷)+탄소저감+고유가"
+        }
+      ]
+    },
+    {
+      "chat": "[메리츠 Tech 김선우, 양승수, 김동관]",
+      "chat_slug": "메리츠_tech_김선우_양승수_김동관__1104504651",
+      "desk_role": "FX 데스크",
+      "message_count": 2,
+      "top_topics": [
+        "환율",
+        "정책",
+        "실적"
+      ],
+      "analyst_score": 12,
+      "evidence_backed_highlights": 0,
+      "highlights": [
+        {
+          "message_id": 16520,
+          "message_id_end": 16520,
+          "source_message_ids": [
+            16520
+          ],
+          "source_message_count": 1,
+          "timestamp_kst": "2026-04-21T10:03:36+09:00",
+          "topics": [
+            "실적",
+            "환율",
+            "정책"
+          ],
+          "score": 12,
+          "reasons": [
+            "cross-channel repetition",
+            "fx-sensitive macro backdrop",
+            "source linked"
+          ],
+          "text": "凱崴3月每股賺0.08元 年增2.3倍 - 대만 드릴비트 업체 Key Ware 3월 매출 1.61억 대만달러(+48% YoY), 순이익 0.16억 대만달러(+231% YoY)"
+        }
+      ]
+    },
+    {
+      "chat": "카이에 de market",
+      "chat_slug": "카이에_de_market__1883361144",
+      "desk_role": "실적 데스크",
+      "message_count": 1,
+      "top_topics": [
+        "실적",
+        "환율",
+        "반도체"
+      ],
+      "analyst_score": 11,
+      "evidence_backed_highlights": 0,
+      "highlights": [
+        {
+          "message_id": 9288,
+          "message_id_end": 9290,
+          "source_message_ids": [
+            9288,
+            9289,
+            9290
+          ],
+          "source_message_count": 3,
+          "timestamp_kst": "2026-04-21T09:15:57+09:00",
+          "topics": [
+            "실적",
+            "환율",
+            "반도체"
+          ],
+          "score": 11,
+          "reasons": [
+            "cross-channel repetition",
+            "fx-sensitive macro backdrop",
+            "merged thought block"
+          ],
+          "text": "모건 스탠리, 4월 19일자 * 에이전트AI가 CPU, 메모리, ABF 기판의 TAM에 미치는 영향 1. CPU - 첫 ​​번째는 헤드 노드 CPU로"
+        }
+      ]
+    },
+    {
+      "chat": "에테르의 일본&미국 리서치",
+      "chat_slug": "에테르의_일본_미국_리서치__1909745040",
+      "desk_role": "실적 데스크",
+      "message_count": 1,
+      "top_topics": [
+        "실적",
+        "환율",
+        "정책"
+      ],
+      "analyst_score": 10,
+      "evidence_backed_highlights": 0,
+      "highlights": [
+        {
+          "message_id": 21418,
+          "message_id_end": 21418,
+          "source_message_ids": [
+            21418
+          ],
+          "source_message_count": 1,
+          "timestamp_kst": "2026-04-21T08:45:19+09:00",
+          "topics": [
+            "실적",
+            "환율",
+            "정책"
+          ],
+          "score": 10,
+          "reasons": [
+            "cross-channel repetition",
+            "fx-sensitive macro backdrop"
+          ],
+          "text": "JP모건) 노키아 1Q26 프리뷰: 주가가 크게 오른 만큼, 회사는 특히 성장률 측면에서, 그리고 실적 측면에서도 시장 기대치를 상회해야 합니다 지난 실적 발표 이후 노키아"
+        }
+      ]
+    },
+    {
+      "chat": "YIELD & SPREAD",
+      "chat_slug": "yield_spread__1589472530",
+      "desk_role": "에너지 데스크",
+      "message_count": 1,
+      "top_topics": [
+        "에너지",
+        "지정학",
+        "정책"
+      ],
+      "analyst_score": 10,
+      "evidence_backed_highlights": 0,
+      "highlights": [
+        {
+          "message_id": 6123,
+          "message_id_end": 6123,
+          "source_message_ids": [
+            6123
+          ],
+          "source_message_count": 1,
+          "timestamp_kst": "2026-04-21T10:30:28+09:00",
+          "topics": [
+            "에너지",
+            "지정학",
+            "정책"
+          ],
+          "score": 10,
+          "reasons": [
+            "cross-channel repetition",
+            "energy-sensitive macro backdrop"
+          ],
+          "text": "신현송 한국은행 총재 1. 중동 전쟁 이후 국제유가 상승 등으로 물가 상방 압력과 경기 하방 압력이 동시에 증대"
+        }
+      ]
+    },
+    {
+      "chat": "[ IT는 SK ]",
+      "chat_slug": "it는_sk__1879996318",
+      "desk_role": "실적 데스크",
+      "message_count": 1,
+      "top_topics": [
+        "실적",
+        "반도체"
+      ],
+      "analyst_score": 9,
+      "evidence_backed_highlights": 0,
+      "highlights": [
+        {
+          "message_id": 3734,
+          "message_id_end": 3734,
+          "source_message_ids": [
+            3734
+          ],
+          "source_message_count": 1,
+          "timestamp_kst": "2026-04-21T09:07:37+09:00",
+          "topics": [
+            "실적",
+            "반도체"
+          ],
+          "score": 9,
+          "reasons": [
+            "cross-channel repetition",
+            "source linked"
+          ],
+          "text": "Be strong (04 / 20) 장기공급계약 의미: 안정성 제고 통한 재평가의 기반 상황: 공급 부족 심화"
+        }
+      ]
+    },
+    {
+      "chat": "AWAKE - 실시간 주식 공시 정리채널",
+      "chat_slug": "awake_실시간_주식_공시_정리채널__1066938528",
+      "desk_role": "실적 데스크",
+      "message_count": 2,
+      "top_topics": [
+        "실적",
+        "반도체"
+      ],
+      "analyst_score": 5,
+      "evidence_backed_highlights": 0,
+      "highlights": [
+        {
+          "message_id": 138173,
+          "message_id_end": 138173,
+          "source_message_ids": [
+            138173
+          ],
+          "source_message_count": 1,
+          "timestamp_kst": "2026-04-21T10:38:39+09:00",
+          "topics": [
+            "실적"
+          ],
+          "score": 5,
+          "reasons": [
+            "cross-channel repetition",
+            "source linked"
+          ],
+          "text": "10:38:37 기업명: 지엠비코리아(시가총액: 996억) A013870 보고서명: 단일판매ㆍ공급계약체결 계약상대 : 현대차"
+        }
+      ]
+    }
+  ],
+  "evidence_registry_total": 8,
+  "evidence_registry_omitted": 0,
+  "evidence_registry": [
+    {
+      "url": "https://n.news.naver.com/article/001/0016033241?sid=104",
+      "kind": "link",
+      "verified": false,
+      "note": "link_fetch_disabled"
+    },
+    {
+      "url": "https://buly.kr/5JOyPge",
+      "kind": "link",
+      "verified": false,
+      "note": "link_fetch_disabled"
+    },
+    {
+      "url": "https://www.ctee.com.tw/news/20260421700069-439901",
+      "kind": "link",
+      "verified": false,
+      "note": "link_fetch_disabled"
+    },
+    {
+      "url": "https://wallstreetcn.com/articles/3770449#from=ios",
+      "kind": "link",
+      "verified": false,
+      "note": "link_fetch_disabled"
+    },
+    {
+      "url": "https://buly.kr/5fETzjm",
+      "kind": "link",
+      "verified": false,
+      "note": "link_fetch_disabled"
+    },
+    {
+      "url": "https://t.me/skitteam",
+      "kind": "link",
+      "verified": false,
+      "note": "link_fetch_disabled"
+    },
+    {
+      "url": "https://n.news.naver.com/article/001/0016033129?sid=104",
+      "kind": "link",
+      "verified": false,
+      "note": "link_fetch_disabled"
+    },
+    {
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260421800146",
+      "kind": "link",
+      "verified": false,
+      "note": "link_fetch_disabled"
+    }
+  ]
+}

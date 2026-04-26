@@ -1,0 +1,101 @@
+{
+  "generated_at_kst": "2026-04-22T17:35:08+09:00",
+  "window_start_kst": "2026-04-22T12:40:00+09:00",
+  "window_end_kst": "2026-04-22T17:10:00+09:00",
+  "briefing_slot_kst": "17:10",
+  "market_snapshot_file": "market_snapshots/2026-04-22_1710_nokey_kst.json | market_snapshots/treasury_nokey_latest.json",
+  "message_count": 9,
+  "forced_fact_count": 8,
+  "validated_group_count": 1,
+  "classified_messages": [
+    {
+      "chat_slug": "시장_이야기_by_제이슨__1192351807",
+      "message_id": 54197,
+      "label": "actionable_news"
+    },
+    {
+      "chat_slug": "하나_중국_신흥국_전략_김경환__1306052516",
+      "message_id": 60943,
+      "label": "commentary"
+    },
+    {
+      "chat_slug": "하나_중국_신흥국_전략_김경환__1306052516",
+      "message_id": 60950,
+      "label": "commentary"
+    },
+    {
+      "chat_slug": "하나_중국_신흥국_전략_김경환__1306052516",
+      "message_id": 60953,
+      "label": "commentary"
+    },
+    {
+      "chat_slug": "하나_중국_신흥국_전략_김경환__1306052516",
+      "message_id": 60954,
+      "label": "noise"
+    },
+    {
+      "chat_slug": "에테르의_일본_미국_리서치__1909745040",
+      "message_id": 21448,
+      "label": "commentary"
+    },
+    {
+      "chat_slug": "에테르의_일본_미국_리서치__1909745040",
+      "message_id": 21449,
+      "label": "commentary"
+    },
+    {
+      "chat_slug": "트릴리온__3402415038",
+      "message_id": 4359,
+      "label": "commentary"
+    },
+    {
+      "chat_slug": "트릴리온__3402415038",
+      "message_id": 4360,
+      "label": "commentary"
+    }
+  ],
+  "selected_groups": [
+    {
+      "signature": "ai earnings revision earnings",
+      "score": 10.0,
+      "chat_count": 1,
+      "consensus": false,
+      "classification": "actionable_news",
+      "representative": "5대 핵심 시장 테마 1) AI 트레이드는 여전히 유효하다 🤖 AI 트레이드는 실적 추정치 상향 조정에 비해 상대적으로 저렴해졌으며, 테마에 대한 시장의 심리는 여전히 강력합니다"
+    }
+  ],
+  "rejected_groups": [
+    {
+      "signature": "하드테크 update uncategorized 1% 1.4%",
+      "reason": "bad_classification",
+      "summary": "상해종합 4,100선 회복 (+1%) •반면, 항셍지수 -1.4% •하드테크•에너지 구성차와 수급 차이",
+      "classification": "commentary"
+    },
+    {
+      "signature": "jpmorgan는 policy energy",
+      "reason": "low_confidence",
+      "summary": "“15일 내 감산, 30일 내 전면 중단” 이란 원유 공급 쇼크 임박 •JPMorgan는 미국이 이란에 대해 전면적인 원유 수출 봉쇄를 시행할 경우, 저장 한계에 도달한 이란이 단기간 내 생산을 줄일 수밖에 없다고 분석했음",
+      "classification": "commentary"
+    },
+    {
+      "signature": "관련 기업 update uncategorized",
+      "reason": "low_confidence",
+      "summary": "와 ㅅㅂ 쩐다. 내가 가야겠다. 바누아투 4인팟 하면 더 싸다는데요",
+      "classification": "commentary"
+    },
+    {
+      "signature": "관련 기업 update geopolitics",
+      "reason": "low_confidence",
+      "summary": "회담 동안 트럼프 대통령은 참모들로부터 이란 정부가 강경파들이 대통령의 요구에 응하지 않으려 하기 때문에 통일된 국가가 아니라는 보고를 받았습니다. 백악관에서는 이란이 협상에 나서서 약속을 이행할 여력이 있는지에 대한 의문도 제기되었습니다",
+      "classification": "commentary"
+    },
+    {
+      "signature": "관련 기업 update shipping",
+      "reason": "low_confidence",
+      "summary": "호르무즈 해협에서 이란 혁명수비대 소속 고속정이 컨테이너선을 공격했다는 새로운 보고가 나왔습니다. 고속정이 컨테이너선을 향해 발포하여 선교에 심각한 손상을 입혔습니다",
+      "classification": "commentary"
+    }
+  ],
+  "variant": "true_no_f_relaxed_current_policy",
+  "notes": "F-stage exclusion bypassed; incomplete_clause and insufficient_evidence are not active in current validation policy."
+}

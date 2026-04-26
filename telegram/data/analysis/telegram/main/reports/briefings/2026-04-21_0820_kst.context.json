@@ -1,0 +1,644 @@
+{
+  "context_profile": "compact",
+  "generated_at_kst": "2026-04-21T08:20:49+09:00",
+  "window_start_kst": "2026-04-20T17:10:00+09:00",
+  "window_end_kst": "2026-04-21T08:20:00+09:00",
+  "cutoff_kst": "2026-04-20T17:10:00+09:00",
+  "briefing_slot_kst": "08:20",
+  "cutoff_mode": "requested_schedule_window",
+  "market_snapshot_file": "market_snapshots/2026-04-21_0820_nokey_kst.json | market_snapshots/treasury_nokey_latest.json",
+  "snapshot": {
+    "WTI": "86.45",
+    "Brent": "95.05999755859375",
+    "Gold": "4825.095",
+    "Copper": "604.68",
+    "DXY": "98.05400085449219",
+    "USDKRW_NDF_1M": "1475.61",
+    "USDJPY": "158.8525",
+    "US_2Y": "3.72",
+    "US_10Y": "4.26",
+    "US_10Y_2Y_BP": "54.0bp",
+    "SPX": "7109.14",
+    "NASDAQ": "24404.39"
+  },
+  "macro_snapshot": {
+    "WTI": "86.45",
+    "Brent": "95.05999755859375",
+    "Gold": "4825.095",
+    "Copper": "604.68",
+    "DXY": "98.05400085449219",
+    "USDKRW_NDF_1M": "1475.61",
+    "USDJPY": "158.8525",
+    "US_2Y": "3.72",
+    "US_10Y": "4.26",
+    "US_10Y_2Y_BP": "54.0bp",
+    "SPX": "7109.14",
+    "NASDAQ": "24404.39"
+  },
+  "macro_state": {
+    "energy_stress": true,
+    "fx_stress": true,
+    "rate_stress": false
+  },
+  "regime_shift": "중동 변수는 협상 headline보다 유가·환율·통항으로 확인되는 위험 프리미엄 문제로 다시 좁혀졌다.",
+  "theme_items": [
+    {
+      "label": "실적",
+      "chat": "에테르의 일본&미국 리서치",
+      "text": "#속보 트럼프: 이란에서의 결과는 놀라울 것이다. AI+ : 트럼프의 이란 ‘결과’ 낙관 발언으로 전날 협상 기대 이어지며 중동 긴장 완화 기대 2026-04-20 23:17:42 ✈ 빠른속보",
+      "score": 19
+    },
+    {
+      "label": "정책",
+      "chat": "에테르의 일본&미국 리서치",
+      "text": "트럼프 대통령, 워싱턴 시간 수요일 저녁 휴전 만료 발표 이러다가 또 이란이 놀라운 제안을 했다! 이러면서 다시 연기될거 같음",
+      "score": 19
+    },
+    {
+      "label": "해운/물류",
+      "chat": "트릴리온",
+      "text": "사우디아라비아 얀부 항의 원유 선적량이 4월 13일 주에 17% 감소한 약 350만 배럴 / 일(BPD)을 기록했다고 해운 데이터가 보여준다",
+      "score": 17
+    },
+    {
+      "label": "지정학",
+      "chat": "에테르의 일본&미국 리서치",
+      "text": "이란, 미국과의 회담을 위해 파키스탄에 최고위급 대표단 파견: 뉴욕타임스 이란 고위 관리 2명에 따르면, 이란 대표단이 화요일 미국과의 협상을 위해 이슬라마바드로 향할 예정이다",
+      "score": 12
+    },
+    {
+      "label": "지정학",
+      "chat": "트릴리온",
+      "text": "쿠웨이트는 호르무즈 해협을 통한 선적 중단으로 인해 석유 수출에 대해 불가항력(force majeure)을 선언했습니다",
+      "score": 12
+    },
+    {
+      "label": "에너지",
+      "chat": "한투증권 중국/신흥국 정정영",
+      "text": "~ 하지만 물류 및 기술적 문제, 환경 우려, 불리한 시장 여건이 겹치면서 2014년 중단된 뒤 10년 넘게 방치되고 있었는데 지난해 건설을 재개한 것이다 ~ 이들 프로젝트는 연말까지",
+      "score": 11
+    },
+    {
+      "label": "반도체",
+      "chat": "카이에 de market",
+      "text": "Magnitude: 7.4 Region: Near East Coast of Honshu, Japan Time: 2026-04-20 07:52:57 UTC Epicenter: 142.94°E",
+      "score": 9
+    }
+  ],
+  "house_view": [
+    "개장 전 기본 판단은 밤사이 많이 나온 뉴스보다 한국 장에서 바로 가격으로 번역될 변수만 먼저 반영하는 것이다.",
+    "지금은 엇갈리는 headline 목록보다 유가와 물류비 변수가 먼저 가격에 번역되는 구간이다."
+  ],
+  "analyst_memos": [
+    "트릴리온 / 지정학 데스크: 사우디아라비아 얀부 항의 원유 선적량이 4월 13일 주에 17% 감소한 약 350만 배럴 / 일(BPD)을 기록했다고 해운 데이터가 보여준다 | 담당 범위=지정학, 무역, 정책",
+    "에테르의 일본&미국 리서치 / 지정학 데스크: #속보 트럼프: 이란에서의 결과는 놀라울 것이다. AI+ : 트럼프의 이란 ‘결과’ 낙관 발언으로 전날 협상 기대 이어지며 중동 긴장 완화 기대 2026-04-20 23:17:42 ✈ 빠른속보 | 담당 범위=지정학, 무역, 실적",
+    "[메리츠 Tech 김선우, 양승수, 김동관] / 실적 데스크: Global AI Optical Transceiver Market to Reach US$26 Billion in 2026 | 담당 범위=실적, 환율, 정책",
+    "하나 중국/신흥국 전략 김경환 / 지정학 데스크: 토큰 계산: 다음 10년의 비용 전쟁 •AI 과금 체계는 단순한 ‘토큰 시대’를 벗어나고 있음. 이제는 검색, 캐시, 실행, 세션 시간 | 담당 범위=지정학, 실적, 에너지"
+  ],
+  "consensus_conflict": [
+    "합의: 정책, 실적, 해운/물류가 여러 방에서 반복됐다.",
+    "갈림길: 지정학 단독 시그널은 후속 가격 확인이 붙을 때만 무게가 커진다."
+  ],
+  "evidence_status": [
+    "원문 미확인: 이번 실행은 링크 대상을 열지 않았다. 링크가 붙은 주장은 텔레그램 본문 기준으로만 취급했다."
+  ],
+  "numbers_to_watch": [
+    "WTI 86.45: 100 재돌파면 에너지 프리미엄 재확대",
+    "미10년물 4.26: 4.35 위면 성장주 부담 재확대",
+    "원달러환율(현물) 1475.61: 1500 재상회면 국내 리스크온 약화"
+  ],
+  "common_signals": [
+    {
+      "kind": "common",
+      "label": "정책",
+      "tag": "policy",
+      "chat_count": 6,
+      "score": 13,
+      "reasons": [
+        "cross-channel repetition",
+        "energy-sensitive macro backdrop",
+        "merged thought block"
+      ],
+      "message": {
+        "chat": "에테르의 일본&미국 리서치",
+        "chat_slug": "에테르의_일본_미국_리서치__1909745040",
+        "message_id": 21411,
+        "message_id_end": 21412,
+        "source_message_ids": [
+          21411,
+          21412
+        ],
+        "source_message_count": 2,
+        "timestamp_kst": "2026-04-20T23:58:35+09:00",
+        "timestamp_kst_end": "2026-04-20T23:58:49+09:00",
+        "views": 1,
+        "topics": [
+          "지정학",
+          "정책"
+        ],
+        "text": "트럼프 대통령, 워싱턴 시간 수요일 저녁 휴전 만료 발표 이러다가 또 이란이 놀라운 제안을 했다! 이러면서 다시 연기될거 같음"
+      },
+      "evidence_count": 0,
+      "evidence": []
+    },
+    {
+      "kind": "common",
+      "label": "실적",
+      "tag": "earnings",
+      "chat_count": 5,
+      "score": 14,
+      "reasons": [
+        "cross-channel repetition",
+        "energy-sensitive macro backdrop",
+        "source linked"
+      ],
+      "message": {
+        "chat": "에테르의 일본&미국 리서치",
+        "chat_slug": "에테르의_일본_미국_리서치__1909745040",
+        "message_id": 21404,
+        "message_id_end": 21406,
+        "source_message_ids": [
+          21404,
+          21405,
+          21406
+        ],
+        "source_message_count": 3,
+        "timestamp_kst": "2026-04-20T23:27:45+09:00",
+        "timestamp_kst_end": "2026-04-20T23:29:18+09:00",
+        "views": 1062,
+        "topics": [
+          "실적",
+          "지정학",
+          "반도체",
+          "무역"
+        ],
+        "text": "#속보 트럼프: 이란에서의 결과는 놀라울 것이다. AI+ : 트럼프의 이란 ‘결과’ 낙관 발언으로 전날 협상 기대 이어지며 중동 긴장 완화 기대 2026-04-20 23:17:42 ✈ 빠른속보"
+      },
+      "evidence_count": 0,
+      "evidence": []
+    },
+    {
+      "kind": "common",
+      "label": "해운/물류",
+      "tag": "shipping",
+      "chat_count": 3,
+      "score": 14,
+      "reasons": [
+        "cross-channel repetition",
+        "energy-sensitive macro backdrop",
+        "fx-sensitive macro backdrop"
+      ],
+      "message": {
+        "chat": "트릴리온",
+        "chat_slug": "트릴리온__3402415038",
+        "message_id": 4296,
+        "message_id_end": 4297,
+        "source_message_ids": [
+          4296,
+          4297
+        ],
+        "source_message_count": 2,
+        "timestamp_kst": "2026-04-21T02:18:32+09:00",
+        "timestamp_kst_end": "2026-04-21T02:19:33+09:00",
+        "views": 84,
+        "topics": [
+          "에너지",
+          "환율",
+          "해운/물류"
+        ],
+        "text": "사우디아라비아 얀부 항의 원유 선적량이 4월 13일 주에 17% 감소한 약 350만 배럴 / 일(BPD)을 기록했다고 해운 데이터가 보여준다"
+      },
+      "evidence_count": 0,
+      "evidence": []
+    }
+  ],
+  "outlier_signals": [
+    {
+      "kind": "outlier",
+      "label": "지정학",
+      "tag": "geopolitics",
+      "chat_count": 1,
+      "score": 12,
+      "reasons": [
+        "cross-channel repetition",
+        "energy-sensitive macro backdrop",
+        "merged thought block"
+      ],
+      "message": {
+        "chat": "트릴리온",
+        "chat_slug": "트릴리온__3402415038",
+        "message_id": 4272,
+        "message_id_end": 4273,
+        "source_message_ids": [
+          4272,
+          4273
+        ],
+        "source_message_count": 2,
+        "timestamp_kst": "2026-04-20T22:19:10+09:00",
+        "timestamp_kst_end": "2026-04-20T22:19:34+09:00",
+        "views": 606,
+        "topics": [
+          "지정학",
+          "정책",
+          "무역"
+        ],
+        "text": "이란 협상 대표단의 이슬라마바드 방문 의도에 관한 비이란의 출처로부터 발표된 정보는 부정확하다. 테헤란의 한 익명 소식통은 이렇게 말했습니다: \"현재 상황에서는 생산적인 협상을 위한 밝은 전망이"
+      },
+      "evidence_count": 0,
+      "evidence": []
+    },
+    {
+      "kind": "outlier",
+      "label": "지정학",
+      "tag": "geopolitics",
+      "chat_count": 1,
+      "score": 12,
+      "reasons": [
+        "cross-channel repetition",
+        "energy-sensitive macro backdrop"
+      ],
+      "message": {
+        "chat": "에테르의 일본&미국 리서치",
+        "chat_slug": "에테르의_일본_미국_리서치__1909745040",
+        "message_id": 21413,
+        "message_id_end": 21413,
+        "source_message_ids": [
+          21413
+        ],
+        "source_message_count": 1,
+        "timestamp_kst": "2026-04-21T00:33:05+09:00",
+        "timestamp_kst_end": "2026-04-21T00:33:05+09:00",
+        "views": 501,
+        "topics": [
+          "지정학",
+          "무역"
+        ],
+        "text": "이란, 미국과의 회담을 위해 파키스탄에 최고위급 대표단 파견: 뉴욕타임스 이란 고위 관리 2명에 따르면, 이란 대표단이 화요일 미국과의 협상을 위해 이슬라마바드로 향할 예정이다"
+      },
+      "evidence_count": 0,
+      "evidence": []
+    },
+    {
+      "kind": "outlier",
+      "label": "지정학",
+      "tag": "geopolitics",
+      "chat_count": 1,
+      "score": 12,
+      "reasons": [
+        "cross-channel repetition",
+        "energy-sensitive macro backdrop",
+        "merged thought block"
+      ],
+      "message": {
+        "chat": "트릴리온",
+        "chat_slug": "트릴리온__3402415038",
+        "message_id": 4264,
+        "message_id_end": 4265,
+        "source_message_ids": [
+          4264,
+          4265
+        ],
+        "source_message_count": 2,
+        "timestamp_kst": "2026-04-20T22:05:35+09:00",
+        "timestamp_kst_end": "2026-04-20T22:08:11+09:00",
+        "views": 423,
+        "topics": [
+          "지정학",
+          "무역"
+        ],
+        "text": "쿠웨이트는 호르무즈 해협을 통한 선적 중단으로 인해 석유 수출에 대해 불가항력(force majeure)을 선언했습니다"
+      },
+      "evidence_count": 0,
+      "evidence": []
+    }
+  ],
+  "channel_insights_total": 8,
+  "channel_insights_omitted": 0,
+  "channel_insights": [
+    {
+      "chat": "트릴리온",
+      "chat_slug": "트릴리온__3402415038",
+      "desk_role": "지정학 데스크",
+      "message_count": 6,
+      "top_topics": [
+        "지정학",
+        "무역",
+        "정책"
+      ],
+      "analyst_score": 14,
+      "evidence_backed_highlights": 0,
+      "highlights": [
+        {
+          "message_id": 4296,
+          "message_id_end": 4297,
+          "source_message_ids": [
+            4296,
+            4297
+          ],
+          "source_message_count": 2,
+          "timestamp_kst": "2026-04-21T02:18:32+09:00",
+          "topics": [
+            "에너지",
+            "환율",
+            "해운/물류"
+          ],
+          "score": 14,
+          "reasons": [
+            "cross-channel repetition",
+            "energy-sensitive macro backdrop",
+            "fx-sensitive macro backdrop"
+          ],
+          "text": "사우디아라비아 얀부 항의 원유 선적량이 4월 13일 주에 17% 감소한 약 350만 배럴 / 일(BPD)을 기록했다고 해운 데이터가 보여준다"
+        }
+      ]
+    },
+    {
+      "chat": "에테르의 일본&미국 리서치",
+      "chat_slug": "에테르의_일본_미국_리서치__1909745040",
+      "desk_role": "지정학 데스크",
+      "message_count": 4,
+      "top_topics": [
+        "지정학",
+        "무역",
+        "실적"
+      ],
+      "analyst_score": 14,
+      "evidence_backed_highlights": 0,
+      "highlights": [
+        {
+          "message_id": 21404,
+          "message_id_end": 21406,
+          "source_message_ids": [
+            21404,
+            21405,
+            21406
+          ],
+          "source_message_count": 3,
+          "timestamp_kst": "2026-04-20T23:27:45+09:00",
+          "topics": [
+            "실적",
+            "지정학",
+            "반도체",
+            "무역"
+          ],
+          "score": 14,
+          "reasons": [
+            "cross-channel repetition",
+            "energy-sensitive macro backdrop",
+            "source linked"
+          ],
+          "text": "#속보 트럼프: 이란에서의 결과는 놀라울 것이다. AI+ : 트럼프의 이란 ‘결과’ 낙관 발언으로 전날 협상 기대 이어지며 중동 긴장 완화 기대 2026-04-20"
+        }
+      ]
+    },
+    {
+      "chat": "[메리츠 Tech 김선우, 양승수, 김동관]",
+      "chat_slug": "메리츠_tech_김선우_양승수_김동관__1104504651",
+      "desk_role": "실적 데스크",
+      "message_count": 2,
+      "top_topics": [
+        "실적",
+        "환율",
+        "정책"
+      ],
+      "analyst_score": 12,
+      "evidence_backed_highlights": 0,
+      "highlights": [
+        {
+          "message_id": 16513,
+          "message_id_end": 16513,
+          "source_message_ids": [
+            16513
+          ],
+          "source_message_count": 1,
+          "timestamp_kst": "2026-04-20T19:21:34+09:00",
+          "topics": [
+            "실적",
+            "환율",
+            "정책",
+            "반도체"
+          ],
+          "score": 12,
+          "reasons": [
+            "cross-channel repetition",
+            "fx-sensitive macro backdrop",
+            "source linked"
+          ],
+          "text": "Global AI Optical Transceiver Market to Reach US$26 Billion in 2026"
+        }
+      ]
+    },
+    {
+      "chat": "하나 중국/신흥국 전략 김경환",
+      "chat_slug": "하나_중국_신흥국_전략_김경환__1306052516",
+      "desk_role": "지정학 데스크",
+      "message_count": 6,
+      "top_topics": [
+        "지정학",
+        "실적",
+        "에너지"
+      ],
+      "analyst_score": 11,
+      "evidence_backed_highlights": 0,
+      "highlights": [
+        {
+          "message_id": 60849,
+          "message_id_end": 60849,
+          "source_message_ids": [
+            60849
+          ],
+          "source_message_count": 1,
+          "timestamp_kst": "2026-04-20T23:26:23+09:00",
+          "topics": [
+            "실적",
+            "지정학"
+          ],
+          "score": 11,
+          "reasons": [
+            "cross-channel repetition",
+            "energy-sensitive macro backdrop",
+            "source linked"
+          ],
+          "text": "토큰 계산: 다음 10년의 비용 전쟁 •AI 과금 체계는 단순한 ‘토큰 시대’를 벗어나고 있음. 이제는 검색, 캐시, 실행, 세션 시간"
+        }
+      ]
+    },
+    {
+      "chat": "한투증권 중국/신흥국 정정영",
+      "chat_slug": "한투증권_중국_신흥국_정정영__1250493882",
+      "desk_role": "에너지 데스크",
+      "message_count": 6,
+      "top_topics": [
+        "에너지",
+        "해운/물류",
+        "지정학"
+      ],
+      "analyst_score": 11,
+      "evidence_backed_highlights": 0,
+      "highlights": [
+        {
+          "message_id": 29579,
+          "message_id_end": 29579,
+          "source_message_ids": [
+            29579
+          ],
+          "source_message_count": 1,
+          "timestamp_kst": "2026-04-20T21:15:21+09:00",
+          "topics": [
+            "지정학",
+            "정책",
+            "무역"
+          ],
+          "score": 11,
+          "reasons": [
+            "cross-channel repetition",
+            "energy-sensitive macro backdrop"
+          ],
+          "text": "* 파키스탄, 이란과 2차 미국-이란 협상 논의 • 파키스탄 내무부 성명 발표: 이란 주재 파키스탄 대사와의 회담에서 미-이란 2차 협상 일정 논의 • 이슬라마바드에서의 2번째"
+        }
+      ]
+    },
+    {
+      "chat": "카이에 de market",
+      "chat_slug": "카이에_de_market__1883361144",
+      "desk_role": "반도체 데스크",
+      "message_count": 4,
+      "top_topics": [
+        "반도체"
+      ],
+      "analyst_score": 9,
+      "evidence_backed_highlights": 0,
+      "highlights": [
+        {
+          "message_id": 9280,
+          "message_id_end": 9281,
+          "source_message_ids": [
+            9280,
+            9281
+          ],
+          "source_message_count": 2,
+          "timestamp_kst": "2026-04-20T17:23:52+09:00",
+          "topics": [
+            "반도체"
+          ],
+          "score": 9,
+          "reasons": [
+            "cross-channel repetition",
+            "merged thought block"
+          ],
+          "text": "Magnitude: 7.4 Region: Near East Coast of Honshu, Japan Time: 2026-04-20 07:52:57 UTC Epicenter:"
+        }
+      ]
+    },
+    {
+      "chat": "AWAKE - 실시간 주식 공시 정리채널",
+      "chat_slug": "awake_실시간_주식_공시_정리채널__1066938528",
+      "desk_role": "실적 데스크",
+      "message_count": 4,
+      "top_topics": [
+        "실적",
+        "정책"
+      ],
+      "analyst_score": 4,
+      "evidence_backed_highlights": 0,
+      "highlights": [
+        {
+          "message_id": 138130,
+          "message_id_end": 138130,
+          "source_message_ids": [
+            138130
+          ],
+          "source_message_count": 1,
+          "timestamp_kst": "2026-04-20T18:47:00+09:00",
+          "topics": [
+            "실적"
+          ],
+          "score": 4,
+          "reasons": [
+            "cross-channel repetition",
+            "source linked"
+          ],
+          "text": "18:46:58 기업명: 알엔티엑스(시가총액: 616억) A123010 보고서명: 최대주주변경을수반하는주식양수도계약체결 * 양도인 (주)알엔투테크놀로지(최대주주) * 양수인"
+        }
+      ]
+    },
+    {
+      "chat": "시장 이야기 by 제이슨",
+      "chat_slug": "시장_이야기_by_제이슨__1192351807",
+      "desk_role": "일반 소싱",
+      "message_count": 1,
+      "top_topics": [],
+      "analyst_score": 2,
+      "evidence_backed_highlights": 0,
+      "highlights": [
+        {
+          "message_id": 54188,
+          "message_id_end": 54188,
+          "source_message_ids": [
+            54188
+          ],
+          "source_message_count": 1,
+          "timestamp_kst": "2026-04-20T21:03:08+09:00",
+          "topics": [
+            "기타"
+          ],
+          "score": 2,
+          "reasons": [],
+          "text": "1조 6127억"
+        }
+      ]
+    }
+  ],
+  "evidence_registry_total": 8,
+  "evidence_registry_omitted": 0,
+  "evidence_registry": [
+    {
+      "url": "https://t.me/TNBfolio)",
+      "kind": "link",
+      "verified": false,
+      "note": "link_fetch_disabled"
+    },
+    {
+      "url": "https://www.digitimes.com/news/a20260420VL217/anthropic-cybersecurity-supply-chain-policy-usa.html",
+      "kind": "link",
+      "verified": false,
+      "note": "link_fetch_disabled"
+    },
+    {
+      "url": "https://buly.kr/GZzSyR5",
+      "kind": "link",
+      "verified": false,
+      "note": "link_fetch_disabled"
+    },
+    {
+      "url": "https://wallstreetcn.com/articles/3770416#from=ios",
+      "kind": "link",
+      "verified": false,
+      "note": "link_fetch_disabled"
+    },
+    {
+      "url": "https://www.iranintl.com/en/202604200812",
+      "kind": "link",
+      "verified": false,
+      "note": "link_fetch_disabled"
+    },
+    {
+      "url": "https://wallstreetcn.com/articles/3770401#from=ios",
+      "kind": "link",
+      "verified": false,
+      "note": "link_fetch_disabled"
+    },
+    {
+      "url": "https://n.news.naver.com/article/001/0016032033?sid=104",
+      "kind": "link",
+      "verified": false,
+      "note": "link_fetch_disabled"
+    },
+    {
+      "url": "https://wallstreetcn.com/articles/3770436#from=ios",
+      "kind": "link",
+      "verified": false,
+      "note": "link_fetch_disabled"
+    }
+  ]
+}

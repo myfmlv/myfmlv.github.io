@@ -1,0 +1,67 @@
+{
+  "generated_at_kst": "2026-04-22T17:19:53+09:00",
+  "window_start_kst": "2026-04-22T12:40:00+09:00",
+  "window_end_kst": "2026-04-22T17:10:00+09:00",
+  "briefing_slot_kst": "17:10",
+  "market_snapshot_file": "market_snapshots/2026-04-22_1710_nokey_kst.json | market_snapshots/treasury_nokey_latest.json",
+  "message_count": 9,
+  "fact_count": 1,
+  "validated_group_count": 1,
+  "classified_messages": [
+    {
+      "chat_slug": "시장_이야기_by_제이슨__1192351807",
+      "message_id": 54197,
+      "label": "actionable_news"
+    },
+    {
+      "chat_slug": "하나_중국_신흥국_전략_김경환__1306052516",
+      "message_id": 60943,
+      "label": "commentary"
+    },
+    {
+      "chat_slug": "하나_중국_신흥국_전략_김경환__1306052516",
+      "message_id": 60950,
+      "label": "commentary"
+    },
+    {
+      "chat_slug": "하나_중국_신흥국_전략_김경환__1306052516",
+      "message_id": 60953,
+      "label": "commentary"
+    },
+    {
+      "chat_slug": "하나_중국_신흥국_전략_김경환__1306052516",
+      "message_id": 60954,
+      "label": "noise"
+    },
+    {
+      "chat_slug": "에테르의_일본_미국_리서치__1909745040",
+      "message_id": 21448,
+      "label": "commentary"
+    },
+    {
+      "chat_slug": "에테르의_일본_미국_리서치__1909745040",
+      "message_id": 21449,
+      "label": "commentary"
+    },
+    {
+      "chat_slug": "트릴리온__3402415038",
+      "message_id": 4359,
+      "label": "commentary"
+    },
+    {
+      "chat_slug": "트릴리온__3402415038",
+      "message_id": 4360,
+      "label": "commentary"
+    }
+  ],
+  "selected_groups": [
+    {
+      "signature": "ai earnings revision earnings",
+      "score": 10.0,
+      "chat_count": 1,
+      "consensus": false,
+      "representative": "5대 핵심 시장 테마 1) AI 트레이드는 여전히 유효하다 🤖 AI 트레이드는 실적 추정치 상향 조정에 비해 상대적으로 저렴해졌으며, 테마에 대한 시장의 심리는 여전히 강력합니다"
+    }
+  ],
+  "rejected_groups": []
+}

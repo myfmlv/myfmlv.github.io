@@ -1,0 +1,182 @@
+{
+  "generated_at_kst": "2026-04-22T15:58:02+09:00",
+  "window_start_kst": "2026-04-22T08:20:00+09:00",
+  "window_end_kst": "2026-04-22T12:40:00+09:00",
+  "briefing_slot_kst": "12:40",
+  "market_snapshot_file": "market_snapshots/2026-04-22_1114_nokey_kst.json | market_snapshots/treasury_nokey_latest.json",
+  "message_count": 27,
+  "fact_count": 6,
+  "validated_group_count": 3,
+  "classified_messages": [
+    {
+      "chat_slug": "하나_중국_신흥국_전략_김경환__1306052516",
+      "message_id": 60924,
+      "label": "commentary"
+    },
+    {
+      "chat_slug": "하나_중국_신흥국_전략_김경환__1306052516",
+      "message_id": 60925,
+      "label": "commentary"
+    },
+    {
+      "chat_slug": "하나_중국_신흥국_전략_김경환__1306052516",
+      "message_id": 60926,
+      "label": "broker_note_roundup"
+    },
+    {
+      "chat_slug": "하나_중국_신흥국_전략_김경환__1306052516",
+      "message_id": 60928,
+      "label": "broker_note_actionable"
+    },
+    {
+      "chat_slug": "하나_중국_신흥국_전략_김경환__1306052516",
+      "message_id": 60929,
+      "label": "commentary"
+    },
+    {
+      "chat_slug": "하나_중국_신흥국_전략_김경환__1306052516",
+      "message_id": 60931,
+      "label": "broker_note_actionable"
+    },
+    {
+      "chat_slug": "하나_중국_신흥국_전략_김경환__1306052516",
+      "message_id": 60935,
+      "label": "commentary"
+    },
+    {
+      "chat_slug": "하나_중국_신흥국_전략_김경환__1306052516",
+      "message_id": 60936,
+      "label": "noise"
+    },
+    {
+      "chat_slug": "시장_이야기_by_제이슨__1192351807",
+      "message_id": 54195,
+      "label": "actionable_news"
+    },
+    {
+      "chat_slug": "메리츠_tech_김선우_양승수_김동관__1104504651",
+      "message_id": 16555,
+      "label": "broker_note_actionable"
+    },
+    {
+      "chat_slug": "메리츠_tech_김선우_양승수_김동관__1104504651",
+      "message_id": 16558,
+      "label": "commentary"
+    },
+    {
+      "chat_slug": "한투증권_중국_신흥국_정정영__1250493882",
+      "message_id": 29623,
+      "label": "commentary"
+    },
+    {
+      "chat_slug": "한투증권_중국_신흥국_정정영__1250493882",
+      "message_id": 29624,
+      "label": "commentary"
+    },
+    {
+      "chat_slug": "한투증권_중국_신흥국_정정영__1250493882",
+      "message_id": 29625,
+      "label": "commentary"
+    },
+    {
+      "chat_slug": "한투증권_중국_신흥국_정정영__1250493882",
+      "message_id": 29626,
+      "label": "broker_note_actionable"
+    },
+    {
+      "chat_slug": "한투증권_중국_신흥국_정정영__1250493882",
+      "message_id": 29627,
+      "label": "broker_note_actionable"
+    },
+    {
+      "chat_slug": "트릴리온__3402415038",
+      "message_id": 4351,
+      "label": "commentary"
+    },
+    {
+      "chat_slug": "트릴리온__3402415038",
+      "message_id": 4352,
+      "label": "commentary"
+    },
+    {
+      "chat_slug": "트릴리온__3402415038",
+      "message_id": 4353,
+      "label": "commentary"
+    },
+    {
+      "chat_slug": "트릴리온__3402415038",
+      "message_id": 4355,
+      "label": "commentary"
+    },
+    {
+      "chat_slug": "트릴리온__3402415038",
+      "message_id": 4356,
+      "label": "commentary"
+    },
+    {
+      "chat_slug": "트릴리온__3402415038",
+      "message_id": 4358,
+      "label": "commentary"
+    },
+    {
+      "chat_slug": "카이에_de_market__1883361144",
+      "message_id": 9300,
+      "label": "commentary"
+    },
+    {
+      "chat_slug": "카이에_de_market__1883361144",
+      "message_id": 9301,
+      "label": "commentary"
+    },
+    {
+      "chat_slug": "에테르의_일본_미국_리서치__1909745040",
+      "message_id": 21447,
+      "label": "commentary"
+    },
+    {
+      "chat_slug": "awake_실시간_주식_공시_정리채널__1066938528",
+      "message_id": 138282,
+      "label": "utility_roundup"
+    },
+    {
+      "chat_slug": "awake_실시간_주식_공시_정리채널__1066938528",
+      "message_id": 138287,
+      "label": "utility_actionable_filing"
+    }
+  ],
+  "selected_groups": [
+    {
+      "signature": "hj중공업은 contract earnings 682억 원 3.41%",
+      "score": 13.0,
+      "chat_count": 1,
+      "consensus": false,
+      "representative": "HJ중공업은 한국토지주택공사와 남양주왕숙2 A-6BL 및 A-7BL 통합형 민간참여 공공주택 건설사업 공급계약을 체결했고 계약금액은 682억 원, 매출 대비 3.41%라고 공시했다"
+    },
+    {
+      "signature": "catl pricing uncategorized 3.8%",
+      "score": 11.5,
+      "chat_count": 1,
+      "consensus": false,
+      "representative": "중국석화 자회사는 화요일 종가대비 -3.8% 낮은 가격으로 CATL 홍콩주식 매각했다"
+    },
+    {
+      "signature": "bhp는 contract earnings",
+      "score": 9.0,
+      "chat_count": 1,
+      "consensus": false,
+      "representative": "BHP는 중국광산자원그룹과 철광석 계약에 합의했다"
+    }
+  ],
+  "rejected_groups": [
+    {
+      "signature": "관련 기업 update trade",
+      "reason": "insufficient_evidence",
+      "summary": "글로벌 무역업체들은 호르무즈 해협 혼란이 지속될 경우 에너지 위기를 넘어 식량 위기로 확산될 수 있다고 경고했다"
+    },
+    {
+      "signature": "catl update uncategorized",
+      "reason": "insufficient_evidence",
+      "summary": "페트로차이나,는 CATL H주 지분을 매각했다"
+    }
+  ]
+}
