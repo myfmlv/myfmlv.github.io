@@ -18,7 +18,6 @@
           <button class="active" type="button" data-view="stock">주식</button>
           <button type="button" data-view="etf">ETF</button>
         </nav>
-        <span class="status" id="marketStatus">KRX 데이터 로딩 중</span>
       </header>
 
       <section class="view active" id="stockView" aria-label="주식">
@@ -35,33 +34,26 @@
           </nav>
 
           <section class="stock-subview active" id="marketStockPane" data-kr-stock-pane="market" aria-label="국내 시장">
-            <section class="summary-strip market-strip" id="marketIndexStrip" aria-label="시장 지표"></section>
             <div class="section-grid compact" id="marketInsightGrid"></div>
             <div class="section-grid compact" id="marketRankingGrid"></div>
           </section>
 
           <section class="stock-subview" id="themeStockPane" data-kr-stock-pane="theme" aria-label="주식 테마">
             <div class="section-grid" id="themeSectionGrid"></div>
+            <article class="wide-panel theme-detail" id="themeDetail"></article>
           </section>
 
           <section class="stock-subview" id="pensionStockPane" data-kr-stock-pane="pension" aria-label="연기금 수급">
-            <section class="summary-strip" aria-label="KRX 수급 데이터 요약">
-              <div>
+            <section class="date-strip" aria-label="거래일 선택">
+              <label class="trade-date-field">
                 <span>거래일</span>
-                <strong id="tradeDate">-</strong>
+                <input id="tradeDateInput" type="text" inputmode="numeric" placeholder="YYYY.MM.DD" autocomplete="off" />
+              </label>
+              <div class="calendar-control">
+                <button id="tradeDateCalendarButton" type="button" aria-label="달력에서 거래일 선택"><span class="calendar-icon" aria-hidden="true"></span></button>
+                <input id="tradeDatePicker" type="date" aria-label="거래일 달력" />
               </div>
-              <div>
-                <span>순매수 종목</span>
-                <strong id="buyStockCount">-</strong>
-              </div>
-              <div>
-                <span>순매도 종목</span>
-                <strong id="sellStockCount">-</strong>
-              </div>
-              <div>
-                <span>데이터 행수</span>
-                <strong id="dataRows">-</strong>
-              </div>
+              <small id="tradeDateHint"></small>
             </section>
 
             <div class="section-grid compact" id="pensionSectionGrid"></div>
@@ -88,7 +80,7 @@
               <div class="panel-head">
                 <div>
                   <p>DETAIL</p>
-                  <h2>연기금 랭킹</h2>
+                  <h2>연기금 수급 랭킹</h2>
                 </div>
                 <span class="panel-meta" id="rankingMeta">20개 표시</span>
               </div>

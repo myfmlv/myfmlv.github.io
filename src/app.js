@@ -28,14 +28,14 @@ const themeDown = [
 ]
 
 const hotThemes = [
-  ['AI 반도체', 96, [20, 23, 28, 35, 43, 48, 55]],
-  ['전력 인프라', 91, [22, 24, 26, 30, 39, 45, 49]],
-  ['조선 기자재', 88, [18, 22, 24, 28, 34, 38, 44]],
-  ['화장품', 86, [16, 17, 19, 25, 28, 34, 39]],
-  ['방산', 82, [18, 19, 21, 24, 29, 32, 37]],
-  ['원자력 SMR', 79, [14, 16, 18, 23, 25, 28, 33]],
-  ['로봇', 75, [12, 15, 18, 17, 21, 25, 30]],
-  ['우주항공', 73, [13, 14, 16, 18, 22, 25, 28]],
+  ['전고체 배터리', 4.65, [20, 22, 24, 24, 27, 29, 32]],
+  ['OCI그룹', 8.79, [17, 19, 21, 23, 27, 30, 35]],
+  ['마이크로 LED', 5.33, [16, 17, 19, 21, 23, 26, 29]],
+  ['반도체 제품(비메모리)', 16.21, [18, 20, 24, 28, 34, 39, 45]],
+  ['구글 TPU', 7.47, [15, 16, 19, 22, 26, 28, 31]],
+  ['6G', -6.36, [28, 26, 24, 22, 20, 18, 16]],
+  ['지주사', 4.05, [14, 15, 17, 18, 20, 22, 24]],
+  ['석유화학', 2.01, [12, 13, 13, 14, 15, 16, 17]],
 ]
 
 const marketCaps = [
@@ -67,7 +67,201 @@ const usStocks = [
   { symbol: 'META', name: 'Meta Platforms', sector: '소셜·AI', price: 641.3, changeRate: 1.76, marketCap: '1.62T', amount: '11.4B', popularity: 80, trend: [16, 18, 20, 23, 26, 30, 34] },
   { symbol: 'TSLA', name: 'Tesla', sector: '전기차', price: 336.2, changeRate: 3.58, marketCap: '1.08T', amount: '24.2B', popularity: 96, trend: [14, 12, 18, 24, 30, 33, 41] },
   { symbol: 'AVGO', name: 'Broadcom', sector: '반도체', price: 329.8, changeRate: 1.04, marketCap: '1.55T', amount: '7.2B', popularity: 74, trend: [19, 20, 23, 25, 28, 29, 31] },
+  { symbol: 'BRK.B', name: 'Berkshire Hathaway', sector: '복합지주', price: 531.1, changeRate: 0.24, marketCap: '1.15T', amount: '2.9B', popularity: 62, trend: [21, 21, 22, 23, 23, 24, 25] },
+  { symbol: 'LLY', name: 'Eli Lilly', sector: '비만치료제', price: 1128.4, changeRate: 1.37, marketCap: '1.07T', amount: '5.8B', popularity: 78, trend: [19, 21, 22, 25, 28, 31, 34] },
+  { symbol: 'JPM', name: 'JPMorgan Chase', sector: '은행', price: 308.4, changeRate: -0.18, marketCap: '846B', amount: '4.6B', popularity: 68, trend: [22, 23, 23, 24, 23, 23, 22] },
+  { symbol: 'V', name: 'Visa', sector: '결제', price: 356.8, changeRate: 0.31, marketCap: '681B', amount: '3.1B', popularity: 66, trend: [18, 18, 19, 20, 20, 21, 22] },
+  { symbol: 'MA', name: 'Mastercard', sector: '결제', price: 581.6, changeRate: 0.44, marketCap: '529B', amount: '2.2B', popularity: 61, trend: [17, 18, 18, 20, 21, 22, 23] },
+  { symbol: 'NFLX', name: 'Netflix', sector: '스트리밍', price: 1156.9, changeRate: 1.91, marketCap: '492B', amount: '4.1B', popularity: 73, trend: [16, 17, 20, 23, 25, 29, 32] },
+  { symbol: 'COST', name: 'Costco', sector: '소매', price: 1012.4, changeRate: 0.12, marketCap: '449B', amount: '1.8B', popularity: 58, trend: [20, 20, 21, 21, 22, 22, 23] },
+  { symbol: 'ORCL', name: 'Oracle', sector: '클라우드', price: 286.2, changeRate: 2.08, marketCap: '805B', amount: '6.9B', popularity: 79, trend: [14, 16, 18, 21, 26, 31, 36] },
+  { symbol: 'AMD', name: 'AMD', sector: 'AI 반도체', price: 226.1, changeRate: 2.84, marketCap: '366B', amount: '9.2B', popularity: 89, trend: [13, 14, 17, 22, 27, 33, 39] },
+  { symbol: 'PLTR', name: 'Palantir', sector: 'AI 소프트웨어', price: 206.5, changeRate: 4.36, marketCap: '482B', amount: '8.7B', popularity: 95, trend: [10, 13, 17, 24, 31, 38, 46] },
+  { symbol: 'CRM', name: 'Salesforce', sector: 'SaaS', price: 284.9, changeRate: -0.62, marketCap: '274B', amount: '2.7B', popularity: 55, trend: [24, 24, 23, 22, 21, 20, 20] },
+  { symbol: 'COIN', name: 'Coinbase', sector: '가상자산', price: 386.8, changeRate: 3.08, marketCap: '99B', amount: '5.1B', popularity: 88, trend: [14, 13, 18, 22, 28, 32, 37] },
+  { symbol: 'SMCI', name: 'Super Micro Computer', sector: 'AI 서버', price: 71.4, changeRate: 5.12, marketCap: '43B', amount: '3.8B', popularity: 86, trend: [11, 13, 14, 20, 24, 32, 41] },
+  { symbol: 'MU', name: 'Micron', sector: '메모리', price: 172.2, changeRate: 1.48, marketCap: '193B', amount: '4.9B', popularity: 76, trend: [15, 16, 19, 21, 25, 27, 30] },
+  { symbol: 'HOOD', name: 'Robinhood', sector: '증권 플랫폼', price: 138.7, changeRate: 2.22, marketCap: '122B', amount: '2.6B', popularity: 84, trend: [12, 14, 17, 19, 24, 28, 31] },
+  { symbol: 'SHOP', name: 'Shopify', sector: '커머스 SaaS', price: 162.5, changeRate: 1.13, marketCap: '210B', amount: '2.5B', popularity: 72, trend: [15, 16, 18, 19, 21, 23, 25] },
 ]
+
+const themeStockSeeds = {
+  '반도체 제품(전력반도체)': [
+    ['DB하이텍', '000990', ['반도체', '시스템반도체']],
+    ['티씨케이', '064760', ['반도체 장비', '태양광']],
+    ['하나머티리얼즈', '166090', ['반도체 소재']],
+    ['LX세미콘', '108320', ['OLED', '팹리스']],
+    ['KEC', '092220', ['전기차', '반도체 부품']],
+    ['에이프로', '262260', ['2차전지 장비', 'ESS']],
+    ['시지트로닉스', '429270', ['시스템반도체']],
+  ],
+  '온디바이스 AI': [
+    ['제주반도체', '080220', ['메모리', 'AI']],
+    ['가온칩스', '399720', ['시스템반도체', 'ARM']],
+    ['칩스앤미디어', '094360', ['팹리스', 'AI']],
+    ['텔레칩스', '054450', ['차량용 반도체']],
+    ['리노공업', '058470', ['반도체 후공정']],
+    ['에이직랜드', '445090', ['디자인하우스']],
+    ['오픈엣지테크놀로지', '394280', ['반도체 IP']],
+  ],
+  '반도체 제품(비메모리)': [
+    ['DB하이텍', '000990', ['파운드리']],
+    ['LX세미콘', '108320', ['디스플레이 반도체']],
+    ['가온칩스', '399720', ['디자인하우스']],
+    ['어보브반도체', '102120', ['MCU']],
+    ['칩스앤미디어', '094360', ['반도체 IP']],
+    ['텔레칩스', '054450', ['차량용']],
+    ['에이디테크놀로지', '200710', ['디자인하우스']],
+  ],
+  '반도체 제품(시스템반도체)': [
+    ['DB하이텍', '000990', ['파운드리']],
+    ['LX세미콘', '108320', ['팹리스']],
+    ['가온칩스', '399720', ['디자인하우스']],
+    ['오픈엣지테크놀로지', '394280', ['반도체 IP']],
+    ['칩스앤미디어', '094360', ['반도체 IP']],
+    ['넥스트칩', '396270', ['차량용 반도체']],
+  ],
+  'HD현대그룹': [
+    ['HD현대', '267250', ['지주사']],
+    ['HD현대중공업', '329180', ['조선']],
+    ['HD한국조선해양', '009540', ['조선']],
+    ['HD현대일렉트릭', '267260', ['전력기기']],
+    ['HD현대미포', '010620', ['조선']],
+    ['HD현대마린엔진', '071970', ['조선 기자재']],
+    ['HD현대인프라코어', '042670', ['건설기계']],
+  ],
+  '피팅/밸브': [
+    ['성광벤드', '014620', ['조선 기자재']],
+    ['태광', '023160', ['플랜트']],
+    ['하이록코리아', '013030', ['밸브']],
+    ['디케이락', '105740', ['피팅']],
+    ['비엠티', '086670', ['피팅']],
+    ['화성밸브', '039610', ['밸브']],
+  ],
+  '화장품': [
+    ['실리콘투', '257720', ['K뷰티']],
+    ['아모레퍼시픽', '090430', ['브랜드']],
+    ['LG생활건강', '051900', ['브랜드']],
+    ['한국콜마', '161890', ['ODM']],
+    ['코스맥스', '192820', ['ODM']],
+    ['브이티', '018290', ['K뷰티']],
+    ['클리오', '237880', ['색조']],
+    ['토니모리', '214420', ['브랜드']],
+  ],
+  '백화점': [
+    ['현대백화점', '069960', ['유통']],
+    ['신세계', '004170', ['유통']],
+    ['롯데쇼핑', '023530', ['유통']],
+    ['한화갤러리아', '452260', ['유통']],
+  ],
+  ARM: [
+    ['가온칩스', '399720', ['디자인하우스']],
+    ['오픈엣지테크놀로지', '394280', ['반도체 IP']],
+    ['칩스앤미디어', '094360', ['반도체 IP']],
+    ['넥스트칩', '396270', ['차량용 반도체']],
+  ],
+  '반도체 후공정': [
+    ['한미반도체', '042700', ['HBM 장비']],
+    ['리노공업', '058470', ['검사용 소켓']],
+    ['ISC', '095340', ['테스트 소켓']],
+    ['하나마이크론', '067310', ['패키징']],
+    ['네패스', '033640', ['패키징']],
+    ['SFA반도체', '036540', ['패키징']],
+    ['테크윙', '089030', ['검사장비']],
+  ],
+  '양자컴퓨터': [
+    ['우리로', '046970', ['양자암호']],
+    ['엑스게이트', '356680', ['보안']],
+    ['드림시큐리티', '203650', ['보안']],
+    ['코위버', '056360', ['통신장비']],
+  ],
+  블록체인: [
+    ['우리기술투자', '041190', ['가상자산']],
+    ['한화투자증권', '003530', ['가상자산']],
+    ['갤럭시아머니트리', '094480', ['전자결제']],
+    ['위메이드', '112040', ['게임']],
+  ],
+  '6G': [
+    ['오이솔루션', '138080', ['통신장비']],
+    ['케이엠더블유', '032500', ['통신장비']],
+    ['쏠리드', '050890', ['통신장비']],
+    ['RFHIC', '218410', ['통신장비']],
+  ],
+  생체인식: [
+    ['슈프리마', '236200', ['보안']],
+    ['드림시큐리티', '203650', ['보안']],
+    ['유니온커뮤니티', '203450', ['보안']],
+  ],
+  자동차: [
+    ['현대차', '005380', ['완성차']],
+    ['기아', '000270', ['완성차']],
+    ['현대모비스', '012330', ['부품']],
+    ['HL만도', '204320', ['부품']],
+  ],
+  인도투자: [
+    ['미래에셋증권', '006800', ['증권']],
+    ['삼성증권', '016360', ['증권']],
+    ['신한지주', '055550', ['금융']],
+  ],
+  현대자동차그룹: [
+    ['현대차', '005380', ['완성차']],
+    ['기아', '000270', ['완성차']],
+    ['현대모비스', '012330', ['부품']],
+    ['현대글로비스', '086280', ['물류']],
+    ['현대오토에버', '307950', ['소프트웨어']],
+  ],
+  양자암호통신: [
+    ['우리로', '046970', ['통신']],
+    ['코위버', '056360', ['통신장비']],
+    ['드림시큐리티', '203650', ['보안']],
+  ],
+  핀테크: [
+    ['카카오페이', '377300', ['결제']],
+    ['NHN KCP', '060250', ['전자결제']],
+    ['KG이니시스', '035600', ['전자결제']],
+    ['갤럭시아머니트리', '094480', ['전자결제']],
+  ],
+  영원그룹: [
+    ['영원무역', '111770', ['패션']],
+    ['영원무역홀딩스', '009970', ['지주사']],
+  ],
+  '전고체 배터리': [
+    ['삼성SDI', '006400', ['2차전지']],
+    ['이수스페셜티케미컬', '457190', ['소재']],
+    ['한농화성', '011500', ['소재']],
+    ['씨아이에스', '222080', ['장비']],
+    ['대주전자재료', '078600', ['소재']],
+  ],
+  OCI그룹: [
+    ['OCI홀딩스', '010060', ['지주사']],
+    ['OCI', '456040', ['화학']],
+    ['유니드', '014830', ['화학']],
+  ],
+  '마이크로 LED': [
+    ['서울반도체', '046890', ['LED']],
+    ['루멘스', '038060', ['LED']],
+    ['코세스', '089890', ['장비']],
+    ['레이크머티리얼즈', '281740', ['소재']],
+  ],
+  '구글 TPU': [
+    ['가온칩스', '399720', ['디자인하우스']],
+    ['에이디테크놀로지', '200710', ['디자인하우스']],
+    ['오픈엣지테크놀로지', '394280', ['반도체 IP']],
+  ],
+  지주사: [
+    ['SK', '034730', ['지주사']],
+    ['LG', '003550', ['지주사']],
+    ['HD현대', '267250', ['지주사']],
+    ['두산', '000150', ['지주사']],
+    ['CJ', '001040', ['지주사']],
+  ],
+  석유화학: [
+    ['LG화학', '051910', ['화학']],
+    ['롯데케미칼', '011170', ['화학']],
+    ['금호석유', '011780', ['화학']],
+    ['한화솔루션', '009830', ['화학']],
+  ],
+}
 
 const etfThemes = [
   ['AI 전력', 'PLUS 태양광&ESS', 8.49, [13, 15, 17, 21, 27, 31, 35]],
@@ -256,10 +450,12 @@ const state = {
   filteredRows: [],
   rowsByDate: new Map(),
   dates: [],
+  currentDate: null,
   stockMeta: new Map(),
   marketIndex: fallbackMarketIndex,
   stockCountry: 'kr',
   krStockSection: 'market',
+  selectedTheme: themeUp[0][0],
   sortKey: 'netBuy',
   query: '',
   visibleLimit: 20,
@@ -361,6 +557,17 @@ function formatTradeDate(date) {
   return `${date.slice(0, 4)}.${date.slice(4, 6)}.${date.slice(6, 8)}`
 }
 
+function toDateInputValue(date) {
+  if (!/^\d{8}$/.test(date ?? '')) return ''
+  return `${date.slice(0, 4)}-${date.slice(4, 6)}-${date.slice(6, 8)}`
+}
+
+function normalizeDateInput(value) {
+  const digits = String(value ?? '').replace(/\D/g, '')
+  if (/^\d{8}$/.test(digits)) return digits
+  return null
+}
+
 function formatMoney(value) {
   const absolute = Math.abs(value)
   const sign = value < 0 ? '-' : ''
@@ -403,6 +610,15 @@ function formatUsd(value) {
   return `$${Number(value).toLocaleString('en-US', { maximumFractionDigits: 2 })}`
 }
 
+function parseAbbrevValue(value) {
+  const text = String(value ?? '').trim().toUpperCase()
+  const number = Number.parseFloat(text.replace(/[^0-9.-]/g, '')) || 0
+  if (text.endsWith('T')) return number * 1_000_000_000_000
+  if (text.endsWith('B')) return number * 1_000_000_000
+  if (text.endsWith('M')) return number * 1_000_000
+  return number
+}
+
 function sparkline(values, tone = 'neutral') {
   const width = 84
   const height = 30
@@ -439,8 +655,9 @@ function builtinStockMeta() {
 
 function countStreak(ticker, direction) {
   let streak = 0
+  const startIndex = Math.max(state.dates.indexOf(state.currentDate), 0)
 
-  for (const date of state.dates) {
+  for (const date of state.dates.slice(startIndex)) {
     const row = state.rowsByDate.get(date)?.get(ticker)
     if (!row) break
     const matched = direction === 'buy' ? row.netAmount > 0 : row.netAmount < 0
@@ -472,11 +689,45 @@ function staticItems(items, tone = 'up', formatter = (value) => `${value}%`) {
   return items.map(([name, value, trend], index) => ({
     rank: index + 1,
     name,
-    sub: '테마',
+    sub: `${themeStockSeeds[name]?.length ?? 0}종목`,
     value: formatter(value),
     tone: value < 0 ? 'down' : tone,
     trend,
+    action: 'theme-detail',
+    actionValue: name,
   }))
+}
+
+function themeStocks(themeName) {
+  const seeds = themeStockSeeds[themeName] ?? []
+  if (seeds.length > 0) {
+    return seeds.map(([name, ticker, tags]) => {
+      const meta = state.stockMeta.get(ticker) ?? {}
+      return {
+        name: meta.name ?? name,
+        ticker,
+        tags,
+        market: meta.market ?? 'KRX',
+        price: meta.price ?? null,
+        changeRate: meta.changeRate ?? 0,
+        marketCap: meta.marketCap ?? null,
+        marketCapLabel: meta.marketCapLabel ?? formatMarketCap(meta.marketCap),
+        amount: meta.amount ?? 0,
+        trend: seedTrend(ticker, (meta.changeRate ?? 0) < 0 ? 'down' : 'up'),
+      }
+    })
+  }
+
+  return stockMetaItems()
+    .filter((item) => item.name && item.ticker)
+    .sort((a, b) => (b.amount ?? 0) - (a.amount ?? 0))
+    .slice(0, 8)
+    .map((item) => ({
+      ...item,
+      tags: [item.market ?? 'KRX'],
+      marketCapLabel: item.marketCapLabel ?? formatMarketCap(item.marketCap),
+      trend: seedTrend(item.ticker, item.changeRate < 0 ? 'down' : 'up'),
+    }))
 }
 
 function stockMetaItems() {
@@ -650,11 +901,10 @@ function marketPopularItems() {
 function usStockItems(mode) {
   return [...usStocks]
     .sort((a, b) => {
-      if (mode === 'marketCap') return parseFloat(b.marketCap) - parseFloat(a.marketCap)
-      if (mode === 'amount') return parseFloat(b.amount) - parseFloat(a.amount)
+      if (mode === 'marketCap') return parseAbbrevValue(b.marketCap) - parseAbbrevValue(a.marketCap)
+      if (mode === 'amount') return parseAbbrevValue(b.amount) - parseAbbrevValue(a.amount)
       if (mode === 'search') return b.popularity - a.popularity
-      if (mode === 'up') return b.changeRate - a.changeRate
-      return b.popularity + parseFloat(b.amount) - (a.popularity + parseFloat(a.amount))
+      return b.popularity + parseAbbrevValue(b.amount) / 1_000_000_000 - (a.popularity + parseAbbrevValue(a.amount) / 1_000_000_000)
     })
     .slice(0, 10)
     .map((item, index) => ({
@@ -666,9 +916,7 @@ function usStockItems(mode) {
         ? `$${item.marketCap}`
         : mode === 'amount'
           ? `$${item.amount}`
-          : mode === 'up'
-            ? formatSignedPercent(item.changeRate)
-            : `${item.popularity}점`,
+          : `${item.popularity}점`,
       tone: item.changeRate > 0 ? 'up' : item.changeRate < 0 ? 'down' : 'neutral',
       trend: item.trend,
     }))
@@ -702,11 +950,41 @@ function renderThemeSections() {
   const panels = [
     { title: '상승중인 테마', meta: 'theme up', items: staticItems(themeUp, 'up') },
     { title: '하락중인 테마', meta: 'theme down', items: staticItems(themeDown, 'down') },
-    { title: '현재 핫한 테마', meta: 'hot theme', items: staticItems(hotThemes, 'up', (value) => `${value}점`) },
-    { title: '시가총액 높은 종목', meta: 'large cap', items: marketCapItems() },
+    { title: '현재 핫한 테마', meta: 'hot theme', items: staticItems(hotThemes, 'up', (value) => `3일 ${value}%`) },
   ]
 
   document.querySelector('#themeSectionGrid').innerHTML = panels.map(renderListPanel).join('')
+  renderThemeDetail()
+}
+
+function renderThemeDetail() {
+  const themeName = state.selectedTheme ?? themeUp[0][0]
+  const rows = themeStocks(themeName)
+  document.querySelector('#themeDetail').innerHTML = `
+    <div class="panel-head">
+      <div>
+        <p>THEME DETAIL</p>
+        <h2>${escapeHtml(themeName)}</h2>
+      </div>
+      <span class="panel-meta">${rows.length.toLocaleString('ko-KR')}종목</span>
+    </div>
+    <ol class="theme-stock-list">
+      ${rows.map((row, index) => `
+        <li>
+          <span class="rank-pill">${index + 1}</span>
+          <div class="stock-name">
+            <a href="https://finance.naver.com/item/main.naver?code=${row.ticker}" target="_blank" rel="noreferrer">${escapeHtml(row.name)}</a>
+            <small>${escapeHtml(row.ticker)} · ${escapeHtml(row.market ?? 'KRX')} · ${escapeHtml((row.tags ?? []).join(', '))}</small>
+          </div>
+          <b>${formatPrice(row.price)}</b>
+          <b class="${row.changeRate >= 0 ? 'value up' : 'value down'}">${formatSignedPercent(row.changeRate)}</b>
+          <b>${escapeHtml(row.marketCapLabel || '-')}</b>
+          <b>${formatMoney(row.amount || 0)}원</b>
+          ${sparkline(row.trend, row.changeRate < 0 ? 'down' : 'up')}
+        </li>
+      `).join('')}
+    </ol>
+  `
 }
 
 function renderMarketInsights() {
@@ -721,20 +999,9 @@ function renderMarketInsights() {
     { title: '시가총액 상위', meta: 'market cap', items: marketCapItems() },
     { title: '검색 상위', meta: 'search', items: marketSearchItems() },
     { title: '인기 종목', meta: 'popular', items: marketPopularItems() },
-    { title: '상승률 상위', meta: 'top gainers', items: marketRankingItems('up') },
   ]
 
   document.querySelector('#marketRankingGrid').innerHTML = rankingPanels.map(renderListPanel).join('')
-}
-
-function renderMarketIndexStrip() {
-  document.querySelector('#marketIndexStrip').innerHTML = state.marketIndex.slice(0, 4).map((item) => `
-    <div>
-      <span>${escapeHtml(item.name)}</span>
-      <strong>${escapeHtml(item.value)}</strong>
-      <small class="metric-sub ${item.tone}">${escapeHtml(item.change)} · ${escapeHtml(item.unit)}</small>
-    </div>
-  `).join('')
 }
 
 function renderUsMarket() {
@@ -743,7 +1010,6 @@ function renderUsMarket() {
     { title: '거래대금 상위', meta: 'top amount', items: usStockItems('amount') },
     { title: '검색 상위', meta: 'search', items: usStockItems('search') },
     { title: '인기 종목', meta: 'popular', items: usStockItems('popular') },
-    { title: '상승률 상위', meta: 'top gainers', items: usStockItems('up') },
   ]
 
   document.querySelector('#usMarketGrid').innerHTML = panels.map(renderListPanel).join('')
@@ -751,8 +1017,8 @@ function renderUsMarket() {
 
 function renderPensionSections() {
   const panels = [
-    { title: '연기금 순매수 종목', meta: 'pension buy', items: pensionItems('buy') },
-    { title: '연기금 순매도 종목', meta: 'pension sell', items: pensionItems('sell') },
+    { title: '순매수 상위', meta: 'pension buy', items: pensionItems('buy') },
+    { title: '순매도 상위', meta: 'pension sell', items: pensionItems('sell') },
     { title: '연속 순매수', meta: 'buy streak', items: pensionItems('buyStreak') },
     { title: '시총대비 매수 집중', meta: 'buy / market cap', items: pensionItems('buyToMarketCap') },
   ]
@@ -906,14 +1172,15 @@ function renderEtfDetail() {
 }
 
 function renderSummary() {
-  const buyRows = state.rows.filter((row) => row.netAmount > 0)
-  const sellRows = state.rows.filter((row) => row.netAmount < 0)
-
-  document.querySelector('#tradeDate').textContent = formatTradeDate(state.meta?.latest)
-  document.querySelector('#buyStockCount').textContent = `${buyRows.length.toLocaleString('ko-KR')}개`
-  document.querySelector('#sellStockCount').textContent = `${sellRows.length.toLocaleString('ko-KR')}개`
-  document.querySelector('#dataRows').textContent = `${state.rows.length.toLocaleString('ko-KR')}행`
-  document.querySelector('#marketStatus').textContent = `${formatTradeDate(state.meta?.latest)} · 연기금 · ${state.rows.length.toLocaleString('ko-KR')}종목`
+  const date = state.currentDate ?? state.meta?.latest
+  const input = document.querySelector('#tradeDateInput')
+  const picker = document.querySelector('#tradeDatePicker')
+  const hint = document.querySelector('#tradeDateHint')
+  input.value = formatTradeDate(date)
+  picker.value = toDateInputValue(date)
+  picker.min = toDateInputValue(state.dates.at(-1))
+  picker.max = toDateInputValue(state.dates[0])
+  hint.textContent = `${state.dates.length.toLocaleString('ko-KR')}거래일`
 }
 
 function sortedRows(rows) {
@@ -960,12 +1227,16 @@ function rankingMetaText(visibleCount, totalCount) {
   ].join(' · ')
 }
 
+function rankedRowsForCurrentSort() {
+  return sortedRows(rowsForSort()).map((row, index) => ({ ...row, absoluteRank: index + 1 }))
+}
+
 function updateStockTable() {
   const query = state.query.trim().toLowerCase()
-  const baseRows = rowsForSort()
-  state.filteredRows = sortedRows(query
-    ? baseRows.filter((row) => row.name.toLowerCase().includes(query) || row.ticker.includes(query))
-    : baseRows)
+  const rankedRows = rankedRowsForCurrentSort()
+  state.filteredRows = query
+    ? rankedRows.filter((row) => row.name.toLowerCase().includes(query) || row.ticker.includes(query))
+    : rankedRows
 
   const tbody = document.querySelector('#stockTableBody')
   if (state.filteredRows.length === 0) {
@@ -976,9 +1247,9 @@ function updateStockTable() {
   }
 
   const visibleRows = state.filteredRows.slice(0, state.visibleLimit)
-  tbody.innerHTML = visibleRows.map((row, index) => `
+  tbody.innerHTML = visibleRows.map((row) => `
     <tr>
-      <td><span class="rank-pill">${index + 1}</span></td>
+      <td><span class="rank-pill">${row.absoluteRank}</span></td>
       <td>
         <div class="stock-name">
           <a href="https://finance.naver.com/item/main.naver?code=${row.ticker}" target="_blank" rel="noreferrer">${escapeHtml(row.name)}</a>
@@ -1012,9 +1283,8 @@ function updateSearchResults() {
     return
   }
 
-  const matches = state.rows
+  const matches = rankedRowsForCurrentSort()
     .filter((row) => row.name.toLowerCase().includes(query) || row.ticker.includes(query))
-    .sort((a, b) => Math.abs(b.netAmount) - Math.abs(a.netAmount))
     .slice(0, 8)
 
   container.hidden = false
@@ -1032,8 +1302,8 @@ function updateSearchResults() {
       ${matches.map((row) => `
         <li>
           <div>
-            <a href="https://finance.naver.com/item/main.naver?code=${row.ticker}" target="_blank" rel="noreferrer">${escapeHtml(row.name)}</a>
-            <small>${escapeHtml(row.ticker)} · ${row.netAmount >= 0 ? '순매수' : '순매도'} · ${row.netAmount >= 0 ? row.buyStreak : row.sellStreak}일</small>
+            <button type="button" data-search-ticker="${row.ticker}">${escapeHtml(row.name)}</button>
+            <small>${row.absoluteRank}위 · ${escapeHtml(row.ticker)} · ${row.netAmount >= 0 ? '순매수' : '순매도'} · ${row.netAmount >= 0 ? row.buyStreak : row.sellStreak}일</small>
           </div>
           <b class="${row.netAmount >= 0 ? 'value up' : 'value down'}">${formatMoney(row.netAmount)}원</b>
           ${sparkline(seedTrend(row.ticker, row.netAmount >= 0 ? 'up' : 'down'), row.netAmount >= 0 ? 'up' : 'down')}
@@ -1041,6 +1311,23 @@ function updateSearchResults() {
       `).join('')}
     </ol>
   `
+}
+
+function setTradeDate(date) {
+  const hint = document.querySelector('#tradeDateHint')
+  if (!date || !state.rowsByDate.has(date)) {
+    hint.textContent = '해당 거래일 데이터 없음'
+    return
+  }
+
+  state.currentDate = date
+  state.rows = enrichRows([...state.rowsByDate.get(date).values()])
+  state.visibleLimit = 20
+  renderSummary()
+  renderMarketInsights()
+  renderPensionSections()
+  updateSearchResults()
+  updateStockTable()
 }
 
 function bindControls() {
@@ -1071,6 +1358,36 @@ function bindControls() {
     })
   })
 
+  document.querySelector('#themeSectionGrid').addEventListener('click', (event) => {
+    const button = event.target.closest('button[data-action="theme-detail"]')
+    if (!button) return
+    state.selectedTheme = button.dataset.value
+    renderThemeDetail()
+    document.querySelector('#themeDetail').scrollIntoView({ block: 'nearest', behavior: 'smooth' })
+  })
+
+  document.querySelector('#tradeDateInput').addEventListener('keydown', (event) => {
+    if (event.key !== 'Enter') return
+    event.currentTarget.blur()
+  })
+
+  document.querySelector('#tradeDateInput').addEventListener('change', (event) => {
+    setTradeDate(normalizeDateInput(event.target.value))
+  })
+
+  document.querySelector('#tradeDateCalendarButton').addEventListener('click', () => {
+    const picker = document.querySelector('#tradeDatePicker')
+    if (picker.showPicker) {
+      picker.showPicker()
+      return
+    }
+    picker.focus()
+  })
+
+  document.querySelector('#tradeDatePicker').addEventListener('change', (event) => {
+    setTradeDate(normalizeDateInput(event.target.value))
+  })
+
   document.querySelector('#stockSearch').addEventListener('input', (event) => {
     state.query = event.target.value
     state.visibleLimit = 20
@@ -1084,6 +1401,19 @@ function bindControls() {
     state.sortKey = button.dataset.sort
     state.visibleLimit = 20
     document.querySelectorAll('#sortRow button').forEach((item) => item.classList.toggle('active', item === button))
+    updateSearchResults()
+    updateStockTable()
+  })
+
+  document.querySelector('#searchResults').addEventListener('click', (event) => {
+    const button = event.target.closest('button[data-search-ticker]')
+    if (!button) return
+    const row = state.rows.find((item) => item.ticker === button.dataset.searchTicker)
+    if (!row) return
+    state.query = row.name
+    state.visibleLimit = 20
+    document.querySelector('#stockSearch').value = row.name
+    updateSearchResults()
     updateStockTable()
   })
 
@@ -1168,6 +1498,7 @@ async function loadKrxData() {
 
   state.meta = { ...index, latest }
   state.dates = parsedEntries.map(([date]) => date)
+  state.currentDate = latest
   state.rowsByDate = new Map(parsedEntries.map(([date, rows]) => [date, new Map(rows.map((row) => [row.ticker, row]))]))
   state.rows = enrichRows(parsedEntries.find(([date]) => date === latest)?.[1] ?? parsedEntries[0][1])
 }
@@ -1226,14 +1557,12 @@ async function main() {
     state.marketIndex = await loadMarketIndex()
     await loadKrxData()
     renderSummary()
-    renderMarketIndexStrip()
     renderThemeSections()
     renderMarketInsights()
     renderPensionSections()
     renderUsMarket()
     updateStockTable()
   } catch (error) {
-    document.querySelector('#marketStatus').textContent = 'KRX 데이터 로딩 실패'
     document.querySelector('#themeSectionGrid').innerHTML = renderListPanel({ title: '데이터 오류', meta: 'error', items: [] })
     document.querySelector('#marketInsightGrid').innerHTML = ''
     document.querySelector('#marketRankingGrid').innerHTML = ''
