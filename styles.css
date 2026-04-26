@@ -22,6 +22,7 @@
 body { margin: 0; min-width: 320px; background: var(--bg); }
 button, input { font: inherit; }
 button { cursor: pointer; }
+[hidden] { display: none !important; }
 
 .shell {
   width: min(1180px, calc(100% - 32px));
@@ -73,21 +74,42 @@ button { cursor: pointer; }
 .view-tabs button.active { background: var(--ink); color: #fff; }
 .status { justify-self: end; color: var(--muted); font-size: 0.86rem; font-weight: 750; }
 
-.period-tabs {
+.control-panel {
   position: sticky;
   top: 58px;
   z-index: 19;
+  margin: 10px 0 14px;
+  padding: 10px;
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  background: #fff;
+  box-shadow: var(--shadow);
+}
+
+.control-row {
   display: flex;
-  justify-content: flex-end;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.control-group {
+  margin: 0;
+  box-shadow: none;
+}
+
+.period-tabs {
+  display: flex;
   align-items: center;
   gap: 4px;
-  margin: 0;
-  padding: 10px 0 8px;
+  flex-wrap: wrap;
+  padding: 4px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: #fff;
   color: var(--quiet);
   font-size: 0.78rem;
   font-weight: 900;
-  background: rgba(247, 248, 250, 0.92);
-  backdrop-filter: blur(14px);
 }
 
 .period-tabs span { margin-right: 4px; letter-spacing: 0.04em; }
@@ -104,93 +126,13 @@ button { cursor: pointer; }
 
 .period-tabs button.active { border-color: var(--ink); background: var(--ink); color: #fff; }
 
-.date-strip {
-  display: inline-flex;
-  align-items: end;
-  gap: 8px;
-  margin: 18px 0 14px;
-  padding: 10px 12px;
-  border: 1px solid var(--line);
-  border-radius: 999px;
-  background: #fff;
-  box-shadow: var(--shadow);
+.control-search {
+  flex: 1 1 240px;
+  max-width: 320px;
+  min-width: 210px;
 }
 
-.trade-date-field {
-  display: grid;
-  gap: 3px;
-}
-
-.trade-date-field span {
-  color: var(--quiet);
-  font-size: 0.66rem;
-  font-weight: 950;
-  letter-spacing: 0.08em;
-}
-
-.trade-date-field input {
-  width: 112px;
-  border: 0;
-  background: transparent;
-  color: var(--ink);
-  padding: 0;
-  font-size: 0.9rem;
-  font-weight: 950;
-  letter-spacing: -0.02em;
-}
-
-.calendar-control {
-  position: relative;
-  width: 34px;
-  height: 34px;
-}
-
-.calendar-control button,
-.calendar-control input {
-  position: absolute;
-  inset: 0;
-}
-
-.calendar-control button {
-  z-index: 1;
-  display: grid;
-  place-items: center;
-  border: 1px solid var(--line);
-  border-radius: 50%;
-  background: #fff;
-}
-
-.calendar-control input {
-  opacity: 0;
-  pointer-events: none;
-}
-
-.calendar-icon {
-  position: relative;
-  width: 15px;
-  height: 15px;
-  border: 2px solid var(--ink);
-  border-radius: 4px;
-}
-
-.calendar-icon::before,
-.calendar-icon::after {
-  content: "";
-  position: absolute;
-  left: 2px;
-  right: 2px;
-  border-top: 2px solid var(--ink);
-}
-
-.calendar-icon::before { top: 3px; }
-.calendar-icon::after { top: 8px; opacity: 0.35; }
-
-#tradeDateHint {
-  color: var(--muted);
-  font-size: 0.76rem;
-  font-weight: 800;
-  white-space: nowrap;
-}
+.control-search[hidden] { display: none; }
 
 .summary-strip {
   display: grid;
@@ -263,7 +205,8 @@ button { cursor: pointer; }
 .sub-tabs {
   display: inline-flex;
   gap: 6px;
-  margin: 14px 0;
+  flex-wrap: wrap;
+  margin: 0;
   padding: 4px;
   border: 1px solid var(--line);
   border-radius: 999px;
@@ -271,24 +214,7 @@ button { cursor: pointer; }
   box-shadow: var(--shadow);
 }
 
-.primary-subtabs {
-  position: sticky;
-  top: 102px;
-  z-index: 18;
-  margin-top: 14px;
-  background: rgba(255, 255, 255, 0.9);
-  backdrop-filter: blur(14px);
-}
-
-.stock-country > .sub-tabs:not(.compact-subtabs) {
-  position: sticky;
-  top: 158px;
-  z-index: 17;
-  background: rgba(255, 255, 255, 0.9);
-  backdrop-filter: blur(14px);
-}
-
-.compact-subtabs { margin: 0 0 14px; }
+.compact-subtabs { margin: 0; }
 
 .sub-tabs button {
   border: 0;
@@ -776,9 +702,9 @@ tbody tr:last-child td { border-bottom: 0; }
   .topbar { grid-template-columns: 1fr; justify-items: stretch; }
   .brand, .status { justify-self: start; }
   .view-tabs { justify-self: start; }
-  .period-tabs { top: 96px; justify-content: flex-start; overflow-x: auto; }
-  .primary-subtabs { top: 140px; }
-  .stock-country > .sub-tabs:not(.compact-subtabs) { top: 194px; }
+  .control-panel { top: 96px; border-radius: 18px; }
+  .control-row { align-items: stretch; }
+  .period-tabs { justify-content: flex-start; }
   .summary-strip, .section-grid { grid-template-columns: 1fr; }
   .toolbar-head { grid-template-columns: 1fr; }
   .panel-head { display: grid; }
@@ -792,13 +718,12 @@ tbody tr:last-child td { border-bottom: 0; }
   }
   .market-search-metrics .metric { text-align: left; }
   .market-search-metrics .metric b { justify-self: start; }
-  .date-strip { display: flex; width: 100%; border-radius: 18px; }
   .rank-item { grid-template-columns: 24px minmax(0, 1fr) 70px; }
   .rank-item .spark { grid-column: 2 / -1; justify-self: end; }
   .theme-stock-list li { grid-template-columns: 26px minmax(0, 1fr) 70px; padding: 10px 0; }
   .theme-stock-list b:nth-of-type(n+2),
   .theme-stock-list .spark { grid-column: 2 / -1; justify-self: start; }
-  .sub-tabs { display: flex; overflow-x: auto; width: 100%; }
+  .sub-tabs { display: flex; width: 100%; }
   .sub-tabs button { white-space: nowrap; }
   .etf-metrics, .holding-grid { grid-template-columns: 1fr; }
 }

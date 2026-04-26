@@ -20,38 +20,49 @@
         </nav>
       </header>
 
-      <nav class="period-tabs" id="chartPeriodTabs" aria-label="차트 기간">
-        <span>차트</span>
-        <button type="button" data-chart-period="1">1일</button>
-        <button class="active" type="button" data-chart-period="5">5일</button>
-        <button type="button" data-chart-period="20">20일</button>
-        <button type="button" data-chart-period="60">60일</button>
-      </nav>
+      <section class="control-panel" id="controlPanel" aria-label="화면 컨트롤">
+        <div class="control-row">
+          <nav class="period-tabs control-group" id="chartPeriodTabs" aria-label="차트 기간">
+            <span>차트</span>
+            <button type="button" data-chart-period="1">1일</button>
+            <button class="active" type="button" data-chart-period="5">5일</button>
+            <button type="button" data-chart-period="20">20일</button>
+            <button type="button" data-chart-period="60">60일</button>
+          </nav>
 
-      <section class="view active" id="stockView" aria-label="주식">
-        <nav class="sub-tabs primary-subtabs" id="stockCountryTabs" aria-label="주식 국가">
-          <button class="active" type="button" data-stock-country="kr">국내</button>
-          <button type="button" data-stock-country="us">미국</button>
-        </nav>
+          <nav class="sub-tabs control-group" id="stockCountryTabs" aria-label="주식 국가">
+            <button class="active" type="button" data-stock-country="kr">국내</button>
+            <button type="button" data-stock-country="us">미국</button>
+          </nav>
 
-        <section class="stock-country active" data-stock-country-pane="kr" aria-label="국내 주식">
-          <nav class="sub-tabs" id="krStockSubTabs" aria-label="국내 주식 중분류">
+          <nav class="sub-tabs control-group" id="krStockSubTabs" aria-label="국내 주식 중분류">
             <button class="active" type="button" data-kr-stock-section="market">시장</button>
             <button type="button" data-kr-stock-section="theme">테마</button>
             <button type="button" data-kr-stock-section="pension">연기금 수급</button>
           </nav>
 
+          <nav class="sub-tabs control-group compact-subtabs" id="pensionSubTabs" aria-label="연기금 수급 중분류" hidden>
+            <button class="active" type="button" data-pension-section="trend">매매 동향</button>
+            <button type="button" data-pension-section="search">검색</button>
+          </nav>
+
+          <nav class="sub-tabs control-group" id="etfSubTabs" aria-label="ETF 중분류" hidden>
+            <button class="active" type="button" data-etf-section="theme">테마</button>
+            <button type="button" data-etf-section="search">검색</button>
+            <button type="button" data-etf-section="us">국내상장 미국 ETF</button>
+          </nav>
+
+          <label class="search-box control-search" id="marketSearchControl">
+            <span>종목 검색</span>
+            <input id="marketSearch" type="search" placeholder="종목명 또는 코드" autocomplete="off" />
+          </label>
+        </div>
+        <div class="search-results market-search-results" id="marketSearchResults" hidden></div>
+      </section>
+
+      <section class="view active" id="stockView" aria-label="주식">
+        <section class="stock-country active" data-stock-country-pane="kr" aria-label="국내 주식">
           <section class="stock-subview active" id="marketStockPane" data-kr-stock-pane="market" aria-label="국내 시장">
-            <section class="stock-toolbar market-toolbar" aria-label="국내 시장 종목 검색">
-              <div class="toolbar-head market-toolbar-head">
-                <label class="search-box">
-                  <span>종목 검색</span>
-                  <input id="marketSearch" type="search" placeholder="종목명 또는 코드" autocomplete="off" />
-                </label>
-                <p class="toolbar-note">검색 결과는 시가총액, 거래대금, 등락폭을 같이 보여줍니다.</p>
-              </div>
-              <div class="search-results market-search-results" id="marketSearchResults" hidden></div>
-            </section>
             <div class="section-grid compact" id="marketInsightGrid"></div>
             <div class="section-grid compact" id="marketRankingGrid"></div>
           </section>
@@ -62,23 +73,6 @@
           </section>
 
           <section class="stock-subview" id="pensionStockPane" data-kr-stock-pane="pension" aria-label="연기금 수급">
-            <section class="date-strip" aria-label="거래일 선택">
-              <label class="trade-date-field">
-                <span>거래일</span>
-                <input id="tradeDateInput" type="text" inputmode="numeric" placeholder="YYYY.MM.DD" autocomplete="off" />
-              </label>
-              <div class="calendar-control">
-                <button id="tradeDateCalendarButton" type="button" aria-label="달력에서 거래일 선택"><span class="calendar-icon" aria-hidden="true"></span></button>
-                <input id="tradeDatePicker" type="date" aria-label="거래일 달력" />
-              </div>
-              <small id="tradeDateHint"></small>
-            </section>
-
-            <nav class="sub-tabs compact-subtabs" id="pensionSubTabs" aria-label="연기금 수급 중분류">
-              <button class="active" type="button" data-pension-section="trend">매매 동향</button>
-              <button type="button" data-pension-section="search">검색</button>
-            </nav>
-
             <section class="pension-subview active" data-pension-pane="trend" aria-label="연기금 매매 동향">
               <div class="section-grid compact" id="pensionSectionGrid"></div>
             </section>
@@ -142,12 +136,6 @@
       </section>
 
       <section class="view" id="etfView" aria-label="ETF">
-        <nav class="sub-tabs primary-subtabs" id="etfSubTabs" aria-label="ETF 중분류">
-          <button class="active" type="button" data-etf-section="theme">테마</button>
-          <button type="button" data-etf-section="search">검색</button>
-          <button type="button" data-etf-section="us">국내상장 미국 ETF</button>
-        </nav>
-
         <section class="etf-subview active" data-etf-pane="theme" aria-label="ETF 테마">
           <div class="section-grid compact" id="etfThemeGrid"></div>
         </section>

@@ -450,6 +450,7 @@ const fallbackEtfUniverse = [
 let etfUniverse = [...fallbackEtfUniverse]
 
 const state = {
+  view: 'stock',
   rows: [],
   filteredRows: [],
   rowsByDate: new Map(),
@@ -558,22 +559,6 @@ function parseKrxCsv(text) {
       buyPressure: grossAmount === 0 ? 0 : Math.round((buyAmount / grossAmount) * 1000) / 10,
     }
   }).filter((row) => row.date && row.ticker && row.name)
-}
-
-function formatTradeDate(date) {
-  if (!/^\d{8}$/.test(date ?? '')) return date || '-'
-  return `${date.slice(0, 4)}.${date.slice(4, 6)}.${date.slice(6, 8)}`
-}
-
-function toDateInputValue(date) {
-  if (!/^\d{8}$/.test(date ?? '')) return ''
-  return `${date.slice(0, 4)}-${date.slice(4, 6)}-${date.slice(6, 8)}`
-}
-
-function normalizeDateInput(value) {
-  const digits = String(value ?? '').replace(/\D/g, '')
-  if (/^\d{8}$/.test(digits)) return digits
-  return null
 }
 
 function formatMoney(value) {
@@ -1079,11 +1064,28 @@ function marketStockSearchResults() {
     .slice(0, 8)
 }
 
+function isDomesticMarketView() {
+  return state.view === 'stock' && state.stockCountry === 'kr' && state.krStockSection === 'market'
+}
+
+function isPensionView() {
+  return state.view === 'stock' && state.stockCountry === 'kr' && state.krStockSection === 'pension'
+}
+
+function syncControlBar() {
+  document.querySelector('#stockCountryTabs').hidden = state.view !== 'stock'
+  document.querySelector('#krStockSubTabs').hidden = state.view !== 'stock' || state.stockCountry !== 'kr'
+  document.querySelector('#pensionSubTabs').hidden = !isPensionView()
+  document.querySelector('#etfSubTabs').hidden = state.view !== 'etf'
+  document.querySelector('#marketSearchControl').hidden = !isDomesticMarketView()
+  updateMarketSearchResults()
+}
+
 function updateMarketSearchResults() {
   const container = document.querySelector('#marketSearchResults')
   const query = state.marketQuery.trim()
 
-  if (!query) {
+  if (!isDomesticMarketView() || !query) {
     container.hidden = true
     container.innerHTML = ''
     return
@@ -1483,15 +1485,7 @@ function renderEtfDetail() {
 }
 
 function renderSummary() {
-  const date = state.currentDate ?? state.meta?.latest
-  const input = document.querySelector('#tradeDateInput')
-  const picker = document.querySelector('#tradeDatePicker')
-  const hint = document.querySelector('#tradeDateHint')
-  input.value = formatTradeDate(date)
-  picker.value = toDateInputValue(date)
-  picker.min = toDateInputValue(state.dates.at(-1))
-  picker.max = toDateInputValue(state.dates[0])
-  hint.textContent = `${state.dates.length.toLocaleString('ko-KR')}거래일`
+  // 거래일 선택 UI는 제거하고 최신 거래일 기준만 사용한다.
 }
 
 function sortedRows(rows) {
@@ -1626,23 +1620,6 @@ function updateSearchResults() {
   `
 }
 
-function setTradeDate(date) {
-  const hint = document.querySelector('#tradeDateHint')
-  if (!date || !state.rowsByDate.has(date)) {
-    hint.textContent = '해당 거래일 데이터 없음'
-    return
-  }
-
-  state.currentDate = date
-  state.rows = enrichRows([...state.rowsByDate.get(date).values()])
-  state.visibleLimit = 20
-  renderSummary()
-  renderMarketInsights()
-  renderPensionSections()
-  updateSearchResults()
-  updateStockTable()
-}
-
 function renderStockViews() {
   if (!state.meta) return
   renderThemeSections()
@@ -1664,6 +1641,7 @@ function setPensionSection(section) {
     pane.classList.toggle('active', pane.dataset.pensionPane === section)
   })
 
+  syncControlBar()
   updateSearchResults()
   updateStockTable()
 }
@@ -1688,6 +1666,7 @@ function setEtfSection(section) {
   document.querySelectorAll('[data-etf-pane]').forEach((pane) => {
     pane.classList.toggle('active', pane.dataset.etfPane === section)
   })
+  syncControlBar()
   renderEtfList()
   renderEtfDetail()
 }
@@ -1713,8 +1692,10 @@ function bindControls() {
   document.querySelector('#viewTabs').addEventListener('click', (event) => {
     const button = event.target.closest('button[data-view]')
     if (!button) return
+    state.view = button.dataset.view
     document.querySelectorAll('#viewTabs button').forEach((item) => item.classList.toggle('active', item === button))
     document.querySelectorAll('.view').forEach((view) => view.classList.toggle('active', view.id === `${button.dataset.view}View`))
+    syncControlBar()
   })
 
   document.querySelector('#chartPeriodTabs').addEventListener('click', (event) => {
@@ -1735,6 +1716,7 @@ function bindControls() {
     document.querySelectorAll('[data-stock-country-pane]').forEach((pane) => {
       pane.classList.toggle('active', pane.dataset.stockCountryPane === state.stockCountry)
     })
+    syncControlBar()
   })
 
   document.querySelector('#krStockSubTabs').addEventListener('click', (event) => {
@@ -1745,6 +1727,7 @@ function bindControls() {
     document.querySelectorAll('[data-kr-stock-pane]').forEach((pane) => {
       pane.classList.toggle('active', pane.dataset.krStockPane === state.krStockSection)
     })
+    syncControlBar()
   })
 
   document.querySelector('#pensionSubTabs').addEventListener('click', (event) => {
@@ -1759,28 +1742,6 @@ function bindControls() {
     state.selectedTheme = button.dataset.value
     renderThemeDetail()
     document.querySelector('#themeDetail').scrollIntoView({ block: 'nearest', behavior: 'smooth' })
-  })
-
-  document.querySelector('#tradeDateInput').addEventListener('keydown', (event) => {
-    if (event.key !== 'Enter') return
-    event.currentTarget.blur()
-  })
-
-  document.querySelector('#tradeDateInput').addEventListener('change', (event) => {
-    setTradeDate(normalizeDateInput(event.target.value))
-  })
-
-  document.querySelector('#tradeDateCalendarButton').addEventListener('click', () => {
-    const picker = document.querySelector('#tradeDatePicker')
-    if (picker.showPicker) {
-      picker.showPicker()
-      return
-    }
-    picker.focus()
-  })
-
-  document.querySelector('#tradeDatePicker').addEventListener('change', (event) => {
-    setTradeDate(normalizeDateInput(event.target.value))
   })
 
   document.querySelector('#marketSearch').addEventListener('input', (event) => {
@@ -1899,6 +1860,8 @@ function bindControls() {
       renderEtfDetail()
     }
   })
+
+  syncControlBar()
 }
 
 async function loadKrxData() {
