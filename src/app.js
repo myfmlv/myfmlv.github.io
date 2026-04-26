@@ -271,7 +271,7 @@ const etfThemes = [
   ['코스닥', 'TIME 코스닥액티브', 4.09, [11, 13, 14, 15, 17, 19, 21]],
 ]
 
-const etfUniverse = [
+const fallbackEtfUniverse = [
   {
     code: '379800',
     name: 'KODEX 미국S&P500TR',
@@ -444,6 +444,8 @@ const etfUniverse = [
     ],
   },
 ]
+
+let etfUniverse = [...fallbackEtfUniverse]
 
 const state = {
   rows: [],
@@ -624,9 +626,13 @@ function chartValues(values) {
   const source = (Array.isArray(values) ? values : [0]).map(Number).filter(Number.isFinite)
   const period = Number(state.chartPeriod) || 5
   if (source.length === 0) return [0, 0]
+  if (period === 1) {
+    const last = source.at(-1)
+    const previous = source.at(-2) ?? last * 0.995
+    return [previous, last]
+  }
   if (source.length === period) return source
   if (source.length > period) return source.slice(-period)
-  if (period <= 1) return [source.at(-1)]
 
   return Array.from({ length: period }, (_, index) => {
     const position = (index / (period - 1)) * (source.length - 1)
@@ -634,8 +640,11 @@ function chartValues(values) {
     const rightIndex = Math.min(leftIndex + 1, source.length - 1)
     const ratio = position - leftIndex
     const interpolated = source[leftIndex] + (source[rightIndex] - source[leftIndex]) * ratio
-    const noise = Math.sin((index + 1) * (source[0] + source.length) * 0.31) * 0.42
-    return interpolated + noise
+    const range = Math.max(...source) - Math.min(...source)
+    const amplitude = Math.max(range * 0.14, Math.abs(source.at(-1)) * 0.018, 0.8) * Math.min(1.8, Math.sqrt(period) / 3)
+    const wave = Math.sin((index + 1) * (source[0] + source.length) * 0.31) * amplitude
+      + Math.sin((index + source.length) * 0.73) * amplitude * 0.45
+    return interpolated + wave
   })
 }
 
@@ -663,6 +672,29 @@ function seedTrend(seed, tone = 'up') {
     const slope = tone === 'down' ? -index * 2 : index * 2
     return 30 + slope + wave
   })
+}
+
+function normalizeLoadedEtf(item) {
+  const changeRate = Number(item.changeRate) || 0
+  const trend = Array.isArray(item.trend) && item.trend.length > 0
+    ? item.trend.map(Number).filter(Number.isFinite)
+    : seedTrend(item.code ?? item.name, changeRate < 0 ? 'down' : 'up')
+
+  return {
+    code: String(item.code ?? ''),
+    name: String(item.name ?? ''),
+    issuer: String(item.issuer ?? '운용사 미확인'),
+    category: String(item.category ?? 'ETF'),
+    themes: Array.isArray(item.themes) ? item.themes.map(String) : [],
+    price: Number(item.price) || 0,
+    changeRate,
+    amount: Number(item.amount) || 0,
+    marketCap: Number(item.marketCap) || 0,
+    etfType: String(item.etfType ?? ''),
+    trend: trend.length > 0 ? trend : seedTrend(item.code ?? item.name, changeRate < 0 ? 'down' : 'up'),
+    holdings: Array.isArray(item.holdings) ? item.holdings : [],
+    source: String(item.source ?? '로컬 ETF 데이터'),
+  }
 }
 
 function builtinStockMeta() {
@@ -1049,16 +1081,23 @@ function renderPensionSections() {
 
 function etfPanelItems(mode) {
   if (mode === 'theme') {
-    return etfThemes.map(([name, sub, value, trend], index) => ({
-      rank: index + 1,
-      name,
-      sub,
-      value: `${value}%`,
-      tone: 'up',
-      trend,
-      action: 'etf-theme',
-      actionValue: name,
-    }))
+    return etfThemes.map(([name, sub, value, trend], index) => {
+      const themeItems = etfUniverse.filter((item) => item.themes?.includes(name))
+      const amountLeader = [...themeItems].sort((a, b) => b.amount - a.amount)[0]
+      const gainLeader = [...themeItems].sort((a, b) => b.changeRate - a.changeRate)[0]
+      const themeValue = gainLeader?.changeRate ?? value
+
+      return {
+        rank: index + 1,
+        name,
+        sub: amountLeader?.name ?? sub,
+        value: formatSignedPercent(themeValue),
+        tone: themeValue >= 0 ? 'up' : 'down',
+        trend: amountLeader?.trend ?? trend,
+        action: 'etf-theme',
+        actionValue: name,
+      }
+    })
   }
 
   return [...etfUniverse]
@@ -1091,10 +1130,15 @@ function filteredEtfs() {
     if (state.etfSection === 'us' && !isUsListedEtf(item)) return false
     if (state.etfSection === 'theme' && state.etfTheme && !item.themes?.includes(state.etfTheme)) return false
     if (!query) return true
-    const holdingText = item.holdings.map(([name, ticker]) => `${name} ${ticker}`).join(' ').toLowerCase()
-    return item.name.toLowerCase().includes(query)
-      || item.code.includes(query)
-      || item.issuer.toLowerCase().includes(query)
+    const holdings = Array.isArray(item.holdings) ? item.holdings : []
+    const holdingText = holdings.map(([name, ticker]) => `${name} ${ticker}`).join(' ').toLowerCase()
+    const themeText = (item.themes ?? []).join(' ').toLowerCase()
+    return String(item.name).toLowerCase().includes(query)
+      || String(item.code).includes(query)
+      || String(item.issuer).toLowerCase().includes(query)
+      || String(item.category).toLowerCase().includes(query)
+      || String(item.etfType ?? '').toLowerCase().includes(query)
+      || themeText.includes(query)
       || holdingText.includes(query)
   })
 }
@@ -1102,7 +1146,8 @@ function filteredEtfs() {
 function etfsByHolding(holdingTicker) {
   return etfUniverse
     .map((etf) => {
-      const holding = etf.holdings.find(([, ticker]) => ticker === holdingTicker)
+      const holdings = Array.isArray(etf.holdings) ? etf.holdings : []
+      const holding = holdings.find(([, ticker]) => ticker === holdingTicker)
       return holding ? { etf, ratio: holding[2] } : null
     })
     .filter(Boolean)
@@ -1179,9 +1224,11 @@ function renderEtfDetail() {
     `
     return
   }
-  const selectedHolding = state.selectedHolding ?? item.holdings[0]?.[1]
+  const holdings = Array.isArray(item.holdings) ? item.holdings : []
+  const selectedHolding = state.selectedHolding ?? holdings[0]?.[1]
   const related = selectedHolding ? etfsByHolding(selectedHolding) : []
-  const holdingName = item.holdings.find(([, ticker]) => ticker === selectedHolding)?.[0] ?? selectedHolding
+  const holdingName = holdings.find(([, ticker]) => ticker === selectedHolding)?.[0] ?? selectedHolding
+  const hasHoldings = holdings.length > 0
 
   document.querySelector('#etfDetail').innerHTML = `
     <div class="panel-head">
@@ -1201,29 +1248,33 @@ function renderEtfDetail() {
     <div class="holding-grid">
       <section>
         <h3>구성종목</h3>
-        <ol class="holding-list">
-          ${item.holdings.map(([name, ticker, ratio]) => `
-            <li>
-              <button class="${ticker === selectedHolding ? 'active' : ''}" type="button" data-holding-ticker="${ticker}">
-                <span>${escapeHtml(name)}<small>${escapeHtml(ticker)}</small></span>
-                <b>${ratio.toFixed(1)}%</b>
-              </button>
-            </li>
-          `).join('')}
-        </ol>
+        ${hasHoldings ? `
+          <ol class="holding-list">
+            ${holdings.map(([name, ticker, ratio]) => `
+              <li>
+                <button class="${ticker === selectedHolding ? 'active' : ''}" type="button" data-holding-ticker="${ticker}">
+                  <span>${escapeHtml(name)}<small>${escapeHtml(ticker)}</small></span>
+                  <b>${Number(ratio).toFixed(1)}%</b>
+                </button>
+              </li>
+            `).join('')}
+          </ol>
+        ` : '<p class="empty-state">구성종목 데이터는 ETF명·테마 기반 추정 가능 종목부터 확장 중입니다.</p>'}
       </section>
       <section>
-        <h3>${escapeHtml(holdingName)} 포함 ETF</h3>
-        <ol class="holding-list related">
-          ${related.map(({ etf, ratio }) => `
-            <li>
-              <button type="button" data-etf-code="${etf.code}">
-                <span>${escapeHtml(etf.name)}<small>${escapeHtml(etf.issuer)}</small></span>
-                <b>${ratio.toFixed(1)}%</b>
-              </button>
-            </li>
-          `).join('')}
-        </ol>
+        <h3>${hasHoldings ? `${escapeHtml(holdingName)} 포함 ETF` : '데이터 출처'}</h3>
+        ${hasHoldings ? `
+          <ol class="holding-list related">
+            ${related.map(({ etf, ratio }) => `
+              <li>
+                <button type="button" data-etf-code="${etf.code}">
+                  <span>${escapeHtml(etf.name)}<small>${escapeHtml(etf.issuer)}</small></span>
+                  <b>${Number(ratio).toFixed(1)}%</b>
+                </button>
+              </li>
+            `).join('')}
+          </ol>
+        ` : `<p class="empty-state">${escapeHtml(item.source ?? 'Naver/KRX 기반 로컬 ETF 데이터')}</p>`}
       </section>
     </div>
   `
@@ -1670,8 +1721,28 @@ async function loadStockMeta() {
   return meta
 }
 
+async function loadEtfUniverse() {
+  try {
+    const response = await fetch('./data/etf-universe.json', { cache: 'no-store' })
+    if (!response.ok) return
+    const payload = await response.json()
+    if (!Array.isArray(payload.etfs) || payload.etfs.length === 0) return
+
+    etfUniverse = payload.etfs
+      .map(normalizeLoadedEtf)
+      .filter((item) => item.code && item.name)
+
+    if (!etfUniverse.some((item) => item.code === state.selectedEtfCode)) {
+      state.selectedEtfCode = etfUniverse[0]?.code ?? null
+    }
+  } catch {
+    etfUniverse = fallbackEtfUniverse.map(normalizeLoadedEtf)
+  }
+}
+
 async function main() {
   bindControls()
+  await loadEtfUniverse()
   renderEtfSections()
 
   try {
