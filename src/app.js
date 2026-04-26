@@ -1,5 +1,6 @@
 const DATA_INDEX_URL = './data/krx/index.json'
 const DATA_BASE_URL = './data/krx'
+const NAVER_MARKET_URL = './data/naver-market.json'
 
 const themeUp = [
   ['반도체 제품(전력반도체)', 10.4, [21, 24, 23, 29, 31, 38, 44]],
@@ -457,6 +458,7 @@ const state = {
   dates: [],
   currentDate: null,
   stockMeta: new Map(),
+  naverMarket: null,
   marketIndex: fallbackMarketIndex,
   stockCountry: 'kr',
   krStockSection: 'market',
@@ -611,6 +613,15 @@ function formatUsd(value) {
   return `$${Number(value).toLocaleString('en-US', { maximumFractionDigits: 2 })}`
 }
 
+function formatUsdCompact(value) {
+  const number = Number(value)
+  if (!Number.isFinite(number) || number === 0) return '-'
+  if (number >= 1_000_000_000_000) return `$${(number / 1_000_000_000_000).toLocaleString('en-US', { maximumFractionDigits: 1 })}T`
+  if (number >= 1_000_000_000) return `$${(number / 1_000_000_000).toLocaleString('en-US', { maximumFractionDigits: 1 })}B`
+  if (number >= 1_000_000) return `$${(number / 1_000_000).toLocaleString('en-US', { maximumFractionDigits: 1 })}M`
+  return `$${Math.round(number).toLocaleString('en-US')}`
+}
+
 function parseAbbrevValue(value) {
   const text = String(value ?? '').trim().toUpperCase()
   const number = Number.parseFloat(text.replace(/[^0-9.-]/g, '')) || 0
@@ -621,9 +632,8 @@ function parseAbbrevValue(value) {
 }
 
 function chartValues(values) {
-  const source = (Array.isArray(values) ? values : [0]).map(Number).filter(Number.isFinite)
+  const source = (Array.isArray(values) ? values : []).map(Number).filter(Number.isFinite)
   const period = Number(state.chartPeriod) || 5
-  if (source.length === 0) return [0, 0]
   if (period === 1) return source.slice(-2)
   if (source.length > period) return source.slice(-period)
   return source
@@ -631,6 +641,7 @@ function chartValues(values) {
 
 function sparkline(values, tone = 'neutral') {
   const chartData = chartValues(values)
+  if (chartData.length < 2) return '<span class="spark-placeholder">-</span>'
   const width = 84
   const height = 30
   const min = Math.min(...chartData)
@@ -708,7 +719,48 @@ function stockTrend(item) {
   const history = historyValues(item)
   if (history.length > 0) return history
   if (Array.isArray(item?.trend) && item.trend.length > 0) return item.trend
-  return seedTrend(item?.ticker ?? item?.symbol ?? item?.name ?? '', Number(item?.changeRate) < 0 ? 'down' : 'up')
+  return []
+}
+
+function indexedSeries(values, targetLength = 60) {
+  const source = values
+    .map(Number)
+    .filter((value) => Number.isFinite(value) && value > 0)
+    .slice(-targetLength)
+  const first = source[0]
+  if (!first || source.length < 2) return []
+  return source.map((value) => Math.round((value / first) * 10000) / 100)
+}
+
+function averageAlignedSeries(seriesList, targetLength = 60) {
+  const normalized = seriesList
+    .map((series) => indexedSeries(series, targetLength))
+    .filter((series) => series.length >= 2)
+  const maxLength = Math.max(0, ...normalized.map((series) => series.length))
+  if (maxLength < 2) return []
+
+  return Array.from({ length: maxLength }, (_, index) => {
+    const offset = maxLength - index
+    const values = normalized
+      .map((series) => series[series.length - offset])
+      .filter(Number.isFinite)
+    if (values.length === 0) return null
+    return Math.round((values.reduce((sum, value) => sum + value, 0) / values.length) * 100) / 100
+  }).filter(Number.isFinite)
+}
+
+function aggregateStockTrend(items) {
+  return averageAlignedSeries(items.map((item) => historyValues(item)), 60)
+}
+
+function marketTrend(market) {
+  return aggregateStockTrend(stockMetaItems().filter((item) => item.market === market))
+}
+
+function themeTrend(stocks, fallback = []) {
+  const trend = aggregateStockTrend(stocks)
+  if (trend.length >= 2) return trend
+  return Array.isArray(fallback) ? fallback : []
 }
 
 function stockChangeAmount(item) {
@@ -855,13 +907,42 @@ function staticItems(items, tone = 'up', formatter = (value) => `${value}%`) {
     sub: `${themeStockSeeds[name]?.length ?? 0}종목`,
     value: formatter(value),
     tone: value < 0 ? 'down' : tone,
-    trend,
+    trend: themeTrend(themeStocks(name), trend),
     action: 'theme-detail',
     actionValue: name,
   }))
 }
 
+function themeRankItems(items, valueMode = 'rate') {
+  return items.map((item, index) => {
+    const stocks = (item.stocks ?? []).map(enrichNaverDomesticItem)
+    const value = valueMode === 'amount'
+      ? formatMoney(Number(item.amount) || 0)
+      : formatSignedPercent(item.changeRate)
+    return {
+      rank: item.rank ?? index + 1,
+      name: item.name,
+      sub: `${formatNumber(Number(item.totalCount) || stocks.length)}종목 · 상승 ${formatNumber(Number(item.riseCount) || 0)} · 하락 ${formatNumber(Number(item.fallCount) || 0)}`,
+      value,
+      tone: item.changeRate < 0 ? 'down' : 'up',
+      trend: themeTrend(stocks),
+      action: 'theme-detail',
+      actionValue: item.name,
+    }
+  })
+}
+
 function themeStocks(themeName) {
+  const naverStocks = naverThemeStocks(themeName)
+  if (naverStocks.length > 0) {
+    return naverStocks.map((item) => ({
+      ...item,
+      tags: [item.market ?? 'KRX'],
+      marketCapLabel: item.marketCapLabel ?? formatMarketCap(item.marketCap),
+      trend: stockTrend(item),
+    }))
+  }
+
   const seeds = themeStockSeeds[themeName] ?? []
   if (seeds.length > 0) {
     return seeds.map(([name, ticker, tags]) => {
@@ -899,7 +980,65 @@ function stockMetaItems() {
   return [...state.stockMeta.entries()].map(([ticker, meta]) => ({ ticker, ...meta }))
 }
 
+function enrichNaverDomesticItem(item) {
+  const ticker = String(item.ticker ?? '').padStart(6, '0')
+  const meta = state.stockMeta.get(ticker) ?? {}
+  return {
+    ...item,
+    ticker,
+    name: item.name || meta.name || ticker,
+    market: item.market || meta.market || 'KRX',
+    price: Number(item.price) || Number(meta.price) || null,
+    changeRate: Number(item.changeRate) || Number(meta.changeRate) || 0,
+    amount: Number(item.amount) || Number(meta.amount) || 0,
+    volume: Number(item.volume) || Number(meta.volume) || 0,
+    marketCap: Number(item.marketCap) || Number(meta.marketCap) || null,
+    marketCapLabel: meta.marketCapLabel ?? formatMarketCap(Number(item.marketCap) || Number(meta.marketCap)),
+    priceHistory: meta.priceHistory ?? item.priceHistory ?? [],
+    dayTrend: meta.dayTrend ?? item.dayTrend ?? [],
+    latestCandle: meta.latestCandle ?? item.latestCandle ?? null,
+  }
+}
+
+function naverDomesticRankItems(key) {
+  return (state.naverMarket?.domestic?.[key] ?? [])
+    .map(enrichNaverDomesticItem)
+    .filter((item) => item.ticker && item.name)
+}
+
+function naverThemeBuckets() {
+  return state.naverMarket?.themes ?? null
+}
+
+function naverThemeStocks(themeName) {
+  const buckets = naverThemeBuckets()
+  if (!buckets) return []
+  return ['rising', 'falling', 'hot']
+    .flatMap((key) => buckets[key] ?? [])
+    .find((theme) => theme.name === themeName)
+    ?.stocks
+    ?.map(enrichNaverDomesticItem) ?? []
+}
+
+function naverUsRankItems(key) {
+  return (state.naverMarket?.us?.[key] ?? [])
+    .filter((item) => item.symbol && item.name)
+}
+
 function marketCapItems() {
+  const naverItems = naverDomesticRankItems('marketCap').slice(0, 10)
+  if (naverItems.length > 0) {
+    return naverItems.map((item, index) => ({
+      rank: item.rank ?? index + 1,
+      name: item.name,
+      sub: `${item.ticker} · ${item.market || 'KRX'}`,
+      href: `https://finance.naver.com/item/main.naver?code=${item.ticker}`,
+      value: item.marketCapLabel ?? formatMarketCap(item.marketCap),
+      tone: item.changeRate > 0 ? 'up' : item.changeRate < 0 ? 'down' : 'neutral',
+      trend: stockTrend(item),
+    }))
+  }
+
   const items = stockMetaItems()
     .filter((item) => item.marketCap && item.name)
     .sort((a, b) => b.marketCap - a.marketCap)
@@ -996,7 +1135,7 @@ function marketSummaryItems() {
       sub: `상승 ${group.up} · 하락 ${group.down} · ${group.count}종목`,
       value: formatMarketCap(group.marketCap),
       tone: group.up >= group.down ? 'up' : 'down',
-      trend: seedTrend(group.market, group.up >= group.down ? 'up' : 'down'),
+      trend: marketTrend(group.market),
     }))
 
   const indexItems = state.marketIndex.map((item, index) => ({
@@ -1005,13 +1144,28 @@ function marketSummaryItems() {
     sub: `${item.change} · ${item.unit}`,
     value: item.value,
     tone: item.tone,
-    trend: seedTrend(item.name, item.tone === 'down' ? 'down' : 'up'),
+    trend: [],
   }))
 
   return [...marketItems, ...indexItems]
 }
 
 function marketRankingItems(mode) {
+  if (mode === 'amount') {
+    const naverItems = naverDomesticRankItems('tradingAmount').slice(0, 10)
+    if (naverItems.length > 0) {
+      return naverItems.map((item, index) => ({
+        rank: item.rank ?? index + 1,
+        name: item.name,
+        sub: `${item.ticker} · ${item.market || 'KRX'} · ${formatPrice(item.price)}`,
+        href: `https://finance.naver.com/item/main.naver?code=${item.ticker}`,
+        value: formatMoney(item.amount || 0),
+        tone: item.changeRate > 0 ? 'up' : item.changeRate < 0 ? 'down' : 'neutral',
+        trend: stockTrend(item),
+      }))
+    }
+  }
+
   const items = stockMetaItems()
     .filter((item) => item.name && item.ticker)
     .sort((a, b) => {
@@ -1033,6 +1187,19 @@ function marketRankingItems(mode) {
 }
 
 function marketSearchItems() {
+  const naverItems = naverDomesticRankItems('searchTop').slice(0, 10)
+  if (naverItems.length > 0) {
+    return naverItems.map((item, index) => ({
+      rank: item.rank ?? index + 1,
+      name: item.name,
+      sub: `${item.ticker} · 조회 ${formatNumber(item.viewCount || 0)}`,
+      href: `https://finance.naver.com/item/main.naver?code=${item.ticker}`,
+      value: formatSignedPercent(item.changeRate),
+      tone: item.changeRate > 0 ? 'up' : item.changeRate < 0 ? 'down' : 'neutral',
+      trend: stockTrend(item),
+    }))
+  }
+
   return stockMetaItems()
     .filter((item) => item.name && item.ticker)
     .sort((a, b) => (b.amount ?? 0) + (b.marketCap ?? 0) * 0.001 - ((a.amount ?? 0) + (a.marketCap ?? 0) * 0.001))
@@ -1143,10 +1310,36 @@ function marketPopularItems() {
 }
 
 function usStockItems(mode) {
+  const naverKeyMap = {
+    marketCap: 'marketCap',
+    amount: 'tradingAmount',
+    volume: 'volume',
+    search: 'searchTop',
+  }
+  const naverItems = naverUsRankItems(naverKeyMap[mode]).slice(0, 10)
+  if (naverItems.length > 0) {
+    return naverItems.map((item, index) => ({
+      rank: item.rank ?? index + 1,
+      name: item.name,
+      sub: `${item.symbol} · ${item.sector || 'US'}`,
+      href: `https://stock.naver.com/worldstock/stock/${item.naverCode ?? item.symbol}/total`,
+      value: mode === 'marketCap'
+        ? formatUsdCompact(item.marketCap)
+        : mode === 'volume'
+          ? formatNumber(item.volume || 0)
+          : mode === 'search'
+            ? '조회 상위'
+            : formatUsdCompact(item.amount),
+      tone: item.changeRate > 0 ? 'up' : item.changeRate < 0 ? 'down' : 'neutral',
+      trend: stockTrend(item),
+    }))
+  }
+
   return [...usStockUniverse]
     .sort((a, b) => {
       if (mode === 'marketCap') return parseAbbrevValue(b.marketCap) - parseAbbrevValue(a.marketCap)
       if (mode === 'amount') return parseAbbrevValue(b.amount) - parseAbbrevValue(a.amount)
+      if (mode === 'volume') return (b.latestCandle?.volume ?? 0) - (a.latestCandle?.volume ?? 0)
       if (mode === 'search') return b.popularity - a.popularity
       return b.popularity + parseAbbrevValue(b.amount) / 1_000_000_000 - (a.popularity + parseAbbrevValue(a.amount) / 1_000_000_000)
     })
@@ -1160,7 +1353,9 @@ function usStockItems(mode) {
         ? `$${item.marketCap}`
         : mode === 'amount'
           ? `$${item.amount}`
-          : `${item.popularity}점`,
+          : mode === 'volume'
+            ? formatNumber(item.latestCandle?.volume ?? 0)
+            : `${item.popularity}점`,
       tone: item.changeRate > 0 ? 'up' : item.changeRate < 0 ? 'down' : 'neutral',
       trend: stockTrend(item),
     }))
@@ -1191,6 +1386,21 @@ function renderListPanel({ title, meta, items }) {
 }
 
 function renderThemeSections() {
+  const naverThemes = naverThemeBuckets()
+  if (naverThemes?.rising?.length) {
+    const panels = [
+      { title: '상승중인 테마', meta: 'Naver 테마', items: themeRankItems(naverThemes.rising) },
+      { title: '하락중인 테마', meta: 'Naver 테마', items: themeRankItems(naverThemes.falling ?? []) },
+      { title: '현재 핫한 테마', meta: 'Naver 거래대금', items: themeRankItems(naverThemes.hot ?? [], 'amount') },
+    ]
+    if (!panels.some((panel) => panel.items.some((item) => item.actionValue === state.selectedTheme))) {
+      state.selectedTheme = panels[0].items[0]?.actionValue ?? themeUp[0][0]
+    }
+    document.querySelector('#themeSectionGrid').innerHTML = panels.map(renderListPanel).join('')
+    renderThemeDetail()
+    return
+  }
+
   const panels = [
     { title: '상승중인 테마', meta: '테마 상승', items: staticItems(themeUp, 'up') },
     { title: '하락중인 테마', meta: '테마 하락', items: staticItems(themeDown, 'down') },
@@ -1233,16 +1443,16 @@ function renderThemeDetail() {
 
 function renderMarketInsights() {
   const panels = [
-    { title: '시장 요약', meta: '국내 시장', items: marketSummaryItems() },
-    { title: '거래대금 상위', meta: '거래대금', items: marketRankingItems('amount') },
+    { title: '시장 요약', meta: 'KRX/Naver 집계', items: marketSummaryItems() },
+    { title: '거래대금 상위', meta: 'Naver 거래대금', items: marketRankingItems('amount') },
   ]
 
   document.querySelector('#marketInsightGrid').innerHTML = panels.map(renderListPanel).join('')
 
   const rankingPanels = [
-    { title: '시가총액 상위', meta: '시가총액', items: marketCapItems() },
-    { title: '검색 상위', meta: '검색 관심', items: marketSearchItems() },
-    { title: '인기 종목', meta: '수급 관심', items: marketPopularItems() },
+    { title: '시가총액 상위', meta: 'Naver 시총', items: marketCapItems() },
+    { title: '검색 상위', meta: 'Naver 조회수', items: marketSearchItems() },
+    { title: '연기금 관심', meta: 'KRX 연기금', items: marketPopularItems() },
   ]
 
   document.querySelector('#marketRankingGrid').innerHTML = rankingPanels.map(renderListPanel).join('')
@@ -1251,10 +1461,10 @@ function renderMarketInsights() {
 
 function renderUsMarket() {
   const panels = [
-    { title: '미국 시가총액', meta: '시가총액', items: usStockItems('marketCap') },
-    { title: '거래대금 상위', meta: '거래대금', items: usStockItems('amount') },
-    { title: '검색 상위', meta: '검색 관심', items: usStockItems('search') },
-    { title: '인기 종목', meta: '관심 종목', items: usStockItems('popular') },
+    { title: '미국 시가총액', meta: 'Naver 미국', items: usStockItems('marketCap') },
+    { title: '거래대금 상위', meta: 'Naver 거래대금', items: usStockItems('amount') },
+    { title: '검색 상위', meta: 'Naver 조회수', items: usStockItems('search') },
+    { title: '거래량 상위', meta: 'Naver 거래량', items: usStockItems('volume') },
   ]
 
   document.querySelector('#usMarketGrid').innerHTML = panels.map(renderListPanel).join('')
@@ -1897,6 +2107,16 @@ async function loadMarketIndex() {
   }
 }
 
+async function loadNaverMarket() {
+  try {
+    const response = await fetch(NAVER_MARKET_URL, { cache: 'no-store' })
+    if (!response.ok) return null
+    return response.json()
+  } catch {
+    return null
+  }
+}
+
 async function loadStockMeta() {
   const meta = builtinStockMeta()
 
@@ -1979,6 +2199,7 @@ async function main() {
 
   try {
     state.marketIndex = await loadMarketIndex()
+    state.naverMarket = await loadNaverMarket()
     await loadKrxData()
     renderSummary()
     renderThemeSections()

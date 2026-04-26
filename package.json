@@ -9,9 +9,10 @@
     "sync:etf": "node scripts/sync-etf-universe.mjs",
     "sync:stock-charts": "node scripts/sync-stock-charts.mjs",
     "sync:us-stocks": "node scripts/sync-us-stocks.mjs",
+    "sync:naver-market": "node scripts/sync-naver-market.mjs",
     "sync:market-index": "node scripts/sync-market-index.mjs",
     "sync:kis-meta": "node scripts/sync-kis-stock-meta.mjs",
     "dev": "python3 -m http.server 5174",
-    "check": "node --check src/app.js && node --check scripts/sync-krx-data.mjs && node --check scripts/sync-krx-openapi.mjs && node --check scripts/sync-etf-universe.mjs && node --check scripts/sync-stock-charts.mjs && node --check scripts/sync-us-stocks.mjs && node --check scripts/sync-market-index.mjs && node --check scripts/sync-kis-stock-meta.mjs"
+    "check": "node --check src/app.js && node --check scripts/sync-krx-data.mjs && node --check scripts/sync-krx-openapi.mjs && node --check scripts/sync-etf-universe.mjs && node --check scripts/sync-stock-charts.mjs && node --check scripts/sync-us-stocks.mjs && node --check scripts/sync-naver-market.mjs && node --check scripts/sync-market-index.mjs && node --check scripts/sync-kis-stock-meta.mjs"
   }
 }

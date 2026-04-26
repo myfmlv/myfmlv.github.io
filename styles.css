@@ -356,6 +356,15 @@ button { cursor: pointer; }
 .spark.up { color: var(--up); }
 .spark.down { color: var(--down); }
 .spark.neutral { color: var(--accent); }
+.spark-placeholder {
+  display: grid;
+  width: 84px;
+  height: 30px;
+  place-items: center;
+  color: var(--muted);
+  font-size: 0.72rem;
+  font-weight: 800;
+}
 
 .search-box {
   display: grid;
@@ -669,6 +678,7 @@ tbody tr:last-child td { border-bottom: 0; }
   background: #fafbfc;
 }
 .chart-card .spark { width: min(100%, 460px); height: 90px; }
+.chart-card .spark-placeholder { width: min(100%, 460px); height: 90px; }
 
 .holding-grid {
   display: grid;
