@@ -628,26 +628,9 @@ function chartValues(values) {
   const source = (Array.isArray(values) ? values : [0]).map(Number).filter(Number.isFinite)
   const period = Number(state.chartPeriod) || 5
   if (source.length === 0) return [0, 0]
-  if (period === 1) {
-    const last = source.at(-1)
-    const previous = source.at(-2) ?? last * 0.995
-    return [previous, last]
-  }
-  if (source.length === period) return source
+  if (period === 1) return source.slice(-2)
   if (source.length > period) return source.slice(-period)
-
-  return Array.from({ length: period }, (_, index) => {
-    const position = (index / (period - 1)) * (source.length - 1)
-    const leftIndex = Math.floor(position)
-    const rightIndex = Math.min(leftIndex + 1, source.length - 1)
-    const ratio = position - leftIndex
-    const interpolated = source[leftIndex] + (source[rightIndex] - source[leftIndex]) * ratio
-    const range = Math.max(...source) - Math.min(...source)
-    const amplitude = Math.max(range * 0.14, Math.abs(source.at(-1)) * 0.018, 0.8) * Math.min(1.8, Math.sqrt(period) / 3)
-    const wave = Math.sin((index + 1) * (source[0] + source.length) * 0.31) * amplitude
-      + Math.sin((index + source.length) * 0.73) * amplitude * 0.45
-    return interpolated + wave
-  })
+  return source
 }
 
 function sparkline(values, tone = 'neutral') {
@@ -680,7 +663,11 @@ function normalizeLoadedEtf(item) {
   const changeRate = Number(item.changeRate) || 0
   const trend = Array.isArray(item.trend) && item.trend.length > 0
     ? item.trend.map(Number).filter(Number.isFinite)
-    : seedTrend(item.code ?? item.name, changeRate < 0 ? 'down' : 'up')
+    : (Array.isArray(item.priceHistory) ? item.priceHistory.map((entry) => Number(entry[1])).filter(Number.isFinite) : [])
+  const dayTrend = Array.isArray(item.dayTrend)
+    ? item.dayTrend.map(Number).filter(Number.isFinite)
+    : []
+  const price = Number(item.price) || trend.at(-1) || 0
 
   return {
     code: String(item.code ?? ''),
@@ -688,15 +675,26 @@ function normalizeLoadedEtf(item) {
     issuer: String(item.issuer ?? '운용사 미확인'),
     category: String(item.category ?? 'ETF'),
     themes: Array.isArray(item.themes) ? item.themes.map(String) : [],
-    price: Number(item.price) || 0,
+    price,
     changeRate,
     amount: Number(item.amount) || 0,
     marketCap: Number(item.marketCap) || 0,
     etfType: String(item.etfType ?? ''),
-    trend: trend.length > 0 ? trend : seedTrend(item.code ?? item.name, changeRate < 0 ? 'down' : 'up'),
+    trend: trend.length > 0 ? trend : [price].filter(Boolean),
+    dayTrend,
+    priceHistory: Array.isArray(item.priceHistory) ? item.priceHistory : [],
+    latestCandle: item.latestCandle ?? null,
     holdings: Array.isArray(item.holdings) ? item.holdings : [],
     source: String(item.source ?? '로컬 ETF 데이터'),
   }
+}
+
+function etfTrend(item) {
+  if (state.chartPeriod === 1 && Array.isArray(item.dayTrend) && item.dayTrend.length >= 2) {
+    return item.dayTrend
+  }
+
+  return item.trend
 }
 
 function builtinStockMeta() {
@@ -1144,7 +1142,7 @@ function etfPanelItems(mode) {
         sub: amountLeader?.name ?? sub,
         value: formatSignedPercent(themeValue),
         tone: themeValue >= 0 ? 'up' : 'down',
-        trend: amountLeader?.trend ?? trend,
+        trend: amountLeader ? etfTrend(amountLeader) : trend,
         action: 'etf-theme',
         actionValue: name,
       }
@@ -1164,7 +1162,7 @@ function etfPanelItems(mode) {
       sub: `${item.code} · ${item.issuer}`,
       value: mode.endsWith('Up') ? formatSignedPercent(item.changeRate) : formatMoney(item.amount),
       tone: item.changeRate >= 0 ? 'up' : 'down',
-      trend: item.trend,
+      trend: etfTrend(item),
       action: 'etf-select',
       actionValue: item.code,
     }))
@@ -1307,7 +1305,7 @@ function renderEtfDetail() {
       <div><span>시가총액</span><strong>${formatMarketCap(item.marketCap)}</strong></div>
       <div><span>거래대금</span><strong>${formatMoney(item.amount)}</strong></div>
     </div>
-    <div class="chart-card">${sparkline(item.trend, item.changeRate >= 0 ? 'up' : 'down')}</div>
+    <div class="chart-card">${sparkline(etfTrend(item), item.changeRate >= 0 ? 'up' : 'down')}</div>
     <div class="holding-grid">
       <section>
         <h3>구성종목</h3>

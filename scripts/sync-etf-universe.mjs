@@ -6,7 +6,9 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const projectRoot = path.resolve(__dirname, '..')
 const dataDir = path.resolve(projectRoot, 'data')
 const NAVER_BASE_URL = 'https://stock.naver.com/api'
+const NAVER_CHART_BASE_URL = 'https://api.stock.naver.com/chart/domestic/item'
 const PAGE_SIZE = 100
+const CHART_CONCURRENCY = 8
 
 const issuerMap = [
   ['KODEX', '삼성자산운용'],
@@ -125,23 +127,6 @@ function issuerFromName(name) {
   return matched?.[1] ?? '운용사 미확인'
 }
 
-function hash(value) {
-  return [...String(value)].reduce((sum, char) => sum + char.charCodeAt(0), 0)
-}
-
-function trendFromReturns(item) {
-  const latest = 100
-  const return3m = Number.isFinite(Number(item.returnRate3m)) ? Number(item.returnRate3m) : Number(item.changeRate) * 10
-  const start = latest / (1 + return3m / 100 || 1)
-  const seed = hash(item.itemCode)
-  return Array.from({ length: 60 }, (_, index) => {
-    const ratio = index / 59
-    const drift = start + (latest - start) * ratio
-    const wave = Math.sin((index + seed) * 0.37) * 1.8 + Math.sin((index + seed) * 0.11) * 1.1
-    return Math.max(1, Math.round((drift + wave) * 100) / 100)
-  })
-}
-
 function inferThemes(item, usListed) {
   const themes = new Set()
   const text = `${item.itemName} ${item.etfType ?? ''}`
@@ -186,16 +171,72 @@ function inferHoldings(item) {
   return matched?.holdings ?? []
 }
 
-function normalizeEtf(item, usListedCodes) {
+function roundedNumber(value) {
+  const number = Number(value)
+  if (!Number.isFinite(number)) return 0
+  return Math.round(number * 100) / 100
+}
+
+function normalizeChart(payload) {
+  const priceInfos = Array.isArray(payload?.priceInfos) ? payload.priceInfos : []
+  const candles = priceInfos
+    .map((item) => ({
+      date: String(item.localDate ?? ''),
+      open: roundedNumber(item.openPrice),
+      high: roundedNumber(item.highPrice),
+      low: roundedNumber(item.lowPrice),
+      close: roundedNumber(item.closePrice),
+      volume: numberValue(item.accumulatedTradingVolume),
+    }))
+    .filter((item) => /^\d{8}$/.test(item.date) && item.close > 0)
+    .slice(-60)
+
+  const latest = candles.at(-1) ?? null
+  return {
+    history: candles.map((item) => [item.date, item.close]),
+    dayTrend: latest ? [latest.open, latest.close].filter((value) => value > 0) : [],
+    latestCandle: latest,
+  }
+}
+
+async function fetchEtfChart(code) {
+  try {
+    const payload = await fetchJson(`${NAVER_CHART_BASE_URL}/${code}?periodType=dayCandle`)
+    const chart = normalizeChart(payload)
+    return chart.history.length > 0 ? chart : null
+  } catch (error) {
+    console.warn(`ETF chart skipped ${code}: ${error.message}`)
+    return null
+  }
+}
+
+async function mapWithConcurrency(items, limit, mapper) {
+  const results = Array(items.length)
+  let nextIndex = 0
+
+  async function worker() {
+    while (nextIndex < items.length) {
+      const index = nextIndex
+      nextIndex += 1
+      results[index] = await mapper(items[index], index)
+    }
+  }
+
+  await Promise.all(Array.from({ length: limit }, worker))
+  return results
+}
+
+function normalizeEtf(item, usListedCodes, chart) {
   const usListed = usListedCodes.has(item.itemCode)
   const marketCap = numberValue(item.totalNetAssets)
+  const chartPrice = chart?.history?.at(-1)?.[1]
   return {
     code: item.itemCode,
     name: item.itemName,
     issuer: issuerFromName(item.itemName),
     category: usListed ? '국내상장 미국ETF' : item.etfType || '국내 ETF',
     themes: inferThemes(item, usListed),
-    price: numberValue(item.currentPrice),
+    price: chartPrice || numberValue(item.currentPrice),
     changeRate: Number(item.changeRate) || 0,
     amount: numberValue(item.tradingValue) * 1_000_000,
     marketCap,
@@ -204,9 +245,11 @@ function normalizeEtf(item, usListedCodes) {
     returnRate3m: Number(item.returnRate3m) || null,
     returnRate6m: Number(item.returnRate6m) || null,
     iNav: Number(item.iNav) || null,
-    trend: trendFromReturns(item),
+    dayTrend: chart?.dayTrend ?? [],
+    priceHistory: chart?.history ?? [],
+    latestCandle: chart?.latestCandle ?? null,
     holdings: inferHoldings(item),
-    source: 'Naver stock ETF API',
+    source: chart ? 'Naver stock ETF API + Naver chart dayCandle' : 'Naver stock ETF API',
   }
 }
 
@@ -254,19 +297,31 @@ const deduped = new Map()
 allItems.forEach((item) => deduped.set(item.itemCode, item))
 usListedItems.forEach((item) => deduped.set(item.itemCode, { ...deduped.get(item.itemCode), ...item }))
 
-const etfs = [...deduped.values()]
-  .map((item) => normalizeEtf(item, usListedCodes))
+const rawEtfs = [...deduped.values()]
+const chartEntries = await mapWithConcurrency(rawEtfs, CHART_CONCURRENCY, async (item, index) => {
+  const chart = await fetchEtfChart(item.itemCode)
+  if ((index + 1) % 100 === 0) console.log(`Fetched ETF charts ${index + 1}/${rawEtfs.length}`)
+  return [item.itemCode, chart]
+})
+const chartByCode = new Map(chartEntries)
+
+const etfs = rawEtfs
+  .map((item) => normalizeEtf(item, usListedCodes, chartByCode.get(item.itemCode)))
   .sort((a, b) => b.amount - a.amount)
 
 await mkdir(dataDir, { recursive: true })
 await writeFile(path.join(dataDir, 'etf-universe.json'), `${JSON.stringify({
   generatedAt: new Date().toISOString(),
-  source: 'https://stock.naver.com/api/stockSecurity/etfs/v1/domestic',
+  source: [
+    'https://stock.naver.com/api/stockSecurity/etfs/v1/domestic',
+    'https://api.stock.naver.com/chart/domestic/item/{code}?periodType=dayCandle',
+  ],
   totalCount: etfs.length,
   usListedCount: usListedCodes.size,
+  chartCount: etfs.filter((item) => item.priceHistory.length > 0).length,
   themes,
   leverageTypes,
   etfs,
 }, null, 2)}\n`)
 
-console.log(`Synced ${etfs.length} ETF(s), domestic-listed US ETF ${usListedCodes.size}`)
+console.log(`Synced ${etfs.length} ETF(s), domestic-listed US ETF ${usListedCodes.size}, charts ${etfs.filter((item) => item.priceHistory.length > 0).length}`)
