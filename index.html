@@ -42,6 +42,16 @@
           </nav>
 
           <section class="stock-subview active" id="marketStockPane" data-kr-stock-pane="market" aria-label="국내 시장">
+            <section class="stock-toolbar market-toolbar" aria-label="국내 시장 종목 검색">
+              <div class="toolbar-head market-toolbar-head">
+                <label class="search-box">
+                  <span>종목 검색</span>
+                  <input id="marketSearch" type="search" placeholder="종목명 또는 코드" autocomplete="off" />
+                </label>
+                <p class="toolbar-note">검색 결과는 시가총액, 거래대금, 등락폭을 같이 보여줍니다.</p>
+              </div>
+              <div class="search-results market-search-results" id="marketSearchResults" hidden></div>
+            </section>
             <div class="section-grid compact" id="marketInsightGrid"></div>
             <div class="section-grid compact" id="marketRankingGrid"></div>
           </section>

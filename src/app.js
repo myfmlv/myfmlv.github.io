@@ -462,6 +462,7 @@ const state = {
   pensionSection: 'trend',
   selectedTheme: themeUp[0][0],
   chartPeriod: 5,
+  marketQuery: '',
   sortKey: 'netBuy',
   query: '',
   visibleLimit: 20,
@@ -612,6 +613,14 @@ function formatPrice(value) {
   return `${Number(value).toLocaleString('ko-KR')}원`
 }
 
+function formatSignedPrice(value) {
+  if (value === null || value === undefined || value === '') return '-'
+  const number = Number(value)
+  if (!Number.isFinite(number)) return '-'
+  const sign = number > 0 ? '+' : ''
+  return `${sign}${number.toLocaleString('ko-KR', { maximumFractionDigits: 2 })}원`
+}
+
 function formatUsd(value) {
   if (!value) return '-'
   return `$${Number(value).toLocaleString('en-US', { maximumFractionDigits: 2 })}`
@@ -715,6 +724,28 @@ function stockTrend(item) {
   if (history.length > 0) return history
   if (Array.isArray(item?.trend) && item.trend.length > 0) return item.trend
   return seedTrend(item?.ticker ?? item?.symbol ?? item?.name ?? '', Number(item?.changeRate) < 0 ? 'down' : 'up')
+}
+
+function stockChangeAmount(item) {
+  const history = historyValues(item)
+  if (history.length >= 2) {
+    return Math.round((history.at(-1) - history.at(-2)) * 100) / 100
+  }
+
+  if (Array.isArray(item?.dayTrend) && item.dayTrend.length >= 2) {
+    const values = item.dayTrend.map(Number).filter(Number.isFinite)
+    return Math.round((values.at(-1) - values[0]) * 100) / 100
+  }
+
+  return null
+}
+
+function marketSearchScore(item, query) {
+  const name = String(item.name ?? '').toLowerCase()
+  const ticker = String(item.ticker ?? '')
+  if (ticker === query || name === query) return 0
+  if (ticker.startsWith(query) || name.startsWith(query)) return 1
+  return 2
 }
 
 function normalizeLoadedUsStock(item) {
@@ -1032,6 +1063,68 @@ function marketSearchItems() {
     }))
 }
 
+function marketStockSearchResults() {
+  const query = state.marketQuery.trim().toLowerCase()
+  if (!query) return []
+
+  return stockMetaItems()
+    .filter((item) => {
+      const name = String(item.name ?? '').toLowerCase()
+      const ticker = String(item.ticker ?? '')
+      return name.includes(query) || ticker.includes(query)
+    })
+    .sort((a, b) => marketSearchScore(a, query) - marketSearchScore(b, query)
+      || (b.amount ?? 0) - (a.amount ?? 0)
+      || (b.marketCap ?? 0) - (a.marketCap ?? 0))
+    .slice(0, 8)
+}
+
+function updateMarketSearchResults() {
+  const container = document.querySelector('#marketSearchResults')
+  const query = state.marketQuery.trim()
+
+  if (!query) {
+    container.hidden = true
+    container.innerHTML = ''
+    return
+  }
+
+  const matches = marketStockSearchResults()
+  container.hidden = false
+  if (matches.length === 0) {
+    container.innerHTML = '<div class="search-result-head"><span>검색 결과 없음</span></div>'
+    return
+  }
+
+  container.innerHTML = `
+    <div class="search-result-head">
+      <span>검색 결과</span>
+      <b>${matches.length}개 표시</b>
+    </div>
+    <ol class="search-result-list market-result-list">
+      ${matches.map((item) => {
+        const changeAmount = stockChangeAmount(item)
+        const tone = changeAmount < 0 ? 'down' : changeAmount > 0 ? 'up' : 'neutral'
+        const changeLabel = changeAmount < 0 ? '하락폭' : changeAmount > 0 ? '상승폭' : '등락폭'
+        return `
+          <li>
+            <div>
+              <button type="button" data-market-search-ticker="${escapeHtml(item.ticker)}">${escapeHtml(item.name)}</button>
+              <small>${escapeHtml(item.ticker)} · ${escapeHtml(item.market || 'KRX')} · ${escapeHtml(formatPrice(item.price))}</small>
+            </div>
+            <span class="market-search-metrics">
+              <span class="metric"><small>시가총액</small><b>${escapeHtml(item.marketCapLabel || formatMarketCap(item.marketCap))}</b></span>
+              <span class="metric"><small>거래대금</small><b>${escapeHtml(formatMoney(item.amount || 0))}원</b></span>
+              <span class="metric"><small>${changeLabel}</small><b class="${tone}">${escapeHtml(formatSignedPrice(changeAmount))}<em>${escapeHtml(formatSignedPercent(item.changeRate))}</em></b></span>
+            </span>
+            ${sparkline(stockTrend(item), tone)}
+          </li>
+        `
+      }).join('')}
+    </ol>
+  `
+}
+
 function marketPopularItems() {
   return [...state.rows]
     .sort((a, b) => Math.abs(b.netAmount) + b.buyAmount + b.sellAmount - (Math.abs(a.netAmount) + a.buyAmount + a.sellAmount))
@@ -1151,6 +1244,7 @@ function renderMarketInsights() {
   ]
 
   document.querySelector('#marketRankingGrid').innerHTML = rankingPanels.map(renderListPanel).join('')
+  updateMarketSearchResults()
 }
 
 function renderUsMarket() {
@@ -1687,6 +1781,21 @@ function bindControls() {
 
   document.querySelector('#tradeDatePicker').addEventListener('change', (event) => {
     setTradeDate(normalizeDateInput(event.target.value))
+  })
+
+  document.querySelector('#marketSearch').addEventListener('input', (event) => {
+    state.marketQuery = event.target.value
+    updateMarketSearchResults()
+  })
+
+  document.querySelector('#marketSearchResults').addEventListener('click', (event) => {
+    const button = event.target.closest('button[data-market-search-ticker]')
+    if (!button) return
+    const item = stockMetaItems().find((stock) => stock.ticker === button.dataset.marketSearchTicker)
+    if (!item) return
+    state.marketQuery = item.name
+    document.querySelector('#marketSearch').value = item.name
+    updateMarketSearchResults()
   })
 
   document.querySelector('#stockSearch').addEventListener('input', (event) => {

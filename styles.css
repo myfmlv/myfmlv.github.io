@@ -357,6 +357,16 @@ button { cursor: pointer; }
   gap: 12px;
 }
 
+.market-toolbar-head { align-items: center; }
+
+.toolbar-note {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.82rem;
+  font-weight: 800;
+  line-height: 1.45;
+}
+
 .panel-meta {
   color: var(--muted);
   font-size: 0.82rem;
@@ -559,6 +569,50 @@ tbody tr:last-child td { border-bottom: 0; }
 .search-result-list small { display: block; margin-top: 3px; color: var(--muted); font-size: 0.74rem; }
 .search-result-list b { justify-self: end; font-variant-numeric: tabular-nums; }
 
+.market-result-list li {
+  grid-template-columns: minmax(180px, 1fr) minmax(330px, 0.9fr) 84px;
+}
+
+.market-search-metrics {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(82px, 1fr));
+  gap: 10px;
+  align-items: center;
+}
+
+.market-search-metrics .metric {
+  display: grid;
+  gap: 2px;
+  min-width: 0;
+  text-align: right;
+}
+
+.market-search-metrics .metric small {
+  margin: 0;
+  color: var(--quiet);
+  font-size: 0.66rem;
+  font-weight: 950;
+  letter-spacing: 0.04em;
+}
+
+.market-search-metrics .metric b {
+  justify-self: end;
+  color: var(--ink);
+  font-size: 0.84rem;
+  font-weight: 950;
+}
+
+.market-search-metrics .metric b.up { color: var(--up); }
+.market-search-metrics .metric b.down { color: var(--down); }
+.market-search-metrics .metric em {
+  display: block;
+  margin-top: 2px;
+  font-style: normal;
+  font-size: 0.7rem;
+  font-weight: 850;
+  opacity: 0.78;
+}
+
 .theme-detail { min-height: auto; }
 .theme-stock-list {
   display: grid;
@@ -731,6 +785,13 @@ tbody tr:last-child td { border-bottom: 0; }
   .search-box { min-width: 0; }
   .search-result-list li { grid-template-columns: 1fr; }
   .search-result-list b { justify-self: start; }
+  .market-result-list li { grid-template-columns: 1fr; }
+  .market-search-metrics {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    width: 100%;
+  }
+  .market-search-metrics .metric { text-align: left; }
+  .market-search-metrics .metric b { justify-self: start; }
   .date-strip { display: flex; width: 100%; border-radius: 18px; }
   .rank-item { grid-template-columns: 24px minmax(0, 1fr) 70px; }
   .rank-item .spark { grid-column: 2 / -1; justify-self: end; }
