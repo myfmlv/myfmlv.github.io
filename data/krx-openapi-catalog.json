@@ -1,0 +1,219 @@
+[
+  {
+    "group": "index",
+    "market": "KRX",
+    "name": "KRX 시리즈 일별시세정보",
+    "id": "krx_dd_trd",
+    "path": "idx/krx_dd_trd"
+  },
+  {
+    "group": "index",
+    "market": "KOSPI",
+    "name": "KOSPI 시리즈 일별시세정보",
+    "id": "kospi_dd_trd",
+    "path": "idx/kospi_dd_trd"
+  },
+  {
+    "group": "index",
+    "market": "KOSDAQ",
+    "name": "KOSDAQ 시리즈 일별시세정보",
+    "id": "kosdaq_dd_trd",
+    "path": "idx/kosdaq_dd_trd"
+  },
+  {
+    "group": "index",
+    "market": "BOND",
+    "name": "채권지수 시세정보",
+    "id": "bon_dd_trd",
+    "path": "idx/bon_dd_trd"
+  },
+  {
+    "group": "index",
+    "market": "DERIVATIVES",
+    "name": "파생상품지수 시세정보",
+    "id": "drvprod_dd_trd",
+    "path": "idx/drvprod_dd_trd"
+  },
+  {
+    "group": "stock",
+    "market": "KOSPI",
+    "name": "유가증권 일별매매정보",
+    "id": "stk_bydd_trd",
+    "path": "sto/stk_bydd_trd"
+  },
+  {
+    "group": "stock",
+    "market": "KOSDAQ",
+    "name": "코스닥 일별매매정보",
+    "id": "ksq_bydd_trd",
+    "path": "sto/ksq_bydd_trd"
+  },
+  {
+    "group": "stock",
+    "market": "KONEX",
+    "name": "코넥스 일별매매정보",
+    "id": "knx_bydd_trd",
+    "path": "sto/knx_bydd_trd"
+  },
+  {
+    "group": "stock",
+    "market": "WARRANT",
+    "name": "신주인수권증권 일별매매정보",
+    "id": "sw_bydd_trd",
+    "path": "sto/sw_bydd_trd"
+  },
+  {
+    "group": "stock",
+    "market": "RIGHTS",
+    "name": "신주인수권증서 일별매매정보",
+    "id": "sr_bydd_trd",
+    "path": "sto/sr_bydd_trd"
+  },
+  {
+    "group": "stockBase",
+    "market": "KOSPI",
+    "name": "유가증권 종목기본정보",
+    "id": "stk_isu_base_info",
+    "path": "sto/stk_isu_base_info"
+  },
+  {
+    "group": "stockBase",
+    "market": "KOSDAQ",
+    "name": "코스닥 종목기본정보",
+    "id": "ksq_isu_base_info",
+    "path": "sto/ksq_isu_base_info"
+  },
+  {
+    "group": "stockBase",
+    "market": "KONEX",
+    "name": "코넥스 종목기본정보",
+    "id": "knx_isu_base_info",
+    "path": "sto/knx_isu_base_info"
+  },
+  {
+    "group": "etf",
+    "market": "ETF",
+    "name": "ETF 일별매매정보",
+    "id": "etf_bydd_trd",
+    "path": "etp/etf_bydd_trd"
+  },
+  {
+    "group": "etn",
+    "market": "ETN",
+    "name": "ETN 일별매매정보",
+    "id": "etn_bydd_trd",
+    "path": "etp/etn_bydd_trd"
+  },
+  {
+    "group": "elw",
+    "market": "ELW",
+    "name": "ELW 일별매매정보",
+    "id": "elw_bydd_trd",
+    "path": "etp/elw_bydd_trd"
+  },
+  {
+    "group": "bond",
+    "market": "KTS",
+    "name": "국채전문유통시장 일별매매정보",
+    "id": "kts_bydd_trd",
+    "path": "bon/kts_bydd_trd"
+  },
+  {
+    "group": "bond",
+    "market": "BOND",
+    "name": "일반채권시장 일별매매정보",
+    "id": "bnd_bydd_trd",
+    "path": "bon/bnd_bydd_trd"
+  },
+  {
+    "group": "bond",
+    "market": "SMALL_BOND",
+    "name": "소액채권시장 일별매매정보",
+    "id": "smb_bydd_trd",
+    "path": "bon/smb_bydd_trd"
+  },
+  {
+    "group": "derivatives",
+    "market": "FUTURES",
+    "name": "선물 일별매매정보 (주식선물外)",
+    "id": "fut_bydd_trd",
+    "path": "drv/fut_bydd_trd"
+  },
+  {
+    "group": "derivatives",
+    "market": "KOSPI_STOCK_FUTURES",
+    "name": "주식선물(유가) 일별매매정보",
+    "id": "eqsfu_stk_bydd_trd",
+    "path": "drv/eqsfu_stk_bydd_trd"
+  },
+  {
+    "group": "derivatives",
+    "market": "KOSDAQ_STOCK_FUTURES",
+    "name": "주식선물(코스닥) 일별매매정보",
+    "id": "eqkfu_ksq_bydd_trd",
+    "path": "drv/eqkfu_ksq_bydd_trd"
+  },
+  {
+    "group": "derivatives",
+    "market": "OPTIONS",
+    "name": "옵션 일별매매정보 (주식옵션外)",
+    "id": "opt_bydd_trd",
+    "path": "drv/opt_bydd_trd"
+  },
+  {
+    "group": "derivatives",
+    "market": "KOSPI_STOCK_OPTIONS",
+    "name": "주식옵션(유가) 일별매매정보",
+    "id": "eqsop_bydd_trd",
+    "path": "drv/eqsop_bydd_trd"
+  },
+  {
+    "group": "derivatives",
+    "market": "KOSDAQ_STOCK_OPTIONS",
+    "name": "주식옵션(코스닥) 일별매매정보",
+    "id": "eqkop_bydd_trd",
+    "path": "drv/eqkop_bydd_trd"
+  },
+  {
+    "group": "commodity",
+    "market": "OIL",
+    "name": "석유시장 일별매매정보",
+    "id": "oil_bydd_trd",
+    "path": "gen/oil_bydd_trd"
+  },
+  {
+    "group": "commodity",
+    "market": "GOLD",
+    "name": "금시장 일별매매정보",
+    "id": "gold_bydd_trd",
+    "path": "gen/gold_bydd_trd"
+  },
+  {
+    "group": "commodity",
+    "market": "ETS",
+    "name": "배출권 시장 일별매매정보",
+    "id": "ets_bydd_trd",
+    "path": "gen/ets_bydd_trd"
+  },
+  {
+    "group": "esg",
+    "market": "SRI_BOND",
+    "name": "사회책임투자채권 정보",
+    "id": "sri_bond_info",
+    "path": "esg/sri_bond_info"
+  },
+  {
+    "group": "esg",
+    "market": "ESG_INDEX",
+    "name": "ESG 지수",
+    "id": "esg_index_info",
+    "path": "esg/esg_index_info"
+  },
+  {
+    "group": "esg",
+    "market": "ESG_ETP",
+    "name": "ESG 증권상품",
+    "id": "esg_etp_info",
+    "path": "esg/esg_etp_info"
+  }
+]

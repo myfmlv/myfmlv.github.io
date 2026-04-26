@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="ETF와 국내 주식 테마, KRX 연기금 수급을 미니멀하게 정리하는 MYFMLV 투자 대시보드"
+    />
+    <title>MYFMLV Market</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="shell">
+      <header class="topbar">
+        <a class="brand" href="./">MYFMLV</a>
+        <nav class="view-tabs" id="viewTabs" aria-label="시장 분류">
+          <button class="active" type="button" data-view="stock">주식</button>
+          <button type="button" data-view="etf">ETF</button>
+        </nav>
+        <span class="status" id="marketStatus">KRX 데이터 로딩 중</span>
+      </header>
+
+      <section class="view active" id="stockView" aria-label="주식">
+        <nav class="sub-tabs primary-subtabs" id="stockCountryTabs" aria-label="주식 국가">
+          <button class="active" type="button" data-stock-country="kr">국내</button>
+          <button type="button" data-stock-country="us">미국</button>
+        </nav>
+
+        <section class="stock-country active" data-stock-country-pane="kr" aria-label="국내 주식">
+          <nav class="sub-tabs" id="krStockSubTabs" aria-label="국내 주식 중분류">
+            <button class="active" type="button" data-kr-stock-section="market">시장</button>
+            <button type="button" data-kr-stock-section="theme">테마</button>
+            <button type="button" data-kr-stock-section="pension">연기금 수급</button>
+          </nav>
+
+          <section class="stock-subview active" id="marketStockPane" data-kr-stock-pane="market" aria-label="국내 시장">
+            <section class="summary-strip market-strip" id="marketIndexStrip" aria-label="시장 지표"></section>
+            <div class="section-grid compact" id="marketInsightGrid"></div>
+            <div class="section-grid compact" id="marketRankingGrid"></div>
+          </section>
+
+          <section class="stock-subview" id="themeStockPane" data-kr-stock-pane="theme" aria-label="주식 테마">
+            <div class="section-grid" id="themeSectionGrid"></div>
+          </section>
+
+          <section class="stock-subview" id="pensionStockPane" data-kr-stock-pane="pension" aria-label="연기금 수급">
+            <section class="summary-strip" aria-label="KRX 수급 데이터 요약">
+              <div>
+                <span>거래일</span>
+                <strong id="tradeDate">-</strong>
+              </div>
+              <div>
+                <span>순매수 종목</span>
+                <strong id="buyStockCount">-</strong>
+              </div>
+              <div>
+                <span>순매도 종목</span>
+                <strong id="sellStockCount">-</strong>
+              </div>
+              <div>
+                <span>데이터 행수</span>
+                <strong id="dataRows">-</strong>
+              </div>
+            </section>
+
+            <div class="section-grid compact" id="pensionSectionGrid"></div>
+
+            <section class="stock-toolbar" aria-label="연기금 종목 검색과 정렬">
+              <div class="toolbar-head">
+                <label class="search-box">
+                  <span>종목 검색</span>
+                  <input id="stockSearch" type="search" placeholder="종목명 또는 코드" autocomplete="off" />
+                </label>
+                <div class="sort-row" id="sortRow">
+                  <button class="active" type="button" data-sort="netBuy">순매수금액</button>
+                  <button type="button" data-sort="netSell">순매도금액</button>
+                  <button type="button" data-sort="buyStreak">연속 순매수</button>
+                  <button type="button" data-sort="sellStreak">연속 순매도</button>
+                  <button type="button" data-sort="buyToMarketCap">시총대비 매수금액</button>
+                  <button type="button" data-sort="marketCapAsc">시가총액 작은순</button>
+                </div>
+              </div>
+              <div class="search-results" id="searchResults" hidden></div>
+            </section>
+
+            <article class="wide-panel">
+              <div class="panel-head">
+                <div>
+                  <p>DETAIL</p>
+                  <h2>연기금 랭킹</h2>
+                </div>
+                <span class="panel-meta" id="rankingMeta">20개 표시</span>
+              </div>
+              <div class="table-wrap">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>순위</th>
+                      <th>종목</th>
+                      <th>수급금액</th>
+                      <th>수급수량</th>
+                      <th>매수금액</th>
+                      <th>시가총액</th>
+                      <th>매수/시총</th>
+                      <th>연속일</th>
+                      <th>미니 차트</th>
+                    </tr>
+                  </thead>
+                  <tbody id="stockTableBody">
+                    <tr><td colspan="9">데이터를 불러오는 중입니다.</td></tr>
+                  </tbody>
+                </table>
+              </div>
+              <button class="load-more" id="loadMoreButton" type="button" hidden>아래로 20개 더 보기 ↓</button>
+            </article>
+          </section>
+        </section>
+
+        <section class="stock-country" data-stock-country-pane="us" aria-label="미국 주식">
+          <div class="section-grid compact" id="usMarketGrid"></div>
+        </section>
+      </section>
+
+      <section class="view" id="etfView" aria-label="ETF">
+        <section class="stock-toolbar etf-toolbar" aria-label="ETF 검색">
+          <div class="toolbar-head">
+            <label class="search-box">
+              <span>ETF 검색</span>
+              <input id="etfSearch" type="search" placeholder="ETF명, 코드, 구성종목" autocomplete="off" />
+            </label>
+            <div class="sort-row" id="etfFilterRow">
+              <button class="active" type="button" data-etf-filter="all">전체</button>
+              <button type="button" data-etf-filter="usListed">국내상장 미국ETF</button>
+            </div>
+          </div>
+        </section>
+        <div class="section-grid compact" id="etfSectionGrid"></div>
+        <section class="etf-layout">
+          <article class="wide-panel">
+            <div class="panel-head">
+              <div>
+                <p>ETF</p>
+                <h2>ETF 목록</h2>
+              </div>
+              <span class="panel-meta" id="etfListMeta">-</span>
+            </div>
+            <ol class="etf-list" id="etfList"></ol>
+          </article>
+          <article class="wide-panel etf-detail" id="etfDetail"></article>
+        </section>
+      </section>
+
+      <footer class="footer">
+        <strong>MYFMLV</strong>
+        <span>개인 데이터 정리용입니다. 투자 판단 책임은 사용자에게 있습니다.</span>
+      </footer>
+    </main>
+    <script type="module" src="./src/app.js"></script>
+  </body>
+</html>
