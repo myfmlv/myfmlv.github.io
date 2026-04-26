@@ -85,6 +85,8 @@ const usStocks = [
   { symbol: 'SHOP', name: 'Shopify', sector: '커머스 SaaS', price: 162.5, changeRate: 1.13, marketCap: '210B', amount: '2.5B', popularity: 72, trend: [15, 16, 18, 19, 21, 23, 25] },
 ]
 
+let usStockUniverse = [...usStocks]
+
 const themeStockSeeds = {
   '반도체 제품(전력반도체)': [
     ['DB하이텍', '000990', ['반도체', '시스템반도체']],
@@ -697,6 +699,46 @@ function etfTrend(item) {
   return item.trend
 }
 
+function historyValues(item) {
+  if (!Array.isArray(item?.priceHistory)) return []
+  return item.priceHistory
+    .map((entry) => Array.isArray(entry) ? Number(entry[1]) : Number(entry))
+    .filter(Number.isFinite)
+}
+
+function stockTrend(item) {
+  if (state.chartPeriod === 1 && Array.isArray(item?.dayTrend) && item.dayTrend.length >= 2) {
+    return item.dayTrend.map(Number).filter(Number.isFinite)
+  }
+
+  const history = historyValues(item)
+  if (history.length > 0) return history
+  if (Array.isArray(item?.trend) && item.trend.length > 0) return item.trend
+  return seedTrend(item?.ticker ?? item?.symbol ?? item?.name ?? '', Number(item?.changeRate) < 0 ? 'down' : 'up')
+}
+
+function normalizeLoadedUsStock(item) {
+  const history = Array.isArray(item.priceHistory) ? item.priceHistory : []
+  const historyPrices = historyValues(item)
+  const changeRate = Number(item.changeRate) || 0
+  return {
+    ...item,
+    symbol: String(item.symbol ?? ''),
+    naverCode: String(item.naverCode ?? item.symbol ?? ''),
+    name: String(item.name ?? item.symbol ?? ''),
+    sector: String(item.sector ?? ''),
+    price: Number(item.price) || historyPrices.at(-1) || 0,
+    changeRate,
+    amount: String(item.amount ?? '0'),
+    marketCap: String(item.marketCap ?? '0'),
+    popularity: Number(item.popularity) || 0,
+    priceHistory: history,
+    dayTrend: Array.isArray(item.dayTrend) ? item.dayTrend.map(Number).filter(Number.isFinite) : [],
+    latestCandle: item.latestCandle ?? null,
+    trend: historyPrices.length > 0 ? historyPrices : (Array.isArray(item.trend) ? item.trend : []),
+  }
+}
+
 function builtinStockMeta() {
   return new Map(marketCaps.map(([name, ticker, cap]) => [ticker, {
     ticker,
@@ -734,6 +776,9 @@ function enrichRows(rows) {
       buyToMarketCap,
       buyStreak: row.netAmount > 0 ? countStreak(row.ticker, 'buy') : 0,
       sellStreak: row.netAmount < 0 ? countStreak(row.ticker, 'sell') : 0,
+      priceHistory: meta?.priceHistory ?? [],
+      dayTrend: meta?.dayTrend ?? [],
+      changeRate: meta?.changeRate ?? 0,
     }
   })
 }
@@ -815,7 +860,9 @@ function themeStocks(themeName) {
         marketCap: meta.marketCap ?? null,
         marketCapLabel: meta.marketCapLabel ?? formatMarketCap(meta.marketCap),
         amount: meta.amount ?? 0,
-        trend: seedTrend(ticker, (meta.changeRate ?? 0) < 0 ? 'down' : 'up'),
+        priceHistory: meta.priceHistory ?? [],
+        dayTrend: meta.dayTrend ?? [],
+        trend: stockTrend({ ticker, ...meta }),
       }
     })
   }
@@ -828,7 +875,7 @@ function themeStocks(themeName) {
       ...item,
       tags: [item.market ?? 'KRX'],
       marketCapLabel: item.marketCapLabel ?? formatMarketCap(item.marketCap),
-      trend: seedTrend(item.ticker, item.changeRate < 0 ? 'down' : 'up'),
+      trend: stockTrend(item),
     }))
 }
 
@@ -850,7 +897,7 @@ function marketCapItems() {
       href: `https://finance.naver.com/item/main.naver?code=${item.ticker}`,
       value: item.marketCapLabel ?? formatMarketCap(item.marketCap),
       tone: item.changeRate > 0 ? 'up' : item.changeRate < 0 ? 'down' : 'neutral',
-      trend: seedTrend(item.ticker, item.changeRate < 0 ? 'down' : 'up'),
+      trend: stockTrend(item),
     }))
   }
 
@@ -904,7 +951,7 @@ function pensionItems(mode) {
     href: `https://finance.naver.com/item/main.naver?code=${row.ticker}`,
     value: mode === 'buyToMarketCap' ? formatPercentRatio(row.buyToMarketCap) : `${formatMoney(row.netAmount)}원`,
     tone: mode === 'sell' ? 'down' : 'up',
-    trend: seedTrend(row.ticker, mode === 'sell' ? 'down' : 'up'),
+    trend: stockTrend(row),
   }))
 }
 
@@ -965,7 +1012,7 @@ function marketRankingItems(mode) {
     href: `https://finance.naver.com/item/main.naver?code=${item.ticker}`,
     value: mode === 'amount' ? formatMoney(item.amount || 0) : formatSignedPercent(item.changeRate),
     tone: mode === 'down' || item.changeRate < 0 ? 'down' : item.changeRate > 0 ? 'up' : 'neutral',
-    trend: seedTrend(item.ticker, mode === 'down' || item.changeRate < 0 ? 'down' : 'up'),
+    trend: stockTrend(item),
   }))
 }
 
@@ -981,7 +1028,7 @@ function marketSearchItems() {
       href: `https://finance.naver.com/item/main.naver?code=${item.ticker}`,
       value: formatSignedPercent(item.changeRate),
       tone: item.changeRate > 0 ? 'up' : item.changeRate < 0 ? 'down' : 'neutral',
-      trend: seedTrend(item.ticker, item.changeRate < 0 ? 'down' : 'up'),
+      trend: stockTrend(item),
     }))
 }
 
@@ -996,12 +1043,12 @@ function marketPopularItems() {
       href: `https://finance.naver.com/item/main.naver?code=${row.ticker}`,
       value: `${formatMoney(row.netAmount)}원`,
       tone: row.netAmount >= 0 ? 'up' : 'down',
-      trend: seedTrend(row.ticker, row.netAmount >= 0 ? 'up' : 'down'),
+      trend: stockTrend(row),
     }))
 }
 
 function usStockItems(mode) {
-  return [...usStocks]
+  return [...usStockUniverse]
     .sort((a, b) => {
       if (mode === 'marketCap') return parseAbbrevValue(b.marketCap) - parseAbbrevValue(a.marketCap)
       if (mode === 'amount') return parseAbbrevValue(b.amount) - parseAbbrevValue(a.amount)
@@ -1013,14 +1060,14 @@ function usStockItems(mode) {
       rank: index + 1,
       name: item.name,
       sub: `${item.symbol} · ${item.sector}`,
-      href: `https://stock.naver.com/worldstock/stock/${item.symbol}.O/total`,
+      href: `https://stock.naver.com/worldstock/stock/${item.naverCode ?? item.symbol}/total`,
       value: mode === 'marketCap'
         ? `$${item.marketCap}`
         : mode === 'amount'
           ? `$${item.amount}`
           : `${item.popularity}점`,
       tone: item.changeRate > 0 ? 'up' : item.changeRate < 0 ? 'down' : 'neutral',
-      trend: item.trend,
+      trend: stockTrend(item),
     }))
 }
 
@@ -1434,7 +1481,7 @@ function updateStockTable() {
       <td>${escapeHtml(row.marketCapLabel || '-')}</td>
       <td>${formatPercentRatio(row.buyToMarketCap)}</td>
       <td>${streakLabel(row)}</td>
-      <td>${sparkline(seedTrend(row.ticker, row.netAmount >= 0 ? 'up' : 'down'), row.netAmount >= 0 ? 'up' : 'down')}</td>
+      <td>${sparkline(stockTrend(row), row.netAmount >= 0 ? 'up' : 'down')}</td>
     </tr>
   `).join('')
 
@@ -1478,7 +1525,7 @@ function updateSearchResults() {
             <small>${row.absoluteRank}위 · ${escapeHtml(row.ticker)} · ${row.netAmount >= 0 ? '순매수' : '순매도'} · ${row.netAmount >= 0 ? row.buyStreak : row.sellStreak}일</small>
           </div>
           <b class="${row.netAmount >= 0 ? 'value up' : 'value down'}">${formatMoney(row.netAmount)}원</b>
-          ${sparkline(seedTrend(row.ticker, row.netAmount >= 0 ? 'up' : 'down'), row.netAmount >= 0 ? 'up' : 'down')}
+          ${sparkline(stockTrend(row), row.netAmount >= 0 ? 'up' : 'down')}
         </li>
       `).join('')}
     </ol>
@@ -1792,6 +1839,9 @@ async function loadStockMeta() {
       const marketCap = Number(item.marketCap)
       if (!marketCap) return
       const ticker = String(item.ticker).padStart(6, '0')
+      const priceHistory = Array.isArray(item.priceHistory) ? item.priceHistory : []
+      const dayTrend = Array.isArray(item.dayTrend) ? item.dayTrend.map(Number).filter(Number.isFinite) : []
+      const historyPrice = priceHistory.length > 0 ? Number(priceHistory.at(-1)?.[1]) : null
       meta.set(ticker, {
         ...item,
         ticker,
@@ -1800,11 +1850,15 @@ async function loadStockMeta() {
         sector: item.sector ?? meta.get(ticker)?.sector,
         marketCap,
         marketCapLabel: item.marketCapLabel ?? formatMarketCap(marketCap),
-        price: Number(item.price) || null,
+        price: Number(item.price) || historyPrice || null,
         changeRate: Number(item.changeRate) || 0,
         volume: Number(item.volume) || 0,
         amount: Number(item.amount) || 0,
         listedShares: Number(item.listedShares) || 0,
+        priceHistory,
+        dayTrend,
+        latestCandle: item.latestCandle ?? null,
+        chartSource: item.chartSource,
       })
     })
   } catch {
@@ -1812,6 +1866,18 @@ async function loadStockMeta() {
   }
 
   return meta
+}
+
+async function loadUsStocks() {
+  try {
+    const response = await fetch('./data/us-stocks.json', { cache: 'no-store' })
+    if (!response.ok) return
+    const payload = await response.json()
+    if (!Array.isArray(payload.stocks) || payload.stocks.length === 0) return
+    usStockUniverse = payload.stocks.map(normalizeLoadedUsStock).filter((item) => item.symbol && item.name)
+  } catch {
+    usStockUniverse = usStocks.map(normalizeLoadedUsStock)
+  }
 }
 
 async function loadEtfUniverse() {
@@ -1835,6 +1901,7 @@ async function loadEtfUniverse() {
 
 async function main() {
   bindControls()
+  await loadUsStocks()
   await loadEtfUniverse()
   renderEtfSections()
 
