@@ -20,6 +20,13 @@
         </nav>
       </header>
 
+      <nav class="period-tabs" id="chartPeriodTabs" aria-label="차트 기간">
+        <span>차트</span>
+        <button class="active" type="button" data-chart-period="5">5일</button>
+        <button type="button" data-chart-period="20">20일</button>
+        <button type="button" data-chart-period="60">60일</button>
+      </nav>
+
       <section class="view active" id="stockView" aria-label="주식">
         <nav class="sub-tabs primary-subtabs" id="stockCountryTabs" aria-label="주식 국가">
           <button class="active" type="button" data-stock-country="kr">국내</button>
@@ -115,25 +122,37 @@
       </section>
 
       <section class="view" id="etfView" aria-label="ETF">
-        <section class="stock-toolbar etf-toolbar" aria-label="ETF 검색">
-          <div class="toolbar-head">
-            <label class="search-box">
-              <span>ETF 검색</span>
-              <input id="etfSearch" type="search" placeholder="ETF명, 코드, 구성종목" autocomplete="off" />
-            </label>
-            <div class="sort-row" id="etfFilterRow">
-              <button class="active" type="button" data-etf-filter="all">전체</button>
-              <button type="button" data-etf-filter="usListed">국내상장 미국ETF</button>
-            </div>
-          </div>
+        <nav class="sub-tabs primary-subtabs" id="etfSubTabs" aria-label="ETF 중분류">
+          <button class="active" type="button" data-etf-section="theme">테마</button>
+          <button type="button" data-etf-section="search">검색</button>
+          <button type="button" data-etf-section="us">국내상장 미국 ETF</button>
+        </nav>
+
+        <section class="etf-subview active" data-etf-pane="theme" aria-label="ETF 테마">
+          <div class="section-grid compact" id="etfThemeGrid"></div>
         </section>
-        <div class="section-grid compact" id="etfSectionGrid"></div>
+
+        <section class="etf-subview" data-etf-pane="search" aria-label="ETF 검색">
+          <section class="stock-toolbar etf-toolbar" aria-label="ETF 검색">
+            <div class="toolbar-head">
+              <label class="search-box">
+                <span>ETF 검색</span>
+                <input id="etfSearch" type="search" placeholder="ETF명, 코드, 구성종목" autocomplete="off" />
+              </label>
+            </div>
+          </section>
+        </section>
+
+        <section class="etf-subview" data-etf-pane="us" aria-label="국내상장 미국 ETF">
+          <div class="section-grid compact" id="etfUsGrid"></div>
+        </section>
+
         <section class="etf-layout">
           <article class="wide-panel">
             <div class="panel-head">
               <div>
                 <p>ETF</p>
-                <h2>ETF 목록</h2>
+                <h2 id="etfListTitle">ETF 목록</h2>
               </div>
               <span class="panel-meta" id="etfListMeta">-</span>
             </div>
