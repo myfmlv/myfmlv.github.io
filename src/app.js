@@ -457,11 +457,13 @@ const state = {
   marketIndex: fallbackMarketIndex,
   stockCountry: 'kr',
   krStockSection: 'market',
+  pensionSection: 'trend',
   selectedTheme: themeUp[0][0],
   chartPeriod: 5,
   sortKey: 'netBuy',
   query: '',
   visibleLimit: 20,
+  etfVisibleLimit: 20,
   etfSection: 'theme',
   etfQuery: '',
   etfTheme: etfThemes[0][0],
@@ -736,6 +738,55 @@ function enrichRows(rows) {
       sellStreak: row.netAmount < 0 ? countStreak(row.ticker, 'sell') : 0,
     }
   })
+}
+
+function pensionPeriodDates() {
+  const period = Math.max(1, Number(state.chartPeriod) || 1)
+  const startIndex = Math.max(state.dates.indexOf(state.currentDate), 0)
+  return state.dates.slice(startIndex, startIndex + period)
+}
+
+function aggregatePensionRowsForPeriod() {
+  const grouped = new Map()
+
+  pensionPeriodDates().forEach((date) => {
+    const rows = state.rowsByDate.get(date)
+    if (!rows) return
+
+    rows.forEach((row) => {
+      const current = grouped.get(row.ticker) ?? {
+        ...row,
+        date: state.currentDate,
+        sellVolume: 0,
+        buyVolume: 0,
+        netVolume: 0,
+        sellAmount: 0,
+        buyAmount: 0,
+        netAmount: 0,
+        buyPressure: 0,
+      }
+
+      current.sellVolume += row.sellVolume
+      current.buyVolume += row.buyVolume
+      current.netVolume += row.netVolume
+      current.sellAmount += row.sellAmount
+      current.buyAmount += row.buyAmount
+      current.netAmount += row.netAmount
+      grouped.set(row.ticker, current)
+    })
+  })
+
+  return enrichRows([...grouped.values()].map((row) => {
+    const grossAmount = row.buyAmount + row.sellAmount
+    return {
+      ...row,
+      buyPressure: grossAmount === 0 ? 0 : Math.round((row.buyAmount / grossAmount) * 1000) / 10,
+    }
+  }))
+}
+
+function activePensionRows() {
+  return state.pensionSection === 'search' ? aggregatePensionRowsForPeriod() : state.rows
 }
 
 function staticItems(items, tone = 'up', formatter = (value) => `${value}%`) {
@@ -1177,31 +1228,38 @@ function etfListTitle() {
   return state.etfTheme ? `${state.etfTheme} ETF` : '테마 ETF'
 }
 
-function etfListMeta(items) {
+function etfListMeta(items, visibleCount = items.length) {
+  const countText = `${visibleCount.toLocaleString('ko-KR')} / ${items.length.toLocaleString('ko-KR')}개`
   if (state.etfSection === 'search') {
     const query = state.etfQuery.trim()
-    return query ? `"${query}" · ${items.length.toLocaleString('ko-KR')}개` : `${items.length.toLocaleString('ko-KR')}개`
+    return query ? `"${query}" · ${countText}` : countText
   }
 
-  if (state.etfSection === 'us') return `국내상장 미국 ETF · ${items.length.toLocaleString('ko-KR')}개`
+  if (state.etfSection === 'us') return `국내상장 미국 ETF · ${countText}`
   return state.etfTheme
-    ? `${state.etfTheme} · ${items.length.toLocaleString('ko-KR')}개`
-    : `${items.length.toLocaleString('ko-KR')}개`
+    ? `${state.etfTheme} · ${countText}`
+    : countText
 }
 
 function renderEtfList() {
   const items = filteredEtfs()
   const selectedExists = items.some((item) => item.code === state.selectedEtfCode)
   if (!selectedExists) state.selectedEtfCode = items[0]?.code ?? null
+  const selectedIndex = items.findIndex((item) => item.code === state.selectedEtfCode)
+  if (selectedIndex >= state.etfVisibleLimit) {
+    state.etfVisibleLimit = Math.ceil((selectedIndex + 1) / 20) * 20
+  }
+  const visibleItems = items.slice(0, state.etfVisibleLimit)
 
   document.querySelector('#etfListTitle').textContent = etfListTitle()
-  document.querySelector('#etfListMeta').textContent = etfListMeta(items)
+  document.querySelector('#etfListMeta').textContent = etfListMeta(items, visibleItems.length)
   if (items.length === 0) {
     document.querySelector('#etfList').innerHTML = '<li class="empty-state">조건에 맞는 ETF가 없습니다.</li>'
+    document.querySelector('#etfLoadMoreButton').hidden = true
     return
   }
 
-  document.querySelector('#etfList').innerHTML = items.map((item) => `
+  document.querySelector('#etfList').innerHTML = visibleItems.map((item) => `
     <li>
       <button class="${item.code === state.selectedEtfCode ? 'active' : ''}" type="button" data-etf-code="${item.code}">
         <span>
@@ -1212,6 +1270,11 @@ function renderEtfList() {
       </button>
     </li>
   `).join('')
+
+  const remaining = Math.max(items.length - visibleItems.length, 0)
+  const loadMoreButton = document.querySelector('#etfLoadMoreButton')
+  loadMoreButton.hidden = remaining === 0
+  loadMoreButton.textContent = `아래로 20개 더 보기 ↓ (${remaining.toLocaleString('ko-KR')}개 남음)`
 }
 
 function renderEtfDetail() {
@@ -1304,9 +1367,10 @@ function sortedRows(rows) {
 }
 
 function rowsForSort() {
-  if (state.sortKey === 'netSell' || state.sortKey === 'sellStreak') return state.rows.filter((row) => row.netAmount < 0)
-  if (state.sortKey === 'marketCapAsc') return state.rows.filter((row) => row.marketCap)
-  return state.rows.filter((row) => row.netAmount > 0)
+  const rows = activePensionRows()
+  if (state.sortKey === 'netSell' || state.sortKey === 'sellStreak') return rows.filter((row) => row.netAmount < 0)
+  if (state.sortKey === 'marketCapAsc') return rows.filter((row) => row.netAmount > 0 && row.marketCap)
+  return rows.filter((row) => row.netAmount > 0)
 }
 
 function sortLabel() {
@@ -1329,9 +1393,10 @@ function streakLabel(row) {
 function rankingMetaText(visibleCount, totalCount) {
   const tradeDays = state.meta?.files?.length ?? state.dates.length
   const marketCapCount = state.stockMeta.size
+  const periodDays = state.pensionSection === 'search' ? pensionPeriodDates().length : null
   return [
     `${sortLabel()} · ${visibleCount.toLocaleString('ko-KR')} / ${totalCount.toLocaleString('ko-KR')}개`,
-    `누적 ${tradeDays.toLocaleString('ko-KR')}거래일`,
+    periodDays ? `최근 ${periodDays.toLocaleString('ko-KR')}거래일 누적` : `누적 ${tradeDays.toLocaleString('ko-KR')}거래일`,
     `시총 ${marketCapCount.toLocaleString('ko-KR')}개`,
   ].join(' · ')
 }
@@ -1449,9 +1514,25 @@ function renderStockViews() {
   updateStockTable()
 }
 
+function setPensionSection(section) {
+  state.pensionSection = section
+  state.visibleLimit = 20
+
+  document.querySelectorAll('#pensionSubTabs button').forEach((item) => {
+    item.classList.toggle('active', item.dataset.pensionSection === section)
+  })
+  document.querySelectorAll('[data-pension-pane]').forEach((pane) => {
+    pane.classList.toggle('active', pane.dataset.pensionPane === section)
+  })
+
+  updateSearchResults()
+  updateStockTable()
+}
+
 function setEtfSection(section) {
   state.etfSection = section
   state.selectedHolding = null
+  state.etfVisibleLimit = 20
 
   if (section === 'theme') {
     state.etfQuery = ''
@@ -1501,6 +1582,7 @@ function bindControls() {
     const button = event.target.closest('button[data-chart-period]')
     if (!button) return
     state.chartPeriod = Number(button.dataset.chartPeriod)
+    state.visibleLimit = 20
     document.querySelectorAll('#chartPeriodTabs button').forEach((item) => item.classList.toggle('active', item === button))
     renderEtfSections()
     renderStockViews()
@@ -1524,6 +1606,12 @@ function bindControls() {
     document.querySelectorAll('[data-kr-stock-pane]').forEach((pane) => {
       pane.classList.toggle('active', pane.dataset.krStockPane === state.krStockSection)
     })
+  })
+
+  document.querySelector('#pensionSubTabs').addEventListener('click', (event) => {
+    const button = event.target.closest('button[data-pension-section]')
+    if (!button) return
+    setPensionSection(button.dataset.pensionSection)
   })
 
   document.querySelector('#themeSectionGrid').addEventListener('click', (event) => {
@@ -1576,7 +1664,7 @@ function bindControls() {
   document.querySelector('#searchResults').addEventListener('click', (event) => {
     const button = event.target.closest('button[data-search-ticker]')
     if (!button) return
-    const row = state.rows.find((item) => item.ticker === button.dataset.searchTicker)
+    const row = rankedRowsForCurrentSort().find((item) => item.ticker === button.dataset.searchTicker)
     if (!row) return
     state.query = row.name
     state.visibleLimit = 20
@@ -1599,6 +1687,7 @@ function bindControls() {
   document.querySelector('#etfSearch').addEventListener('input', (event) => {
     state.etfQuery = event.target.value
     state.selectedHolding = null
+    state.etfVisibleLimit = 20
     renderEtfList()
     renderEtfDetail()
   })
@@ -1610,6 +1699,7 @@ function bindControls() {
       state.etfTheme = button.dataset.value
       state.etfQuery = ''
       state.selectedHolding = null
+      state.etfVisibleLimit = 20
       document.querySelector('#etfSearch').value = ''
       renderEtfList()
       renderEtfDetail()
@@ -1632,6 +1722,11 @@ function bindControls() {
     state.selectedHolding = null
     renderEtfList()
     renderEtfDetail()
+  })
+
+  document.querySelector('#etfLoadMoreButton').addEventListener('click', () => {
+    state.etfVisibleLimit += 20
+    renderEtfList()
   })
 
   document.querySelector('#etfDetail').addEventListener('click', (event) => {

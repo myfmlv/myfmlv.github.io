@@ -64,56 +64,65 @@
               <small id="tradeDateHint"></small>
             </section>
 
-            <div class="section-grid compact" id="pensionSectionGrid"></div>
+            <nav class="sub-tabs compact-subtabs" id="pensionSubTabs" aria-label="연기금 수급 중분류">
+              <button class="active" type="button" data-pension-section="trend">매매 동향</button>
+              <button type="button" data-pension-section="search">검색</button>
+            </nav>
 
-            <section class="stock-toolbar" aria-label="연기금 종목 검색과 정렬">
-              <div class="toolbar-head">
-                <label class="search-box">
-                  <span>종목 검색</span>
-                  <input id="stockSearch" type="search" placeholder="종목명 또는 코드" autocomplete="off" />
-                </label>
-                <div class="sort-row" id="sortRow">
-                  <button class="active" type="button" data-sort="netBuy">순매수금액</button>
-                  <button type="button" data-sort="netSell">순매도금액</button>
-                  <button type="button" data-sort="buyStreak">연속 순매수</button>
-                  <button type="button" data-sort="sellStreak">연속 순매도</button>
-                  <button type="button" data-sort="buyToMarketCap">시총대비 매수금액</button>
-                  <button type="button" data-sort="marketCapAsc">시가총액 작은순</button>
-                </div>
-              </div>
-              <div class="search-results" id="searchResults" hidden></div>
+            <section class="pension-subview active" data-pension-pane="trend" aria-label="연기금 매매 동향">
+              <div class="section-grid compact" id="pensionSectionGrid"></div>
             </section>
 
-            <article class="wide-panel">
-              <div class="panel-head">
-                <div>
-                  <p>DETAIL</p>
-                  <h2>연기금 수급 랭킹</h2>
+            <section class="pension-subview" data-pension-pane="search" aria-label="연기금 종목 검색">
+              <section class="stock-toolbar" aria-label="연기금 종목 검색과 정렬">
+                <div class="toolbar-head">
+                  <label class="search-box">
+                    <span>종목 검색</span>
+                    <input id="stockSearch" type="search" placeholder="종목명 또는 코드" autocomplete="off" />
+                  </label>
+                  <div class="sort-row" id="sortRow">
+                    <button class="active" type="button" data-sort="netBuy">순매수금액</button>
+                    <button type="button" data-sort="netSell">순매도금액</button>
+                    <button type="button" data-sort="buyStreak">연속 순매수</button>
+                    <button type="button" data-sort="sellStreak">연속 순매도</button>
+                    <button type="button" data-sort="buyToMarketCap">시총대비 매수금액</button>
+                    <button type="button" data-sort="marketCapAsc">시가총액 작은순</button>
+                  </div>
                 </div>
-                <span class="panel-meta" id="rankingMeta">20개 표시</span>
-              </div>
-              <div class="table-wrap">
-                <table>
-                  <thead>
-                    <tr>
-                      <th>순위</th>
-                      <th>종목</th>
-                      <th>수급금액</th>
-                      <th>수급수량</th>
-                      <th>매수금액</th>
-                      <th>시가총액</th>
-                      <th>매수/시총</th>
-                      <th>연속일</th>
-                      <th>미니 차트</th>
-                    </tr>
-                  </thead>
-                  <tbody id="stockTableBody">
-                    <tr><td colspan="9">데이터를 불러오는 중입니다.</td></tr>
-                  </tbody>
-                </table>
-              </div>
-              <button class="load-more" id="loadMoreButton" type="button" hidden>아래로 20개 더 보기 ↓</button>
-            </article>
+                <div class="search-results" id="searchResults" hidden></div>
+              </section>
+
+              <article class="wide-panel">
+                <div class="panel-head">
+                  <div>
+                    <p>DETAIL</p>
+                    <h2>연기금 수급 랭킹</h2>
+                  </div>
+                  <span class="panel-meta" id="rankingMeta">20개 표시</span>
+                </div>
+                <div class="table-wrap">
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>순위</th>
+                        <th>종목</th>
+                        <th>수급금액</th>
+                        <th>수급수량</th>
+                        <th>매수금액</th>
+                        <th>시가총액</th>
+                        <th>매수/시총</th>
+                        <th>연속일</th>
+                        <th>미니 차트</th>
+                      </tr>
+                    </thead>
+                    <tbody id="stockTableBody">
+                      <tr><td colspan="9">데이터를 불러오는 중입니다.</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+                <button class="load-more" id="loadMoreButton" type="button" hidden>아래로 20개 더 보기 ↓</button>
+              </article>
+            </section>
           </section>
         </section>
 
@@ -158,6 +167,7 @@
               <span class="panel-meta" id="etfListMeta">-</span>
             </div>
             <ol class="etf-list" id="etfList"></ol>
+            <button class="load-more" id="etfLoadMoreButton" type="button" hidden>아래로 20개 더 보기 ↓</button>
           </article>
           <article class="wide-panel etf-detail" id="etfDetail"></article>
         </section>
