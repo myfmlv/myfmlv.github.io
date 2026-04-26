@@ -22,14 +22,6 @@
 
       <section class="control-panel" id="controlPanel" aria-label="화면 컨트롤">
         <div class="control-row">
-          <nav class="period-tabs control-group" id="chartPeriodTabs" aria-label="차트 기간">
-            <span>차트</span>
-            <button type="button" data-chart-period="1">1일</button>
-            <button class="active" type="button" data-chart-period="5">5일</button>
-            <button type="button" data-chart-period="20">20일</button>
-            <button type="button" data-chart-period="60">60일</button>
-          </nav>
-
           <nav class="sub-tabs control-group" id="stockCountryTabs" aria-label="주식 국가">
             <button class="active" type="button" data-stock-country="kr">국내</button>
             <button type="button" data-stock-country="us">미국</button>
@@ -56,6 +48,13 @@
             <span>종목 검색</span>
             <input id="marketSearch" type="search" placeholder="종목명 또는 코드" autocomplete="off" />
           </label>
+
+          <nav class="period-tabs control-group" id="chartPeriodTabs" aria-label="차트 기간">
+            <button type="button" data-chart-period="1">1일</button>
+            <button class="active" type="button" data-chart-period="5">5일</button>
+            <button type="button" data-chart-period="20">20일</button>
+            <button type="button" data-chart-period="60">60일</button>
+          </nav>
         </div>
         <div class="search-results market-search-results" id="marketSearchResults" hidden></div>
       </section>
@@ -99,7 +98,7 @@
               <article class="wide-panel">
                 <div class="panel-head">
                   <div>
-                    <p>DETAIL</p>
+                    <p>연기금 수급</p>
                     <h2>연기금 수급 랭킹</h2>
                   </div>
                   <span class="panel-meta" id="rankingMeta">20개 표시</span>
@@ -159,7 +158,7 @@
           <article class="wide-panel">
             <div class="panel-head">
               <div>
-                <p>ETF</p>
+                <p>ETF 목록</p>
                 <h2 id="etfListTitle">ETF 목록</h2>
               </div>
               <span class="panel-meta" id="etfListMeta">-</span>

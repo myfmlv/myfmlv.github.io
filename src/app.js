@@ -1192,9 +1192,9 @@ function renderListPanel({ title, meta, items }) {
 
 function renderThemeSections() {
   const panels = [
-    { title: '상승중인 테마', meta: 'theme up', items: staticItems(themeUp, 'up') },
-    { title: '하락중인 테마', meta: 'theme down', items: staticItems(themeDown, 'down') },
-    { title: '현재 핫한 테마', meta: 'hot theme', items: staticItems(hotThemes, 'up', (value) => `3일 ${value}%`) },
+    { title: '상승중인 테마', meta: '테마 상승', items: staticItems(themeUp, 'up') },
+    { title: '하락중인 테마', meta: '테마 하락', items: staticItems(themeDown, 'down') },
+    { title: '현재 핫한 테마', meta: '관심 테마', items: staticItems(hotThemes, 'up', (value) => `3일 ${value}%`) },
   ]
 
   document.querySelector('#themeSectionGrid').innerHTML = panels.map(renderListPanel).join('')
@@ -1207,7 +1207,7 @@ function renderThemeDetail() {
   document.querySelector('#themeDetail').innerHTML = `
     <div class="panel-head">
       <div>
-        <p>THEME DETAIL</p>
+        <p>테마 구성</p>
         <h2>${escapeHtml(themeName)}</h2>
       </div>
       <span class="panel-meta">${rows.length.toLocaleString('ko-KR')}종목</span>
@@ -1233,16 +1233,16 @@ function renderThemeDetail() {
 
 function renderMarketInsights() {
   const panels = [
-    { title: '시장 요약', meta: 'KRX + index', items: marketSummaryItems() },
-    { title: '거래대금 상위', meta: 'top amount', items: marketRankingItems('amount') },
+    { title: '시장 요약', meta: '국내 시장', items: marketSummaryItems() },
+    { title: '거래대금 상위', meta: '거래대금', items: marketRankingItems('amount') },
   ]
 
   document.querySelector('#marketInsightGrid').innerHTML = panels.map(renderListPanel).join('')
 
   const rankingPanels = [
-    { title: '시가총액 상위', meta: 'market cap', items: marketCapItems() },
-    { title: '검색 상위', meta: 'search', items: marketSearchItems() },
-    { title: '인기 종목', meta: 'popular', items: marketPopularItems() },
+    { title: '시가총액 상위', meta: '시가총액', items: marketCapItems() },
+    { title: '검색 상위', meta: '검색 관심', items: marketSearchItems() },
+    { title: '인기 종목', meta: '수급 관심', items: marketPopularItems() },
   ]
 
   document.querySelector('#marketRankingGrid').innerHTML = rankingPanels.map(renderListPanel).join('')
@@ -1251,10 +1251,10 @@ function renderMarketInsights() {
 
 function renderUsMarket() {
   const panels = [
-    { title: '미국 시가총액', meta: 'market cap', items: usStockItems('marketCap') },
-    { title: '거래대금 상위', meta: 'top amount', items: usStockItems('amount') },
-    { title: '검색 상위', meta: 'search', items: usStockItems('search') },
-    { title: '인기 종목', meta: 'popular', items: usStockItems('popular') },
+    { title: '미국 시가총액', meta: '시가총액', items: usStockItems('marketCap') },
+    { title: '거래대금 상위', meta: '거래대금', items: usStockItems('amount') },
+    { title: '검색 상위', meta: '검색 관심', items: usStockItems('search') },
+    { title: '인기 종목', meta: '관심 종목', items: usStockItems('popular') },
   ]
 
   document.querySelector('#usMarketGrid').innerHTML = panels.map(renderListPanel).join('')
@@ -1262,10 +1262,10 @@ function renderUsMarket() {
 
 function renderPensionSections() {
   const panels = [
-    { title: '순매수 상위', meta: 'pension buy', items: pensionItems('buy') },
-    { title: '순매도 상위', meta: 'pension sell', items: pensionItems('sell') },
-    { title: '연속 순매수', meta: 'buy streak', items: pensionItems('buyStreak') },
-    { title: '시총대비 매수 집중', meta: 'buy / market cap', items: pensionItems('buyToMarketCap') },
+    { title: '순매수 상위', meta: '연기금 매수', items: pensionItems('buy') },
+    { title: '순매도 상위', meta: '연기금 매도', items: pensionItems('sell') },
+    { title: '연속 순매수', meta: '연속 매수', items: pensionItems('buyStreak') },
+    { title: '시총대비 매수 집중', meta: '시총 대비', items: pensionItems('buyToMarketCap') },
   ]
 
   document.querySelector('#pensionSectionGrid').innerHTML = panels.map(renderListPanel).join('')
@@ -1348,13 +1348,13 @@ function etfsByHolding(holdingTicker) {
 
 function renderEtfSections() {
   const themePanels = [
-    { title: 'ETF 상승 테마', meta: 'theme', items: etfPanelItems('theme') },
-    { title: '거래대금 많은 ETF', meta: 'top amount', items: etfPanelItems('amount') },
-    { title: '가장 많이 오른 ETF', meta: 'top gainers', items: etfPanelItems('allUp') },
+    { title: 'ETF 상승 테마', meta: '테마', items: etfPanelItems('theme') },
+    { title: '거래대금 많은 ETF', meta: '거래대금', items: etfPanelItems('amount') },
+    { title: '가장 많이 오른 ETF', meta: '상승률', items: etfPanelItems('allUp') },
   ]
   const usPanels = [
-    { title: '미국ETF 거래대금', meta: 'US listed', items: etfPanelItems('usAmount') },
-    { title: '미국ETF 상승', meta: 'US listed', items: etfPanelItems('usUp') },
+    { title: '미국ETF 거래대금', meta: '국내상장 미국', items: etfPanelItems('usAmount') },
+    { title: '미국ETF 상승', meta: '국내상장 미국', items: etfPanelItems('usUp') },
   ]
 
   document.querySelector('#etfThemeGrid').innerHTML = themePanels.map(renderListPanel).join('')
