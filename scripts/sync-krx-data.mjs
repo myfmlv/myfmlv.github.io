@@ -17,7 +17,7 @@ function countDataRows(text) {
   return Math.max(0, text.split(/\r?\n/).filter((line) => line.trim()).length - 1)
 }
 
-const sourceDir = getArg('source') ?? defaultSourceDir
+const sourceDir = getArg('source') ?? (process.env.KRX_SOURCE_DIR ? path.resolve(process.env.KRX_SOURCE_DIR) : defaultSourceDir)
 const outputDir = getArg('out') ?? defaultOutputDir
 
 await mkdir(outputDir, { recursive: true })

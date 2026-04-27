@@ -1,6 +1,14 @@
+import { formatDateTime } from './utils/date.js'
+import { escapeHtml, renderTableState } from './utils/dom.js'
+import { formatNullableNumber, toNumberStrict } from './utils/number.js'
+
 const DATA_INDEX_URL = './data/krx/index.json'
 const DATA_BASE_URL = './data/krx'
 const NAVER_MARKET_URL = './data/naver-market.json'
+const MARKET_INDEX_URL = './data/market-index.json'
+const STOCK_META_URL = './data/stock-meta.json'
+const US_STOCKS_URL = './data/us-stocks.json'
+const ETF_UNIVERSE_URL = './data/etf-universe.json'
 
 const themeUp = [
   ['반도체 제품(전력반도체)', 10.4, [21, 24, 23, 29, 31, 38, 44]],
@@ -450,6 +458,24 @@ const fallbackEtfUniverse = [
 
 let etfUniverse = [...fallbackEtfUniverse]
 
+const dataSourceDefaults = {
+  krx: { label: 'KRX 연기금', state: 'loading', detail: 'index.json 확인 중' },
+  stockMeta: { label: '종목 메타', state: 'loading', detail: '시가총액과 차트 보강 데이터 확인 중' },
+  naverMarket: { label: 'Naver 마켓', state: 'loading', detail: '테마/검색/거래대금 랭킹 확인 중' },
+  marketIndex: { label: '시장지표', state: 'loading', detail: '환율/원자재 지표 확인 중' },
+  usStocks: { label: '미국 주식', state: 'loading', detail: '미국 종목 가격 흐름 확인 중' },
+  etfs: { label: 'ETF', state: 'loading', detail: 'ETF 목록과 구성종목 확인 중' },
+}
+
+const dataStateLabels = {
+  loading: '확인 중',
+  live: '실데이터',
+  fallback: '백업 데이터',
+  sample: '샘플 데이터',
+  warning: '주의',
+  error: '오류',
+}
+
 const state = {
   view: 'stock',
   rows: [],
@@ -476,15 +502,12 @@ const state = {
   selectedEtfCode: etfUniverse[0].code,
   selectedHolding: null,
   meta: null,
+  dataSources: Object.fromEntries(Object.entries(dataSourceDefaults).map(([key, value]) => [key, { ...value }])),
 }
 
-function escapeHtml(value) {
-  return String(value)
-    .replaceAll('&', '&amp;')
-    .replaceAll('<', '&lt;')
-    .replaceAll('>', '&gt;')
-    .replaceAll('"', '&quot;')
-    .replaceAll("'", '&#039;')
+let appDataStatus = {
+  usedFallback: false,
+  errors: [],
 }
 
 function splitCsvLine(line) {
@@ -518,7 +541,7 @@ function splitCsvLine(line) {
 }
 
 function toNumber(value) {
-  return Number(String(value ?? '').replace(/[^0-9.-]/g, '')) || 0
+  return toNumberStrict(value) ?? 0
 }
 
 function normalizeInvestorLabel(value) {
@@ -580,7 +603,7 @@ function formatMarketCap(value) {
 }
 
 function formatNumber(value) {
-  return value.toLocaleString('ko-KR')
+  return formatNullableNumber(value)
 }
 
 function formatPercentRatio(value) {
@@ -606,6 +629,204 @@ function formatSignedPrice(value) {
   if (!Number.isFinite(number)) return '-'
   const sign = number > 0 ? '+' : ''
   return `${sign}${number.toLocaleString('ko-KR', { maximumFractionDigits: 2 })}원`
+}
+
+function formatDateId(value) {
+  const text = String(value ?? '').trim()
+  const match = text.match(/^(\d{4})(\d{2})(\d{2})$/)
+  if (!match) return text || '-'
+  return `${match[1]}.${match[2]}.${match[3]}`
+}
+
+function latestTimestamp(values) {
+  const timestamps = values
+    .filter(Boolean)
+    .map((value) => Date.parse(value))
+    .filter(Number.isFinite)
+  if (timestamps.length === 0) return null
+  return new Date(Math.max(...timestamps)).toISOString()
+}
+
+function getDataFreshnessStatus(generatedAt) {
+  if (!generatedAt) {
+    return {
+      status: 'fallback',
+      label: '갱신시각 없음',
+    }
+  }
+
+  const generatedTime = new Date(generatedAt).getTime()
+  if (Number.isNaN(generatedTime)) {
+    return {
+      status: 'fallback',
+      label: '갱신시각 오류',
+    }
+  }
+
+  const ageHours = (Date.now() - generatedTime) / 1000 / 60 / 60
+
+  if (ageHours <= 48) {
+    return {
+      status: 'ok',
+      label: '정상',
+    }
+  }
+
+  if (ageHours <= 72) {
+    return {
+      status: 'stale',
+      label: '지연',
+    }
+  }
+
+  return {
+    status: 'error',
+    label: '오래됨',
+  }
+}
+
+function setDataSource(key, patch) {
+  state.dataSources[key] = { ...state.dataSources[key], ...patch }
+  renderDataStatus()
+}
+
+function recordDataFallback(source, error) {
+  appDataStatus.usedFallback = true
+  appDataStatus.errors.push({
+    source,
+    message: error?.message ?? String(error ?? 'unknown error'),
+  })
+}
+
+function recordDataError(source, error) {
+  appDataStatus.errors.push({
+    source,
+    message: error?.message ?? String(error ?? 'unknown error'),
+  })
+}
+
+function marketIndexUpdatedAt(marketIndex) {
+  if (!Array.isArray(marketIndex)) return null
+  return latestTimestamp(marketIndex.map((item) => item.updatedAt))
+}
+
+function aggregateFreshnessStatus(values) {
+  const statuses = values.map(getDataFreshnessStatus)
+  if (statuses.some((item) => item.status === 'error')) return { status: 'error', label: '오래됨' }
+  if (statuses.some((item) => item.status === 'stale')) return { status: 'stale', label: '지연' }
+  if (statuses.some((item) => item.status === 'fallback')) return { status: 'fallback', label: '일부 갱신시각 없음' }
+  return { status: 'ok', label: '정상' }
+}
+
+function renderDataSourceList(sources) {
+  const sourceList = document.querySelector('#dataSourceList')
+  if (!sourceList) return
+
+  sourceList.innerHTML = sources.map((source) => `
+    <div class="data-source" data-state="${escapeHtml(source.state)}">
+      <dt>${escapeHtml(source.label)}</dt>
+      <dd>
+        <strong>${escapeHtml(dataStateLabels[source.state] ?? source.state)}</strong>
+        <span>${escapeHtml(source.detail ?? '')}</span>
+      </dd>
+    </div>
+  `).join('')
+}
+
+function updateDataStatusPanel({
+  krxIndex,
+  naverMarket,
+  marketIndex,
+  usedFallback = false,
+  error = null,
+} = {}) {
+  const panel = document.querySelector('.data-status-panel')
+  const main = document.getElementById('dataStatusMain')
+  const meta = document.getElementById('dataStatusMeta')
+
+  if (!panel || !main || !meta) return
+
+  const sources = Object.values(state.dataSources)
+  const loadingCount = sources.filter((source) => source.state === 'loading').length
+  const fallbackSources = sources.filter((source) => ['fallback', 'sample'].includes(source.state))
+  const errorSources = sources.filter((source) => source.state === 'error')
+  const recordedErrors = appDataStatus.errors.map((item) => `${item.source}: ${item.message}`)
+  const marketUpdatedAt = marketIndexUpdatedAt(marketIndex)
+  const missing = [
+    !krxIndex?.latest ? 'KRX 기준일' : null,
+    !krxIndex?.generatedAt ? 'KRX 생성시각' : null,
+    !naverMarket?.generatedAt ? '네이버 마켓 생성시각' : null,
+    !marketUpdatedAt ? '시장지표 갱신시각' : null,
+  ].filter(Boolean)
+  const freshness = aggregateFreshnessStatus([
+    krxIndex?.generatedAt,
+    naverMarket?.generatedAt,
+    marketUpdatedAt,
+  ].filter(Boolean))
+
+  let status = freshness.status
+  let title = `데이터 상태: ${freshness.status === 'ok' ? '최신 실데이터' : freshness.label}`
+
+  if (loadingCount > 0) {
+    status = 'loading'
+    title = '데이터 상태: 확인 중'
+  }
+
+  if (missing.length > 0 && loadingCount === 0) {
+    status = status === 'ok' ? 'fallback' : status
+    title = '데이터 상태: 일부 데이터 누락'
+  }
+
+  if (freshness.status === 'stale') {
+    title = '데이터 상태: 지연된 실데이터'
+  }
+
+  if (freshness.status === 'error') {
+    title = '데이터 상태: 오래된 실데이터'
+  }
+
+  if (usedFallback || appDataStatus.usedFallback || fallbackSources.length > 0) {
+    status = 'fallback'
+    title = '최신 데이터를 불러오지 못해 백업 데이터를 표시 중입니다.'
+  }
+
+  if (error || errorSources.length > 0) {
+    status = 'error'
+    title = '데이터 상태: 일부 데이터 로딩 실패'
+  }
+
+  panel.dataset.status = status
+  panel.dataset.state = status
+  main.textContent = title
+
+  const krxLatest = krxIndex?.latest ? `KRX 기준일: ${formatDateId(krxIndex.latest)}` : 'KRX 기준일: -'
+  const krxGenerated = `KRX 생성: ${formatDateTime(krxIndex?.generatedAt)}`
+  const naverGenerated = `네이버 마켓 생성: ${formatDateTime(naverMarket?.generatedAt)}`
+  const marketUpdated = `시장지표 갱신: ${formatDateTime(marketUpdatedAt)}`
+  const warnings = [
+    fallbackSources.length > 0 ? `fallback: ${fallbackSources.map((source) => source.label).join(', ')}` : null,
+    errorSources.length > 0 ? `오류: ${errorSources.map((source) => source.label).join(', ')}` : null,
+    recordedErrors.length > 0 ? `실패: ${recordedErrors.join(' / ')}` : null,
+    missing.length > 0 ? `누락: ${missing.join(', ')}` : null,
+  ].filter(Boolean)
+
+  meta.textContent = [
+    `${krxLatest} · ${krxGenerated} · ${naverGenerated} · ${marketUpdated}`,
+    warnings.length > 0 ? `경고: ${warnings.join(' · ')}` : null,
+  ].filter(Boolean).join(' · ')
+
+  renderDataSourceList(sources)
+}
+
+function renderDataStatus() {
+  const sources = Object.values(state.dataSources)
+  updateDataStatusPanel({
+    krxIndex: state.meta,
+    naverMarket: state.naverMarket,
+    marketIndex: state.marketIndex,
+    usedFallback: appDataStatus.usedFallback || sources.some((source) => ['fallback', 'sample'].includes(source.state)),
+    error: sources.find((source) => source.state === 'error')?.detail ?? null,
+  })
 }
 
 function formatUsd(value) {
@@ -1290,6 +1511,11 @@ function isPensionView() {
   return state.view === 'stock' && state.stockCountry === 'kr' && state.krStockSection === 'pension'
 }
 
+function setPanelActive(panel, active) {
+  panel.classList.toggle('active', active)
+  panel.hidden = !active
+}
+
 function syncControlBar() {
   document.querySelector('#stockCountryTabs').hidden = state.view !== 'stock'
   document.querySelector('#krStockSubTabs').hidden = state.view !== 'stock' || state.stockCountry !== 'kr'
@@ -1306,6 +1532,7 @@ function updateMarketSearchResults() {
   if (!isDomesticMarketView() || !query) {
     container.hidden = true
     container.innerHTML = ''
+    if (isDomesticMarketView()) updateResultStatus(0)
     return
   }
 
@@ -1313,8 +1540,10 @@ function updateMarketSearchResults() {
   container.hidden = false
   if (matches.length === 0) {
     container.innerHTML = '<div class="search-result-head"><span>검색 결과 없음</span></div>'
+    updateResultStatus(0)
     return
   }
+  updateResultStatus(matches.length)
 
   container.innerHTML = `
     <div class="search-result-head">
@@ -1437,7 +1666,7 @@ function renderListPanel({ title, meta, items }) {
         <span class="panel-meta">${items.length}개</span>
       </div>
       <ol class="rank-list">
-        ${items.map((item) => `
+        ${items.length === 0 ? '<li class="empty-state">표시할 데이터가 없습니다.</li>' : items.map((item) => `
           <li class="rank-item">
             <span class="rank">${item.rank}</span>
             <div class="item-main">
@@ -1690,12 +1919,13 @@ function renderEtfList() {
   if (items.length === 0) {
     document.querySelector('#etfList').innerHTML = '<li class="empty-state">조건에 맞는 ETF가 없습니다.</li>'
     document.querySelector('#etfLoadMoreButton').hidden = true
+    updateResultStatus(0)
     return
   }
 
   document.querySelector('#etfList').innerHTML = visibleItems.map((item) => `
     <li>
-      <button class="${item.code === state.selectedEtfCode ? 'active' : ''}" type="button" data-etf-code="${item.code}">
+      <button class="${item.code === state.selectedEtfCode ? 'active' : ''}" type="button" data-etf-code="${item.code}" aria-pressed="${item.code === state.selectedEtfCode ? 'true' : 'false'}">
         <span>
           <strong>${escapeHtml(item.name)}</strong>
           <small>${escapeHtml(item.code)} · ${escapeHtml(item.issuer)} · ${escapeHtml(item.category)}</small>
@@ -1709,6 +1939,7 @@ function renderEtfList() {
   const loadMoreButton = document.querySelector('#etfLoadMoreButton')
   loadMoreButton.hidden = remaining === 0
   loadMoreButton.textContent = `아래로 20개 더 보기 ↓ (${remaining.toLocaleString('ko-KR')}개 남음)`
+  updateResultStatus(visibleItems.length)
 }
 
 function renderEtfDetail() {
@@ -1754,7 +1985,7 @@ function renderEtfDetail() {
           <ol class="holding-list">
             ${holdings.map(([name, ticker, ratio]) => `
               <li>
-                <button class="${holdingKey(name, ticker) === selectedHolding ? 'active' : ''}" type="button" data-holding-key="${escapeHtml(holdingKey(name, ticker))}">
+                <button class="${holdingKey(name, ticker) === selectedHolding ? 'active' : ''}" type="button" data-holding-key="${escapeHtml(holdingKey(name, ticker))}" aria-pressed="${holdingKey(name, ticker) === selectedHolding ? 'true' : 'false'}">
                   <span>${escapeHtml(name)}<small>${escapeHtml(ticker || '종목코드 미확인')}</small></span>
                   <b>${Number(ratio).toFixed(1)}%</b>
                 </button>
@@ -1783,7 +2014,77 @@ function renderEtfDetail() {
 }
 
 function renderSummary() {
-  // 거래일 선택 UI는 제거하고 최신 거래일 기준만 사용한다.
+  renderDataStatus()
+}
+
+function updateResultStatus(count) {
+  const el = document.getElementById('resultStatus')
+  if (!el) return
+  el.textContent = `${count.toLocaleString('ko-KR')}개 결과가 표시되었습니다.`
+}
+
+function renderMobileStockState(message, tone = 'muted') {
+  const container = document.getElementById('mobileStockList')
+  if (!container) return
+
+  container.innerHTML = `
+    <div class="mobile-stock-card mobile-stock-card--${escapeHtml(tone)}">
+      <div class="mobile-stock-card__name">${escapeHtml(message)}</div>
+    </div>
+  `
+}
+
+function renderMobileStockList(rows) {
+  const container = document.getElementById('mobileStockList')
+  if (!container) return
+
+  if (!Array.isArray(rows) || rows.length === 0) {
+    renderMobileStockState('표시할 종목이 없습니다.', 'empty')
+    return
+  }
+
+  container.innerHTML = rows.slice(0, 30).map((row, index) => {
+    const rank = row.absoluteRank || row.rank || index + 1
+    const name = row.name || row.stockName || '-'
+    const code = row.code || row.ticker || '-'
+    const netBuy = row.netBuyText || row.netBuy || row.pensionNetBuy || `${formatMoney(row.netAmount ?? 0)}원`
+    const streak = row.streakText || row.streak || streakLabel(row)
+    const strength = row.strengthText || row.marketCapBuyRatio || formatPercentRatio(row.buyToMarketCap)
+    const change = row.changeRateText || formatSignedPercent(row.changeRate)
+    const tone = row.netAmount < 0 ? 'down' : 'up'
+
+    return `
+      <article class="mobile-stock-card">
+        <div class="mobile-stock-card__head">
+          <div>
+            <div class="mobile-stock-card__rank">#${escapeHtml(String(rank))}</div>
+            <a class="mobile-stock-card__name" href="https://finance.naver.com/item/main.naver?code=${escapeHtml(String(code))}" target="_blank" rel="noreferrer">${escapeHtml(String(name))}</a>
+            <div class="mobile-stock-card__code">${escapeHtml(String(code))}</div>
+          </div>
+          ${sparkline(stockTrend(row), tone)}
+        </div>
+
+        <div class="mobile-stock-card__metrics">
+          <div class="mobile-stock-card__metric">
+            <span class="mobile-stock-card__label">연기금 순매수</span>
+            <span class="mobile-stock-card__value ${tone}">${escapeHtml(String(netBuy))}</span>
+          </div>
+          <div class="mobile-stock-card__metric">
+            <span class="mobile-stock-card__label">연속 매수</span>
+            <span class="mobile-stock-card__value">${escapeHtml(String(streak))}</span>
+          </div>
+          <div class="mobile-stock-card__metric">
+            <span class="mobile-stock-card__label">수급 강도</span>
+            <span class="mobile-stock-card__value">${escapeHtml(String(strength))}</span>
+          </div>
+          <div class="mobile-stock-card__metric">
+            <span class="mobile-stock-card__label">등락률</span>
+            <span class="mobile-stock-card__value">${escapeHtml(String(change))}</span>
+          </div>
+        </div>
+      </article>
+    `
+  }).join('')
 }
 
 function sortedRows(rows) {
@@ -1826,6 +2127,7 @@ function rankingMetaText(visibleCount, totalCount) {
   const marketCapCount = state.stockMeta.size
   const periodDays = state.pensionSection === 'search' ? pensionPeriodDates().length : null
   return [
+    state.currentDate ? `${formatDateId(state.currentDate)} 기준` : '기준일 확인 중',
     `${sortLabel()} · ${visibleCount.toLocaleString('ko-KR')} / ${totalCount.toLocaleString('ko-KR')}개`,
     periodDays ? `최근 ${periodDays.toLocaleString('ko-KR')}거래일 누적` : `누적 ${tradeDays.toLocaleString('ko-KR')}거래일`,
     `시총 ${marketCapCount.toLocaleString('ko-KR')}개`,
@@ -1845,29 +2147,32 @@ function updateStockTable() {
 
   const tbody = document.querySelector('#stockTableBody')
   if (state.filteredRows.length === 0) {
-    tbody.innerHTML = '<tr><td colspan="9">검색 결과가 없습니다.</td></tr>'
+    const message = query ? '검색 결과가 없습니다.' : '표시할 데이터가 없습니다.'
+    renderTableState(tbody, message, { tone: 'empty' })
+    renderMobileStockState(message, 'empty')
     document.querySelector('#rankingMeta').textContent = rankingMetaText(0, 0)
     document.querySelector('#loadMoreButton').hidden = true
+    updateResultStatus(0)
     return
   }
 
   const visibleRows = state.filteredRows.slice(0, state.visibleLimit)
   tbody.innerHTML = visibleRows.map((row) => `
     <tr>
-      <td><span class="rank-pill">${row.absoluteRank}</span></td>
-      <td>
+      <td data-label="순위"><span class="rank-pill">${row.absoluteRank}</span></td>
+      <td data-label="종목">
         <div class="stock-name">
           <a href="https://finance.naver.com/item/main.naver?code=${row.ticker}" target="_blank" rel="noreferrer">${escapeHtml(row.name)}</a>
           <small>${escapeHtml(row.ticker)} · ${escapeHtml(row.investor)}</small>
         </div>
       </td>
-      <td class="value ${row.netAmount >= 0 ? 'up' : 'down'}">${formatMoney(row.netAmount)}원<small>${sortLabel()}</small></td>
-      <td>${formatNumber(row.netVolume)}주</td>
-      <td>${formatMoney(row.buyAmount)}원</td>
-      <td>${escapeHtml(row.marketCapLabel || '-')}</td>
-      <td>${formatPercentRatio(row.buyToMarketCap)}</td>
-      <td>${streakLabel(row)}</td>
-      <td>${sparkline(stockTrend(row), row.netAmount >= 0 ? 'up' : 'down')}</td>
+      <td data-label="수급금액" class="value ${row.netAmount >= 0 ? 'up' : 'down'}">${formatMoney(row.netAmount)}원<small>${sortLabel()}</small></td>
+      <td data-label="수급수량">${formatNumber(row.netVolume)}주</td>
+      <td data-label="매수금액">${formatMoney(row.buyAmount)}원</td>
+      <td data-label="시가총액">${escapeHtml(row.marketCapLabel || '-')}</td>
+      <td data-label="매수/시총">${formatPercentRatio(row.buyToMarketCap)}</td>
+      <td data-label="연속일">${streakLabel(row)}</td>
+      <td data-label="미니 차트">${sparkline(stockTrend(row), row.netAmount >= 0 ? 'up' : 'down')}</td>
     </tr>
   `).join('')
 
@@ -1876,6 +2181,8 @@ function updateStockTable() {
   document.querySelector('#rankingMeta').textContent = rankingMetaText(visibleRows.length, state.filteredRows.length)
   loadMoreButton.hidden = remaining === 0
   loadMoreButton.textContent = `아래로 20개 더 보기 ↓ (${remaining.toLocaleString('ko-KR')}개 남음)`
+  renderMobileStockList(visibleRows)
+  updateResultStatus(visibleRows.length)
 }
 
 function updateSearchResults() {
@@ -1885,6 +2192,7 @@ function updateSearchResults() {
   if (!query) {
     container.hidden = true
     container.innerHTML = ''
+    updateResultStatus(state.filteredRows.length)
     return
   }
 
@@ -1895,8 +2203,10 @@ function updateSearchResults() {
   container.hidden = false
   if (matches.length === 0) {
     container.innerHTML = '<div class="search-result-head"><span>검색 결과 없음</span></div>'
+    updateResultStatus(0)
     return
   }
+  updateResultStatus(matches.length)
 
   container.innerHTML = `
     <div class="search-result-head">
@@ -1933,10 +2243,10 @@ function setPensionSection(section) {
   state.visibleLimit = 20
 
   document.querySelectorAll('#pensionSubTabs button').forEach((item) => {
-    item.classList.toggle('active', item.dataset.pensionSection === section)
+    setActiveState(item, item.dataset.pensionSection === section)
   })
   document.querySelectorAll('[data-pension-pane]').forEach((pane) => {
-    pane.classList.toggle('active', pane.dataset.pensionPane === section)
+    setPanelActive(pane, pane.dataset.pensionPane === section)
   })
 
   syncControlBar()
@@ -1959,10 +2269,10 @@ function setEtfSection(section) {
 
   document.querySelector('#etfSearch').value = state.etfQuery
   document.querySelectorAll('#etfSubTabs button').forEach((item) => {
-    item.classList.toggle('active', item.dataset.etfSection === section)
+    setActiveState(item, item.dataset.etfSection === section)
   })
   document.querySelectorAll('[data-etf-pane]').forEach((pane) => {
-    pane.classList.toggle('active', pane.dataset.etfPane === section)
+    setPanelActive(pane, pane.dataset.etfPane === section)
   })
   syncControlBar()
   renderEtfList()
@@ -1986,13 +2296,22 @@ function selectEtfFromPanel(code) {
   document.querySelector('.etf-layout').scrollIntoView({ block: 'nearest', behavior: 'smooth' })
 }
 
+function setActiveState(button, active) {
+  button.classList.toggle('active', active)
+  if (button.getAttribute('role') === 'tab') {
+    button.setAttribute('aria-selected', active ? 'true' : 'false')
+    return
+  }
+  button.setAttribute('aria-pressed', active ? 'true' : 'false')
+}
+
 function bindControls() {
   document.querySelector('#viewTabs').addEventListener('click', (event) => {
     const button = event.target.closest('button[data-view]')
     if (!button) return
     state.view = button.dataset.view
-    document.querySelectorAll('#viewTabs button').forEach((item) => item.classList.toggle('active', item === button))
-    document.querySelectorAll('.view').forEach((view) => view.classList.toggle('active', view.id === `${button.dataset.view}View`))
+    document.querySelectorAll('#viewTabs button').forEach((item) => setActiveState(item, item === button))
+    document.querySelectorAll('.view').forEach((view) => setPanelActive(view, view.id === `${button.dataset.view}View`))
     syncControlBar()
   })
 
@@ -2001,7 +2320,7 @@ function bindControls() {
     if (!button) return
     state.chartPeriod = Number(button.dataset.chartPeriod)
     state.visibleLimit = 20
-    document.querySelectorAll('#chartPeriodTabs button').forEach((item) => item.classList.toggle('active', item === button))
+    document.querySelectorAll('#chartPeriodTabs button').forEach((item) => setActiveState(item, item === button))
     renderEtfSections()
     renderStockViews()
   })
@@ -2010,9 +2329,9 @@ function bindControls() {
     const button = event.target.closest('button[data-stock-country]')
     if (!button) return
     state.stockCountry = button.dataset.stockCountry
-    document.querySelectorAll('#stockCountryTabs button').forEach((item) => item.classList.toggle('active', item === button))
+    document.querySelectorAll('#stockCountryTabs button').forEach((item) => setActiveState(item, item === button))
     document.querySelectorAll('[data-stock-country-pane]').forEach((pane) => {
-      pane.classList.toggle('active', pane.dataset.stockCountryPane === state.stockCountry)
+      setPanelActive(pane, pane.dataset.stockCountryPane === state.stockCountry)
     })
     syncControlBar()
   })
@@ -2021,9 +2340,9 @@ function bindControls() {
     const button = event.target.closest('button[data-kr-stock-section]')
     if (!button) return
     state.krStockSection = button.dataset.krStockSection
-    document.querySelectorAll('#krStockSubTabs button').forEach((item) => item.classList.toggle('active', item === button))
+    document.querySelectorAll('#krStockSubTabs button').forEach((item) => setActiveState(item, item === button))
     document.querySelectorAll('[data-kr-stock-pane]').forEach((pane) => {
-      pane.classList.toggle('active', pane.dataset.krStockPane === state.krStockSection)
+      setPanelActive(pane, pane.dataset.krStockPane === state.krStockSection)
     })
     syncControlBar()
   })
@@ -2069,7 +2388,7 @@ function bindControls() {
     if (!button) return
     state.sortKey = button.dataset.sort
     state.visibleLimit = 20
-    document.querySelectorAll('#sortRow button').forEach((item) => item.classList.toggle('active', item === button))
+    document.querySelectorAll('#sortRow button').forEach((item) => setActiveState(item, item === button))
     updateSearchResults()
     updateStockTable()
   })
@@ -2179,15 +2498,32 @@ async function loadKrxData() {
   state.dates = parsedEntries.map(([date]) => date)
   state.currentDate = latest
   state.rowsByDate = new Map(parsedEntries.map(([date, rows]) => [date, new Map(rows.map((row) => [row.ticker, row]))]))
-  state.rows = enrichRows(parsedEntries.find(([date]) => date === latest)?.[1] ?? parsedEntries[0][1])
+  const latestRows = parsedEntries.find(([date]) => date === latest)?.[1] ?? parsedEntries[0][1]
+  state.rows = enrichRows(latestRows)
+  setDataSource('krx', {
+    state: 'live',
+    detail: `${formatDateId(latest)} 기준 · ${files.length.toLocaleString('ko-KR')}거래일 · 최신 ${latestRows.length.toLocaleString('ko-KR')}행`,
+  })
 }
 
 async function loadMarketIndex() {
   try {
-    const response = await fetch('./data/market-index.json', { cache: 'no-store' })
-    if (!response.ok) return fallbackMarketIndex
-    return await response.json()
-  } catch {
+    const response = await fetch(MARKET_INDEX_URL, { cache: 'no-store' })
+    if (!response.ok) throw new Error(`HTTP ${response.status}`)
+    const payload = await response.json()
+    if (!Array.isArray(payload) || payload.length === 0) throw new Error('시장지표 배열이 비어 있습니다')
+    const updatedAt = latestTimestamp(payload.map((item) => item.updatedAt))
+    setDataSource('marketIndex', {
+      state: 'live',
+      detail: `${payload.length.toLocaleString('ko-KR')}개 지표${updatedAt ? ` · 갱신 ${formatDateTime(updatedAt)}` : ''}`,
+    })
+    return payload
+  } catch (error) {
+    recordDataFallback('market-index', error)
+    setDataSource('marketIndex', {
+      state: 'fallback',
+      detail: `시장지표 로딩 실패: ${error.message}. 내장 백업 ${fallbackMarketIndex.length.toLocaleString('ko-KR')}개 사용`,
+    })
     return fallbackMarketIndex
   }
 }
@@ -2195,9 +2531,23 @@ async function loadMarketIndex() {
 async function loadNaverMarket() {
   try {
     const response = await fetch(NAVER_MARKET_URL, { cache: 'no-store' })
-    if (!response.ok) return null
-    return response.json()
-  } catch {
+    if (!response.ok) throw new Error(`HTTP ${response.status}`)
+    const payload = await response.json()
+    if (!payload || typeof payload !== 'object') throw new Error('응답이 객체가 아닙니다')
+    const domesticCount = Object.values(payload.domestic ?? {}).reduce((sum, items) => sum + (Array.isArray(items) ? items.length : 0), 0)
+    const themeCount = Object.values(payload.themes ?? {}).reduce((sum, items) => sum + (Array.isArray(items) ? items.length : 0), 0)
+    const usCount = Object.values(payload.us ?? {}).reduce((sum, items) => sum + (Array.isArray(items) ? items.length : 0), 0)
+    setDataSource('naverMarket', {
+      state: 'live',
+      detail: `국내 ${domesticCount.toLocaleString('ko-KR')}개 · 테마 ${themeCount.toLocaleString('ko-KR')}개 · 미국 ${usCount.toLocaleString('ko-KR')}개 · 생성 ${formatDateTime(payload.generatedAt) ?? '-'}`,
+    })
+    return payload
+  } catch (error) {
+    recordDataFallback('naver-market', error)
+    setDataSource('naverMarket', {
+      state: 'fallback',
+      detail: `Naver 마켓 로딩 실패: ${error.message}. KRX/내장 백업 랭킹 사용`,
+    })
     return null
   }
 }
@@ -2206,11 +2556,15 @@ async function loadStockMeta() {
   const meta = builtinStockMeta()
 
   try {
-    const response = await fetch('./data/stock-meta.json', { cache: 'no-store' })
-    if (!response.ok) return meta
+    const response = await fetch(STOCK_META_URL, { cache: 'no-store' })
+    if (!response.ok) throw new Error(`HTTP ${response.status}`)
     const payload = await response.json()
     const entries = Array.isArray(payload) ? payload : Object.entries(payload).map(([ticker, value]) => ({ ticker, ...value }))
+    if (entries.length === 0) throw new Error('종목 메타데이터 없음')
 
+    let loadedCount = 0
+    let latestTradeDate = null
+    let latestUpdatedAt = null
     entries.forEach((item) => {
       if (!item.ticker || !item.marketCap) return
       const marketCap = Number(item.marketCap)
@@ -2237,8 +2591,23 @@ async function loadStockMeta() {
         latestCandle: item.latestCandle ?? null,
         chartSource: item.chartSource,
       })
+      loadedCount += 1
+      if (item.tradeDate && (!latestTradeDate || String(item.tradeDate) > latestTradeDate)) latestTradeDate = String(item.tradeDate)
+      const updatedAtTime = Date.parse(item.updatedAt)
+      if (Number.isFinite(updatedAtTime) && (!latestUpdatedAt || updatedAtTime > Date.parse(latestUpdatedAt))) latestUpdatedAt = item.updatedAt
     })
-  } catch {
+
+    if (loadedCount === 0) throw new Error('종목 메타데이터 없음')
+    setDataSource('stockMeta', {
+      state: 'live',
+      detail: `${loadedCount.toLocaleString('ko-KR')}개 종목${latestTradeDate ? ` · 기준 ${formatDateId(latestTradeDate)}` : ''}${latestUpdatedAt ? ` · 생성 ${formatDateTime(latestUpdatedAt)}` : ''}`,
+    })
+  } catch (error) {
+    recordDataFallback('stock-meta', error)
+    setDataSource('stockMeta', {
+      state: 'sample',
+      detail: `종목 메타데이터 없음: ${error.message}. 내장 샘플 ${meta.size.toLocaleString('ko-KR')}개로 시총/차트 제한`,
+    })
     return meta
   }
 
@@ -2247,22 +2616,31 @@ async function loadStockMeta() {
 
 async function loadUsStocks() {
   try {
-    const response = await fetch('./data/us-stocks.json', { cache: 'no-store' })
-    if (!response.ok) return
+    const response = await fetch(US_STOCKS_URL, { cache: 'no-store' })
+    if (!response.ok) throw new Error(`HTTP ${response.status}`)
     const payload = await response.json()
-    if (!Array.isArray(payload.stocks) || payload.stocks.length === 0) return
+    if (!Array.isArray(payload.stocks) || payload.stocks.length === 0) throw new Error('미국 주식 배열이 비어 있습니다')
     usStockUniverse = payload.stocks.map(normalizeLoadedUsStock).filter((item) => item.symbol && item.name)
-  } catch {
+    setDataSource('usStocks', {
+      state: 'live',
+      detail: `${usStockUniverse.length.toLocaleString('ko-KR')}개 종목 · 생성 ${formatDateTime(payload.generatedAt) ?? '-'}`,
+    })
+  } catch (error) {
     usStockUniverse = usStocks.map(normalizeLoadedUsStock)
+    recordDataFallback('us-stocks', error)
+    setDataSource('usStocks', {
+      state: 'sample',
+      detail: `미국 주식 로딩 실패: ${error.message}. 내장 샘플 ${usStockUniverse.length.toLocaleString('ko-KR')}개 사용`,
+    })
   }
 }
 
 async function loadEtfUniverse() {
   try {
-    const response = await fetch('./data/etf-universe.json', { cache: 'no-store' })
-    if (!response.ok) return
+    const response = await fetch(ETF_UNIVERSE_URL, { cache: 'no-store' })
+    if (!response.ok) throw new Error(`HTTP ${response.status}`)
     const payload = await response.json()
-    if (!Array.isArray(payload.etfs) || payload.etfs.length === 0) return
+    if (!Array.isArray(payload.etfs) || payload.etfs.length === 0) throw new Error('ETF 배열이 비어 있습니다')
 
     etfUniverse = payload.etfs
       .map(normalizeLoadedEtf)
@@ -2271,13 +2649,25 @@ async function loadEtfUniverse() {
     if (!etfUniverse.some((item) => item.code === state.selectedEtfCode)) {
       state.selectedEtfCode = etfUniverse[0]?.code ?? null
     }
-  } catch {
+    setDataSource('etfs', {
+      state: 'live',
+      detail: `${etfUniverse.length.toLocaleString('ko-KR')}개 ETF · 구성종목 ${Number(payload.holdingCount ?? 0).toLocaleString('ko-KR')}개 · 생성 ${formatDateTime(payload.generatedAt) ?? '-'}`,
+    })
+  } catch (error) {
     etfUniverse = fallbackEtfUniverse.map(normalizeLoadedEtf)
+    recordDataFallback('etf-universe', error)
+    setDataSource('etfs', {
+      state: 'sample',
+      detail: `ETF 로딩 실패: ${error.message}. 내장 샘플 ${etfUniverse.length.toLocaleString('ko-KR')}개 사용`,
+    })
   }
 }
 
 async function main() {
   bindControls()
+  renderDataStatus()
+  renderTableState(document.querySelector('#stockTableBody'), '데이터를 불러오는 중입니다.')
+  renderMobileStockState('데이터를 불러오는 중입니다.')
   await loadUsStocks()
   await loadEtfUniverse()
   renderEtfSections()
@@ -2293,12 +2683,18 @@ async function main() {
     renderUsMarket()
     updateStockTable()
   } catch (error) {
+    recordDataError('krx', error)
+    setDataSource('krx', {
+      state: 'error',
+      detail: `KRX 핵심 데이터 로딩 실패: ${error.message}`,
+    })
     document.querySelector('#themeSectionGrid').innerHTML = renderListPanel({ title: '데이터 오류', meta: 'error', items: [] })
     document.querySelector('#marketInsightGrid').innerHTML = ''
     document.querySelector('#marketRankingGrid').innerHTML = ''
     document.querySelector('#pensionSectionGrid').innerHTML = ''
     document.querySelector('#usMarketGrid').innerHTML = ''
-    document.querySelector('#stockTableBody').innerHTML = `<tr><td colspan="9">${escapeHtml(error.message)}</td></tr>`
+    renderTableState(document.querySelector('#stockTableBody'), '데이터를 불러오지 못했습니다. 잠시 후 다시 시도하세요.', { tone: 'error' })
+    renderMobileStockState('데이터를 불러오지 못했습니다. 잠시 후 다시 시도하세요.', 'error')
   }
 }
 

@@ -5,80 +5,131 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="ETF와 국내 주식 테마, KRX 연기금 수급을 미니멀하게 정리하는 MYFMLV 투자 대시보드"
+      content="국내 주식 연기금 수급, ETF, 테마, 시장지표를 한눈에 확인하는 투자 대시보드"
     />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self'; base-uri 'self'; form-action 'self'; object-src 'none';" />
+    <link rel="canonical" href="https://myfmlv.github.io/" />
+    <meta name="robots" content="index, follow" />
+    <meta name="theme-color" content="#0f172a" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="MYFMLV Market" />
+    <meta
+      property="og:description"
+      content="국내 주식 연기금 수급, ETF, 테마, 시장지표를 한눈에 확인하는 투자 대시보드"
+    />
+    <meta property="og:url" content="https://myfmlv.github.io/" />
+    <meta property="og:site_name" content="MYFMLV Market" />
+    <meta property="og:locale" content="ko_KR" />
+    <meta property="og:image" content="https://myfmlv.github.io/og-image.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="MYFMLV Market" />
+    <meta
+      name="twitter:description"
+      content="국내 주식 연기금 수급, ETF, 테마, 시장지표를 한눈에 확인하는 투자 대시보드"
+    />
+    <meta name="twitter:image" content="https://myfmlv.github.io/og-image.png" />
     <title>MYFMLV Market</title>
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
+    <noscript>
+      <section class="noscript-warning">
+        이 사이트는 JavaScript가 필요합니다. 국내 주식 연기금 수급, ETF, 테마 데이터를 보려면 브라우저에서 JavaScript를 활성화하세요.
+      </section>
+    </noscript>
     <main class="shell">
       <header class="topbar">
         <a class="brand" href="./">MYFMLV</a>
-        <nav class="view-tabs" id="viewTabs" aria-label="시장 분류">
-          <button class="active" type="button" data-view="stock">주식</button>
-          <button type="button" data-view="etf">ETF</button>
+        <nav class="view-tabs" id="viewTabs" role="tablist" aria-label="시장 분류">
+          <button class="active" type="button" role="tab" data-view="stock" aria-selected="true" aria-controls="stockView">주식</button>
+          <button type="button" role="tab" data-view="etf" aria-selected="false" aria-controls="etfView">ETF</button>
         </nav>
       </header>
+      <h1 class="visually-hidden">MYFMLV Market 투자 체크 대시보드</h1>
 
       <section class="control-panel" id="controlPanel" aria-label="화면 컨트롤">
         <div class="control-row">
-          <nav class="sub-tabs control-group" id="stockCountryTabs" aria-label="주식 국가">
-            <button class="active" type="button" data-stock-country="kr">국내</button>
-            <button type="button" data-stock-country="us">미국</button>
+          <nav class="sub-tabs control-group" id="stockCountryTabs" role="tablist" aria-label="주식 국가">
+            <button class="active" type="button" role="tab" data-stock-country="kr" aria-selected="true" aria-controls="stockCountryKrPanel">국내</button>
+            <button type="button" role="tab" data-stock-country="us" aria-selected="false" aria-controls="stockCountryUsPanel">미국</button>
           </nav>
 
-          <nav class="sub-tabs control-group" id="krStockSubTabs" aria-label="국내 주식 중분류">
-            <button class="active" type="button" data-kr-stock-section="market">시장</button>
-            <button type="button" data-kr-stock-section="theme">테마</button>
-            <button type="button" data-kr-stock-section="pension">연기금 수급</button>
+          <nav class="sub-tabs control-group" id="krStockSubTabs" role="tablist" aria-label="국내 주식 중분류">
+            <button class="active" type="button" role="tab" data-kr-stock-section="market" aria-selected="true" aria-controls="marketStockPane">시장</button>
+            <button type="button" role="tab" data-kr-stock-section="theme" aria-selected="false" aria-controls="themeStockPane">테마</button>
+            <button type="button" role="tab" data-kr-stock-section="pension" aria-selected="false" aria-controls="pensionStockPane">연기금 수급</button>
           </nav>
 
-          <nav class="sub-tabs control-group compact-subtabs" id="pensionSubTabs" aria-label="연기금 수급 중분류" hidden>
-            <button class="active" type="button" data-pension-section="trend">매매 동향</button>
-            <button type="button" data-pension-section="search">검색</button>
+          <nav class="sub-tabs control-group compact-subtabs" id="pensionSubTabs" role="tablist" aria-label="연기금 수급 중분류" hidden>
+            <button class="active" type="button" role="tab" data-pension-section="trend" aria-selected="true" aria-controls="pensionTrendPane">매매 동향</button>
+            <button type="button" role="tab" data-pension-section="search" aria-selected="false" aria-controls="pensionSearchPane">검색</button>
           </nav>
 
-          <nav class="sub-tabs control-group" id="etfSubTabs" aria-label="ETF 중분류" hidden>
-            <button class="active" type="button" data-etf-section="theme">테마</button>
-            <button type="button" data-etf-section="search">검색</button>
-            <button type="button" data-etf-section="us">국내상장 미국 ETF</button>
+          <nav class="sub-tabs control-group" id="etfSubTabs" role="tablist" aria-label="ETF 중분류" hidden>
+            <button class="active" type="button" role="tab" data-etf-section="theme" aria-selected="true" aria-controls="etfThemePane">테마</button>
+            <button type="button" role="tab" data-etf-section="search" aria-selected="false" aria-controls="etfSearchPane">검색</button>
+            <button type="button" role="tab" data-etf-section="us" aria-selected="false" aria-controls="etfUsPane">국내상장 미국 ETF</button>
           </nav>
 
+          <label class="sr-only" for="marketSearch">종목명 또는 종목코드 검색</label>
           <label class="search-box control-search" id="marketSearchControl">
             <span>종목 검색</span>
             <input id="marketSearch" type="search" placeholder="종목명 또는 코드" autocomplete="off" />
           </label>
 
           <nav class="period-tabs control-group" id="chartPeriodTabs" aria-label="차트 기간">
-            <button type="button" data-chart-period="1">1일</button>
-            <button class="active" type="button" data-chart-period="5">5일</button>
-            <button type="button" data-chart-period="20">20일</button>
-            <button type="button" data-chart-period="60">60일</button>
+            <button type="button" data-chart-period="1" aria-pressed="false">1일</button>
+            <button class="active" type="button" data-chart-period="5" aria-pressed="true">5일</button>
+            <button type="button" data-chart-period="20" aria-pressed="false">20일</button>
+            <button type="button" data-chart-period="60" aria-pressed="false">60일</button>
           </nav>
         </div>
         <div class="search-results market-search-results" id="marketSearchResults" hidden></div>
       </section>
+      <div id="resultStatus" class="sr-only" aria-live="polite"></div>
 
-      <section class="view active" id="stockView" aria-label="주식">
-        <section class="stock-country active" data-stock-country-pane="kr" aria-label="국내 주식">
-          <section class="stock-subview active" id="marketStockPane" data-kr-stock-pane="market" aria-label="국내 시장">
-            <div class="section-grid compact" id="marketInsightGrid"></div>
+      <section class="data-status-panel data-status" id="dataStatus" data-status="loading" data-state="loading" aria-live="polite" aria-label="데이터 상태">
+        <div class="data-status-main" id="dataStatusMain">데이터 상태를 확인하는 중입니다.</div>
+        <div class="data-status-meta" id="dataStatusMeta">기준일과 갱신시각을 불러오는 중입니다.</div>
+        <dl class="data-source-list" id="dataSourceList"></dl>
+      </section>
+
+      <section class="view active" id="stockView" role="tabpanel" aria-label="주식">
+        <section class="stock-country active" id="stockCountryKrPanel" data-stock-country-pane="kr" role="tabpanel" aria-label="국내 주식">
+          <section class="stock-subview active" id="marketStockPane" data-kr-stock-pane="market" role="tabpanel" aria-label="국내 시장">
+            <div class="section-grid compact" id="marketInsightGrid">
+              <article class="list-panel static-panel">
+                <div class="panel-head">
+                  <div><p>KRX/Naver</p><h2>시장 데이터 로딩 대기</h2></div>
+                  <span class="panel-meta">정적 초기 화면</span>
+                </div>
+                <p class="empty-state">JavaScript 실행 후 최신 시장 요약, 거래대금, 검색 상위 데이터로 교체됩니다.</p>
+              </article>
+              <article class="list-panel static-panel">
+                <div class="panel-head">
+                  <div><p>KRX 연기금</p><h2>수급 데이터 로딩 대기</h2></div>
+                  <span class="panel-meta">정적 초기 화면</span>
+                </div>
+                <p class="empty-state">데이터 로딩 실패 시 오류 또는 백업 데이터 사용 여부가 화면 상단에 표시됩니다.</p>
+              </article>
+            </div>
             <div class="section-grid compact" id="marketRankingGrid"></div>
           </section>
 
-          <section class="stock-subview" id="themeStockPane" data-kr-stock-pane="theme" aria-label="주식 테마">
+          <section class="stock-subview" id="themeStockPane" data-kr-stock-pane="theme" role="tabpanel" aria-label="주식 테마" hidden>
             <div class="section-grid" id="themeSectionGrid"></div>
             <article class="wide-panel theme-detail" id="themeDetail"></article>
           </section>
 
-          <section class="stock-subview" id="pensionStockPane" data-kr-stock-pane="pension" aria-label="연기금 수급">
-            <section class="pension-subview active" data-pension-pane="trend" aria-label="연기금 매매 동향">
+          <section class="stock-subview" id="pensionStockPane" data-kr-stock-pane="pension" role="tabpanel" aria-label="연기금 수급" hidden>
+            <section class="pension-subview active" id="pensionTrendPane" data-pension-pane="trend" role="tabpanel" aria-label="연기금 매매 동향">
               <div class="section-grid compact" id="pensionSectionGrid"></div>
             </section>
 
-            <section class="pension-subview" data-pension-pane="search" aria-label="연기금 종목 검색">
+            <section class="pension-subview" id="pensionSearchPane" data-pension-pane="search" role="tabpanel" aria-label="연기금 종목 검색" hidden>
               <section class="stock-toolbar" aria-label="연기금 종목 검색과 정렬">
                 <div class="toolbar-head">
+                  <label class="sr-only" for="stockSearch">종목명 또는 종목코드 검색</label>
                   <label class="search-box">
                     <span>종목 검색</span>
                     <input id="stockSearch" type="search" placeholder="종목명 또는 코드" autocomplete="off" />
@@ -101,47 +152,50 @@
                     <p>연기금 수급</p>
                     <h2>연기금 수급 랭킹</h2>
                   </div>
-                  <span class="panel-meta" id="rankingMeta">20개 표시</span>
+                  <span class="panel-meta" id="rankingMeta" aria-live="polite">20개 표시</span>
                 </div>
-                <div class="table-wrap">
-                  <table>
+                <div class="table-wrap stock-table-wrap">
+                  <table aria-describedby="rankingMeta">
+                    <caption class="visually-hidden">KRX 연기금 수급 종목 랭킹</caption>
                     <thead>
                       <tr>
-                        <th>순위</th>
-                        <th>종목</th>
-                        <th>수급금액</th>
-                        <th>수급수량</th>
-                        <th>매수금액</th>
-                        <th>시가총액</th>
-                        <th>매수/시총</th>
-                        <th>연속일</th>
-                        <th>미니 차트</th>
+                        <th scope="col">순위</th>
+                        <th scope="col">종목</th>
+                        <th scope="col">수급금액</th>
+                        <th scope="col">수급수량</th>
+                        <th scope="col">매수금액</th>
+                        <th scope="col">시가총액</th>
+                        <th scope="col">매수/시총</th>
+                        <th scope="col">연속일</th>
+                        <th scope="col">미니 차트</th>
                       </tr>
                     </thead>
                     <tbody id="stockTableBody">
-                      <tr><td colspan="9">데이터를 불러오는 중입니다.</td></tr>
+                      <tr class="table-state table-state--muted"><td colspan="9">데이터를 불러오는 중입니다.</td></tr>
                     </tbody>
                   </table>
                 </div>
+                <div class="mobile-stock-list" id="mobileStockList" aria-label="모바일 종목 목록"></div>
                 <button class="load-more" id="loadMoreButton" type="button" hidden>아래로 20개 더 보기 ↓</button>
               </article>
             </section>
           </section>
         </section>
 
-        <section class="stock-country" data-stock-country-pane="us" aria-label="미국 주식">
+        <section class="stock-country" id="stockCountryUsPanel" data-stock-country-pane="us" role="tabpanel" aria-label="미국 주식" hidden>
           <div class="section-grid compact" id="usMarketGrid"></div>
         </section>
       </section>
 
-      <section class="view" id="etfView" aria-label="ETF">
-        <section class="etf-subview active" data-etf-pane="theme" aria-label="ETF 테마">
+      <section class="view" id="etfView" role="tabpanel" aria-label="ETF" hidden>
+        <section class="etf-subview active" id="etfThemePane" data-etf-pane="theme" role="tabpanel" aria-label="ETF 테마">
           <div class="section-grid compact" id="etfThemeGrid"></div>
         </section>
 
-        <section class="etf-subview" data-etf-pane="search" aria-label="ETF 검색">
+        <section class="etf-subview" id="etfSearchPane" data-etf-pane="search" role="tabpanel" aria-label="ETF 검색" hidden>
           <section class="stock-toolbar etf-toolbar" aria-label="ETF 검색">
             <div class="toolbar-head">
+              <label class="sr-only" for="etfSearch">ETF명, 코드, 구성종목 검색</label>
               <label class="search-box">
                 <span>ETF 검색</span>
                 <input id="etfSearch" type="search" placeholder="ETF명, 코드, 구성종목" autocomplete="off" />
@@ -150,7 +204,7 @@
           </section>
         </section>
 
-        <section class="etf-subview" data-etf-pane="us" aria-label="국내상장 미국 ETF">
+        <section class="etf-subview" id="etfUsPane" data-etf-pane="us" role="tabpanel" aria-label="국내상장 미국 ETF" hidden>
           <div class="section-grid compact" id="etfUsGrid"></div>
         </section>
 
