@@ -1,0 +1,162 @@
+import { spawnSync } from 'node:child_process'
+import fs from 'node:fs'
+import path from 'node:path'
+
+const root = process.cwd()
+const updateStatusPath = path.join(root, 'data/update-status.json')
+const defaultKrxSourceDir = path.resolve(root, '../../Telegram/data/krx')
+const defaultKisEnvPath = path.resolve(root, '../../DBbot/kis-api/kis-api.env')
+
+const results = []
+
+function exists(relativePath) {
+  return fs.existsSync(path.join(root, relativePath))
+}
+
+function isDirectory(targetPath) {
+  try {
+    return fs.statSync(targetPath).isDirectory()
+  } catch {
+    return false
+  }
+}
+
+function hasJsonContent(relativePath) {
+  try {
+    return fs.readFileSync(path.join(root, relativePath), 'utf8').trim().length > 0
+  } catch {
+    return false
+  }
+}
+
+function hasKisCredentials() {
+  return Boolean(
+    (process.env.KIS_APP_KEY && process.env.KIS_APP_SECRET) ||
+    fs.existsSync(defaultKisEnvPath),
+  )
+}
+
+function hasKrxSourceDir() {
+  return isDirectory(process.env.KRX_SOURCE_DIR || defaultKrxSourceDir)
+}
+
+function run(command, args) {
+  console.log(`\n> ${command} ${args.join(' ')}`)
+
+  const result = spawnSync(command, args, {
+    cwd: root,
+    stdio: 'inherit',
+    shell: process.platform === 'win32',
+    env: {
+      ...process.env,
+      TZ: 'Asia/Seoul',
+    },
+  })
+
+  if (result.status !== 0) {
+    throw new Error(`${command} ${args.join(' ')} failed with exit code ${result.status}`)
+  }
+}
+
+function writeUpdateManifest(status, extra = {}) {
+  fs.mkdirSync(path.dirname(updateStatusPath), { recursive: true })
+  fs.writeFileSync(updateStatusPath, `${JSON.stringify({
+    generatedAt: new Date().toISOString(),
+    timezone: 'Asia/Seoul',
+    source: process.env.GITHUB_ACTIONS ? 'GitHub Actions' : 'Local update:data',
+    status,
+    ...extra,
+  }, null, 2)}\n`, 'utf8')
+}
+
+const tasks = [
+  {
+    name: 'Sync KRX CSV data',
+    file: 'scripts/sync-krx-data.mjs',
+    args: ['scripts/sync-krx-data.mjs'],
+    required: false,
+    shouldRun: hasKrxSourceDir,
+    skipReason: 'KRX_SOURCE_DIR or local Telegram KRX source directory not found',
+  },
+  {
+    name: 'Fetch Naver market data',
+    file: 'scripts/sync-naver-market.mjs',
+    args: ['scripts/sync-naver-market.mjs'],
+    required: true,
+  },
+  {
+    name: 'Update market index',
+    file: 'scripts/sync-market-index.mjs',
+    args: ['scripts/sync-market-index.mjs'],
+    required: true,
+  },
+  {
+    name: 'Update US stock data',
+    file: 'scripts/sync-us-stocks.mjs',
+    args: ['scripts/sync-us-stocks.mjs'],
+    required: true,
+  },
+  {
+    name: 'Update ETF universe',
+    file: 'scripts/sync-etf-universe.mjs',
+    args: ['scripts/sync-etf-universe.mjs'],
+    required: true,
+  },
+  {
+    name: 'Sync KIS stock metadata',
+    file: 'scripts/sync-kis-stock-meta.mjs',
+    args: ['scripts/sync-kis-stock-meta.mjs'],
+    required: false,
+    shouldRun: hasKisCredentials,
+    skipReason: 'KIS_APP_KEY/KIS_APP_SECRET or local KIS env file not found',
+  },
+  {
+    name: 'Update stock charts',
+    file: 'scripts/sync-stock-charts.mjs',
+    args: ['scripts/sync-stock-charts.mjs'],
+    required: false,
+    shouldRun: () => hasJsonContent('data/stock-meta.json'),
+    skipReason: 'data/stock-meta.json is empty or missing',
+  },
+]
+
+try {
+  for (const task of tasks) {
+    if (!exists(task.file)) {
+      const message = `${task.name}: ${task.file} not found`
+      if (task.required) throw new Error(message)
+      console.warn(`[warn] ${message}, skipped`)
+      results.push({ name: task.name, status: 'skipped', reason: message })
+      continue
+    }
+
+    if (task.shouldRun && !task.shouldRun()) {
+      console.warn(`[warn] ${task.name}: ${task.skipReason}, skipped`)
+      results.push({ name: task.name, status: 'skipped', reason: task.skipReason })
+      continue
+    }
+
+    run('node', task.args)
+    results.push({ name: task.name, status: 'ok' })
+  }
+
+  const ran = results.filter((item) => item.status === 'ok')
+  if (ran.length === 0) {
+    throw new Error('No update scripts ran.')
+  }
+
+  const status = results.some((item) => item.status === 'skipped') ? 'partial' : 'ok'
+  writeUpdateManifest(status, { tasks: results })
+
+  console.log('\n[ok] Data update completed')
+  if (status === 'partial') {
+    console.log('[warn] Some optional update tasks were skipped. See data/update-status.json.')
+  }
+} catch (error) {
+  writeUpdateManifest('error', {
+    error: error?.message || String(error),
+    tasks: results,
+  })
+  console.error(`\n[fail] Data update failed: ${error?.message || String(error)}`)
+  process.exit(1)
+}

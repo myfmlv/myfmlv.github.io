@@ -30,6 +30,21 @@ function readEnv(text) {
     }))
 }
 
+async function loadEnv(envPath) {
+  try {
+    return readEnv(await readFile(envPath, 'utf8'))
+  } catch (error) {
+    if (process.env.KIS_APP_KEY && process.env.KIS_APP_SECRET) {
+      return {
+        KIS_APP_KEY: process.env.KIS_APP_KEY,
+        KIS_APP_SECRET: process.env.KIS_APP_SECRET,
+      }
+    }
+
+    throw error
+  }
+}
+
 function splitCsvLine(line) {
   const cells = []
   let cell = ''
@@ -143,7 +158,7 @@ const envPath = path.resolve(getArg('env', defaultKisEnv))
 const limit = Number(getArg('limit', '0')) || Infinity
 const delayMs = Number(getArg('delay-ms', '120'))
 const refresh = hasFlag('refresh')
-const env = readEnv(await readFile(envPath, 'utf8'))
+const env = await loadEnv(envPath)
 
 if (!env.KIS_APP_KEY || !env.KIS_APP_SECRET) {
   throw new Error(`KIS_APP_KEY/KIS_APP_SECRET 값이 없습니다: ${envPath}`)

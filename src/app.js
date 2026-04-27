@@ -1,4 +1,13 @@
 import { formatDateTime } from './utils/date.js'
+import {
+  addDataError,
+  addDataWarning,
+  buildDataStatusText,
+  createInitialDataStatus,
+  finalizeDataStatus,
+  markFallback,
+  mergeLoadedDataStatus,
+} from './utils/dataStatus.js'
 import { escapeHtml, renderTableState } from './utils/dom.js'
 import { formatNullableNumber, toNumberStrict } from './utils/number.js'
 
@@ -9,6 +18,7 @@ const MARKET_INDEX_URL = './data/market-index.json'
 const STOCK_META_URL = './data/stock-meta.json'
 const US_STOCKS_URL = './data/us-stocks.json'
 const ETF_UNIVERSE_URL = './data/etf-universe.json'
+const UPDATE_STATUS_URL = './data/update-status.json'
 
 const themeUp = [
   ['반도체 제품(전력반도체)', 10.4, [21, 24, 23, 29, 31, 38, 44]],
@@ -463,6 +473,7 @@ const dataSourceDefaults = {
   stockMeta: { label: '종목 메타', state: 'loading', detail: '시가총액과 차트 보강 데이터 확인 중' },
   naverMarket: { label: 'Naver 마켓', state: 'loading', detail: '테마/검색/거래대금 랭킹 확인 중' },
   marketIndex: { label: '시장지표', state: 'loading', detail: '환율/원자재 지표 확인 중' },
+  updateStatus: { label: '자동갱신', state: 'loading', detail: '최근 자동갱신 결과 확인 중' },
   usStocks: { label: '미국 주식', state: 'loading', detail: '미국 종목 가격 흐름 확인 중' },
   etfs: { label: 'ETF', state: 'loading', detail: 'ETF 목록과 구성종목 확인 중' },
 }
@@ -505,10 +516,8 @@ const state = {
   dataSources: Object.fromEntries(Object.entries(dataSourceDefaults).map(([key, value]) => [key, { ...value }])),
 }
 
-let appDataStatus = {
-  usedFallback: false,
-  errors: [],
-}
+let currentDataStatus = createInitialDataStatus()
+let appDataStatus = currentDataStatus
 
 function splitCsvLine(line) {
   const cells = []
@@ -647,6 +656,11 @@ function latestTimestamp(values) {
   return new Date(Math.max(...timestamps)).toISOString()
 }
 
+function withCacheBust(url) {
+  const separator = url.includes('?') ? '&' : '?'
+  return `${url}${separator}ts=${Date.now()}`
+}
+
 function getDataFreshnessStatus(generatedAt) {
   if (!generatedAt) {
     return {
@@ -691,18 +705,60 @@ function setDataSource(key, patch) {
 }
 
 function recordDataFallback(source, error) {
-  appDataStatus.usedFallback = true
-  appDataStatus.errors.push({
-    source,
-    message: error?.message ?? String(error ?? 'unknown error'),
-  })
+  const message = error?.message ?? String(error ?? 'unknown error')
+  addDataError(currentDataStatus, source, error)
+  markFallback(currentDataStatus, source, message)
 }
 
 function recordDataError(source, error) {
-  appDataStatus.errors.push({
-    source,
-    message: error?.message ?? String(error ?? 'unknown error'),
-  })
+  addDataError(currentDataStatus, source, error)
+}
+
+function recordDataWarning(source, warning) {
+  addDataWarning(currentDataStatus, source, warning)
+}
+
+function isAdminModeFromUrl() {
+  const params = new URLSearchParams(window.location.search)
+
+  if (params.get('admin') === '1') {
+    localStorage.setItem('myfmlvAdmin', '1')
+    return true
+  }
+
+  if (params.get('admin') === '0') {
+    localStorage.removeItem('myfmlvAdmin')
+    return false
+  }
+
+  return localStorage.getItem('myfmlvAdmin') === '1'
+}
+
+function initAdminDataStatusToggle() {
+  const toggle = document.getElementById('adminDataStatusToggle')
+  const panel = document.getElementById('adminDataStatusPanel')
+
+  if (!toggle || !panel) return
+
+  const isAdmin = isAdminModeFromUrl()
+
+  if (!isAdmin) {
+    toggle.hidden = true
+    panel.hidden = true
+    toggle.setAttribute('aria-expanded', 'false')
+    return
+  }
+
+  toggle.hidden = false
+
+  if (toggle.dataset.bound !== 'true') {
+    toggle.addEventListener('click', () => {
+      const nextOpen = panel.hidden
+      panel.hidden = !nextOpen
+      toggle.setAttribute('aria-expanded', String(nextOpen))
+    })
+    toggle.dataset.bound = 'true'
+  }
 }
 
 function marketIndexUpdatedAt(marketIndex) {
@@ -733,100 +789,41 @@ function renderDataSourceList(sources) {
   `).join('')
 }
 
-function updateDataStatusPanel({
-  krxIndex,
-  naverMarket,
-  marketIndex,
-  usedFallback = false,
-  error = null,
-} = {}) {
-  const panel = document.querySelector('.data-status-panel')
+function updateDataStatusPanel(status = currentDataStatus) {
+  const panel = document.getElementById('adminDataStatusPanel')
   const main = document.getElementById('dataStatusMain')
   const meta = document.getElementById('dataStatusMeta')
+  const debug = document.getElementById('dataStatusDebug')
 
-  if (!panel || !main || !meta) return
-
-  const sources = Object.values(state.dataSources)
-  const loadingCount = sources.filter((source) => source.state === 'loading').length
-  const fallbackSources = sources.filter((source) => ['fallback', 'sample'].includes(source.state))
-  const errorSources = sources.filter((source) => source.state === 'error')
-  const recordedErrors = appDataStatus.errors.map((item) => `${item.source}: ${item.message}`)
-  const marketUpdatedAt = marketIndexUpdatedAt(marketIndex)
-  const missing = [
-    !krxIndex?.latest ? 'KRX 기준일' : null,
-    !krxIndex?.generatedAt ? 'KRX 생성시각' : null,
-    !naverMarket?.generatedAt ? '네이버 마켓 생성시각' : null,
-    !marketUpdatedAt ? '시장지표 갱신시각' : null,
-  ].filter(Boolean)
-  const freshness = aggregateFreshnessStatus([
-    krxIndex?.generatedAt,
-    naverMarket?.generatedAt,
-    marketUpdatedAt,
-  ].filter(Boolean))
-
-  let status = freshness.status
-  let title = `데이터 상태: ${freshness.status === 'ok' ? '최신 실데이터' : freshness.label}`
-
-  if (loadingCount > 0) {
-    status = 'loading'
-    title = '데이터 상태: 확인 중'
+  if (!panel || !main || !meta) {
+    console.warn('[data-status] status panel elements not found')
+    return
   }
 
-  if (missing.length > 0 && loadingCount === 0) {
-    status = status === 'ok' ? 'fallback' : status
-    title = '데이터 상태: 일부 데이터 누락'
+  const text = buildDataStatusText(status)
+
+  panel.dataset.status = text.level || 'unknown'
+  panel.dataset.state = text.level || 'unknown'
+  main.textContent = text.title
+  meta.textContent = text.detail
+
+  if (debug) {
+    debug.textContent = JSON.stringify({
+      status,
+      sources: state.dataSources,
+    }, null, 2)
   }
 
-  if (freshness.status === 'stale') {
-    title = '데이터 상태: 지연된 실데이터'
-  }
-
-  if (freshness.status === 'error') {
-    title = '데이터 상태: 오래된 실데이터'
-  }
-
-  if (usedFallback || appDataStatus.usedFallback || fallbackSources.length > 0) {
-    status = 'fallback'
-    title = '최신 데이터를 불러오지 못해 백업 데이터를 표시 중입니다.'
-  }
-
-  if (error || errorSources.length > 0) {
-    status = 'error'
-    title = '데이터 상태: 일부 데이터 로딩 실패'
-  }
-
-  panel.dataset.status = status
-  panel.dataset.state = status
-  main.textContent = title
-
-  const krxLatest = krxIndex?.latest ? `KRX 기준일: ${formatDateId(krxIndex.latest)}` : 'KRX 기준일: -'
-  const krxGenerated = `KRX 생성: ${formatDateTime(krxIndex?.generatedAt)}`
-  const naverGenerated = `네이버 마켓 생성: ${formatDateTime(naverMarket?.generatedAt)}`
-  const marketUpdated = `시장지표 갱신: ${formatDateTime(marketUpdatedAt)}`
-  const warnings = [
-    fallbackSources.length > 0 ? `fallback: ${fallbackSources.map((source) => source.label).join(', ')}` : null,
-    errorSources.length > 0 ? `오류: ${errorSources.map((source) => source.label).join(', ')}` : null,
-    recordedErrors.length > 0 ? `실패: ${recordedErrors.join(' / ')}` : null,
-    missing.length > 0 ? `누락: ${missing.join(', ')}` : null,
-  ].filter(Boolean)
-
-  meta.textContent = [
-    `${krxLatest} · ${krxGenerated} · ${naverGenerated} · ${marketUpdated}`,
-    warnings.length > 0 ? `경고: ${warnings.join(' · ')}` : null,
-  ].filter(Boolean).join(' · ')
-
-  renderDataSourceList(sources)
+  renderDataSourceList(Object.values(state.dataSources))
 }
 
 function renderDataStatus() {
-  const sources = Object.values(state.dataSources)
-  updateDataStatusPanel({
+  finalizeDataStatus(currentDataStatus, {
     krxIndex: state.meta,
     naverMarket: state.naverMarket,
     marketIndex: state.marketIndex,
-    usedFallback: appDataStatus.usedFallback || sources.some((source) => ['fallback', 'sample'].includes(source.state)),
-    error: sources.find((source) => source.state === 'error')?.detail ?? null,
   })
+  updateDataStatusPanel(currentDataStatus)
 }
 
 function formatUsd(value) {
@@ -2479,7 +2476,7 @@ function bindControls() {
 }
 
 async function loadKrxData() {
-  const indexResponse = await fetch(DATA_INDEX_URL, { cache: 'no-store' })
+  const indexResponse = await fetch(withCacheBust(DATA_INDEX_URL), { cache: 'no-store' })
   if (!indexResponse.ok) throw new Error(`KRX index load failed: ${indexResponse.status}`)
   const index = await indexResponse.json()
   const files = [...(index.files ?? [])].sort((a, b) => b.date.localeCompare(a.date))
@@ -2489,7 +2486,7 @@ async function loadKrxData() {
   state.stockMeta = await loadStockMeta()
 
   const parsedEntries = await Promise.all(files.map(async (fileMeta) => {
-    const csvResponse = await fetch(`${DATA_BASE_URL}/${fileMeta.file}`, { cache: 'no-store' })
+    const csvResponse = await fetch(withCacheBust(`${DATA_BASE_URL}/${fileMeta.file}`), { cache: 'no-store' })
     if (!csvResponse.ok) throw new Error(`KRX CSV load failed: ${csvResponse.status}`)
     return [fileMeta.date, parseKrxCsv(await csvResponse.text())]
   }))
@@ -2508,7 +2505,7 @@ async function loadKrxData() {
 
 async function loadMarketIndex() {
   try {
-    const response = await fetch(MARKET_INDEX_URL, { cache: 'no-store' })
+    const response = await fetch(withCacheBust(MARKET_INDEX_URL), { cache: 'no-store' })
     if (!response.ok) throw new Error(`HTTP ${response.status}`)
     const payload = await response.json()
     if (!Array.isArray(payload) || payload.length === 0) throw new Error('시장지표 배열이 비어 있습니다')
@@ -2530,7 +2527,7 @@ async function loadMarketIndex() {
 
 async function loadNaverMarket() {
   try {
-    const response = await fetch(NAVER_MARKET_URL, { cache: 'no-store' })
+    const response = await fetch(withCacheBust(NAVER_MARKET_URL), { cache: 'no-store' })
     if (!response.ok) throw new Error(`HTTP ${response.status}`)
     const payload = await response.json()
     if (!payload || typeof payload !== 'object') throw new Error('응답이 객체가 아닙니다')
@@ -2556,7 +2553,7 @@ async function loadStockMeta() {
   const meta = builtinStockMeta()
 
   try {
-    const response = await fetch(STOCK_META_URL, { cache: 'no-store' })
+    const response = await fetch(withCacheBust(STOCK_META_URL), { cache: 'no-store' })
     if (!response.ok) throw new Error(`HTTP ${response.status}`)
     const payload = await response.json()
     const entries = Array.isArray(payload) ? payload : Object.entries(payload).map(([ticker, value]) => ({ ticker, ...value }))
@@ -2603,7 +2600,7 @@ async function loadStockMeta() {
       detail: `${loadedCount.toLocaleString('ko-KR')}개 종목${latestTradeDate ? ` · 기준 ${formatDateId(latestTradeDate)}` : ''}${latestUpdatedAt ? ` · 생성 ${formatDateTime(latestUpdatedAt)}` : ''}`,
     })
   } catch (error) {
-    recordDataFallback('stock-meta', error)
+    recordDataWarning('stock-meta', error)
     setDataSource('stockMeta', {
       state: 'sample',
       detail: `종목 메타데이터 없음: ${error.message}. 내장 샘플 ${meta.size.toLocaleString('ko-KR')}개로 시총/차트 제한`,
@@ -2616,7 +2613,7 @@ async function loadStockMeta() {
 
 async function loadUsStocks() {
   try {
-    const response = await fetch(US_STOCKS_URL, { cache: 'no-store' })
+    const response = await fetch(withCacheBust(US_STOCKS_URL), { cache: 'no-store' })
     if (!response.ok) throw new Error(`HTTP ${response.status}`)
     const payload = await response.json()
     if (!Array.isArray(payload.stocks) || payload.stocks.length === 0) throw new Error('미국 주식 배열이 비어 있습니다')
@@ -2637,7 +2634,7 @@ async function loadUsStocks() {
 
 async function loadEtfUniverse() {
   try {
-    const response = await fetch(ETF_UNIVERSE_URL, { cache: 'no-store' })
+    const response = await fetch(withCacheBust(ETF_UNIVERSE_URL), { cache: 'no-store' })
     if (!response.ok) throw new Error(`HTTP ${response.status}`)
     const payload = await response.json()
     if (!Array.isArray(payload.etfs) || payload.etfs.length === 0) throw new Error('ETF 배열이 비어 있습니다')
@@ -2663,19 +2660,54 @@ async function loadEtfUniverse() {
   }
 }
 
-async function main() {
-  bindControls()
-  renderDataStatus()
-  renderTableState(document.querySelector('#stockTableBody'), '데이터를 불러오는 중입니다.')
-  renderMobileStockState('데이터를 불러오는 중입니다.')
-  await loadUsStocks()
-  await loadEtfUniverse()
-  renderEtfSections()
-
+async function loadUpdateStatus() {
   try {
+    const response = await fetch(withCacheBust(UPDATE_STATUS_URL), { cache: 'no-store' })
+    if (!response.ok) throw new Error(`HTTP ${response.status}`)
+    const payload = await response.json()
+    if (!payload || typeof payload !== 'object') throw new Error('자동갱신 상태 응답이 객체가 아닙니다')
+    currentDataStatus.updateWorkflowGeneratedAt = payload.generatedAt || currentDataStatus.updateWorkflowGeneratedAt
+    if (payload.status === 'error') {
+      addDataError(currentDataStatus, 'update-status', new Error(payload.error || '최근 자동갱신 실패'))
+    } else if (payload.status === 'partial') {
+      addDataWarning(currentDataStatus, 'update-status', '최근 자동갱신에서 일부 선택 작업을 건너뜀')
+    }
+    setDataSource('updateStatus', {
+      state: payload.status === 'partial' ? 'warning' : payload.status === 'error' ? 'error' : 'live',
+      detail: `상태 ${payload.status ?? 'ok'}${payload.generatedAt ? ` · 생성 ${formatDateTime(payload.generatedAt)}` : ''}`,
+    })
+    return payload
+  } catch (error) {
+    recordDataWarning('update-status', error)
+    setDataSource('updateStatus', {
+      state: 'warning',
+      detail: `자동갱신 상태 확인 실패: ${error.message}`,
+    })
+    return null
+  }
+}
+
+async function main() {
+  currentDataStatus = createInitialDataStatus()
+  appDataStatus = currentDataStatus
+  try {
+    initAdminDataStatusToggle()
+    bindControls()
+    renderDataStatus()
+    renderTableState(document.querySelector('#stockTableBody'), '데이터를 불러오는 중입니다.')
+    renderMobileStockState('데이터를 불러오는 중입니다.')
+    await loadUpdateStatus()
+    await loadUsStocks()
+    await loadEtfUniverse()
+    renderEtfSections()
     state.marketIndex = await loadMarketIndex()
     state.naverMarket = await loadNaverMarket()
     await loadKrxData()
+    mergeLoadedDataStatus(currentDataStatus, {
+      krxIndex: state.meta,
+      naverMarket: state.naverMarket,
+      marketIndex: state.marketIndex,
+    })
     renderSummary()
     renderThemeSections()
     renderMarketInsights()
@@ -2683,10 +2715,11 @@ async function main() {
     renderUsMarket()
     updateStockTable()
   } catch (error) {
-    recordDataError('krx', error)
+    recordDataError('app-init', error)
+    currentDataStatus.hasFatalError = true
     setDataSource('krx', {
       state: 'error',
-      detail: `KRX 핵심 데이터 로딩 실패: ${error.message}`,
+      detail: `핵심 데이터 로딩 실패: ${error.message}`,
     })
     document.querySelector('#themeSectionGrid').innerHTML = renderListPanel({ title: '데이터 오류', meta: 'error', items: [] })
     document.querySelector('#marketInsightGrid').innerHTML = ''
@@ -2695,6 +2728,14 @@ async function main() {
     document.querySelector('#usMarketGrid').innerHTML = ''
     renderTableState(document.querySelector('#stockTableBody'), '데이터를 불러오지 못했습니다. 잠시 후 다시 시도하세요.', { tone: 'error' })
     renderMobileStockState('데이터를 불러오지 못했습니다. 잠시 후 다시 시도하세요.', 'error')
+  } finally {
+    finalizeDataStatus(currentDataStatus, {
+      krxIndex: state.meta,
+      naverMarket: state.naverMarket,
+      marketIndex: state.marketIndex,
+    })
+    updateDataStatusPanel(currentDataStatus)
+    initAdminDataStatusToggle()
   }
 }
 

@@ -12,10 +12,11 @@
     "sync:naver-market": "node scripts/sync-naver-market.mjs",
     "sync:market-index": "node scripts/sync-market-index.mjs",
     "sync:kis-meta": "node scripts/sync-kis-stock-meta.mjs",
+    "update:data": "node scripts/update-all-data.mjs",
     "dev": "python3 -m http.server 5174",
     "serve:test": "npx http-server . -p 4173",
     "validate:data": "node scripts/validate-data.mjs",
-    "check": "node --check src/app.js && node --check src/utils/date.js && node --check src/utils/dom.js && node --check src/utils/number.js && node --check scripts/validate-data.mjs && node --check scripts/smoke-test.mjs && node --check scripts/sync-krx-data.mjs && node --check scripts/sync-krx-openapi.mjs && node --check scripts/sync-etf-universe.mjs && node --check scripts/sync-stock-charts.mjs && node --check scripts/sync-us-stocks.mjs && node --check scripts/sync-naver-market.mjs && node --check scripts/sync-market-index.mjs && node --check scripts/sync-kis-stock-meta.mjs && npm run validate:data && node scripts/smoke-test.mjs",
+    "check": "node --check src/app.js && node --check src/utils/date.js && node --check src/utils/dataStatus.js && node --check src/utils/dom.js && node --check src/utils/number.js && node --check scripts/update-all-data.mjs && node --check scripts/validate-data.mjs && node --check scripts/smoke-test.mjs && node --check scripts/sync-krx-data.mjs && node --check scripts/sync-krx-openapi.mjs && node --check scripts/sync-etf-universe.mjs && node --check scripts/sync-stock-charts.mjs && node --check scripts/sync-us-stocks.mjs && node --check scripts/sync-naver-market.mjs && node --check scripts/sync-market-index.mjs && node --check scripts/sync-kis-stock-meta.mjs && npm run validate:data && node scripts/smoke-test.mjs",
     "test:e2e": "playwright test",
     "test": "npm run check && npm run test:e2e"
   },

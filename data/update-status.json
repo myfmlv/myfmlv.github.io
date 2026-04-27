@@ -1,0 +1,36 @@
+{
+  "generatedAt": "2026-04-27T14:15:43.912Z",
+  "timezone": "Asia/Seoul",
+  "source": "Local update:data",
+  "status": "ok",
+  "tasks": [
+    {
+      "name": "Sync KRX CSV data",
+      "status": "ok"
+    },
+    {
+      "name": "Fetch Naver market data",
+      "status": "ok"
+    },
+    {
+      "name": "Update market index",
+      "status": "ok"
+    },
+    {
+      "name": "Update US stock data",
+      "status": "ok"
+    },
+    {
+      "name": "Update ETF universe",
+      "status": "ok"
+    },
+    {
+      "name": "Sync KIS stock metadata",
+      "status": "ok"
+    },
+    {
+      "name": "Update stock charts",
+      "status": "ok"
+    }
+  ]
+}

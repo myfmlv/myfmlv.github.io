@@ -7,7 +7,6 @@ const requiredJsonFiles = [
   'data/krx/index.json',
   'data/naver-market.json',
   'data/market-index.json',
-  'data/stock-meta.json',
 ]
 
 function fail(message) {
@@ -39,6 +38,11 @@ function readJson(relativePath, options = {}) {
   const fullPath = filePath(relativePath)
 
   if (!fs.existsSync(fullPath)) {
+    if (options.optional) {
+      warn(`${relativePath} does not exist`)
+      return null
+    }
+
     fail(`${relativePath} does not exist`)
     return null
   }
@@ -271,8 +275,11 @@ function stockMetaEntries(data) {
 
 function validateStockMeta() {
   const relativePath = 'data/stock-meta.json'
-  const data = readJson(relativePath, { optionalEmpty: false })
-  if (!data) return
+  const data = readJson(relativePath, { optional: true, optionalEmpty: true })
+  if (!data) {
+    warn(`${relativePath} is empty or missing. Treating as optional metadata.`)
+    return
+  }
 
   validateCommonFields(relativePath, data)
 
@@ -283,7 +290,7 @@ function validateStockMeta() {
 
   const entries = stockMetaEntries(data)
   if (entries.length === 0) {
-    fail(`${relativePath} must contain at least one stock metadata entry`)
+    warn(`${relativePath} has no stock metadata entries. Treating as optional metadata.`)
     return
   }
 
@@ -314,6 +321,31 @@ function validateStockMeta() {
   ok(`Stock meta validated (${entries.length.toLocaleString('en-US')} entries)`)
 }
 
+function validateUpdateStatus() {
+  const relativePath = 'data/update-status.json'
+  const data = readJson(relativePath, { optional: true })
+  if (!data) return
+
+  validateCommonFields(relativePath, data)
+
+  if (!isPlainRecord(data)) {
+    fail(`${relativePath} must be an object`)
+    return
+  }
+
+  if (!data.generatedAt || typeof data.generatedAt !== 'string') {
+    fail(`${relativePath} must have string field "generatedAt"`)
+  } else if (Number.isNaN(Date.parse(data.generatedAt))) {
+    fail(`${relativePath}.generatedAt must be an ISO-compatible date string`)
+  }
+
+  if (data.status && !['ok', 'partial', 'error'].includes(data.status)) {
+    fail(`${relativePath}.status must be ok, partial, or error`)
+  }
+
+  ok('Update status validated')
+}
+
 for (const relativePath of requiredJsonFiles) {
   const data = readJson(relativePath, { optionalEmpty: false })
   if (data) validateCommonFields(relativePath, data)
@@ -323,6 +355,7 @@ validateKrxIndex()
 validateMarketIndex()
 validateNaverMarket()
 validateStockMeta()
+validateUpdateStatus()
 
 if (process.exitCode) {
   process.exit(process.exitCode)

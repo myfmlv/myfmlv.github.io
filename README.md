@@ -11,13 +11,14 @@ npm run sync:market-index
 npm run sync:etf
 npm run sync:stock-charts
 npm run sync:naver-market
+npm run update:data
 npm run dev
 npm run validate:data
 npm run check
 npm run test:e2e
 ```
 
-`npm run check`는 JavaScript 문법 검사, 핵심 데이터 JSON/CSV 검증, 정적 UI 스모크 테스트를 함께 실행합니다. `npm run test:e2e`는 정적 서버를 띄운 뒤 Playwright로 핵심 화면 동작을 확인합니다.
+`npm run update:data`는 기존 데이터 수집 스크립트를 순서대로 실행하고 `data/update-status.json`에 자동갱신 결과를 기록합니다. `npm run check`는 JavaScript 문법 검사, 핵심 데이터 JSON/CSV 검증, 정적 UI 스모크 테스트를 함께 실행합니다. `npm run test:e2e`는 정적 서버를 띄운 뒤 Playwright로 핵심 화면 동작을 확인합니다.
 
 ## Local KRX data sync
 
@@ -58,3 +59,9 @@ npm run check
 `npm run sync:stock-charts`와 `npm run sync:naver-market`는 기간 버튼(`1일`, `5일`, `20일`, `60일`)에서 쓰는 가격 흐름과 테마/검색/거래대금 랭킹 데이터를 보강합니다. 기간 수익률을 보여주는 랭킹은 선택 기간 기준으로 다시 정렬합니다.
 
 `npm run sync:krx-openapi -- --date=YYYYMMDD`는 KRX OpenAPI의 전체 31개 엔드포인트 권한과 응답을 확인합니다. 사이트에 우선 필요한 API 신청 상태와 작업 맥락은 `PROJECT_CONTEXT.md`를 참고하세요.
+
+## Scheduled data update
+
+GitHub Actions의 `Update market data` workflow는 평일 한국시간 18:30에 실행됩니다. GitHub cron은 UTC 기준이므로 workflow cron은 `30 9 * * 1-5`입니다. 같은 workflow는 `workflow_dispatch`로 수동 실행할 수 있습니다.
+
+Workflow는 `npm run update:data`, `npm run validate:data`, `npm run check`를 실행한 뒤 변경된 `data/` 파일을 자동 commit/push합니다. KRX CSV 로컬 원본이나 KIS 인증정보가 없는 환경에서는 해당 선택 작업을 건너뛰고 `data/update-status.json`에 `partial` 상태로 기록합니다.

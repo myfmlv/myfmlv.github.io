@@ -88,10 +88,33 @@
       </section>
       <div id="resultStatus" class="sr-only" aria-live="polite"></div>
 
-      <section class="data-status-panel data-status" id="dataStatus" data-status="loading" data-state="loading" aria-live="polite" aria-label="데이터 상태">
-        <div class="data-status-main" id="dataStatusMain">데이터 상태를 확인하는 중입니다.</div>
-        <div class="data-status-meta" id="dataStatusMeta">기준일과 갱신시각을 불러오는 중입니다.</div>
-        <dl class="data-source-list" id="dataSourceList"></dl>
+      <button
+        id="adminDataStatusToggle"
+        class="admin-data-status-toggle"
+        type="button"
+        hidden
+        aria-expanded="false"
+        aria-controls="adminDataStatusPanel"
+      >
+        DATA
+      </button>
+
+      <section
+        id="adminDataStatusPanel"
+        class="data-status-panel data-status"
+        data-status="loading"
+        data-state="loading"
+        hidden
+        aria-live="polite"
+        aria-label="데이터 상태"
+      >
+        <div class="data-status-main" id="dataStatusMain">데이터 상태 초기화 중</div>
+        <div class="data-status-meta" id="dataStatusMeta">-</div>
+        <details class="data-status-details">
+          <summary>상세 로그</summary>
+          <dl class="data-source-list" id="dataSourceList"></dl>
+          <pre id="dataStatusDebug">{}</pre>
+        </details>
       </section>
 
       <section class="view active" id="stockView" role="tabpanel" aria-label="주식">
@@ -110,7 +133,7 @@
                   <div><p>KRX 연기금</p><h2>수급 데이터 로딩 대기</h2></div>
                   <span class="panel-meta">정적 초기 화면</span>
                 </div>
-                <p class="empty-state">데이터 로딩 실패 시 오류 또는 백업 데이터 사용 여부가 화면 상단에 표시됩니다.</p>
+                <p class="empty-state">데이터 로딩 실패 시 해당 영역에 오류 또는 제한 상태가 표시됩니다.</p>
               </article>
             </div>
             <div class="section-grid compact" id="marketRankingGrid"></div>
