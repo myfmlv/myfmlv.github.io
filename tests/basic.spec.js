@@ -108,3 +108,14 @@ test('모바일 폭에서도 핵심 콘텐츠와 카드형 리스트가 보인�
   await expect(page.locator('.mobile-stock-list')).toBeVisible()
   await expect(page.locator('.mobile-stock-card').first()).toBeVisible()
 })
+
+test('모바일 검색 입력 글자 크기는 iOS 자동 확대를 유발하지 않는다', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 })
+  await page.goto('/')
+
+  const search = page.getByLabel('종목명 또는 종목코드 검색').first()
+  await expect(search).toBeVisible()
+
+  const fontSize = await search.evaluate((element) => Number.parseFloat(window.getComputedStyle(element).fontSize))
+  expect(fontSize).toBeGreaterThanOrEqual(16)
+})
