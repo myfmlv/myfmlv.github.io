@@ -1,12 +1,13 @@
 {
-  "generatedAt": "2026-04-27T14:15:43.912Z",
+  "generatedAt": "2026-04-28T11:22:29.856Z",
   "timezone": "Asia/Seoul",
-  "source": "Local update:data",
-  "status": "ok",
+  "source": "GitHub Actions",
+  "status": "partial",
   "tasks": [
     {
       "name": "Sync KRX CSV data",
-      "status": "ok"
+      "status": "skipped",
+      "reason": "KRX_SOURCE_DIR or local Telegram KRX source directory not found"
     },
     {
       "name": "Fetch Naver market data",
@@ -26,7 +27,8 @@
     },
     {
       "name": "Sync KIS stock metadata",
-      "status": "ok"
+      "status": "skipped",
+      "reason": "KIS_APP_KEY/KIS_APP_SECRET or local KIS env file not found"
     },
     {
       "name": "Update stock charts",
