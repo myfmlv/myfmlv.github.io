@@ -17,6 +17,7 @@ const NAVER_MARKET_URL = './data/naver-market.json'
 const MARKET_INDEX_URL = './data/market-index.json'
 const STOCK_META_URL = './data/stock-meta.json'
 const US_STOCKS_URL = './data/us-stocks.json'
+const US_SYMBOLS_URL = './data/us-symbols.json'
 const ETF_UNIVERSE_URL = './data/etf-universe.json'
 const UPDATE_STATUS_URL = './data/update-status.json'
 
@@ -105,6 +106,7 @@ const usStocks = [
 ]
 
 let usStockUniverse = [...usStocks]
+let usSymbolUniverse = []
 
 const themeStockSeeds = {
   '반도체 제품(전력반도체)': [
@@ -475,6 +477,7 @@ const dataSourceDefaults = {
   marketIndex: { label: '시장지표', state: 'loading', detail: '환율/원자재 지표 확인 중' },
   updateStatus: { label: '자동갱신', state: 'loading', detail: '최근 자동갱신 결과 확인 중' },
   usStocks: { label: '미국 주식', state: 'loading', detail: '미국 종목 가격 흐름 확인 중' },
+  usSymbols: { label: '미국 종목검색', state: 'loading', detail: '미국 상장 심볼 목록 확인 중' },
   etfs: { label: 'ETF', state: 'loading', detail: 'ETF 목록과 구성종목 확인 중' },
 }
 
@@ -503,6 +506,7 @@ const state = {
   pensionSection: 'trend',
   selectedTheme: themeUp[0][0],
   selectedUsTheme: null,
+  usSymbols: [],
   chartPeriod: 5,
   marketQuery: '',
   sortKey: 'netBuy',
@@ -1115,9 +1119,10 @@ function normalizeLoadedUsStock(item) {
   const changeRate = Number(item.changeRate) || 0
   return {
     ...item,
-    symbol: String(item.symbol ?? ''),
+    symbol: String(item.symbol ?? '').toUpperCase(),
     naverCode: String(item.naverCode ?? item.symbol ?? ''),
     name: String(item.name ?? item.symbol ?? ''),
+    exchange: String(item.exchange ?? ''),
     sector: String(item.sector ?? ''),
     price: Number(item.price) || historyPrices.at(-1) || 0,
     changeRate,
@@ -1129,6 +1134,28 @@ function normalizeLoadedUsStock(item) {
     latestCandle: item.latestCandle ?? null,
     trend: historyPrices.length > 0 ? historyPrices : (Array.isArray(item.trend) ? item.trend : []),
   }
+}
+
+function normalizeUsSymbol(item) {
+  return normalizeLoadedUsStock({
+    symbol: item.symbol,
+    naverCode: item.naverCode ?? item.symbol,
+    name: item.name ?? item.symbol,
+    exchange: item.exchange ?? 'US',
+    sector: item.sector ?? '미국 개별주',
+  })
+}
+
+function combinedUsSearchUniverse() {
+  const universe = new Map(usSymbolUniverse.map((item) => [item.symbol, item]))
+  Object.values(state.naverMarket?.us ?? {}).flat().forEach((item) => {
+    const enriched = normalizeLoadedUsStock(enrichUsRankItem(item))
+    if (enriched.symbol) universe.set(enriched.symbol, { ...universe.get(enriched.symbol), ...enriched })
+  })
+  usStockUniverse.forEach((item) => {
+    if (item.symbol) universe.set(item.symbol, { ...universe.get(item.symbol), ...item })
+  })
+  return [...universe.values()]
 }
 
 function usStockLookup(symbol, naverCode) {
@@ -1658,13 +1685,7 @@ function marketStockSearchResults() {
   if (!query) return []
 
   if (isUsMarketView()) {
-    const usUniverse = new Map(usStockUniverse.map((item) => [item.symbol, item]))
-    Object.values(state.naverMarket?.us ?? {}).flat().forEach((item) => {
-      const enriched = enrichUsRankItem(item)
-      if (enriched.symbol) usUniverse.set(enriched.symbol, { ...enriched, ...usUniverse.get(enriched.symbol) })
-    })
-
-    return [...usUniverse.values()]
+    return combinedUsSearchUniverse()
       .filter((item) => {
         const name = String(item.name ?? '').toLowerCase()
         const symbol = String(item.symbol ?? '').toLowerCase()
@@ -3001,6 +3022,29 @@ async function loadUsStocks() {
   }
 }
 
+async function loadUsSymbols() {
+  try {
+    const response = await fetch(withCacheBust(US_SYMBOLS_URL), { cache: 'no-store' })
+    if (!response.ok) throw new Error(`HTTP ${response.status}`)
+    const payload = await response.json()
+    if (!Array.isArray(payload.symbols) || payload.symbols.length === 0) throw new Error('미국 심볼 배열이 비어 있습니다')
+    usSymbolUniverse = payload.symbols.map(normalizeUsSymbol).filter((item) => item.symbol && item.name)
+    state.usSymbols = usSymbolUniverse
+    setDataSource('usSymbols', {
+      state: 'live',
+      detail: `${usSymbolUniverse.length.toLocaleString('ko-KR')}개 심볼 · 생성 ${formatDateTime(payload.generatedAt) ?? '-'}`,
+    })
+  } catch (error) {
+    usSymbolUniverse = []
+    state.usSymbols = []
+    recordDataFallback('us-symbols', error)
+    setDataSource('usSymbols', {
+      state: 'fallback',
+      detail: `미국 심볼 로딩 실패: ${error.message}. 랭킹/차트 종목만 검색`,
+    })
+  }
+}
+
 async function loadEtfUniverse() {
   try {
     const response = await fetch(withCacheBust(ETF_UNIVERSE_URL), { cache: 'no-store' })
@@ -3068,6 +3112,7 @@ async function main() {
     renderMobileStockState('데이터를 불러오는 중입니다.')
     await loadUpdateStatus()
     await loadUsStocks()
+    await loadUsSymbols()
     await loadEtfUniverse()
     renderEtfSections()
     state.marketIndex = await loadMarketIndex()

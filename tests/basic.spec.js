@@ -87,6 +87,9 @@ test('미국 주식은 시장/테마/연기금 수급 탭과 종목검색을 제
   await search.fill('Tesla')
   await expect(page.locator('#marketSearchResults')).toContainText(/Tesla|TSLA/)
 
+  await search.fill('ABCL')
+  await expect(page.locator('#marketSearchResults')).toContainText(/AbCellera|ABCL|앱셀레라/)
+
   await page.getByRole('tab', { name: '테마' }).click()
   await expect(page.locator('#usThemeGrid')).toContainText(/상승중인 테마|현재 핫한 테마/)
   await expect(page.locator('#usThemeDetail .value').first()).toContainText(/[-+]?\d+(\.\d+)?%/)

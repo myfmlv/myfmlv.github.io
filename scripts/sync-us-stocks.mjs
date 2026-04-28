@@ -34,6 +34,7 @@ const baseStocks = [
   { symbol: 'MU', naverCode: 'MU.O', name: 'Micron', sector: '메모리', marketCap: '193B', popularity: 76 },
   { symbol: 'HOOD', naverCode: 'HOOD.O', name: 'Robinhood', sector: '증권 플랫폼', marketCap: '122B', popularity: 84 },
   { symbol: 'SHOP', naverCode: 'SHOP.O', name: 'Shopify', sector: '커머스 SaaS', marketCap: '210B', popularity: 72 },
+  { symbol: 'ABCL', naverCode: 'ABCL.O', name: 'AbCellera Biologics', sector: '바이오테크', marketCap: '1.2B', popularity: 42 },
 ]
 
 function roundedNumber(value) {
