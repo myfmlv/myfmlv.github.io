@@ -60,6 +60,12 @@
             <button type="button" role="tab" data-kr-stock-section="pension" aria-selected="false" aria-controls="pensionStockPane">연기금 수급</button>
           </nav>
 
+          <nav class="sub-tabs control-group" id="usStockSubTabs" role="tablist" aria-label="미국 주식 중분류" hidden>
+            <button class="active" type="button" role="tab" data-us-stock-section="market" aria-selected="true" aria-controls="usMarketPane">시장</button>
+            <button type="button" role="tab" data-us-stock-section="theme" aria-selected="false" aria-controls="usThemePane">테마</button>
+            <button type="button" role="tab" data-us-stock-section="pension" aria-selected="false" aria-controls="usFlowPane">연기금 수급</button>
+          </nav>
+
           <nav class="sub-tabs control-group compact-subtabs" id="pensionSubTabs" role="tablist" aria-label="연기금 수급 중분류" hidden>
             <button class="active" type="button" role="tab" data-pension-section="trend" aria-selected="true" aria-controls="pensionTrendPane">매매 동향</button>
             <button type="button" role="tab" data-pension-section="search" aria-selected="false" aria-controls="pensionSearchPane">검색</button>
@@ -206,7 +212,16 @@
         </section>
 
         <section class="stock-country" id="stockCountryUsPanel" data-stock-country-pane="us" role="tabpanel" aria-label="미국 주식" hidden>
-          <div class="section-grid compact" id="usMarketGrid"></div>
+          <section class="stock-subview active" id="usMarketPane" data-us-stock-pane="market" role="tabpanel" aria-label="미국 시장">
+            <div class="section-grid compact" id="usMarketGrid"></div>
+          </section>
+          <section class="stock-subview" id="usThemePane" data-us-stock-pane="theme" role="tabpanel" aria-label="미국 테마" hidden>
+            <div class="section-grid" id="usThemeGrid"></div>
+            <article class="wide-panel theme-detail" id="usThemeDetail"></article>
+          </section>
+          <section class="stock-subview" id="usFlowPane" data-us-stock-pane="pension" role="tabpanel" aria-label="미국 연기금 수급" hidden>
+            <div class="section-grid compact" id="usFlowGrid"></div>
+          </section>
         </section>
       </section>
 

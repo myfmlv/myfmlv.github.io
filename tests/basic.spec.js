@@ -74,6 +74,27 @@ test('검색 입력이 가능하다', async ({ page }) => {
   await expect(search).toHaveValue('삼성')
 })
 
+test('미국 주식은 시장/테마/연기금 수급 탭과 종목검색을 제공한다', async ({ page }) => {
+  await page.goto('/')
+  await page.getByRole('tab', { name: '미국' }).click()
+
+  await expect(page.getByRole('tab', { name: '시장' })).toBeVisible()
+  await expect(page.getByRole('tab', { name: '테마' })).toBeVisible()
+  await expect(page.getByRole('tab', { name: '연기금 수급' })).toBeVisible()
+
+  const search = page.getByLabel('종목명 또는 종목코드 검색').first()
+  await expect(search).toBeVisible()
+  await search.fill('Tesla')
+  await expect(page.locator('#marketSearchResults')).toContainText(/Tesla|TSLA/)
+
+  await page.getByRole('tab', { name: '테마' }).click()
+  await expect(page.locator('#usThemeGrid')).toContainText(/상승중인 테마|현재 핫한 테마/)
+  await expect(page.locator('#usThemeDetail .value').first()).toContainText(/[-+]?\d+(\.\d+)?%/)
+
+  await page.getByRole('tab', { name: '연기금 수급' }).click()
+  await expect(page.locator('#usFlowGrid')).toContainText(/매수 관심|매도 압력|거래대금 집중/)
+})
+
 test('모바일 폭에서도 핵심 콘텐츠와 카드형 리스트가 보인다', async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 })
   await page.goto('/')

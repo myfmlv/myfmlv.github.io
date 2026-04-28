@@ -499,8 +499,10 @@ const state = {
   marketIndex: fallbackMarketIndex,
   stockCountry: 'kr',
   krStockSection: 'market',
+  usStockSection: 'market',
   pensionSection: 'trend',
   selectedTheme: themeUp[0][0],
+  selectedUsTheme: null,
   chartPeriod: 5,
   marketQuery: '',
   sortKey: 'netBuy',
@@ -1655,6 +1657,27 @@ function marketStockSearchResults() {
   const query = state.marketQuery.trim().toLowerCase()
   if (!query) return []
 
+  if (isUsMarketView()) {
+    const usUniverse = new Map(usStockUniverse.map((item) => [item.symbol, item]))
+    Object.values(state.naverMarket?.us ?? {}).flat().forEach((item) => {
+      const enriched = enrichUsRankItem(item)
+      if (enriched.symbol) usUniverse.set(enriched.symbol, { ...enriched, ...usUniverse.get(enriched.symbol) })
+    })
+
+    return [...usUniverse.values()]
+      .filter((item) => {
+        const name = String(item.name ?? '').toLowerCase()
+        const symbol = String(item.symbol ?? '').toLowerCase()
+        const naverCode = String(item.naverCode ?? '').toLowerCase()
+        const sector = String(item.sector ?? '').toLowerCase()
+        return name.includes(query) || symbol.includes(query) || naverCode.includes(query) || sector.includes(query)
+      })
+      .sort((a, b) => marketSearchScore({ name: a.name, ticker: a.symbol }, query) - marketSearchScore({ name: b.name, ticker: b.symbol }, query)
+        || parseAbbrevValue(b.amount) - parseAbbrevValue(a.amount)
+        || parseAbbrevValue(b.marketCap) - parseAbbrevValue(a.marketCap))
+      .slice(0, 8)
+  }
+
   return stockMetaItems()
     .filter((item) => {
       const name = String(item.name ?? '').toLowerCase()
@@ -1671,6 +1694,14 @@ function isDomesticMarketView() {
   return state.view === 'stock' && state.stockCountry === 'kr' && state.krStockSection === 'market'
 }
 
+function isUsMarketView() {
+  return state.view === 'stock' && state.stockCountry === 'us' && state.usStockSection === 'market'
+}
+
+function isStockMarketSearchView() {
+  return isDomesticMarketView() || isUsMarketView()
+}
+
 function isPensionView() {
   return state.view === 'stock' && state.stockCountry === 'kr' && state.krStockSection === 'pension'
 }
@@ -1683,9 +1714,14 @@ function setPanelActive(panel, active) {
 function syncControlBar() {
   document.querySelector('#stockCountryTabs').hidden = state.view !== 'stock'
   document.querySelector('#krStockSubTabs').hidden = state.view !== 'stock' || state.stockCountry !== 'kr'
+  document.querySelector('#usStockSubTabs').hidden = state.view !== 'stock' || state.stockCountry !== 'us'
   document.querySelector('#pensionSubTabs').hidden = !isPensionView()
   document.querySelector('#etfSubTabs').hidden = state.view !== 'etf'
-  document.querySelector('#marketSearchControl').hidden = !isDomesticMarketView()
+  document.querySelector('#marketSearchControl').hidden = !isStockMarketSearchView()
+  const searchLabel = document.querySelector('#marketSearchControl span')
+  const searchInput = document.querySelector('#marketSearch')
+  if (searchLabel) searchLabel.textContent = isUsMarketView() ? '미국 종목 검색' : '종목 검색'
+  if (searchInput) searchInput.placeholder = isUsMarketView() ? '미국 종목명 또는 티커' : '종목명 또는 코드'
   updateMarketSearchResults()
 }
 
@@ -1693,10 +1729,10 @@ function updateMarketSearchResults() {
   const container = document.querySelector('#marketSearchResults')
   const query = state.marketQuery.trim()
 
-  if (!isDomesticMarketView() || !query) {
+  if (!isStockMarketSearchView() || !query) {
     container.hidden = true
     container.innerHTML = ''
-    if (isDomesticMarketView()) updateResultStatus(0)
+    if (isStockMarketSearchView()) updateResultStatus(0)
     return
   }
 
@@ -1716,21 +1752,28 @@ function updateMarketSearchResults() {
     </div>
     <ol class="search-result-list market-result-list">
       ${matches.map((item) => {
+        const isUsItem = isUsMarketView()
         const changeAmount = stockChangeAmount(item)
         const changeRate = stockPeriodChangeRate(item)
         const tone = toneForValue(changeAmount ?? changeRate)
         const changeLabel = changeAmount < 0 ? '하락폭' : changeAmount > 0 ? '상승폭' : '등락폭'
+        const ticker = isUsItem ? item.symbol : item.ticker
+        const marketLabel = isUsItem ? (item.sector || 'US') : (item.market || 'KRX')
+        const priceLabel = isUsItem ? formatUsd(item.price) : formatPrice(item.price)
+        const capLabel = isUsItem ? formatUsdCompact(parseAbbrevValue(item.marketCap)) : (item.marketCapLabel || formatMarketCap(item.marketCap))
+        const amountLabel = isUsItem ? formatUsdCompact(parseAbbrevValue(item.amount)) : `${formatMoney(item.amount || 0)}원`
+        const changeAmountLabel = isUsItem ? formatUsd(changeAmount) : formatSignedPrice(changeAmount)
         return `
           <li>
             <div>
-              <button type="button" data-market-search-ticker="${escapeHtml(item.ticker)}">${escapeHtml(item.name)}</button>
-              <small>${escapeHtml(item.ticker)} · ${escapeHtml(item.market || 'KRX')}</small>
+              <button type="button" data-market-search-ticker="${escapeHtml(ticker)}">${escapeHtml(item.name)}</button>
+              <small>${escapeHtml(ticker)} · ${escapeHtml(marketLabel)}</small>
             </div>
             <span class="market-search-metrics">
-              <span class="metric"><small>현재가</small><b>${escapeHtml(formatPrice(item.price))}</b></span>
-              <span class="metric"><small>시가총액</small><b>${escapeHtml(item.marketCapLabel || formatMarketCap(item.marketCap))}</b></span>
-              <span class="metric"><small>거래대금</small><b>${escapeHtml(formatMoney(item.amount || 0))}원</b></span>
-              <span class="metric"><small>${changeLabel}</small><b class="${tone}">${escapeHtml(formatSignedPrice(changeAmount))}<em>${escapeHtml(formatSignedPercent(changeRate))}</em></b></span>
+              <span class="metric"><small>현재가</small><b>${escapeHtml(priceLabel)}</b></span>
+              <span class="metric"><small>시가총액</small><b>${escapeHtml(capLabel)}</b></span>
+              <span class="metric"><small>거래대금</small><b>${escapeHtml(amountLabel)}</b></span>
+              <span class="metric"><small>${changeLabel}</small><b class="${tone}">${escapeHtml(changeAmountLabel)}<em>${escapeHtml(formatSignedPercent(changeRate))}</em></b></span>
             </span>
             ${sparkline(stockTrend(item), tone)}
           </li>
@@ -1934,6 +1977,132 @@ function renderUsMarket() {
   ]
 
   document.querySelector('#usMarketGrid').innerHTML = panels.map(renderListPanel).join('')
+}
+
+function usThemeGroups() {
+  const groups = new Map()
+  usStockUniverse.forEach((stock) => {
+    const sector = stock.sector || '기타'
+    if (!groups.has(sector)) groups.set(sector, [])
+    groups.get(sector).push(stock)
+  })
+
+  return [...groups.entries()].map(([name, stocks]) => {
+    const trend = aggregateStockTrend(stocks)
+    const rate = seriesChangeRate(trend)
+    const amount = stocks.reduce((sum, stock) => sum + parseAbbrevValue(stock.amount), 0)
+    return { name, stocks, trend, rate, amount }
+  })
+}
+
+function usThemeRankItems(predicate = () => true, sortKey = 'rate', direction = 'desc') {
+  return usThemeGroups()
+    .filter(predicate)
+    .sort((a, b) => {
+      const result = sortKey === 'amount' ? a.amount - b.amount : compareNullableAsc(a.rate, b.rate)
+      return direction === 'asc' ? result : -result
+    })
+    .slice(0, 10)
+    .map((theme, index) => ({
+      rank: index + 1,
+      name: theme.name,
+      sub: `${theme.stocks.length.toLocaleString('ko-KR')}종목 · ${theme.stocks[0]?.name ?? 'US'}`,
+      value: sortKey === 'amount' ? formatUsdCompact(theme.amount) : formatSignedPercent(theme.rate),
+      tone: toneForValue(theme.rate),
+      trend: theme.trend,
+      action: 'us-theme-detail',
+      actionValue: theme.name,
+    }))
+}
+
+function renderUsThemeSections() {
+  const panels = [
+    { title: '상승중인 테마', meta: '미국 섹터', items: usThemeRankItems((item) => item.rate > 0) },
+    { title: '하락중인 테마', meta: '미국 섹터', items: usThemeRankItems((item) => item.rate < 0, 'rate', 'asc') },
+    { title: '현재 핫한 테마', meta: '누적 거래대금', items: usThemeRankItems((item) => item.amount > 0, 'amount') },
+  ]
+
+  if (!panels.some((panel) => panel.items.some((item) => item.actionValue === state.selectedUsTheme))) {
+    state.selectedUsTheme = panels[0].items[0]?.actionValue ?? usThemeGroups()[0]?.name ?? null
+  }
+
+  document.querySelector('#usThemeGrid').innerHTML = panels.map(renderListPanel).join('')
+  renderUsThemeDetail()
+}
+
+function renderUsThemeDetail() {
+  const themeName = state.selectedUsTheme ?? usThemeGroups()[0]?.name ?? '미국 테마'
+  const rows = usStockUniverse
+    .filter((stock) => (stock.sector || '기타') === themeName)
+    .map((stock) => ({ ...stock, periodChangeRate: stockPeriodChangeRate(stock) }))
+    .sort((a, b) => compareNullableDesc(a.periodChangeRate, b.periodChangeRate))
+
+  document.querySelector('#usThemeDetail').innerHTML = `
+    <div class="panel-head">
+      <div>
+        <p>미국 테마 구성</p>
+        <h2>${escapeHtml(themeName)}</h2>
+      </div>
+      <span class="panel-meta">${rows.length.toLocaleString('ko-KR')}종목</span>
+    </div>
+    <ol class="theme-stock-list">
+      ${rows.map((row, index) => {
+        const changeRate = row.periodChangeRate
+        const tone = toneForValue(changeRate)
+        return `
+          <li>
+            <span class="rank-pill">${index + 1}</span>
+            <div class="stock-name">
+              <a href="${naverWorldStockUrl(row.naverCode ?? row.symbol)}" target="_blank" rel="noreferrer">${escapeHtml(row.name)}</a>
+              <small>${escapeHtml(row.symbol)} · ${escapeHtml(row.sector ?? 'US')}</small>
+            </div>
+            <b>${escapeHtml(formatUsd(row.price))}</b>
+            <b class="value ${tone}">${formatSignedPercent(changeRate)}</b>
+            <b>${escapeHtml(formatUsdCompact(parseAbbrevValue(row.marketCap)))}</b>
+            <b>${escapeHtml(formatUsdCompact(parseAbbrevValue(row.amount)))}</b>
+            ${sparkline(stockTrend(row), tone)}
+          </li>
+        `
+      }).join('')}
+    </ol>
+  `
+}
+
+function usFlowItems(mode) {
+  return [...usStockUniverse]
+    .map((stock) => ({
+      ...stock,
+      periodChangeRate: stockPeriodChangeRate(stock),
+      amountValue: parseAbbrevValue(stock.amount),
+      volumeValue: Number(stock.latestCandle?.volume ?? stock.volume ?? 0),
+    }))
+    .sort((a, b) => {
+      if (mode === 'buy') return (b.periodChangeRate ?? -Infinity) - (a.periodChangeRate ?? -Infinity) || b.amountValue - a.amountValue
+      if (mode === 'sell') return (a.periodChangeRate ?? Infinity) - (b.periodChangeRate ?? Infinity) || b.amountValue - a.amountValue
+      if (mode === 'volume') return b.volumeValue - a.volumeValue
+      return b.amountValue - a.amountValue
+    })
+    .slice(0, 10)
+    .map((stock, index) => ({
+      rank: index + 1,
+      name: stock.name,
+      sub: `${stock.symbol} · ${stock.sector || 'US'} · 가격·거래대금 기반`,
+      href: naverWorldStockUrl(stock.naverCode ?? stock.symbol),
+      value: mode === 'volume' ? formatShareVolume(stock.volumeValue) : mode === 'amount' ? formatUsdCompact(stock.amountValue) : formatSignedPercent(stock.periodChangeRate),
+      tone: mode === 'sell' ? 'down' : toneForValue(stock.periodChangeRate),
+      trend: stockTrend(stock),
+    }))
+}
+
+function renderUsFlowSections() {
+  const panels = [
+    { title: '매수 관심 상위', meta: '미국 수급 추정', items: usFlowItems('buy') },
+    { title: '매도 압력 상위', meta: '미국 수급 추정', items: usFlowItems('sell') },
+    { title: '거래대금 집중', meta: 'Naver/Yahoo', items: usFlowItems('amount') },
+    { title: '거래량 상위', meta: 'Naver/Yahoo', items: usFlowItems('volume') },
+  ]
+
+  document.querySelector('#usFlowGrid').innerHTML = panels.map(renderListPanel).join('')
 }
 
 function renderPensionSections() {
@@ -2401,6 +2570,8 @@ function renderStockViews() {
   renderMarketInsights()
   renderPensionSections()
   renderUsMarket()
+  renderUsThemeSections()
+  renderUsFlowSections()
   updateSearchResults()
   updateStockTable()
 }
@@ -2514,6 +2685,17 @@ function bindControls() {
     syncControlBar()
   })
 
+  document.querySelector('#usStockSubTabs').addEventListener('click', (event) => {
+    const button = event.target.closest('button[data-us-stock-section]')
+    if (!button) return
+    state.usStockSection = button.dataset.usStockSection
+    document.querySelectorAll('#usStockSubTabs button').forEach((item) => setActiveState(item, item === button))
+    document.querySelectorAll('[data-us-stock-pane]').forEach((pane) => {
+      setPanelActive(pane, pane.dataset.usStockPane === state.usStockSection)
+    })
+    syncControlBar()
+  })
+
   document.querySelector('#pensionSubTabs').addEventListener('click', (event) => {
     const button = event.target.closest('button[data-pension-section]')
     if (!button) return
@@ -2528,6 +2710,14 @@ function bindControls() {
     document.querySelector('#themeDetail').scrollIntoView({ block: 'nearest', behavior: 'smooth' })
   })
 
+  document.querySelector('#usThemeGrid').addEventListener('click', (event) => {
+    const button = event.target.closest('button[data-action="us-theme-detail"]')
+    if (!button) return
+    state.selectedUsTheme = button.dataset.value
+    renderUsThemeDetail()
+    document.querySelector('#usThemeDetail').scrollIntoView({ block: 'nearest', behavior: 'smooth' })
+  })
+
   document.querySelector('#marketSearch').addEventListener('input', (event) => {
     state.marketQuery = event.target.value
     updateMarketSearchResults()
@@ -2536,7 +2726,9 @@ function bindControls() {
   document.querySelector('#marketSearchResults').addEventListener('click', (event) => {
     const button = event.target.closest('button[data-market-search-ticker]')
     if (!button) return
-    const item = stockMetaItems().find((stock) => stock.ticker === button.dataset.marketSearchTicker)
+    const item = isUsMarketView()
+      ? usStockUniverse.find((stock) => stock.symbol === button.dataset.marketSearchTicker)
+      : stockMetaItems().find((stock) => stock.ticker === button.dataset.marketSearchTicker)
     if (!item) return
     state.marketQuery = item.name
     document.querySelector('#marketSearch').value = item.name
@@ -2891,6 +3083,8 @@ async function main() {
     renderMarketInsights()
     renderPensionSections()
     renderUsMarket()
+    renderUsThemeSections()
+    renderUsFlowSections()
     updateStockTable()
   } catch (error) {
     recordDataError('app-init', error)
