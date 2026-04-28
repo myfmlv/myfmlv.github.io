@@ -909,7 +909,8 @@ function seriesWindow(values, { forReturn = false, includeBaseline = false, stri
   const period = currentPeriod()
   if (period === 1) return source.slice(-2)
   const windowSize = (forReturn || includeBaseline) ? period + 1 : period
-  if (strict && source.length < windowSize) return []
+  const minimumWindowSize = forReturn ? period : windowSize
+  if (strict && source.length < minimumWindowSize) return []
   if (source.length > windowSize) return source.slice(-windowSize)
   return source
 }

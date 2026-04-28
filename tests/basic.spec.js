@@ -49,6 +49,21 @@ test('연기금 수급 테이블이 로딩 상태에 멈추지 않는다', async
   })
 })
 
+test('국내 테마 60일 화면은 상승/하락 랭킹과 구성종목 수익률을 계산한다', async ({ page }) => {
+  await page.goto('/')
+  await page.getByRole('tab', { name: '테마' }).click()
+  await page.getByRole('button', { name: '60일' }).click()
+
+  const risingPanel = page.locator('#themeSectionGrid article').filter({ hasText: '상승중인 테마' })
+  const fallingPanel = page.locator('#themeSectionGrid article').filter({ hasText: '하락중인 테마' })
+  const hotPanel = page.locator('#themeSectionGrid article').filter({ hasText: '현재 핫한 테마' })
+
+  await expect(risingPanel).not.toContainText('표시할 데이터가 없습니다.')
+  await expect(fallingPanel).not.toContainText('표시할 데이터가 없습니다.')
+  await expect(hotPanel.locator('li').first()).toContainText(/상승 [1-9]/)
+  await expect(page.locator('#themeDetail .value').first()).toContainText(/[-+]?\d+(\.\d+)?%/)
+})
+
 test('검색 입력이 가능하다', async ({ page }) => {
   await page.goto('/')
 
