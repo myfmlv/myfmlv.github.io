@@ -6,6 +6,7 @@ ETF 테마 카드와 KRX 연기금 주식 수급 랭킹을 함께 보는 정적 
 
 ```bash
 npm run sync:krx
+npm run sync:krx-live
 npm run sync:krx-openapi -- --date=20260424
 npm run sync:market-index
 npm run sync:etf
@@ -18,7 +19,7 @@ npm run check
 npm run test:e2e
 ```
 
-`npm run update:data`는 기존 데이터 수집 스크립트를 순서대로 실행하고 `data/update-status.json`에 자동갱신 결과를 기록합니다. `npm run check`는 JavaScript 문법 검사, 핵심 데이터 JSON/CSV 검증, 정적 UI 스모크 테스트를 함께 실행합니다. `npm run test:e2e`는 정적 서버를 띄운 뒤 Playwright로 핵심 화면 동작을 확인합니다.
+`npm run update:data`는 기존 데이터 수집 스크립트를 순서대로 실행하고 `data/update-status.json`에 자동갱신 결과를 기록합니다. KRX 로그인 정보가 있으면 `npm run sync:krx-live`로 장마감 후 확정된 거래일까지 직접 백필하고, 없으면 로컬 CSV 원본 동기화로 대체합니다. `npm run check`는 JavaScript 문법 검사, 핵심 데이터 JSON/CSV 검증, 정적 UI 스모크 테스트를 함께 실행합니다. `npm run test:e2e`는 정적 서버를 띄운 뒤 Playwright로 핵심 화면 동작을 확인합니다.
 
 ## Local KRX data sync
 
@@ -56,7 +57,7 @@ npm run check
 
 `npm run sync:etf`는 네이버 ETF 목록/차트와 WiseReport ETF 상세의 CU당 구성종목을 합쳐 `data/etf-universe.json`을 갱신합니다. 실제 구성종목 데이터가 없는 ETF에는 추정 편입비중을 넣지 않습니다.
 
-`npm run sync:stock-charts`와 `npm run sync:naver-market`는 기간 버튼(`1일`, `5일`, `20일`, `60일`)에서 쓰는 가격 흐름과 테마/검색/거래대금 랭킹 데이터를 보강합니다. 기간 수익률을 보여주는 랭킹은 선택 기간 기준으로 다시 정렬합니다.
+`npm run sync:stock-charts`와 `npm run sync:naver-market`는 기간 버튼(`1일`, `5일`, `20일`, `60일`)에서 쓰는 가격 흐름과 테마/검색/거래대금 랭킹 데이터를 보강합니다. 국내 주식과 국내상장 ETF의 `1일` 미니 차트는 Naver 10분봉(`minute10`)을 사용하고, 기간 수익률과 거래대금 랭킹은 선택 기간 기준으로 다시 정렬하거나 누적 합산합니다.
 
 `npm run sync:krx-openapi -- --date=YYYYMMDD`는 KRX OpenAPI의 전체 31개 엔드포인트 권한과 응답을 확인합니다. 사이트에 우선 필요한 API 신청 상태와 작업 맥락은 `PROJECT_CONTEXT.md`를 참고하세요.
 
@@ -64,4 +65,6 @@ npm run check
 
 GitHub Actions의 `Update market data` workflow는 평일 한국시간 18:30에 실행됩니다. GitHub cron은 UTC 기준이므로 workflow cron은 `30 9 * * 1-5`입니다. 같은 workflow는 `workflow_dispatch`로 수동 실행할 수 있습니다.
 
-Workflow는 `npm run update:data`, `npm run validate:data`, `npm run check`를 실행한 뒤 변경된 `data/` 파일을 자동 commit/push합니다. KRX CSV 로컬 원본이나 KIS 인증정보가 없는 환경에서는 해당 선택 작업을 건너뛰고 `data/update-status.json`에 `partial` 상태로 기록합니다.
+Workflow는 Python Playwright 런타임을 설치한 뒤 `npm run update:data`, `npm run validate:data`, `npm run check`를 실행하고 변경된 `data/` 파일을 자동 commit/push합니다. GitHub Secrets에 `KRX_USERNAME`, `KRX_PASSWORD`를 넣으면 KRX 연기금 수급과 시가총액 데이터를 장마감 후 직접 갱신합니다. KRX CSV 로컬 원본, KRX 로그인 정보, KIS 인증정보가 없는 환경에서는 해당 선택 작업을 건너뛰고 `data/update-status.json`에 `partial` 상태와 예상 KRX 기준일을 기록합니다.
+
+KRX 자체 갱신은 기존 최신 CSV 다음 날부터 한국시간 18:30 기준 확정 거래일까지 백필합니다. 주말은 직전 금요일을 기준으로 보고, 공휴일처럼 데이터가 없는 날은 다음 성공 실행 때 다시 확인됩니다.

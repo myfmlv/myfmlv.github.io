@@ -4,6 +4,7 @@ from __future__ import annotations
 import argparse
 import csv
 import json
+import os
 import shlex
 import sys
 from datetime import date, datetime, timedelta
@@ -99,6 +100,11 @@ def parse_args() -> argparse.Namespace:
         help="env 로그인 대신 수동 로그인만 사용",
     )
     parser.add_argument(
+        "--browser-channel",
+        default=os.environ.get("KRX_BROWSER_CHANNEL", "chrome"),
+        help="Playwright 브라우저 채널. 빈 문자열이면 번들 Chromium을 사용합니다.",
+    )
+    parser.add_argument(
         "--keep-negative",
         action="store_true",
         help="호환용 옵션입니다. 현재는 기본으로 순매도 행까지 함께 저장합니다.",
@@ -132,21 +138,24 @@ def normalize_investor(name: str) -> str:
 
 def load_env_file(path: Path) -> dict[str, str]:
     env: dict[str, str] = {}
-    if not path.exists():
-        return env
+    if path.exists():
+        for raw_line in path.read_text(encoding="utf-8").splitlines():
+            line = raw_line.strip()
+            if not line or line.startswith("#") or "=" not in line:
+                continue
+            key, value = line.split("=", 1)
+            key = key.strip()
+            value = value.strip()
+            if not key:
+                continue
+            if value:
+                value = shlex.split(value)[0] if value[0] in {"'", '"'} else value
+            env[key] = value
 
-    for raw_line in path.read_text(encoding="utf-8").splitlines():
-        line = raw_line.strip()
-        if not line or line.startswith("#") or "=" not in line:
-            continue
-        key, value = line.split("=", 1)
-        key = key.strip()
-        value = value.strip()
-        if not key:
-            continue
-        if value:
-            value = shlex.split(value)[0] if value[0] in {"'", '"'} else value
-        env[key] = value
+    for key in ("KRX_USERNAME", "KRX_PASSWORD", "KRX_API_KEY"):
+        if os.environ.get(key):
+            env.setdefault(key, os.environ[key])
+
     return env
 
 
@@ -225,7 +234,7 @@ def ensure_login(page: Page, username: str | None, password: str | None, manual_
     try:
         fetch_json_via_browser(page, "20260423", "STK", "6000")
         return
-    except PermissionError:
+    except (PermissionError, RuntimeError):
         pass
 
     if username and password and not manual_login:
@@ -315,10 +324,12 @@ def main() -> int:
 
     with sync_playwright() as playwright:
         try:
+            launch_options = {"headless": args.headless}
+            if args.browser_channel:
+                launch_options["channel"] = args.browser_channel
             context = playwright.chromium.launch_persistent_context(
                 str(BROWSER_PROFILE_DIR),
-                channel="chrome",
-                headless=args.headless,
+                **launch_options,
             )
         except PlaywrightTimeoutError as exc:
             raise SystemExit(f"Chrome 실행 실패: {exc}") from exc

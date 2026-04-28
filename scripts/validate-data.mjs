@@ -343,6 +343,18 @@ function validateUpdateStatus() {
     fail(`${relativePath}.status must be ok, partial, or error`)
   }
 
+  if (data.expectedKrxLatestTradeDate && !/^\d{8}$/.test(String(data.expectedKrxLatestTradeDate))) {
+    fail(`${relativePath}.expectedKrxLatestTradeDate must be YYYYMMDD when present`)
+  }
+
+  if (data.krxLatest && !/^\d{8}$/.test(String(data.krxLatest))) {
+    fail(`${relativePath}.krxLatest must be YYYYMMDD when present`)
+  }
+
+  if (hasOwn(data, 'krxIsCurrent') && typeof data.krxIsCurrent !== 'boolean') {
+    fail(`${relativePath}.krxIsCurrent must be a boolean when present`)
+  }
+
   ok('Update status validated')
 }
 

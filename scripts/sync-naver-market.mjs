@@ -7,6 +7,8 @@ const projectRoot = path.resolve(__dirname, '..')
 const outputPath = path.join(projectRoot, 'data/naver-market.json')
 const NAVER_BASE_URL = 'https://stock.naver.com/api'
 const NAVER_CHART_FOREIGN_URL = 'https://api.stock.naver.com/chart/foreign/item'
+const YAHOO_CHART_BASE_URL = 'https://query1.finance.yahoo.com/v8/finance/chart'
+const HISTORY_LENGTH = 61
 const HEADERS = {
   Accept: 'application/json',
   'User-Agent': 'Mozilla/5.0',
@@ -63,7 +65,7 @@ function normalizeForeignStock(item, rank, chart = null) {
     priceHistory: chart?.priceHistory ?? [],
     dayTrend: chart?.dayTrend ?? [],
     latestCandle: chart?.latestCandle ?? null,
-    source: chart ? 'Naver foreign market API + Naver chart dayCandle' : 'Naver foreign market API',
+    source: chart ? `Naver foreign market API + ${chart.source ?? 'Naver chart dayCandle'}` : 'Naver foreign market API',
   }
 }
 
@@ -186,7 +188,7 @@ function normalizeChart(payload) {
       volume: numberValue(item.accumulatedTradingVolume),
     }))
     .filter((item) => /^\d{8}$/.test(item.date) && item.close > 0)
-    .slice(-60)
+    .slice(-HISTORY_LENGTH)
 
   const latest = candles.at(-1) ?? null
   const previousClose = candles.at(-2)?.close
@@ -195,7 +197,35 @@ function normalizeChart(payload) {
     dayTrend: latest ? [latest.open, latest.close].filter((value) => value > 0) : [],
     latestCandle: latest,
     changeRate: latest && previousClose ? Math.round(((latest.close - previousClose) / previousClose) * 10000) / 100 : 0,
+    source: 'Naver chart dayCandle',
   }
+}
+
+function yahooSymbol(symbol) {
+  return String(symbol ?? '').replace(/\./g, '-')
+}
+
+function normalizeIntraday(payload) {
+  const result = payload?.chart?.result?.[0]
+  const timestamps = Array.isArray(result?.timestamp) ? result.timestamp : []
+  const closes = result?.indicators?.quote?.[0]?.close ?? []
+  const points = timestamps
+    .map((timestamp, index) => ({
+      timestamp: Number(timestamp),
+      close: roundedNumber(closes[index]),
+    }))
+    .filter((item) => Number.isFinite(item.timestamp) && item.close > 0)
+    .sort((a, b) => a.timestamp - b.timestamp)
+
+  const buckets = new Map()
+  points.forEach((point) => {
+    const bucket = Math.floor(point.timestamp / 1200) * 1200
+    buckets.set(bucket, point.close)
+  })
+
+  return [...buckets.entries()]
+    .sort(([a], [b]) => a - b)
+    .map(([, close]) => close)
 }
 
 async function fetchForeignChart(code) {
@@ -205,6 +235,16 @@ async function fetchForeignChart(code) {
     return chart.priceHistory.length > 0 ? chart : null
   } catch {
     return null
+  }
+}
+
+async function fetchForeignIntraday(symbol) {
+  try {
+    const payload = await fetchJson(`${YAHOO_CHART_BASE_URL}/${encodeURIComponent(yahooSymbol(symbol))}?range=1d&interval=5m&includePrePost=false`)
+    const trend = normalizeIntraday(payload)
+    return trend.length >= 2 ? trend : []
+  } catch {
+    return []
   }
 }
 
@@ -230,7 +270,16 @@ async function attachForeignCharts(lists) {
     if (item.naverCode) codeMap.set(item.naverCode, item)
   })
 
-  const charts = await mapWithConcurrency([...codeMap.keys()], 8, async (code) => [code, await fetchForeignChart(code)])
+  const charts = await mapWithConcurrency([...codeMap.keys()], 8, async (code) => {
+    const item = codeMap.get(code)
+    const chart = await fetchForeignChart(code)
+    const intraday = await fetchForeignIntraday(item.symbol)
+    return [code, {
+      ...chart,
+      dayTrend: intraday.length >= 2 ? intraday : chart?.dayTrend,
+      source: intraday.length >= 2 ? 'Naver chart dayCandle + Yahoo 20m intraday' : chart?.source,
+    }]
+  })
   const chartMap = new Map(charts)
 
   return lists.map((list) => list.map((item) => normalizeForeignStock(item, item.rank, chartMap.get(item.naverCode))))
@@ -276,7 +325,7 @@ const fallingThemesRaw = [...allThemes]
   .slice(0, 10)
 const hotThemesRaw = [...hotThemes].slice(0, 10)
 
-const themeNos = [...new Set([...risingThemesRaw, ...fallingThemesRaw, ...hotThemesRaw].map((item) => String(item.no)).filter(Boolean))]
+const themeNos = [...new Set([...allThemes, ...hotThemesRaw].map((item) => String(item.no)).filter(Boolean))]
 const themeStockEntries = await mapWithConcurrency(themeNos, 6, async (no) => [no, await fetchThemeStocks(no)])
 const themeStockMap = new Map(themeStockEntries)
 
@@ -300,6 +349,7 @@ const payload = {
     searchTop,
   },
   themes: {
+    all: normalizeThemeList(allThemes),
     rising: normalizeThemeList(risingThemesRaw),
     falling: normalizeThemeList(fallingThemesRaw),
     hot: normalizeThemeList(hotThemesRaw),
@@ -317,5 +367,5 @@ await writeFile(outputPath, `${JSON.stringify(payload, null, 2)}\n`)
 
 console.log(`Synced Naver market data -> ${outputPath}`)
 console.log(`Domestic rankings: ${marketCap.length}/${tradingAmount.length}/${searchTop.length}`)
-console.log(`Themes: ${payload.themes.rising.length}/${payload.themes.falling.length}/${payload.themes.hot.length}`)
+console.log(`Themes: all ${payload.themes.all.length}, rising/falling/hot ${payload.themes.rising.length}/${payload.themes.falling.length}/${payload.themes.hot.length}`)
 console.log(`US rankings: ${usMarketCap.length}/${usTradingAmount.length}/${usSearchTop.length}`)

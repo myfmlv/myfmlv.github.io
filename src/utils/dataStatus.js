@@ -7,6 +7,8 @@ export function createInitialDataStatus() {
     hasPartialError: false,
     generatedAt: null,
     krxLatest: null,
+    expectedKrxLatest: null,
+    krxIsCurrent: null,
     krxGeneratedAt: null,
     naverGeneratedAt: null,
     marketIndexUpdatedAt: null,
@@ -55,6 +57,8 @@ export function mergeLoadedDataStatus(status, payload = {}) {
   const { krxIndex, naverMarket, marketIndex, updateStatus } = payload
 
   if (krxIndex?.latest) status.krxLatest = krxIndex.latest
+  if (updateStatus?.expectedKrxLatestTradeDate) status.expectedKrxLatest = updateStatus.expectedKrxLatestTradeDate
+  if (typeof updateStatus?.krxIsCurrent === 'boolean') status.krxIsCurrent = updateStatus.krxIsCurrent
   if (krxIndex?.generatedAt) status.krxGeneratedAt = krxIndex.generatedAt
   if (naverMarket?.generatedAt) status.naverGeneratedAt = naverMarket.generatedAt
   if (Array.isArray(marketIndex) && marketIndex[0]?.updatedAt) {
@@ -144,6 +148,12 @@ export function finalizeDataStatus(status, payload = {}) {
     return status
   }
 
+  if (status.expectedKrxLatest && status.krxLatest && status.krxLatest < status.expectedKrxLatest) {
+    status.phase = 'ready'
+    status.sourceLevel = 'stale'
+    return status
+  }
+
   status.phase = 'ready'
   status.sourceLevel = freshness.level
 
@@ -192,6 +202,11 @@ export function buildDataStatusText(status) {
     level = 'partial'
   }
 
+  if (status.sourceLevel === 'stale') {
+    title = '데이터 상태: KRX 기준일 지연'
+    level = 'stale'
+  }
+
   if (status.sourceLevel === 'error') {
     title = '데이터 상태: 데이터 로딩 실패'
     level = 'error'
@@ -199,6 +214,7 @@ export function buildDataStatusText(status) {
 
   const parts = [
     `KRX 기준일: ${status.krxLatest || '-'}`,
+    `KRX 예상 기준일: ${status.expectedKrxLatest || '-'}`,
     `KRX 생성: ${formatDateTime(status.krxGeneratedAt)}`,
     `네이버 마켓 생성: ${formatDateTime(status.naverGeneratedAt)}`,
     `시장지표 갱신: ${formatDateTime(status.marketIndexUpdatedAt)}`,

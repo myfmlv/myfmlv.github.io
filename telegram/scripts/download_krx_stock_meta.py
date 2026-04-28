@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import sys
 from datetime import datetime
 from pathlib import Path
@@ -48,6 +49,11 @@ def parse_args() -> argparse.Namespace:
         "--manual-login",
         action="store_true",
         help="env 로그인 대신 수동 로그인만 사용",
+    )
+    parser.add_argument(
+        "--browser-channel",
+        default=os.environ.get("KRX_BROWSER_CHANNEL", "chrome"),
+        help="Playwright 브라우저 채널. 빈 문자열이면 번들 Chromium을 사용합니다.",
     )
     return parser.parse_args()
 
@@ -149,10 +155,12 @@ def main() -> int:
 
     with sync_playwright() as playwright:
         try:
+            launch_options = {"headless": args.headless}
+            if args.browser_channel:
+                launch_options["channel"] = args.browser_channel
             context = playwright.chromium.launch_persistent_context(
                 str(BROWSER_PROFILE_DIR),
-                channel="chrome",
-                headless=args.headless,
+                **launch_options,
             )
         except PlaywrightTimeoutError as exc:
             raise SystemExit(f"Chrome 실행 실패: {exc}") from exc

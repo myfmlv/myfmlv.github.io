@@ -11,6 +11,7 @@ const WISEREPORT_ETF_BASE_URL = 'https://navercomp.wisereport.co.kr/v2/ETF/index
 const PAGE_SIZE = 100
 const CHART_CONCURRENCY = 8
 const HOLDINGS_CONCURRENCY = 6
+const HISTORY_LENGTH = 61
 
 const issuerMap = [
   ['KODEX', '삼성자산운용'],
@@ -204,30 +205,66 @@ function roundedNumber(value) {
 function normalizeChart(payload) {
   const priceInfos = Array.isArray(payload?.priceInfos) ? payload.priceInfos : []
   const candles = priceInfos
-    .map((item) => ({
-      date: String(item.localDate ?? ''),
-      open: roundedNumber(item.openPrice),
-      high: roundedNumber(item.highPrice),
-      low: roundedNumber(item.lowPrice),
-      close: roundedNumber(item.closePrice),
-      volume: numberValue(item.accumulatedTradingVolume),
-    }))
+    .map((item) => {
+      const close = roundedNumber(item.closePrice)
+      const volume = numberValue(item.accumulatedTradingVolume)
+      const amount = numberValue(item.accumulatedTradingValue ?? item.accumulatedTradingAmount)
+        || Math.round(close * volume)
+      return {
+        date: String(item.localDate ?? ''),
+        open: roundedNumber(item.openPrice),
+        high: roundedNumber(item.highPrice),
+        low: roundedNumber(item.lowPrice),
+        close,
+        volume,
+        amount,
+      }
+    })
     .filter((item) => /^\d{8}$/.test(item.date) && item.close > 0)
-    .slice(-60)
+    .slice(-HISTORY_LENGTH)
 
   const latest = candles.at(-1) ?? null
   return {
     history: candles.map((item) => [item.date, item.close]),
+    amountHistory: candles.map((item) => [item.date, item.amount]).filter(([, amount]) => amount > 0),
     dayTrend: latest ? [latest.open, latest.close].filter((value) => value > 0) : [],
     latestCandle: latest,
   }
+}
+
+function normalizeMinute10(payload) {
+  const items = Array.isArray(payload) ? payload : []
+  return items
+    .map((item) => ({
+      dateTime: String(item.localDateTime ?? ''),
+      close: roundedNumber(item.currentPrice ?? item.closePrice),
+    }))
+    .filter((item) => /^\d{14}$/.test(item.dateTime) && item.close > 0)
+    .sort((a, b) => a.dateTime.localeCompare(b.dateTime))
+    .map((item) => item.close)
 }
 
 async function fetchEtfChart(code) {
   try {
     const payload = await fetchJson(`${NAVER_CHART_BASE_URL}/${code}?periodType=dayCandle`)
     const chart = normalizeChart(payload)
-    return chart.history.length > 0 ? chart : null
+    if (chart.history.length === 0) return null
+
+    try {
+      const tradeDate = chart.latestCandle?.date
+      if (tradeDate) {
+        const minutePayload = await fetchJson(`${NAVER_CHART_BASE_URL}/${code}/minute10?startDateTime=${tradeDate}0900&endDateTime=${tradeDate}1600`)
+        const minute10Trend = normalizeMinute10(minutePayload)
+        if (minute10Trend.length >= 2) {
+          chart.dayTrend = minute10Trend
+          chart.source = 'Naver chart domestic dayCandle + minute10'
+        }
+      }
+    } catch (error) {
+      console.warn(`ETF minute10 skipped ${code}: ${error.message}`)
+    }
+
+    return chart
   } catch (error) {
     console.warn(`ETF chart skipped ${code}: ${error.message}`)
     return null
@@ -303,14 +340,15 @@ function normalizeEtf(item, usListedCodes, chart, holdings) {
     iNav: Number(item.iNav) || null,
     dayTrend: chart?.dayTrend ?? [],
     priceHistory: chart?.history ?? [],
+    amountHistory: chart?.amountHistory ?? [],
     latestCandle: chart?.latestCandle ?? null,
     holdings,
     source: holdings.length > 0 && chart
-      ? 'Naver stock ETF API + Naver chart dayCandle + WiseReport ETF holdings'
+      ? `Naver stock ETF API + ${chart.source ?? 'Naver chart dayCandle'} + WiseReport ETF holdings`
       : holdings.length > 0
         ? 'Naver stock ETF API + WiseReport ETF holdings'
         : chart
-          ? 'Naver stock ETF API + Naver chart dayCandle'
+          ? `Naver stock ETF API + ${chart.source ?? 'Naver chart dayCandle'}`
           : 'Naver stock ETF API',
   }
 }

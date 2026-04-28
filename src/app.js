@@ -615,16 +615,61 @@ function formatNumber(value) {
   return formatNullableNumber(value)
 }
 
+function formatShareVolume(value) {
+  const number = Number(value)
+  if (!Number.isFinite(number) || number === 0) return '-'
+  if (Math.abs(number) >= 100_000_000) {
+    return `${(number / 100_000_000).toLocaleString('ko-KR', { maximumFractionDigits: 1 })}억주`
+  }
+  if (Math.abs(number) >= 10_000) {
+    return `${(number / 10_000).toLocaleString('ko-KR', { maximumFractionDigits: 1 })}만주`
+  }
+  return `${Math.round(number).toLocaleString('ko-KR')}주`
+}
+
 function formatPercentRatio(value) {
   if (value === null || value === undefined) return '-'
   return `${(value * 100).toFixed(3)}%`
 }
 
 function formatSignedPercent(value) {
+  if (value === null || value === undefined || value === '') return '-'
   const number = Number(value)
   if (!Number.isFinite(number)) return '-'
   const sign = number > 0 ? '+' : ''
   return `${sign}${number.toFixed(2)}%`
+}
+
+function finiteNumber(value) {
+  if (value === null || value === undefined || value === '') return null
+  const number = Number(value)
+  return Number.isFinite(number) ? number : null
+}
+
+function compareNullableDesc(a, b) {
+  const left = finiteNumber(a)
+  const right = finiteNumber(b)
+  if (left === null && right === null) return 0
+  if (left === null) return 1
+  if (right === null) return -1
+  return right - left
+}
+
+function compareNullableAsc(a, b) {
+  const left = finiteNumber(a)
+  const right = finiteNumber(b)
+  if (left === null && right === null) return 0
+  if (left === null) return 1
+  if (right === null) return -1
+  return left - right
+}
+
+function toneForValue(value, fallback = 'neutral') {
+  const number = finiteNumber(value)
+  if (number === null) return fallback
+  if (number > 0) return 'up'
+  if (number < 0) return 'down'
+  return 'neutral'
 }
 
 function formatPrice(value) {
@@ -850,25 +895,52 @@ function parseAbbrevValue(value) {
 }
 
 function chartValues(values) {
-  return seriesWindow(values)
+  const source = (Array.isArray(values) ? values : []).map(Number).filter(Number.isFinite)
+  if (currentPeriod() === 1) return source
+  return seriesWindow(values, { includeBaseline: state.chartPeriod > 1 })
 }
 
-function seriesWindow(values, { forReturn = false } = {}) {
+function currentPeriod() {
+  return Math.max(1, Number(state.chartPeriod) || 1)
+}
+
+function seriesWindow(values, { forReturn = false, includeBaseline = false, strict = false } = {}) {
   const source = (Array.isArray(values) ? values : []).map(Number).filter(Number.isFinite)
-  const period = Math.max(1, Number(state.chartPeriod) || 5)
+  const period = currentPeriod()
   if (period === 1) return source.slice(-2)
-  const windowSize = forReturn ? period + 1 : period
+  const windowSize = (forReturn || includeBaseline) ? period + 1 : period
+  if (strict && source.length < windowSize) return []
   if (source.length > windowSize) return source.slice(-windowSize)
   return source
 }
 
-function seriesChangeRate(values) {
-  const source = seriesWindow(values, { forReturn: true })
+function seriesChangeRate(values, options = {}) {
+  const source = seriesWindow(values, { forReturn: true, strict: true, ...options })
   if (source.length < 2) return null
   const first = source[0]
   const last = source.at(-1)
   if (!Number.isFinite(first) || !Number.isFinite(last) || first === 0) return null
   return Math.round((((last - first) / first) * 100) * 100) / 100
+}
+
+function officialDailyChangeRate(item) {
+  return finiteNumber(item?.changeRate)
+}
+
+function numericHistoryValues(entries) {
+  return (Array.isArray(entries) ? entries : [])
+    .map((entry) => Array.isArray(entry) ? Number(entry[1]) : Number(entry))
+    .filter(Number.isFinite)
+}
+
+function periodAmount(item) {
+  const fallback = finiteNumber(item?.amount)
+  if (currentPeriod() === 1 && fallback !== null) return fallback
+
+  const values = numericHistoryValues(item?.amountHistory).slice(-currentPeriod())
+  if (values.length === 0) return fallback ?? 0
+  if (fallback !== null) values[values.length - 1] = fallback
+  return Math.round(values.reduce((sum, value) => sum + value, 0))
 }
 
 function sparkline(values, tone = 'neutral') {
@@ -922,6 +994,7 @@ function normalizeLoadedEtf(item) {
     trend: trend.length > 0 ? trend : [price].filter(Boolean),
     dayTrend,
     priceHistory: Array.isArray(item.priceHistory) ? item.priceHistory : [],
+    amountHistory: Array.isArray(item.amountHistory) ? item.amountHistory : [],
     latestCandle: item.latestCandle ?? null,
     holdings: Array.isArray(item.holdings)
       ? item.holdings.map(([name, ticker, ratio]) => [String(name ?? ''), String(ticker ?? ''), Number(ratio) || 0]).filter(([name]) => name)
@@ -935,18 +1008,21 @@ function etfTrend(item) {
     return item.dayTrend
   }
 
+  if (state.chartPeriod === 1) return numericHistoryValues(item?.priceHistory).slice(-2)
   return item.trend
 }
 
 function etfChangeRate(item) {
-  return seriesChangeRate(etfTrend(item)) ?? (Number(item?.changeRate) || 0)
+  if (state.chartPeriod === 1) return officialDailyChangeRate(item)
+  return seriesChangeRate(etfTrend(item))
+}
+
+function etfPeriodAmount(item) {
+  return periodAmount(item)
 }
 
 function historyValues(item) {
-  if (!Array.isArray(item?.priceHistory)) return []
-  return item.priceHistory
-    .map((entry) => Array.isArray(entry) ? Number(entry[1]) : Number(entry))
-    .filter(Number.isFinite)
+  return numericHistoryValues(item?.priceHistory)
 }
 
 function stockTrend(item) {
@@ -955,13 +1031,15 @@ function stockTrend(item) {
   }
 
   const history = historyValues(item)
+  if (state.chartPeriod === 1) return history.slice(-2)
   if (history.length > 0) return history
   if (Array.isArray(item?.trend) && item.trend.length > 0) return item.trend
   return []
 }
 
 function stockPeriodChangeRate(item) {
-  return seriesChangeRate(stockTrend(item)) ?? (Number(item?.changeRate) || 0)
+  if (state.chartPeriod === 1) return officialDailyChangeRate(item)
+  return seriesChangeRate(stockTrend(item))
 }
 
 function indexedSeries(values, targetLength = 60) {
@@ -992,7 +1070,7 @@ function averageAlignedSeries(seriesList, targetLength = 60) {
 }
 
 function aggregateStockTrend(items) {
-  return averageAlignedSeries(items.map((item) => historyValues(item)), 60)
+  return averageAlignedSeries(items.map((item) => historyValues(item)), 61)
 }
 
 function marketTrend(market) {
@@ -1010,7 +1088,12 @@ function themeChangeRate(stocks, fallback = []) {
 }
 
 function stockChangeAmount(item) {
-  const values = seriesWindow(stockTrend(item), { forReturn: true })
+  if (state.chartPeriod === 1) {
+    const history = historyValues(item)
+    if (history.length >= 2) return Math.round((history.at(-1) - history.at(-2)) * 100) / 100
+  }
+
+  const values = seriesWindow(stockTrend(item), { forReturn: true, strict: true })
   if (values.length >= 2) return Math.round((values.at(-1) - values[0]) * 100) / 100
   return null
 }
@@ -1042,6 +1125,27 @@ function normalizeLoadedUsStock(item) {
     dayTrend: Array.isArray(item.dayTrend) ? item.dayTrend.map(Number).filter(Number.isFinite) : [],
     latestCandle: item.latestCandle ?? null,
     trend: historyPrices.length > 0 ? historyPrices : (Array.isArray(item.trend) ? item.trend : []),
+  }
+}
+
+function usStockLookup(symbol, naverCode) {
+  const normalizedSymbol = String(symbol ?? '').toUpperCase()
+  const normalizedCode = String(naverCode ?? '').toUpperCase()
+  return usStockUniverse.find((item) => (
+    String(item.symbol ?? '').toUpperCase() === normalizedSymbol
+    || String(item.naverCode ?? '').toUpperCase() === normalizedCode
+  )) ?? null
+}
+
+function enrichUsRankItem(item) {
+  const local = usStockLookup(item.symbol, item.naverCode)
+  if (!local) return item
+  return {
+    ...item,
+    priceHistory: local.priceHistory?.length ? local.priceHistory : item.priceHistory,
+    dayTrend: local.dayTrend?.length ? local.dayTrend : item.dayTrend,
+    latestCandle: local.latestCandle ?? item.latestCandle,
+    trend: local.trend?.length ? local.trend : item.trend,
   }
 }
 
@@ -1135,7 +1239,21 @@ function aggregatePensionRowsForPeriod() {
 }
 
 function activePensionRows() {
-  return state.pensionSection === 'search' ? aggregatePensionRowsForPeriod() : state.rows
+  return aggregatePensionRowsForPeriod()
+}
+
+function themePeriodAmount(stocks) {
+  return stocks.reduce((sum, stock) => sum + periodAmount(stock), 0)
+}
+
+function themePeriodCounts(stocks) {
+  return stocks.reduce((counts, stock) => {
+    const rate = stockPeriodChangeRate(stock)
+    if (rate > 0) counts.rise += 1
+    if (rate < 0) counts.fall += 1
+    if (rate === 0) counts.steady += 1
+    return counts
+  }, { rise: 0, fall: 0, steady: 0 })
 }
 
 function staticItems(items, tone = 'up', formatter = (value) => `${value}%`, sortDirection = 'desc') {
@@ -1143,44 +1261,64 @@ function staticItems(items, tone = 'up', formatter = (value) => `${value}%`, sor
     const stocks = themeStocks(name)
     const computedTrend = themeTrend(stocks, trend)
     const computedRate = seriesChangeRate(computedTrend)
-    const displayRate = computedRate ?? value
+    const displayRate = computedRate ?? (state.chartPeriod === 1 ? value : null)
     return {
       name,
       sub: `${themeStockSeeds[name]?.length ?? 0}종목`,
-      value: formatter(displayRate),
-      tone: displayRate < 0 ? 'down' : tone,
+      value: displayRate === null ? '-' : formatter(displayRate),
+      tone: toneForValue(displayRate, tone),
       trend: computedTrend,
       action: 'theme-detail',
       actionValue: name,
       sortValue: displayRate,
     }
   })
-    .sort((a, b) => sortDirection === 'asc' ? a.sortValue - b.sortValue : b.sortValue - a.sortValue)
+    .sort((a, b) => sortDirection === 'asc' ? compareNullableAsc(a.sortValue, b.sortValue) : compareNullableDesc(a.sortValue, b.sortValue))
+    .map((item, index) => ({ ...item, rank: index + 1 }))
+}
+
+function themeRankItem(item, valueMode = 'rate') {
+  const stocks = Array.isArray(item.stocks) && item.stocks.length > 0
+    ? item.stocks.map(enrichNaverDomesticItem)
+    : themeStocks(item.name)
+  const trend = themeTrend(stocks)
+  const rate = themeChangeRate(stocks) ?? (state.chartPeriod === 1 ? finiteNumber(item.changeRate) : null)
+  const amount = themePeriodAmount(stocks) || Number(item.amount) || 0
+  const counts = themePeriodCounts(stocks)
+  const value = valueMode === 'amount'
+    ? formatMoney(amount)
+    : formatSignedPercent(rate)
+  return {
+    name: item.name,
+    rate,
+    amount,
+    sub: `${formatNumber(Number(item.totalCount) || stocks.length)}종목 · 상승 ${formatNumber(counts.rise)} · 하락 ${formatNumber(counts.fall)}`,
+    value,
+    tone: toneForValue(rate, 'neutral'),
+    trend,
+    action: 'theme-detail',
+    actionValue: item.name,
+    sortValue: valueMode === 'amount' ? amount : rate,
+  }
+}
+
+function rankThemeItems(items, sortDirection = 'desc') {
+  return items
+    .sort((a, b) => sortDirection === 'asc' ? compareNullableAsc(a.sortValue, b.sortValue) : compareNullableDesc(a.sortValue, b.sortValue))
     .map((item, index) => ({ ...item, rank: index + 1 }))
 }
 
 function themeRankItems(items, valueMode = 'rate', sortDirection = 'desc') {
-  return items.map((item) => {
-    const stocks = (item.stocks ?? []).map(enrichNaverDomesticItem)
-    const trend = themeTrend(stocks)
-    const rate = themeChangeRate(stocks) ?? (Number(item.changeRate) || 0)
-    const amount = Number(item.amount) || 0
-    const value = valueMode === 'amount'
-      ? formatMoney(amount)
-      : formatSignedPercent(rate)
-    return {
-      name: item.name,
-      sub: `${formatNumber(Number(item.totalCount) || stocks.length)}종목 · 상승 ${formatNumber(Number(item.riseCount) || 0)} · 하락 ${formatNumber(Number(item.fallCount) || 0)}`,
-      value,
-      tone: rate < 0 ? 'down' : 'up',
-      trend,
-      action: 'theme-detail',
-      actionValue: item.name,
-      sortValue: valueMode === 'amount' ? amount : rate,
-    }
-  })
-    .sort((a, b) => sortDirection === 'asc' ? a.sortValue - b.sortValue : b.sortValue - a.sortValue)
-    .map((item, index) => ({ ...item, rank: index + 1 }))
+  return rankThemeItems(items.map((item) => themeRankItem(item, valueMode)), sortDirection)
+}
+
+function periodThemeRankItems(predicate, valueMode = 'rate', sortDirection = 'desc') {
+  return rankThemeItems(
+    naverThemeUniverse()
+      .map((item) => themeRankItem(item, valueMode))
+      .filter(predicate),
+    sortDirection,
+  )
 }
 
 function themeStocks(themeName) {
@@ -1209,6 +1347,7 @@ function themeStocks(themeName) {
         marketCapLabel: meta.marketCapLabel ?? formatMarketCap(meta.marketCap),
         amount: meta.amount ?? 0,
         priceHistory: meta.priceHistory ?? [],
+        amountHistory: meta.amountHistory ?? [],
         dayTrend: meta.dayTrend ?? [],
         trend: stockTrend({ ticker, ...meta }),
       }
@@ -1246,6 +1385,7 @@ function enrichNaverDomesticItem(item) {
     marketCap: Number(item.marketCap) || Number(meta.marketCap) || null,
     marketCapLabel: meta.marketCapLabel ?? formatMarketCap(Number(item.marketCap) || Number(meta.marketCap)),
     priceHistory: meta.priceHistory ?? item.priceHistory ?? [],
+    amountHistory: meta.amountHistory ?? item.amountHistory ?? [],
     dayTrend: meta.dayTrend ?? item.dayTrend ?? [],
     latestCandle: meta.latestCandle ?? item.latestCandle ?? null,
   }
@@ -1261,10 +1401,30 @@ function naverThemeBuckets() {
   return state.naverMarket?.themes ?? null
 }
 
+function naverThemeUniverse() {
+  const buckets = naverThemeBuckets()
+  if (!buckets) return []
+
+  const themes = new Map()
+  ;['all', 'rising', 'falling', 'hot'].forEach((key) => {
+    ;(buckets[key] ?? []).forEach((theme) => {
+      const name = String(theme.name ?? '')
+      if (!name) return
+      const current = themes.get(name) ?? {}
+      themes.set(name, {
+        ...current,
+        ...theme,
+        stocks: Array.isArray(theme.stocks) && theme.stocks.length > 0 ? theme.stocks : current.stocks,
+      })
+    })
+  })
+  return [...themes.values()]
+}
+
 function naverThemeStocks(themeName) {
   const buckets = naverThemeBuckets()
   if (!buckets) return []
-  return ['rising', 'falling', 'hot']
+  return ['all', 'rising', 'falling', 'hot']
     .flatMap((key) => buckets[key] ?? [])
     .find((theme) => theme.name === themeName)
     ?.stocks
@@ -1274,6 +1434,10 @@ function naverThemeStocks(themeName) {
 function naverUsRankItems(key) {
   return (state.naverMarket?.us?.[key] ?? [])
     .filter((item) => item.symbol && item.name)
+}
+
+function naverWorldStockUrl(code) {
+  return `https://m.stock.naver.com/worldstock/stock/${encodeURIComponent(code)}/total`
 }
 
 function marketCapItems() {
@@ -1287,7 +1451,7 @@ function marketCapItems() {
         sub: `${item.ticker} · ${item.market || 'KRX'}`,
         href: `https://finance.naver.com/item/main.naver?code=${item.ticker}`,
         value: item.marketCapLabel ?? formatMarketCap(item.marketCap),
-        tone: changeRate > 0 ? 'up' : changeRate < 0 ? 'down' : 'neutral',
+        tone: toneForValue(changeRate),
         trend: stockTrend(item),
       }
     })
@@ -1307,7 +1471,7 @@ function marketCapItems() {
         sub: `${item.ticker} · ${item.market || 'KRX'}`,
         href: `https://finance.naver.com/item/main.naver?code=${item.ticker}`,
         value: item.marketCapLabel ?? formatMarketCap(item.marketCap),
-        tone: changeRate > 0 ? 'up' : changeRate < 0 ? 'down' : 'neutral',
+        tone: toneForValue(changeRate),
         trend: stockTrend(item),
       }
     })
@@ -1325,25 +1489,27 @@ function marketCapItems() {
 }
 
 function rowsByPensionMode(mode) {
+  const rows = activePensionRows()
+
   if (mode === 'sell') {
-    return [...state.rows]
+    return [...rows]
       .filter((row) => row.netAmount < 0)
       .sort((a, b) => a.netAmount - b.netAmount)
   }
 
   if (mode === 'buyStreak') {
-    return [...state.rows]
-      .filter((row) => row.netAmount > 0)
+    return [...rows]
+      .filter((row) => row.netAmount > 0 && row.buyStreak > 0)
       .sort((a, b) => b.buyStreak - a.buyStreak || b.netAmount - a.netAmount)
   }
 
   if (mode === 'buyToMarketCap') {
-    return [...state.rows]
+    return [...rows]
       .filter((row) => row.netAmount > 0 && row.buyToMarketCap !== null)
       .sort((a, b) => b.buyToMarketCap - a.buyToMarketCap || b.netAmount - a.netAmount)
   }
 
-  return [...state.rows]
+  return [...rows]
     .filter((row) => row.netAmount > 0)
     .sort((a, b) => b.netAmount - a.netAmount)
 }
@@ -1419,7 +1585,7 @@ function marketRankingItems(mode) {
           sub: `${item.ticker} · ${item.market || 'KRX'} · ${formatPrice(item.price)}`,
           href: `https://finance.naver.com/item/main.naver?code=${item.ticker}`,
           value: formatMoney(item.amount || 0),
-          tone: changeRate > 0 ? 'up' : changeRate < 0 ? 'down' : 'neutral',
+          tone: toneForValue(changeRate),
           trend: stockTrend(item),
         }
       })
@@ -1429,8 +1595,8 @@ function marketRankingItems(mode) {
   const items = stockMetaItems()
     .filter((item) => item.name && item.ticker)
     .sort((a, b) => {
-      if (mode === 'up') return stockPeriodChangeRate(b) - stockPeriodChangeRate(a)
-      if (mode === 'down') return stockPeriodChangeRate(a) - stockPeriodChangeRate(b)
+      if (mode === 'up') return compareNullableDesc(stockPeriodChangeRate(a), stockPeriodChangeRate(b))
+      if (mode === 'down') return compareNullableAsc(stockPeriodChangeRate(a), stockPeriodChangeRate(b))
       return (b.amount ?? 0) - (a.amount ?? 0)
     })
     .slice(0, 10)
@@ -1443,7 +1609,7 @@ function marketRankingItems(mode) {
       sub: `${item.ticker} · ${item.market || 'KRX'} · ${formatPrice(item.price)}`,
       href: `https://finance.naver.com/item/main.naver?code=${item.ticker}`,
       value: mode === 'amount' ? formatMoney(item.amount || 0) : formatSignedPercent(changeRate),
-      tone: mode === 'down' || changeRate < 0 ? 'down' : changeRate > 0 ? 'up' : 'neutral',
+      tone: mode === 'down' ? 'down' : toneForValue(changeRate),
       trend: stockTrend(item),
     }
   })
@@ -1460,7 +1626,7 @@ function marketSearchItems() {
         sub: `${item.ticker} · 조회 ${formatNumber(item.viewCount || 0)}`,
         href: `https://finance.naver.com/item/main.naver?code=${item.ticker}`,
         value: formatSignedPercent(changeRate),
-        tone: changeRate > 0 ? 'up' : changeRate < 0 ? 'down' : 'neutral',
+        tone: toneForValue(changeRate),
         trend: stockTrend(item),
       }
     })
@@ -1478,7 +1644,7 @@ function marketSearchItems() {
         sub: `${item.ticker} · 검색상위 후보`,
         href: `https://finance.naver.com/item/main.naver?code=${item.ticker}`,
         value: formatSignedPercent(changeRate),
-        tone: changeRate > 0 ? 'up' : changeRate < 0 ? 'down' : 'neutral',
+        tone: toneForValue(changeRate),
         trend: stockTrend(item),
       }
     })
@@ -1551,7 +1717,7 @@ function updateMarketSearchResults() {
       ${matches.map((item) => {
         const changeAmount = stockChangeAmount(item)
         const changeRate = stockPeriodChangeRate(item)
-        const tone = changeAmount < 0 ? 'down' : changeAmount > 0 ? 'up' : 'neutral'
+        const tone = toneForValue(changeAmount ?? changeRate)
         const changeLabel = changeAmount < 0 ? '하락폭' : changeAmount > 0 ? '상승폭' : '등락폭'
         return `
           <li>
@@ -1595,7 +1761,7 @@ function usStockItems(mode) {
     volume: 'volume',
     search: 'searchTop',
   }
-  const naverItems = naverUsRankItems(naverKeyMap[mode]).slice(0, 10)
+  const naverItems = naverUsRankItems(naverKeyMap[mode]).map(enrichUsRankItem).slice(0, 10)
   if (naverItems.length > 0) {
     return naverItems
       .map((item) => {
@@ -1603,15 +1769,15 @@ function usStockItems(mode) {
         return {
           name: item.name,
           sub: `${item.symbol} · ${item.sector || 'US'}`,
-          href: `https://stock.naver.com/worldstock/stock/${item.naverCode ?? item.symbol}/total`,
+          href: naverWorldStockUrl(item.naverCode ?? item.symbol),
           value: mode === 'marketCap'
             ? formatUsdCompact(item.marketCap)
             : mode === 'volume'
-              ? formatNumber(item.volume || 0)
+              ? formatShareVolume(item.volume || item.latestCandle?.volume || 0)
               : mode === 'search'
                 ? '조회 상위'
                 : formatUsdCompact(item.amount),
-          tone: changeRate > 0 ? 'up' : changeRate < 0 ? 'down' : 'neutral',
+          tone: toneForValue(changeRate),
           trend: stockTrend(item),
           sortValue: mode === 'marketCap'
             ? parseAbbrevValue(item.marketCap)
@@ -1622,7 +1788,7 @@ function usStockItems(mode) {
                 : changeRate,
         }
       })
-      .sort((a, b) => b.sortValue - a.sortValue)
+      .sort((a, b) => compareNullableDesc(a.sortValue, b.sortValue))
       .map((item, index) => ({ ...item, rank: index + 1 }))
   }
 
@@ -1641,15 +1807,15 @@ function usStockItems(mode) {
         rank: index + 1,
         name: item.name,
         sub: `${item.symbol} · ${item.sector}`,
-        href: `https://stock.naver.com/worldstock/stock/${item.naverCode ?? item.symbol}/total`,
+        href: naverWorldStockUrl(item.naverCode ?? item.symbol),
         value: mode === 'marketCap'
           ? `$${item.marketCap}`
           : mode === 'amount'
             ? `$${item.amount}`
             : mode === 'volume'
-              ? formatNumber(item.latestCandle?.volume ?? 0)
+              ? formatShareVolume(item.latestCandle?.volume ?? 0)
               : `${item.popularity}점`,
-        tone: changeRate > 0 ? 'up' : changeRate < 0 ? 'down' : 'neutral',
+        tone: toneForValue(changeRate),
         trend: stockTrend(item),
       }
     })
@@ -1680,12 +1846,11 @@ function renderListPanel({ title, meta, items }) {
 }
 
 function renderThemeSections() {
-  const naverThemes = naverThemeBuckets()
-  if (naverThemes?.rising?.length) {
+  if (naverThemeUniverse().length) {
     const panels = [
-      { title: '상승중인 테마', meta: 'Naver 테마', items: themeRankItems(naverThemes.rising) },
-      { title: '하락중인 테마', meta: 'Naver 테마', items: themeRankItems(naverThemes.falling ?? [], 'rate', 'asc') },
-      { title: '현재 핫한 테마', meta: 'Naver 거래대금', items: themeRankItems(naverThemes.hot ?? [], 'amount') },
+      { title: '상승중인 테마', meta: 'Naver 테마', items: periodThemeRankItems((item) => item.rate > 0).slice(0, 10) },
+      { title: '하락중인 테마', meta: 'Naver 테마', items: periodThemeRankItems((item) => item.rate < 0, 'rate', 'asc').slice(0, 10) },
+      { title: '현재 핫한 테마', meta: '누적 거래대금', items: periodThemeRankItems((item) => item.amount > 0, 'amount').slice(0, 10) },
     ]
     if (!panels.some((panel) => panel.items.some((item) => item.actionValue === state.selectedTheme))) {
       state.selectedTheme = panels[0].items[0]?.actionValue ?? themeUp[0][0]
@@ -1709,7 +1874,7 @@ function renderThemeDetail() {
   const themeName = state.selectedTheme ?? themeUp[0][0]
   const rows = themeStocks(themeName)
     .map((row) => ({ ...row, periodChangeRate: stockPeriodChangeRate(row) }))
-    .sort((a, b) => b.periodChangeRate - a.periodChangeRate)
+    .sort((a, b) => compareNullableDesc(a.periodChangeRate, b.periodChangeRate))
   document.querySelector('#themeDetail').innerHTML = `
     <div class="panel-head">
       <div>
@@ -1721,6 +1886,7 @@ function renderThemeDetail() {
     <ol class="theme-stock-list">
       ${rows.map((row, index) => {
         const changeRate = row.periodChangeRate
+        const tone = toneForValue(changeRate)
         return `
           <li>
             <span class="rank-pill">${index + 1}</span>
@@ -1729,10 +1895,10 @@ function renderThemeDetail() {
               <small>${escapeHtml(row.ticker)} · ${escapeHtml(row.market ?? 'KRX')} · ${escapeHtml((row.tags ?? []).join(', '))}</small>
             </div>
             <b>${formatPrice(row.price)}</b>
-            <b class="${changeRate >= 0 ? 'value up' : 'value down'}">${formatSignedPercent(changeRate)}</b>
+            <b class="value ${tone}">${formatSignedPercent(changeRate)}</b>
             <b>${escapeHtml(row.marketCapLabel || '-')}</b>
             <b>${formatMoney(row.amount || 0)}원</b>
-            ${sparkline(row.trend, changeRate < 0 ? 'down' : 'up')}
+            ${sparkline(row.trend, tone)}
           </li>
         `
       }).join('')}
@@ -1784,30 +1950,30 @@ function etfPanelItems(mode) {
   if (mode === 'theme') {
     return etfThemes.map(([name, sub, value, trend]) => {
       const themeItems = etfUniverse.filter((item) => item.themes?.includes(name))
-      const amountLeader = [...themeItems].sort((a, b) => b.amount - a.amount)[0]
-      const gainLeader = [...themeItems].sort((a, b) => etfChangeRate(b) - etfChangeRate(a))[0]
-      const themeValue = gainLeader ? etfChangeRate(gainLeader) : value
+      const amountLeader = [...themeItems].sort((a, b) => etfPeriodAmount(b) - etfPeriodAmount(a))[0]
+      const gainLeader = [...themeItems].sort((a, b) => compareNullableDesc(etfChangeRate(a), etfChangeRate(b)))[0]
+      const themeValue = gainLeader ? etfChangeRate(gainLeader) : (state.chartPeriod === 1 ? value : null)
 
       return {
         name,
         sub: amountLeader?.name ?? sub,
         value: formatSignedPercent(themeValue),
-        tone: themeValue >= 0 ? 'up' : 'down',
+        tone: toneForValue(themeValue),
         trend: amountLeader ? etfTrend(amountLeader) : trend,
         action: 'etf-theme',
         actionValue: name,
         sortValue: themeValue,
       }
     })
-      .sort((a, b) => b.sortValue - a.sortValue)
+      .sort((a, b) => compareNullableDesc(a.sortValue, b.sortValue))
       .map((item, index) => ({ ...item, rank: index + 1 }))
   }
 
   return [...etfUniverse]
     .filter((item) => mode.startsWith('us') ? isUsListedEtf(item) : true)
     .sort((a, b) => {
-      if (mode.endsWith('Up')) return etfChangeRate(b) - etfChangeRate(a)
-      return b.amount - a.amount
+      if (mode.endsWith('Up')) return compareNullableDesc(etfChangeRate(a), etfChangeRate(b))
+      return etfPeriodAmount(b) - etfPeriodAmount(a)
     })
     .slice(0, 10)
     .map((item, index) => {
@@ -1816,8 +1982,8 @@ function etfPanelItems(mode) {
         rank: index + 1,
         name: item.name,
         sub: `${item.code} · ${item.issuer}`,
-        value: mode.endsWith('Up') ? formatSignedPercent(changeRate) : formatMoney(item.amount),
-        tone: changeRate >= 0 ? 'up' : 'down',
+        value: mode.endsWith('Up') ? formatSignedPercent(changeRate) : formatMoney(etfPeriodAmount(item)),
+        tone: toneForValue(changeRate),
         trend: etfTrend(item),
         action: 'etf-select',
         actionValue: item.code,
@@ -1867,7 +2033,6 @@ function etfsByHolding(holdingName, holdingTicker) {
 
 function renderEtfSections() {
   const themePanels = [
-    { title: 'ETF 상승 테마', meta: '테마', items: etfPanelItems('theme') },
     { title: '거래대금 많은 ETF', meta: '거래대금', items: etfPanelItems('amount') },
     { title: '가장 많이 오른 ETF', meta: '상승률', items: etfPanelItems('allUp') },
   ]
@@ -1920,17 +2085,20 @@ function renderEtfList() {
     return
   }
 
-  document.querySelector('#etfList').innerHTML = visibleItems.map((item) => `
-    <li>
-      <button class="${item.code === state.selectedEtfCode ? 'active' : ''}" type="button" data-etf-code="${item.code}" aria-pressed="${item.code === state.selectedEtfCode ? 'true' : 'false'}">
-        <span>
-          <strong>${escapeHtml(item.name)}</strong>
-          <small>${escapeHtml(item.code)} · ${escapeHtml(item.issuer)} · ${escapeHtml(item.category)}</small>
-        </span>
-        <b class="${etfChangeRate(item) >= 0 ? 'up' : 'down'}">${formatSignedPercent(etfChangeRate(item))}</b>
-      </button>
-    </li>
-  `).join('')
+  document.querySelector('#etfList').innerHTML = visibleItems.map((item) => {
+    const changeRate = etfChangeRate(item)
+    return `
+      <li>
+        <button class="${item.code === state.selectedEtfCode ? 'active' : ''}" type="button" data-etf-code="${item.code}" aria-pressed="${item.code === state.selectedEtfCode ? 'true' : 'false'}">
+          <span>
+            <strong>${escapeHtml(item.name)}</strong>
+            <small>${escapeHtml(item.code)} · ${escapeHtml(item.issuer)} · ${escapeHtml(item.category)}</small>
+          </span>
+          <b class="${toneForValue(changeRate)}">${formatSignedPercent(changeRate)}</b>
+        </button>
+      </li>
+    `
+  }).join('')
 
   const remaining = Math.max(items.length - visibleItems.length, 0)
   const loadMoreButton = document.querySelector('#etfLoadMoreButton')
@@ -1959,6 +2127,7 @@ function renderEtfDetail() {
   const related = selectedHolding ? etfsByHolding(holdingName, selectedHolding) : []
   const hasHoldings = holdings.length > 0
   const changeRate = etfChangeRate(item)
+  const tone = toneForValue(changeRate)
 
   document.querySelector('#etfDetail').innerHTML = `
     <div class="panel-head">
@@ -1970,11 +2139,11 @@ function renderEtfDetail() {
     </div>
     <div class="etf-metrics">
       <div><span>가격</span><strong>${formatPrice(item.price)}</strong></div>
-      <div><span>등락률</span><strong class="${changeRate >= 0 ? 'up' : 'down'}">${formatSignedPercent(changeRate)}</strong></div>
+      <div><span>등락률</span><strong class="${tone}">${formatSignedPercent(changeRate)}</strong></div>
       <div><span>시가총액</span><strong>${formatMarketCap(item.marketCap)}</strong></div>
-      <div><span>거래대금</span><strong>${formatMoney(item.amount)}</strong></div>
+      <div><span>거래대금</span><strong>${formatMoney(etfPeriodAmount(item))}</strong></div>
     </div>
-    <div class="chart-card">${sparkline(etfTrend(item), changeRate >= 0 ? 'up' : 'down')}</div>
+    <div class="chart-card">${sparkline(etfTrend(item), tone)}</div>
     <div class="holding-grid">
       <section>
         <h3>구성종목</h3>
@@ -2122,7 +2291,7 @@ function streakLabel(row) {
 function rankingMetaText(visibleCount, totalCount) {
   const tradeDays = state.meta?.files?.length ?? state.dates.length
   const marketCapCount = state.stockMeta.size
-  const periodDays = state.pensionSection === 'search' ? pensionPeriodDates().length : null
+  const periodDays = pensionPeriodDates().length
   return [
     state.currentDate ? `${formatDateId(state.currentDate)} 기준` : '기준일 확인 중',
     `${sortLabel()} · ${visibleCount.toLocaleString('ko-KR')} / ${totalCount.toLocaleString('ko-KR')}개`,
@@ -2497,9 +2666,14 @@ async function loadKrxData() {
   state.rowsByDate = new Map(parsedEntries.map(([date, rows]) => [date, new Map(rows.map((row) => [row.ticker, row]))]))
   const latestRows = parsedEntries.find(([date]) => date === latest)?.[1] ?? parsedEntries[0][1]
   state.rows = enrichRows(latestRows)
+  const expectedLatest = currentDataStatus.expectedKrxLatest
+  const isKrxStale = expectedLatest && latest < expectedLatest
+  if (isKrxStale) {
+    recordDataWarning('krx', `KRX 기준일이 예상 거래일보다 늦습니다: latest=${latest}, expected=${expectedLatest}`)
+  }
   setDataSource('krx', {
-    state: 'live',
-    detail: `${formatDateId(latest)} 기준 · ${files.length.toLocaleString('ko-KR')}거래일 · 최신 ${latestRows.length.toLocaleString('ko-KR')}행`,
+    state: isKrxStale ? 'warning' : 'live',
+    detail: `${formatDateId(latest)} 기준${expectedLatest ? ` · 예상 ${formatDateId(expectedLatest)}` : ''} · ${files.length.toLocaleString('ko-KR')}거래일 · 최신 ${latestRows.length.toLocaleString('ko-KR')}행`,
   })
 }
 
@@ -2568,6 +2742,7 @@ async function loadStockMeta() {
       if (!marketCap) return
       const ticker = String(item.ticker).padStart(6, '0')
       const priceHistory = Array.isArray(item.priceHistory) ? item.priceHistory : []
+      const amountHistory = Array.isArray(item.amountHistory) ? item.amountHistory : []
       const dayTrend = Array.isArray(item.dayTrend) ? item.dayTrend.map(Number).filter(Number.isFinite) : []
       const historyPrice = priceHistory.length > 0 ? Number(priceHistory.at(-1)?.[1]) : null
       meta.set(ticker, {
@@ -2584,6 +2759,7 @@ async function loadStockMeta() {
         amount: Number(item.amount) || 0,
         listedShares: Number(item.listedShares) || 0,
         priceHistory,
+        amountHistory,
         dayTrend,
         latestCandle: item.latestCandle ?? null,
         chartSource: item.chartSource,
@@ -2666,6 +2842,7 @@ async function loadUpdateStatus() {
     if (!response.ok) throw new Error(`HTTP ${response.status}`)
     const payload = await response.json()
     if (!payload || typeof payload !== 'object') throw new Error('자동갱신 상태 응답이 객체가 아닙니다')
+    mergeLoadedDataStatus(currentDataStatus, { updateStatus: payload })
     currentDataStatus.updateWorkflowGeneratedAt = payload.generatedAt || currentDataStatus.updateWorkflowGeneratedAt
     if (payload.status === 'error') {
       addDataError(currentDataStatus, 'update-status', new Error(payload.error || '최근 자동갱신 실패'))
@@ -2674,7 +2851,7 @@ async function loadUpdateStatus() {
     }
     setDataSource('updateStatus', {
       state: payload.status === 'partial' ? 'warning' : payload.status === 'error' ? 'error' : 'live',
-      detail: `상태 ${payload.status ?? 'ok'}${payload.generatedAt ? ` · 생성 ${formatDateTime(payload.generatedAt)}` : ''}`,
+      detail: `상태 ${payload.status ?? 'ok'}${payload.generatedAt ? ` · 생성 ${formatDateTime(payload.generatedAt)}` : ''}${payload.expectedKrxLatestTradeDate ? ` · KRX 예상 ${formatDateId(payload.expectedKrxLatestTradeDate)}` : ''}`,
     })
     return payload
   } catch (error) {

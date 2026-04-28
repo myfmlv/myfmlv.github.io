@@ -1,12 +1,20 @@
 {
-  "generatedAt": "2026-04-28T11:22:29.856Z",
+  "generatedAt": "2026-04-28T12:24:58.141Z",
   "timezone": "Asia/Seoul",
-  "source": "GitHub Actions",
-  "status": "partial",
+  "source": "Local update:data",
+  "status": "ok",
+  "marketCloseUpdateKst": "18:30",
+  "expectedKrxLatestTradeDate": "20260428",
+  "krxLatest": "20260428",
+  "krxIsCurrent": true,
   "tasks": [
     {
-      "name": "Sync KRX CSV data",
-      "status": "skipped",
+      "name": "Sync KRX data from KRX after close",
+      "status": "ok"
+    },
+    {
+      "name": "Sync KRX CSV data from local source",
+      "status": "not-applicable",
       "reason": "KRX_SOURCE_DIR or local Telegram KRX source directory not found"
     },
     {

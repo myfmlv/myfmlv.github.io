@@ -92,6 +92,7 @@ expectIncludes(packageJson.scripts['update:data'], 'scripts/update-all-data.mjs'
 expectIncludes(packageJson.scripts.check, 'npm run validate:data', 'npm run check must run validate:data')
 expectIncludes(packageJson.scripts.check, 'scripts/update-all-data.mjs', 'npm run check must syntax check update-all-data')
 expectIncludes(packageJson.scripts.check, 'scripts/smoke-test.mjs', 'npm run check must run the smoke test')
+expectIncludes(packageJson.scripts.check, 'scripts/sync-krx-live.mjs', 'npm run check must syntax check sync-krx-live')
 expectIncludes(packageJson.scripts['test:e2e'], 'playwright test', 'test:e2e must run Playwright')
 expectIncludes(packageJson.scripts.test, 'npm run test:e2e', 'npm test must include e2e tests')
 expectIncludes(robots, 'Sitemap: https://myfmlv.github.io/sitemap.xml', 'robots.txt must reference sitemap.xml')

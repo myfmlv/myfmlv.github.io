@@ -874,7 +874,7 @@ tbody tr:last-child td { border-bottom: 0; }
 .etf-list button,
 .holding-list button {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-columns: minmax(0, 1fr) minmax(58px, auto);
   gap: 12px;
   width: 100%;
   min-height: 58px;
@@ -891,15 +891,54 @@ tbody tr:last-child td { border-bottom: 0; }
 .etf-list button.active,
 .holding-list button.active { color: var(--up); }
 .etf-list strong,
-.holding-list span { display: grid; gap: 4px; font-weight: 950; }
+.holding-list span {
+  display: grid;
+  gap: 4px;
+  min-width: 0;
+  font-weight: 950;
+  line-height: 1.28;
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
 .etf-list small,
-.holding-list small { color: var(--muted); font-size: 0.74rem; font-weight: 750; }
+.holding-list small {
+  color: var(--muted);
+  font-size: 0.72rem;
+  font-weight: 750;
+  line-height: 1.35;
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
 .etf-list b,
-.holding-list b { justify-self: end; font-variant-numeric: tabular-nums; }
+.holding-list b {
+  justify-self: end;
+  align-self: center;
+  font-size: 0.84rem;
+  font-variant-numeric: tabular-nums;
+}
 .etf-list b.up,
 .etf-metrics .up { color: var(--up); }
 .etf-list b.down,
 .etf-metrics .down { color: var(--down); }
+
+#etfView .rank-item {
+  grid-template-columns: 26px minmax(0, 1fr) minmax(62px, auto) 84px;
+  min-height: 62px;
+}
+
+#etfView .item-main a,
+#etfView .item-main strong,
+#etfView .item-main .inline-action {
+  overflow: visible;
+  text-overflow: clip;
+  white-space: normal;
+  line-height: 1.28;
+  overflow-wrap: anywhere;
+}
+
+#etfView .item-main small {
+  line-height: 1.35;
+}
 
 .empty-state {
   padding: 18px 0;
@@ -1083,6 +1122,8 @@ tbody tr:last-child td { border-bottom: 0; }
   .market-search-metrics .metric b { justify-self: start; }
   .rank-item { grid-template-columns: 24px minmax(0, 1fr) 70px; }
   .rank-item .spark { grid-column: 2 / -1; justify-self: end; }
+  #etfView .rank-item { grid-template-columns: 24px minmax(0, 1fr) 64px; }
+  #etfView .rank-item .spark { grid-column: 2 / -1; justify-self: start; }
   .theme-stock-list li { grid-template-columns: 26px minmax(0, 1fr) 70px; padding: 10px 0; }
   .theme-stock-list b:nth-of-type(n+2),
   .theme-stock-list .spark { grid-column: 2 / -1; justify-self: start; }

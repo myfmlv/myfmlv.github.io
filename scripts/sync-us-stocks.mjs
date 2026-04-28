@@ -6,6 +6,8 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const projectRoot = path.resolve(__dirname, '..')
 const dataDir = path.resolve(projectRoot, 'data')
 const NAVER_CHART_BASE_URL = 'https://api.stock.naver.com/chart/foreign/item'
+const YAHOO_CHART_BASE_URL = 'https://query1.finance.yahoo.com/v8/finance/chart'
+const HISTORY_LENGTH = 61
 
 const baseStocks = [
   { symbol: 'NVDA', naverCode: 'NVDA.O', name: 'NVIDIA', sector: 'AI 반도체', marketCap: '4.35T', popularity: 98 },
@@ -47,6 +49,33 @@ function formatAbbrev(value) {
   return Math.round(value).toLocaleString('en-US')
 }
 
+function yahooSymbol(symbol) {
+  return String(symbol ?? '').replace(/\./g, '-')
+}
+
+function normalizeIntraday(payload) {
+  const result = payload?.chart?.result?.[0]
+  const timestamps = Array.isArray(result?.timestamp) ? result.timestamp : []
+  const closes = result?.indicators?.quote?.[0]?.close ?? []
+  const points = timestamps
+    .map((timestamp, index) => ({
+      timestamp: Number(timestamp),
+      close: roundedNumber(closes[index]),
+    }))
+    .filter((item) => Number.isFinite(item.timestamp) && item.close > 0)
+    .sort((a, b) => a.timestamp - b.timestamp)
+
+  const buckets = new Map()
+  points.forEach((point) => {
+    const bucket = Math.floor(point.timestamp / 1200) * 1200
+    buckets.set(bucket, point.close)
+  })
+
+  return [...buckets.entries()]
+    .sort(([a], [b]) => a - b)
+    .map(([, close]) => close)
+}
+
 function normalizeChart(payload) {
   const candles = (Array.isArray(payload?.priceInfos) ? payload.priceInfos : [])
     .map((item) => ({
@@ -58,7 +87,7 @@ function normalizeChart(payload) {
       volume: Number(item.accumulatedTradingVolume) || 0,
     }))
     .filter((item) => /^\d{8}$/.test(item.date) && item.close > 0)
-    .slice(-60)
+    .slice(-HISTORY_LENGTH)
 
   const latest = candles.at(-1) ?? null
   const previousClose = candles.at(-2)?.close
@@ -83,10 +112,27 @@ async function fetchChart(code) {
   return chart
 }
 
+async function fetchIntradayTrend(symbol) {
+  const response = await fetch(`${YAHOO_CHART_BASE_URL}/${encodeURIComponent(yahooSymbol(symbol))}?range=1d&interval=5m&includePrePost=false`, {
+    headers: {
+      Accept: 'application/json',
+      'User-Agent': 'Mozilla/5.0',
+    },
+  })
+  if (!response.ok) throw new Error(`${symbol} intraday failed: ${response.status}`)
+  return normalizeIntraday(await response.json())
+}
+
 const stocks = []
 
 for (const item of baseStocks) {
   const chart = await fetchChart(item.naverCode)
+  let intradayTrend = []
+  try {
+    intradayTrend = await fetchIntradayTrend(item.symbol)
+  } catch (error) {
+    console.warn(`${item.symbol}: intraday skipped: ${error.message}`)
+  }
   const price = chart.latestCandle?.close || 0
   const tradingValue = price * (chart.latestCandle?.volume || 0)
   stocks.push({
@@ -95,9 +141,11 @@ for (const item of baseStocks) {
     changeRate: chart.changeRate,
     amount: formatAbbrev(tradingValue),
     priceHistory: chart.priceHistory,
-    dayTrend: chart.dayTrend,
+    dayTrend: intradayTrend.length >= 2 ? intradayTrend : chart.dayTrend,
     latestCandle: chart.latestCandle,
-    chartSource: 'Naver chart foreign dayCandle',
+    chartSource: intradayTrend.length >= 2
+      ? 'Naver chart foreign dayCandle + Yahoo 20m intraday'
+      : 'Naver chart foreign dayCandle',
     updatedAt: new Date().toISOString(),
   })
 }
