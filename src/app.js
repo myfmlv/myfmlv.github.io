@@ -1952,6 +1952,7 @@ function renderThemeDetail() {
       ${rows.map((row, index) => {
         const changeRate = row.periodChangeRate
         const tone = toneForValue(changeRate)
+        const amount = periodAmount(row)
         return `
           <li>
             <span class="rank-pill">${index + 1}</span>
@@ -1962,7 +1963,7 @@ function renderThemeDetail() {
             <b>${formatPrice(row.price)}</b>
             <b class="value ${tone}">${formatSignedPercent(changeRate)}</b>
             <b>${escapeHtml(row.marketCapLabel || '-')}</b>
-            <b>${formatMoney(row.amount || 0)}원</b>
+            <b>${formatMoney(amount)}원</b>
             ${sparkline(row.trend, tone)}
           </li>
         `

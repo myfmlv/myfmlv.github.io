@@ -64,6 +64,21 @@ test('국내 테마 60일 화면은 상승/하락 랭킹과 구성종목 수익�
   await expect(page.locator('#themeDetail .value').first()).toContainText(/[-+]?\d+(\.\d+)?%/)
 })
 
+test('국내 테마 구성종목 거래대금은 선택 기간 누적값으로 바뀐다', async ({ page }) => {
+  await page.goto('/')
+  await page.getByRole('tab', { name: '테마' }).click()
+
+  const firstDetailAmount = async () => page.locator('#themeDetail .theme-stock-list li').first().locator('b').nth(3).textContent()
+
+  await page.getByRole('button', { name: '1일' }).click()
+  const oneDayAmount = await firstDetailAmount()
+
+  await page.getByRole('button', { name: '60일' }).click()
+  const sixtyDayAmount = await firstDetailAmount()
+
+  expect(sixtyDayAmount).not.toBe(oneDayAmount)
+})
+
 test('검색 입력이 가능하다', async ({ page }) => {
   await page.goto('/')
 
