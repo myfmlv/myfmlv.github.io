@@ -1,20 +1,22 @@
 {
-  "generatedAt": "2026-04-28T12:24:58.141Z",
+  "generatedAt": "2026-04-29T11:15:57.817Z",
   "timezone": "Asia/Seoul",
-  "source": "Local update:data",
-  "status": "ok",
+  "source": "GitHub Actions",
+  "status": "partial",
   "marketCloseUpdateKst": "18:30",
-  "expectedKrxLatestTradeDate": "20260428",
+  "expectedKrxLatestTradeDate": "20260429",
   "krxLatest": "20260428",
-  "krxIsCurrent": true,
+  "krxIsCurrent": false,
+  "krxLiveSyncStatus": null,
   "tasks": [
     {
       "name": "Sync KRX data from KRX after close",
-      "status": "ok"
+      "status": "skipped",
+      "reason": "KRX_USERNAME/KRX_PASSWORD not found for direct KRX after-close sync"
     },
     {
       "name": "Sync KRX CSV data from local source",
-      "status": "not-applicable",
+      "status": "skipped",
       "reason": "KRX_SOURCE_DIR or local Telegram KRX source directory not found"
     },
     {

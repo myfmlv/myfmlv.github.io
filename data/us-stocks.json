@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-04-28T22:45:03.205Z",
+  "generatedAt": "2026-04-29T11:12:52.501Z",
   "source": "https://api.stock.naver.com/chart/foreign/item/{code}?periodType=dayCandle",
   "stocks": [
     {
@@ -11,7 +11,7 @@
       "popularity": 98,
       "price": 213.17,
       "changeRate": -1.59,
-      "amount": "38.1B",
+      "amount": "38.4B",
       "priceHistory": [
         [
           "20260130",
@@ -287,10 +287,10 @@
         "high": 214.73,
         "low": 208.2,
         "close": 213.17,
-        "volume": 178895753
+        "volume": 180275363
       },
       "chartSource": "Naver chart foreign dayCandle + Yahoo 20m intraday",
-      "updatedAt": "2026-04-28T22:44:58.731Z"
+      "updatedAt": "2026-04-29T11:12:46.190Z"
     },
     {
       "symbol": "MSFT",
@@ -301,7 +301,7 @@
       "popularity": 91,
       "price": 429.25,
       "changeRate": 1.04,
-      "amount": "13.0B",
+      "amount": "13.1B",
       "priceHistory": [
         [
           "20260130",
@@ -577,10 +577,10 @@
         "high": 429.92,
         "low": 421.9,
         "close": 429.25,
-        "volume": 30258704
+        "volume": 30438087
       },
       "chartSource": "Naver chart foreign dayCandle + Yahoo 20m intraday",
-      "updatedAt": "2026-04-28T22:44:58.905Z"
+      "updatedAt": "2026-04-29T11:12:46.486Z"
     },
     {
       "symbol": "AAPL",
@@ -591,7 +591,7 @@
       "popularity": 87,
       "price": 270.71,
       "changeRate": 1.16,
-      "amount": "10.6B",
+      "amount": "10.8B",
       "priceHistory": [
         [
           "20260130",
@@ -867,10 +867,10 @@
         "high": 273.23,
         "low": 268.66,
         "close": 270.71,
-        "volume": 39282785
+        "volume": 40018940
       },
       "chartSource": "Naver chart foreign dayCandle + Yahoo 20m intraday",
-      "updatedAt": "2026-04-28T22:44:59.124Z"
+      "updatedAt": "2026-04-29T11:12:46.720Z"
     },
     {
       "symbol": "AMZN",
@@ -881,7 +881,7 @@
       "popularity": 84,
       "price": 259.7,
       "changeRate": -0.54,
-      "amount": "10.9B",
+      "amount": "11.0B",
       "priceHistory": [
         [
           "20260130",
@@ -1157,10 +1157,10 @@
         "high": 261.03,
         "low": 256.63,
         "close": 259.7,
-        "volume": 42037571
+        "volume": 42204447
       },
       "chartSource": "Naver chart foreign dayCandle + Yahoo 20m intraday",
-      "updatedAt": "2026-04-28T22:44:59.298Z"
+      "updatedAt": "2026-04-29T11:12:46.970Z"
     },
     {
       "symbol": "GOOGL",
@@ -1171,7 +1171,7 @@
       "popularity": 82,
       "price": 349.78,
       "changeRate": -0.16,
-      "amount": "9.5B",
+      "amount": "9.7B",
       "priceHistory": [
         [
           "20260130",
@@ -1447,10 +1447,10 @@
         "high": 352.42,
         "low": 346.12,
         "close": 349.78,
-        "volume": 27042100
+        "volume": 27824052
       },
       "chartSource": "Naver chart foreign dayCandle + Yahoo 20m intraday",
-      "updatedAt": "2026-04-28T22:44:59.500Z"
+      "updatedAt": "2026-04-29T11:12:47.203Z"
     },
     {
       "symbol": "META",
@@ -1461,7 +1461,7 @@
       "popularity": 80,
       "price": 671.34,
       "changeRate": -1.07,
-      "amount": "6.9B",
+      "amount": "7.1B",
       "priceHistory": [
         [
           "20260130",
@@ -1737,10 +1737,10 @@
         "high": 678.18,
         "low": 665.63,
         "close": 671.34,
-        "volume": 10295956
+        "volume": 10606755
       },
       "chartSource": "Naver chart foreign dayCandle + Yahoo 20m intraday",
-      "updatedAt": "2026-04-28T22:44:59.682Z"
+      "updatedAt": "2026-04-29T11:12:47.418Z"
     },
     {
       "symbol": "TSLA",
@@ -1751,7 +1751,7 @@
       "popularity": 96,
       "price": 376.02,
       "changeRate": -0.7,
-      "amount": "18.8B",
+      "amount": "19.1B",
       "priceHistory": [
         [
           "20260130",
@@ -2027,10 +2027,10 @@
         "high": 382.29,
         "low": 372.54,
         "close": 376.02,
-        "volume": 50043603
+        "volume": 50864357
       },
       "chartSource": "Naver chart foreign dayCandle + Yahoo 20m intraday",
-      "updatedAt": "2026-04-28T22:44:59.852Z"
+      "updatedAt": "2026-04-29T11:12:47.652Z"
     },
     {
       "symbol": "AVGO",
@@ -2041,7 +2041,7 @@
       "popularity": 74,
       "price": 399.83,
       "changeRate": -4.39,
-      "amount": "10.1B",
+      "amount": "10.2B",
       "priceHistory": [
         [
           "20260130",
@@ -2317,10 +2317,10 @@
         "high": 405.81,
         "low": 394.65,
         "close": 399.83,
-        "volume": 25276892
+        "volume": 25519212
       },
       "chartSource": "Naver chart foreign dayCandle + Yahoo 20m intraday",
-      "updatedAt": "2026-04-28T22:45:00.029Z"
+      "updatedAt": "2026-04-29T11:12:47.877Z"
     },
     {
       "symbol": "BRK.B",
@@ -2607,10 +2607,10 @@
         "high": 479.77,
         "low": 475.67,
         "close": 478.16,
-        "volume": 4863408
+        "volume": 4902375
       },
       "chartSource": "Naver chart foreign dayCandle + Yahoo 20m intraday",
-      "updatedAt": "2026-04-28T22:45:00.219Z"
+      "updatedAt": "2026-04-29T11:12:48.106Z"
     },
     {
       "symbol": "LLY",
@@ -2897,10 +2897,10 @@
         "high": 878.15,
         "low": 863.35,
         "close": 874,
-        "volume": 2542703
+        "volume": 2561280
       },
       "chartSource": "Naver chart foreign dayCandle + Yahoo 20m intraday",
-      "updatedAt": "2026-04-28T22:45:00.395Z"
+      "updatedAt": "2026-04-29T11:12:48.339Z"
     },
     {
       "symbol": "JPM",
@@ -3187,10 +3187,10 @@
         "high": 315.45,
         "low": 311.17,
         "close": 311.45,
-        "volume": 7333442
+        "volume": 7398596
       },
       "chartSource": "Naver chart foreign dayCandle + Yahoo 20m intraday",
-      "updatedAt": "2026-04-28T22:45:00.587Z"
+      "updatedAt": "2026-04-29T11:12:48.598Z"
     },
     {
       "symbol": "V",
@@ -3201,7 +3201,7 @@
       "popularity": 66,
       "price": 309.3,
       "changeRate": -0.11,
-      "amount": "2.6B",
+      "amount": "2.7B",
       "priceHistory": [
         [
           "20260130",
@@ -3477,10 +3477,10 @@
         "high": 313.96,
         "low": 308.74,
         "close": 309.3,
-        "volume": 8268819
+        "volume": 8839906
       },
       "chartSource": "Naver chart foreign dayCandle + Yahoo 20m intraday",
-      "updatedAt": "2026-04-28T22:45:00.806Z"
+      "updatedAt": "2026-04-29T11:12:48.832Z"
     },
     {
       "symbol": "MA",
@@ -3767,10 +3767,10 @@
         "high": 517,
         "low": 507.24,
         "close": 507.62,
-        "volume": 3876978
+        "volume": 3892549
       },
       "chartSource": "Naver chart foreign dayCandle + Yahoo 20m intraday",
-      "updatedAt": "2026-04-28T22:45:00.987Z"
+      "updatedAt": "2026-04-29T11:12:49.062Z"
     },
     {
       "symbol": "NFLX",
@@ -4057,10 +4057,10 @@
         "high": 92.34,
         "low": 90.02,
         "close": 92.27,
-        "volume": 33262429
+        "volume": 33418126
       },
       "chartSource": "Naver chart foreign dayCandle + Yahoo 20m intraday",
-      "updatedAt": "2026-04-28T22:45:01.162Z"
+      "updatedAt": "2026-04-29T11:12:49.296Z"
     },
     {
       "symbol": "COST",
@@ -4071,7 +4071,7 @@
       "popularity": 58,
       "price": 994,
       "changeRate": -0.4,
-      "amount": "1.7B",
+      "amount": "1.8B",
       "priceHistory": [
         [
           "20260130",
@@ -4347,10 +4347,10 @@
         "high": 1012.65,
         "low": 986,
         "close": 994,
-        "volume": 1726101
+        "volume": 1775955
       },
       "chartSource": "Naver chart foreign dayCandle + Yahoo 20m intraday",
-      "updatedAt": "2026-04-28T22:45:01.341Z"
+      "updatedAt": "2026-04-29T11:12:49.526Z"
     },
     {
       "symbol": "ORCL",
@@ -4637,10 +4637,10 @@
         "high": 168.7,
         "low": 162.05,
         "close": 165.96,
-        "volume": 33465312
+        "volume": 33716456
       },
       "chartSource": "Naver chart foreign dayCandle + Yahoo 20m intraday",
-      "updatedAt": "2026-04-28T22:45:01.522Z"
+      "updatedAt": "2026-04-29T11:12:49.783Z"
     },
     {
       "symbol": "AMD",
@@ -4651,7 +4651,7 @@
       "popularity": 89,
       "price": 323.21,
       "changeRate": -3.41,
-      "amount": "13.8B",
+      "amount": "13.9B",
       "priceHistory": [
         [
           "20260130",
@@ -4927,10 +4927,10 @@
         "high": 327.5,
         "low": 310,
         "close": 323.21,
-        "volume": 42801836
+        "volume": 43002479
       },
       "chartSource": "Naver chart foreign dayCandle + Yahoo 20m intraday",
-      "updatedAt": "2026-04-28T22:45:01.694Z"
+      "updatedAt": "2026-04-29T11:12:50.009Z"
     },
     {
       "symbol": "PLTR",
@@ -5217,10 +5217,10 @@
         "high": 143.85,
         "low": 140.42,
         "close": 141.18,
-        "volume": 24573988
+        "volume": 24757213
       },
       "chartSource": "Naver chart foreign dayCandle + Yahoo 20m intraday",
-      "updatedAt": "2026-04-28T22:45:01.893Z"
+      "updatedAt": "2026-04-29T11:12:50.243Z"
     },
     {
       "symbol": "CRM",
@@ -5507,10 +5507,10 @@
         "high": 184.42,
         "low": 181.32,
         "close": 181.32,
-        "volume": 8665647
+        "volume": 8711743
       },
       "chartSource": "Naver chart foreign dayCandle + Yahoo 20m intraday",
-      "updatedAt": "2026-04-28T22:45:02.082Z"
+      "updatedAt": "2026-04-29T11:12:50.478Z"
     },
     {
       "symbol": "COIN",
@@ -5797,10 +5797,10 @@
         "high": 195.94,
         "low": 188.75,
         "close": 194.1,
-        "volume": 6200013
+        "volume": 6316127
       },
       "chartSource": "Naver chart foreign dayCandle + Yahoo 20m intraday",
-      "updatedAt": "2026-04-28T22:45:02.249Z"
+      "updatedAt": "2026-04-29T11:12:50.765Z"
     },
     {
       "symbol": "SMCI",
@@ -5811,7 +5811,7 @@
       "popularity": 86,
       "price": 27.25,
       "changeRate": -2.15,
-      "amount": "632.3M",
+      "amount": "634.4M",
       "priceHistory": [
         [
           "20260130",
@@ -6087,10 +6087,10 @@
         "high": 27.64,
         "low": 26.51,
         "close": 27.25,
-        "volume": 23201905
+        "volume": 23282197
       },
       "chartSource": "Naver chart foreign dayCandle + Yahoo 20m intraday",
-      "updatedAt": "2026-04-28T22:45:02.424Z"
+      "updatedAt": "2026-04-29T11:12:51.397Z"
     },
     {
       "symbol": "MU",
@@ -6101,7 +6101,7 @@
       "popularity": 76,
       "price": 504.29,
       "changeRate": -3.86,
-      "amount": "22.0B",
+      "amount": "22.6B",
       "priceHistory": [
         [
           "20260130",
@@ -6377,10 +6377,10 @@
         "high": 518.83,
         "low": 488.23,
         "close": 504.29,
-        "volume": 43617748
+        "volume": 44816645
       },
       "chartSource": "Naver chart foreign dayCandle + Yahoo 20m intraday",
-      "updatedAt": "2026-04-28T22:45:02.595Z"
+      "updatedAt": "2026-04-29T11:12:51.698Z"
     },
     {
       "symbol": "HOOD",
@@ -6391,7 +6391,7 @@
       "popularity": 84,
       "price": 82.07,
       "changeRate": -2.24,
-      "amount": "2.2B",
+      "amount": "2.6B",
       "priceHistory": [
         [
           "20260130",
@@ -6667,10 +6667,10 @@
         "high": 83.14,
         "low": 80.82,
         "close": 82.07,
-        "volume": 26336880
+        "volume": 31324157
       },
       "chartSource": "Naver chart foreign dayCandle + Yahoo 20m intraday",
-      "updatedAt": "2026-04-28T22:45:02.816Z"
+      "updatedAt": "2026-04-29T11:12:51.999Z"
     },
     {
       "symbol": "SHOP",
@@ -6681,7 +6681,7 @@
       "popularity": 72,
       "price": 122.05,
       "changeRate": -1.75,
-      "amount": "587.9M",
+      "amount": "601.3M",
       "priceHistory": [
         [
           "20260130",
@@ -6957,10 +6957,10 @@
         "high": 127.31,
         "low": 121.98,
         "close": 122.05,
-        "volume": 4816583
+        "volume": 4926942
       },
       "chartSource": "Naver chart foreign dayCandle + Yahoo 20m intraday",
-      "updatedAt": "2026-04-28T22:45:02.999Z"
+      "updatedAt": "2026-04-29T11:12:52.242Z"
     },
     {
       "symbol": "ABCL",
@@ -6971,7 +6971,7 @@
       "popularity": 42,
       "price": 4.16,
       "changeRate": 0,
-      "amount": "53.3M",
+      "amount": "53.4M",
       "priceHistory": [
         [
           "20260130",
@@ -7247,10 +7247,10 @@
         "high": 4.3,
         "low": 3.96,
         "close": 4.16,
-        "volume": 12813926
+        "volume": 12845689
       },
       "chartSource": "Naver chart foreign dayCandle + Yahoo 20m intraday",
-      "updatedAt": "2026-04-28T22:45:03.203Z"
+      "updatedAt": "2026-04-29T11:12:52.501Z"
     }
   ]
 }
