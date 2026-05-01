@@ -1,42 +1,42 @@
 [
   {
     "name": "원달러",
-    "value": "1,474.90",
+    "value": "1,474.20",
     "unit": "원",
-    "change": "-13.10",
+    "change": "-13.80",
     "tone": "down",
     "source": "Naver Finance",
     "sourceUrl": "https://finance.naver.com/marketindex/",
-    "updatedAt": "2026-04-30T11:12:40.439Z"
+    "updatedAt": "2026-05-01T10:50:21.908Z"
   },
   {
     "name": "원엔",
-    "value": "936.83",
+    "value": "941.65",
     "unit": "원/100엔",
-    "change": "+8.80",
+    "change": "+13.62",
     "tone": "up",
     "source": "Naver Finance",
     "sourceUrl": "https://finance.naver.com/marketindex/",
-    "updatedAt": "2026-04-30T11:12:40.439Z"
+    "updatedAt": "2026-05-01T10:50:21.909Z"
   },
   {
     "name": "WTI",
-    "value": "106.88",
+    "value": "105.07",
     "unit": "달러",
-    "change": "+6.95",
-    "tone": "up",
-    "source": "Naver Finance",
-    "sourceUrl": "https://finance.naver.com/marketindex/",
-    "updatedAt": "2026-04-30T11:12:40.439Z"
-  },
-  {
-    "name": "국제 금",
-    "value": "4561.5",
-    "unit": "달러",
-    "change": "-46.90",
+    "change": "-1.81",
     "tone": "down",
     "source": "Naver Finance",
     "sourceUrl": "https://finance.naver.com/marketindex/",
-    "updatedAt": "2026-04-30T11:12:40.439Z"
+    "updatedAt": "2026-05-01T10:50:21.909Z"
+  },
+  {
+    "name": "국제 금",
+    "value": "4629.6",
+    "unit": "달러",
+    "change": "+68.10",
+    "tone": "up",
+    "source": "Naver Finance",
+    "sourceUrl": "https://finance.naver.com/marketindex/",
+    "updatedAt": "2026-05-01T10:50:21.909Z"
   }
 ]

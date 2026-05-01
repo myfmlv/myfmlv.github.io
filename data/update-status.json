@@ -1,10 +1,10 @@
 {
-  "generatedAt": "2026-04-30T11:15:56.705Z",
+  "generatedAt": "2026-05-01T10:52:58.568Z",
   "timezone": "Asia/Seoul",
   "source": "GitHub Actions",
   "status": "partial",
   "marketCloseUpdateKst": "18:30",
-  "expectedKrxLatestTradeDate": "20260430",
+  "expectedKrxLatestTradeDate": "20260501",
   "krxLatest": "20260428",
   "krxIsCurrent": false,
   "krxLiveSyncStatus": null,
