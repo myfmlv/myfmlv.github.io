@@ -5,6 +5,7 @@ import path from 'node:path'
 const root = process.cwd()
 const updateStatusPath = path.join(root, 'data/update-status.json')
 const defaultKrxSourceDir = path.resolve(root, '../../Telegram/data/krx')
+const bundledKrxSourceDir = path.resolve(root, 'telegram/data/krx')
 const defaultKisEnvPath = path.resolve(root, '../../DBbot/kis-api/kis-api.env')
 const updateStartedAt = Date.now()
 const defaultKrxEnvCandidates = [
@@ -41,8 +42,69 @@ function hasKisCredentials() {
   )
 }
 
-function hasKrxSourceDir() {
-  return isDirectory(process.env.KRX_SOURCE_DIR || defaultKrxSourceDir)
+function latestKrxCsvDateInDir(targetPath) {
+  try {
+    return fs.readdirSync(targetPath)
+      .map((fileName) => fileName.match(/^krx_(\d{8})\.csv$/)?.[1])
+      .filter(Boolean)
+      .sort()
+      .at(-1) ?? null
+  } catch {
+    return null
+  }
+}
+
+function currentKrxLatest() {
+  const index = readJson('data/krx/index.json')
+  return index?.latest ?? latestKrxCsvDateInDir(path.join(root, 'data/krx'))
+}
+
+function uniqueKrxSourceCandidates() {
+  const candidates = [
+    process.env.KRX_SOURCE_DIR ? { label: 'KRX_SOURCE_DIR', path: path.resolve(process.env.KRX_SOURCE_DIR) } : null,
+    { label: 'default Telegram KRX source', path: defaultKrxSourceDir },
+    { label: 'bundled Telegram KRX source', path: bundledKrxSourceDir },
+  ].filter(Boolean)
+
+  const seen = new Set()
+  return candidates.filter((candidate) => {
+    const resolved = path.resolve(candidate.path)
+    if (seen.has(resolved)) return false
+    seen.add(resolved)
+    return true
+  })
+}
+
+function resolveNewerKrxSource() {
+  const currentLatest = currentKrxLatest()
+  return uniqueKrxSourceCandidates()
+    .map((candidate) => ({
+      ...candidate,
+      latest: isDirectory(candidate.path) ? latestKrxCsvDateInDir(candidate.path) : null,
+    }))
+    .filter((candidate) => candidate.latest && (!currentLatest || candidate.latest > currentLatest))
+    .sort((a, b) => b.latest.localeCompare(a.latest))[0] ?? null
+}
+
+function krxSourceSkipReason() {
+  const currentLatest = currentKrxLatest() ?? '-'
+  const candidates = uniqueKrxSourceCandidates()
+    .map((candidate) => {
+      const latest = isDirectory(candidate.path) ? latestKrxCsvDateInDir(candidate.path) : null
+      return `${candidate.label}=${latest ?? 'missing'}`
+    })
+    .join(', ')
+  return `No newer KRX CSV source found. current=${currentLatest}; ${candidates}`
+}
+
+function hasNewerKrxSourceDir() {
+  return Boolean(resolveNewerKrxSource())
+}
+
+function krxSourceArgs() {
+  const source = resolveNewerKrxSource()
+  if (!source) throw new Error(krxSourceSkipReason())
+  return ['scripts/sync-krx-data.mjs', `--source=${source.path}`]
 }
 
 function readEnvFile(envPath) {
@@ -188,16 +250,17 @@ const tasks = [
     args: ['scripts/sync-krx-live.mjs'],
     required: false,
     shouldRun: hasKrxLiveCredentials,
+    skipStatus: 'not-applicable',
     skipReason: 'KRX_USERNAME/KRX_PASSWORD not found for direct KRX after-close sync',
   },
   {
-    name: 'Sync KRX CSV data from local source',
+    name: 'Sync newer KRX CSV data from local source',
     file: 'scripts/sync-krx-data.mjs',
-    args: ['scripts/sync-krx-data.mjs'],
+    args: krxSourceArgs,
     required: false,
-    shouldRun: () => !hasKrxLiveCredentials() && hasKrxSourceDir(),
-    skipStatus: () => hasKrxLiveCredentials() ? 'not-applicable' : 'skipped',
-    skipReason: 'KRX_SOURCE_DIR or local Telegram KRX source directory not found',
+    shouldRun: () => !hasKrxLiveCredentials() && hasNewerKrxSourceDir(),
+    skipStatus: 'not-applicable',
+    skipReason: krxSourceSkipReason,
   },
   {
     name: 'Fetch Naver market data',
@@ -229,6 +292,7 @@ const tasks = [
     args: ['scripts/sync-kis-stock-meta.mjs'],
     required: false,
     shouldRun: hasKisCredentials,
+    skipStatus: 'not-applicable',
     skipReason: 'KIS_APP_KEY/KIS_APP_SECRET or local KIS env file not found',
   },
   {
@@ -252,13 +316,15 @@ try {
     }
 
     if (task.shouldRun && !task.shouldRun()) {
-      console.warn(`[warn] ${task.name}: ${task.skipReason}, skipped`)
-      const skipStatus = typeof task.skipStatus === 'function' ? task.skipStatus() : 'skipped'
-      results.push({ name: task.name, status: skipStatus, reason: task.skipReason })
+      const skipReason = typeof task.skipReason === 'function' ? task.skipReason() : task.skipReason
+      console.warn(`[warn] ${task.name}: ${skipReason}, skipped`)
+      const skipStatus = typeof task.skipStatus === 'function' ? task.skipStatus() : (task.skipStatus ?? 'skipped')
+      results.push({ name: task.name, status: skipStatus, reason: skipReason })
       continue
     }
 
-    run('node', task.args)
+    const args = typeof task.args === 'function' ? task.args() : task.args
+    run('node', args)
     results.push({ name: task.name, status: 'ok' })
   }
 
@@ -267,7 +333,16 @@ try {
     throw new Error('No update scripts ran.')
   }
 
-  const status = results.some((item) => item.status === 'skipped') ? 'partial' : 'ok'
+  const krxSummary = krxFreshnessSummary()
+  if (!krxSummary.krxIsCurrent) {
+    results.push({
+      name: 'Check KRX freshness',
+      status: 'stale',
+      reason: `KRX latest ${krxSummary.krxLatest ?? '-'} is older than expected ${krxSummary.expectedKrxLatestTradeDate}`,
+    })
+  }
+
+  const status = results.some((item) => ['skipped', 'stale'].includes(item.status)) ? 'partial' : 'ok'
   writeUpdateManifest(status, { tasks: results })
 
   console.log('\n[ok] Data update completed')

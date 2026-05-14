@@ -36,7 +36,7 @@ npm run sync:krx
 npm run sync:krx -- --source="/absolute/path/to/krx/data"
 ```
 
-동기화 스크립트는 최신 KRX CSV 파일을 `data/krx/`로 복사하고 `data/krx/index.json`을 갱신합니다. 같은 디렉터리에 `stock_meta_YYYYMMDD.json`이 있으면 `data/stock-meta.json`도 함께 갱신합니다.
+동기화 스크립트는 KRX CSV 파일을 `data/krx/`에 병합하고 `data/krx/index.json`을 갱신합니다. 원본 디렉터리가 기존 사이트 데이터보다 오래되어도 최신 기준일을 뒤로 되돌리지 않습니다. 같은 디렉터리에 최신 기준일 이상의 `stock_meta_YYYYMMDD.json`이 있으면 `data/stock-meta.json`도 함께 갱신합니다.
 
 ## Data Flow
 
@@ -63,8 +63,8 @@ npm run check
 
 ## Scheduled data update
 
-GitHub Actions의 `Update market data` workflow는 평일 한국시간 18:30에 실행됩니다. GitHub cron은 UTC 기준이므로 workflow cron은 `30 9 * * 1-5`입니다. 같은 workflow는 `workflow_dispatch`로 수동 실행할 수 있습니다.
+GitHub Actions의 `Update market data` workflow는 매일 한국시간 08:30과 18:30에 실행됩니다. 08:30 실행은 미국장 마감 이후 미국 종목/랭킹 데이터를 갱신하고, 18:30 실행은 KRX 장마감 이후 국내 데이터를 갱신합니다. GitHub cron은 UTC 기준이므로 workflow cron은 각각 `30 23 * * *`, `30 9 * * *`입니다. 같은 workflow는 `workflow_dispatch`로 수동 실행할 수 있습니다.
 
-Workflow는 Python Playwright 런타임을 설치한 뒤 `npm run update:data`, `npm run validate:data`, `npm run check`를 실행하고 변경된 `data/` 파일을 자동 commit/push합니다. GitHub Secrets에 `KRX_USERNAME`, `KRX_PASSWORD`를 넣으면 KRX 연기금 수급과 시가총액 데이터를 장마감 후 직접 갱신합니다. KRX CSV 로컬 원본, KRX 로그인 정보, KIS 인증정보가 없는 환경에서는 해당 선택 작업을 건너뛰고 `data/update-status.json`에 `partial` 상태와 예상 KRX 기준일을 기록합니다.
+Workflow는 Python Playwright 런타임을 설치한 뒤 `npm run update:data`, `npm run validate:data`, `npm run check`를 실행하고 변경된 `data/` 파일을 자동 commit/push합니다. GitHub Secrets에 `KRX_USERNAME`, `KRX_PASSWORD`를 넣으면 KRX 연기금 수급과 시가총액 데이터를 장마감 후 직접 갱신합니다. 비밀값이 없을 때는 `KRX_SOURCE_DIR`, 기본 Telegram 원본, 저장소에 포함된 `telegram/data/krx` 중 기존 사이트 데이터보다 더 최신인 CSV 원본만 병합합니다. KRX 기준일이 예상 거래일보다 늦으면 스크립트 자체가 성공해도 `data/update-status.json`에는 `partial` 상태와 지연 사유가 기록됩니다.
 
 KRX 자체 갱신은 기존 최신 CSV 다음 날부터 한국시간 18:30 기준 확정 거래일까지 백필합니다. 주말은 직전 금요일을 기준으로 보고, 공휴일처럼 데이터가 없는 날은 다음 성공 실행 때 다시 확인됩니다.

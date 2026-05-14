@@ -3,8 +3,10 @@ name: Update market data
 on:
   workflow_dispatch:
   schedule:
-    # 18:30 KST = 09:30 UTC, Monday-Friday
-    - cron: '30 9 * * 1-5'
+    # 08:30 KST = 23:30 UTC, daily. Captures US-market data after the US close.
+    - cron: '30 23 * * *'
+    # 18:30 KST = 09:30 UTC, daily. Captures Korea-market data after the KRX close.
+    - cron: '30 9 * * *'
 
 permissions:
   contents: write

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-05-14T11:27:12.700Z",
+  "generatedAt": "2026-05-14T12:34:35.553Z",
   "source": [
     "https://stock.naver.com/api/stockSecurity/etfs/v1/domestic",
     "https://api.stock.naver.com/chart/domestic/item/{code}?periodType=dayCandle",
@@ -189925,7 +189925,7 @@
         ],
         [
           "에스프리즘",
-          "",
+          "288620",
           0.02
         ],
         [
@@ -295048,7 +295048,7 @@
         ],
         [
           "채비",
-          "",
+          "0011T0",
           0.14
         ],
         [
@@ -672920,7 +672920,7 @@
         ],
         [
           "SP삼화",
-          "",
+          "000390",
           0.03
         ],
         [
