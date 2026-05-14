@@ -113,6 +113,19 @@ test('미국 주식은 시장/테마/연기금 수급 탭과 종목검색을 제
   await expect(page.locator('#usFlowGrid')).toContainText(/매수 관심|매도 압력|거래대금 집중/)
 })
 
+test('ETF 상세는 비중이 없는 구성종목도 CU 수량으로 표시한다', async ({ page }) => {
+  await page.goto('/')
+  await page.locator('button[data-view="etf"]').click()
+  await page.locator('button[data-etf-section="search"]').click()
+
+  await page.locator('#etfSearch').fill('KODEX 미국S&P500')
+  await page.locator('#etfList button').first().click()
+
+  await expect(page.locator('#etfDetail')).toContainText('KODEX 미국S&P500')
+  await expect(page.locator('#etfDetail')).toContainText(/NVIDIA/i)
+  await expect(page.locator('#etfDetail')).toContainText(/CU\s+[\d,.]+/)
+})
+
 test('모바일 폭에서도 핵심 콘텐츠와 카드형 리스트가 보인다', async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 })
   await page.goto('/')

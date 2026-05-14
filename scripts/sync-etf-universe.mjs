@@ -129,20 +129,58 @@ function normalizeHoldingName(name) {
   return String(name ?? '').trim().replace(/\s+/g, ' ').toUpperCase()
 }
 
+function compactHoldingName(name) {
+  return normalizeHoldingName(name)
+    .replace(/[.,']/g, '')
+    .replace(/\b(COMMON STOCK|ORDINARY SHARES|CLASS [A-Z]|CORPORATION|CORP|INCORPORATED|INC|LIMITED|LTD|COMPANY|CO|PLC)\b/g, '')
+    .replace(/\s+/g, ' ')
+    .trim()
+}
+
+function addNameTicker(map, name, ticker) {
+  if (!name || !ticker) return
+  const normalized = normalizeHoldingName(name)
+  const compact = compactHoldingName(name)
+  if (normalized && !map.has(normalized)) map.set(normalized, String(ticker))
+  if (compact && !map.has(compact)) map.set(compact, String(ticker))
+}
+
+function lookupHoldingTicker(map, name) {
+  return map.get(normalizeHoldingName(name)) ?? map.get(compactHoldingName(name)) ?? ''
+}
+
 async function loadStockNameMap() {
   const map = new Map()
   try {
     const payload = JSON.parse(await readFile(path.join(dataDir, 'stock-meta.json'), 'utf8'))
     Object.entries(payload).forEach(([ticker, meta]) => {
-      if (meta?.name) map.set(normalizeHoldingName(meta.name), String(ticker).padStart(6, '0'))
+      addNameTicker(map, meta?.name, String(ticker).padStart(6, '0'))
     })
   } catch {
     // stock-meta.json is optional for ETF sync; unresolved holdings still keep their names.
   }
 
   holdingTemplates.flatMap(({ holdings }) => holdings).forEach(([name, ticker]) => {
-    if (name && ticker) map.set(normalizeHoldingName(name), String(ticker))
+    addNameTicker(map, name, ticker)
   })
+
+  try {
+    const payload = JSON.parse(await readFile(path.join(dataDir, 'us-stocks.json'), 'utf8'))
+    ;(payload.stocks ?? []).forEach((item) => {
+      addNameTicker(map, item.name, item.symbol)
+    })
+  } catch {
+    // US stock search data is optional for ETF sync.
+  }
+
+  try {
+    const payload = JSON.parse(await readFile(path.join(dataDir, 'us-symbols.json'), 'utf8'))
+    ;(payload.symbols ?? []).forEach((item) => {
+      addNameTicker(map, item.name, item.symbol)
+    })
+  } catch {
+    // US symbol data is optional for ETF sync.
+  }
 
   return map
 }
@@ -282,11 +320,13 @@ function parseWiseReportHoldings(html, nameToTicker) {
       .map((row) => {
         const name = String(row.STK_NM_KOR ?? '').trim()
         const ratio = roundedNumber(row.ETF_WEIGHT)
-        if (!name || !ratio || /원화현금|현금|예수금|CASH/i.test(name)) return null
-        return [name, nameToTicker.get(normalizeHoldingName(name)) ?? '', ratio]
+        const quantity = roundedNumber(row.AGMT_STK_CNT)
+        if (!name || /설정현금액|원화현금|현금|예수금|CASH/i.test(name)) return null
+        if (!ratio && !quantity) return null
+        return [name, lookupHoldingTicker(nameToTicker, name), ratio || 0, quantity || 0]
       })
       .filter(Boolean)
-      .sort((a, b) => b[2] - a[2])
+      .sort((a, b) => (b[2] || 0) - (a[2] || 0) || Math.abs(b[3] || 0) - Math.abs(a[3] || 0))
   } catch {
     return []
   }

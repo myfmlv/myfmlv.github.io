@@ -1004,7 +1004,12 @@ function normalizeLoadedEtf(item) {
     amountHistory: Array.isArray(item.amountHistory) ? item.amountHistory : [],
     latestCandle: item.latestCandle ?? null,
     holdings: Array.isArray(item.holdings)
-      ? item.holdings.map(([name, ticker, ratio]) => [String(name ?? ''), String(ticker ?? ''), Number(ratio) || 0]).filter(([name]) => name)
+      ? item.holdings.map(([name, ticker, ratio, quantity]) => [
+        String(name ?? ''),
+        String(ticker ?? ''),
+        Number(ratio) || 0,
+        Number(quantity) || 0,
+      ]).filter(([name]) => name)
       : [],
     source: String(item.source ?? '로컬 ETF 데이터'),
   }
@@ -2217,10 +2222,24 @@ function etfsByHolding(holdingName, holdingTicker) {
     .map((etf) => {
       const holdings = Array.isArray(etf.holdings) ? etf.holdings : []
       const holding = holdings.find(([name, ticker]) => holdingKey(name, ticker) === selectedKey)
-      return holding ? { etf, ratio: holding[2] } : null
+      return holding ? { etf, ratio: holding[2] || 0, quantity: holding[3] || 0 } : null
     })
     .filter(Boolean)
-    .sort((a, b) => b.ratio - a.ratio)
+    .sort((a, b) => b.ratio - a.ratio || Math.abs(b.quantity) - Math.abs(a.quantity))
+}
+
+function formatHoldingQuantity(value) {
+  const number = Number(value)
+  if (!Number.isFinite(number) || number === 0) return '-'
+  return number.toLocaleString('ko-KR', { maximumFractionDigits: 2 })
+}
+
+function holdingValueLabel(holding) {
+  const ratio = Number(holding?.[2])
+  if (Number.isFinite(ratio) && ratio > 0) return `${ratio.toFixed(1)}%`
+  const quantity = Number(holding?.[3])
+  if (Number.isFinite(quantity) && quantity !== 0) return `CU ${formatHoldingQuantity(quantity)}`
+  return '-'
 }
 
 function renderEtfSections() {
@@ -2341,14 +2360,16 @@ function renderEtfDetail() {
         <h3>구성종목</h3>
         ${hasHoldings ? `
           <ol class="holding-list">
-            ${holdings.map(([name, ticker, ratio]) => `
+            ${holdings.map((holding) => {
+              const [name, ticker] = holding
+              return `
               <li>
                 <button class="${holdingKey(name, ticker) === selectedHolding ? 'active' : ''}" type="button" data-holding-key="${escapeHtml(holdingKey(name, ticker))}" aria-pressed="${holdingKey(name, ticker) === selectedHolding ? 'true' : 'false'}">
                   <span>${escapeHtml(name)}<small>${escapeHtml(ticker || '종목코드 미확인')}</small></span>
-                  <b>${Number(ratio).toFixed(1)}%</b>
+                  <b>${escapeHtml(holdingValueLabel(holding))}</b>
                 </button>
               </li>
-            `).join('')}
+            `}).join('')}
           </ol>
         ` : '<p class="empty-state">구성종목 데이터는 ETF명·테마 기반 추정 가능 종목부터 확장 중입니다.</p>'}
       </section>
@@ -2356,11 +2377,11 @@ function renderEtfDetail() {
         <h3>${hasHoldings ? `${escapeHtml(holdingName)} 포함 ETF` : '데이터 출처'}</h3>
         ${hasHoldings ? `
           <ol class="holding-list related">
-            ${related.map(({ etf, ratio }) => `
+            ${related.map(({ etf, ratio, quantity }) => `
               <li>
                 <button type="button" data-etf-code="${etf.code}">
                   <span>${escapeHtml(etf.name)}<small>${escapeHtml(etf.issuer)}</small></span>
-                  <b>${Number(ratio).toFixed(1)}%</b>
+                  <b>${escapeHtml(holdingValueLabel(['', '', ratio, quantity]))}</b>
                 </button>
               </li>
             `).join('')}
