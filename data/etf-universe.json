@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-05-16T10:46:51.185Z",
+  "generatedAt": "2026-05-17T01:27:45.834Z",
   "source": [
     "https://stock.naver.com/api/stockSecurity/etfs/v1/domestic",
     "https://api.stock.naver.com/chart/domestic/item/{code}?periodType=dayCandle",
@@ -8,7 +8,7 @@
   "totalCount": 1107,
   "usListedCount": 287,
   "chartCount": 1107,
-  "holdingCount": 1030,
+  "holdingCount": 1033,
   "themes": [
     {
       "largeCategoryCode": "0101",
@@ -6790,8 +6790,21 @@
         "volume": 2147483647,
         "amount": 253403070346
       },
-      "holdings": [],
-      "source": "Naver stock ETF API + Naver chart domestic dayCandle + minute10"
+      "holdings": [
+        [
+          "KODEX 인버스",
+          "",
+          19.01,
+          1746
+        ],
+        [
+          "2026-06 코스피200지수선물",
+          "",
+          0,
+          -0.06
+        ]
+      ],
+      "source": "Naver stock ETF API + Naver chart domestic dayCandle + minute10 + WiseReport ETF holdings"
     },
     {
       "code": "494310",
@@ -497293,8 +497306,27 @@
         "volume": 41031,
         "amount": 1327968315
       },
-      "holdings": [],
-      "source": "Naver stock ETF API + Naver chart domestic dayCandle + minute10"
+      "holdings": [
+        [
+          "INVESCO QQQ TRUST",
+          "",
+          0,
+          83.33
+        ],
+        [
+          "2026-05 달러선물",
+          "",
+          0,
+          -47
+        ],
+        [
+          "Nasdaq100 Emini 2026 06",
+          "",
+          0,
+          1.75
+        ]
+      ],
+      "source": "Naver stock ETF API + Naver chart domestic dayCandle + minute10 + WiseReport ETF holdings"
     },
     {
       "code": "475070",
@@ -965107,8 +965139,123 @@
         "volume": 1898,
         "amount": 17664686
       },
-      "holdings": [],
-      "source": "Naver stock ETF API + Naver chart domestic dayCandle + minute10"
+      "holdings": [
+        [
+          "삼성SDI",
+          "006400",
+          16.72,
+          252
+        ],
+        [
+          "POSCO홀딩스",
+          "005490",
+          14.14,
+          280
+        ],
+        [
+          "셀트리온",
+          "068270",
+          9.63,
+          472
+        ],
+        [
+          "LG화학",
+          "051910",
+          8.04,
+          199
+        ],
+        [
+          "NAVER",
+          "035420",
+          7.96,
+          362
+        ],
+        [
+          "삼성바이오로직스",
+          "207940",
+          7.51,
+          49
+        ],
+        [
+          "알테오젠",
+          "196170",
+          7.3,
+          183
+        ],
+        [
+          "LG에너지솔루션",
+          "373220",
+          6.76,
+          150
+        ],
+        [
+          "카카오",
+          "035720",
+          6.57,
+          1381
+        ],
+        [
+          "SK이노베이션",
+          "096770",
+          3.67,
+          275
+        ],
+        [
+          "크래프톤",
+          "259960",
+          3.62,
+          120
+        ],
+        [
+          "에이비엘바이오",
+          "298380",
+          2.26,
+          175
+        ],
+        [
+          "NC",
+          "036570",
+          2.2,
+          75
+        ],
+        [
+          "SK바이오팜",
+          "326030",
+          1.19,
+          114
+        ],
+        [
+          "펄어비스",
+          "263750",
+          0.81,
+          159
+        ],
+        [
+          "넷마블",
+          "251270",
+          0.63,
+          136
+        ],
+        [
+          "시프트업",
+          "462870",
+          0.47,
+          144
+        ],
+        [
+          "카페24",
+          "042000",
+          0.18,
+          76
+        ],
+        [
+          "디어유",
+          "376300",
+          0.15,
+          50
+        ]
+      ],
+      "source": "Naver stock ETF API + Naver chart domestic dayCandle + minute10 + WiseReport ETF holdings"
     },
     {
       "code": "450180",
