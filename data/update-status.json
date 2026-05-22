@@ -1,13 +1,13 @@
 {
-  "generatedAt": "2026-05-22T01:35:53.284Z",
+  "generatedAt": "2026-05-22T12:07:34.250Z",
   "timezone": "Asia/Seoul",
   "source": "GitHub Actions",
   "status": "ok",
   "marketCloseUpdateKst": "18:30",
-  "expectedKrxLatestTradeDate": "20260521",
-  "krxLatest": "20260521",
+  "expectedKrxLatestTradeDate": "20260522",
+  "krxLatest": "20260522",
   "krxIsCurrent": true,
-  "krxLiveSyncStatus": "skipped",
+  "krxLiveSyncStatus": "ok",
   "tasks": [
     {
       "name": "Sync KRX data from KRX after close",
@@ -16,7 +16,7 @@
     {
       "name": "Sync newer KRX CSV data from local source",
       "status": "not-applicable",
-      "reason": "No newer KRX CSV source found. current=20260521; default Telegram KRX source=missing, bundled Telegram KRX source=20260424"
+      "reason": "No newer KRX CSV source found. current=20260522; default Telegram KRX source=missing, bundled Telegram KRX source=20260424"
     },
     {
       "name": "Fetch Naver market data",
