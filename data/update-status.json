@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-05-25T01:42:26.260Z",
+  "generatedAt": "2026-05-25T12:52:15.999Z",
   "timezone": "Asia/Seoul",
   "source": "GitHub Actions",
   "status": "ok",
@@ -7,7 +7,7 @@
   "expectedKrxLatestTradeDate": "20260522",
   "krxLatest": "20260522",
   "krxIsCurrent": true,
-  "krxLiveSyncStatus": "skipped",
+  "krxLiveSyncStatus": "no-new-trading-day",
   "tasks": [
     {
       "name": "Sync KRX data from KRX after close",
