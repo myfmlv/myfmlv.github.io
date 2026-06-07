@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-07T01:40:39.040Z",
+  "generatedAt": "2026-06-07T11:21:35.687Z",
   "source": [
     "https://stock.naver.com/api/stockSecurity/etfs/v1/domestic",
     "https://api.stock.naver.com/chart/domestic/item/{code}?periodType=dayCandle",
@@ -8,7 +8,7 @@
   "totalCount": 1136,
   "usListedCount": 287,
   "chartCount": 1136,
-  "holdingCount": 1057,
+  "holdingCount": 1053,
   "themes": [
     {
       "largeCategoryCode": "0101",
@@ -4973,21 +4973,8 @@
         "volume": 102524887,
         "amount": 2374476382920
       },
-      "holdings": [
-        [
-          "SK하이닉스",
-          "000660",
-          98.58,
-          309
-        ],
-        [
-          "2026-06 SK하이닉스개별선물",
-          "",
-          0,
-          32.33
-        ]
-      ],
-      "source": "Naver stock ETF API + Naver chart domestic dayCandle + minute10 + WiseReport ETF holdings"
+      "holdings": [],
+      "source": "Naver stock ETF API + Naver chart domestic dayCandle + minute10"
     },
     {
       "code": "0193W0",
@@ -5982,69 +5969,8 @@
         "volume": 21407145,
         "amount": 1060831070475
       },
-      "holdings": [
-        [
-          "SK하이닉스",
-          "000660",
-          36.53,
-          433
-        ],
-        [
-          "삼성전자",
-          "005930",
-          28.39,
-          2117
-        ],
-        [
-          "한미반도체",
-          "042700",
-          11.56,
-          1002
-        ],
-        [
-          "DB하이텍",
-          "000990",
-          5.16,
-          728
-        ],
-        [
-          "리노공업",
-          "058470",
-          4.54,
-          1183
-        ],
-        [
-          "원익IPS",
-          "240810",
-          4.12,
-          762
-        ],
-        [
-          "이오테크닉스",
-          "039030",
-          3.9,
-          200
-        ],
-        [
-          "HPSP",
-          "403870",
-          2.34,
-          1140
-        ],
-        [
-          "ISC",
-          "095340",
-          2,
-          243
-        ],
-        [
-          "솔브레인",
-          "357780",
-          1.48,
-          100
-        ]
-      ],
-      "source": "Naver stock ETF API + Naver chart domestic dayCandle + minute10 + WiseReport ETF holdings"
+      "holdings": [],
+      "source": "Naver stock ETF API + Naver chart domestic dayCandle + minute10"
     },
     {
       "code": "0167A0",
@@ -452188,15 +452114,8 @@
         "volume": 109895,
         "amount": 1423689725
       },
-      "holdings": [
-        [
-          "US 10YR NOTE (CBT) 2026 09",
-          "",
-          0,
-          7.63
-        ]
-      ],
-      "source": "Naver stock ETF API + Naver chart domestic dayCandle + minute10 + WiseReport ETF holdings"
+      "holdings": [],
+      "source": "Naver stock ETF API + Naver chart domestic dayCandle + minute10"
     },
     {
       "code": "496120",
@@ -643255,255 +643174,8 @@
         "volume": 30147,
         "amount": 411657285
       },
-      "holdings": [
-        [
-          "INDXX GLOBAL CLOUD COMPUTING INDEX USD T_2",
-          "",
-          0,
-          26813415.82
-        ],
-        [
-          "INDXX GLOBAL CLOUD COMPUTING INDEX USD T_3",
-          "",
-          0,
-          16013567.78
-        ],
-        [
-          "INDXX GLOBAL CLOUD COMPUTING INDEX USD T",
-          "",
-          0,
-          5884055.12
-        ],
-        [
-          "SINCH AB",
-          "",
-          0,
-          1206.5
-        ],
-        [
-          "VNET GROUP INC-ADR",
-          "",
-          0,
-          434.45
-        ],
-        [
-          "FRESHWORKS INC-CL A",
-          "",
-          0,
-          379.05
-        ],
-        [
-          "DROPBOX INC-CLASS A",
-          "",
-          0,
-          253.73
-        ],
-        [
-          "FASTLY INC - CLASS A",
-          "",
-          0,
-          243
-        ],
-        [
-          "C3.AI INC-A",
-          "",
-          0,
-          220.34
-        ],
-        [
-          "BOX INC - CLASS A",
-          "",
-          0,
-          215.16
-        ],
-        [
-          "YEXT INC",
-          "YEXT",
-          0,
-          191.68
-        ],
-        [
-          "PROCORE TECHNOLOGIES INC",
-          "PCOR",
-          0,
-          130.43
-        ],
-        [
-          "FIVE9 INC",
-          "FIVN",
-          0,
-          118.98
-        ],
-        [
-          "WIX.COM LTD",
-          "WIX",
-          0,
-          85.55
-        ],
-        [
-          "SERVICENOW INC",
-          "NOW",
-          0,
-          83.57
-        ],
-        [
-          "WORKIVA INC",
-          "WK",
-          0,
-          82.05
-        ],
-        [
-          "DIGITALOCEAN HOLDINGS INC",
-          "DOCN",
-          0,
-          76.52
-        ],
-        [
-          "ZOOM COMMUNICATIONS INC",
-          "ZM",
-          0,
-          75.95
-        ],
-        [
-          "AKAMAI TECHNOLOGIES INC",
-          "AKAM",
-          0,
-          71.66
-        ],
-        [
-          "SHOPIFY INC - CLASS A",
-          "",
-          0,
-          60.93
-        ],
-        [
-          "WORKDAY INC-CLASS A",
-          "",
-          0,
-          60.3
-        ],
-        [
-          "PUBMATIC INC-CLASS A",
-          "",
-          0,
-          59.68
-        ],
-        [
-          "PAYCOM SOFTWARE INC",
-          "PAYC",
-          0,
-          58.2
-        ],
-        [
-          "SPS COMMERCE INC",
-          "SPSC",
-          0,
-          57.45
-        ],
-        [
-          "ZSCALER INC",
-          "ZS",
-          0,
-          56.48
-        ],
-        [
-          "DATADOG INC - CLASS A",
-          "",
-          0,
-          55.82
-        ],
-        [
-          "QUALYS INC",
-          "QLYS",
-          0,
-          55.43
-        ],
-        [
-          "SNOWFLAKE INC",
-          "SNOW",
-          0,
-          54.07
-        ],
-        [
-          "TWILIO INC - A",
-          "",
-          0,
-          49.84
-        ],
-        [
-          "SALESFORCE INC",
-          "CRM",
-          0,
-          41.8
-        ],
-        [
-          "DIGITAL REALTY TRUST INC",
-          "DLR",
-          0,
-          36.73
-        ],
-        [
-          "KINGSOFT CLOUD HOLDINGS-ADR",
-          "",
-          0,
-          36.73
-        ],
-        [
-          "CLOUDFLARE INC - CLASS A",
-          "",
-          0,
-          36
-        ],
-        [
-          "HUBSPOT INC",
-          "HUBS",
-          0,
-          33.27
-        ],
-        [
-          "AMAZON.COM INC",
-          "AMZN",
-          0,
-          13.91
-        ],
-        [
-          "ORACLE CORP JAPAN",
-          "",
-          0,
-          10.07
-        ],
-        [
-          "ALPHABET INC-CL A",
-          "",
-          0,
-          9.59
-        ],
-        [
-          "MICROSOFT CORP",
-          "MSFT",
-          0,
-          9.05
-        ],
-        [
-          "ORACLE CORP",
-          "ORCL",
-          0,
-          5.95
-        ],
-        [
-          "ALIBABA GROUP HOLDING-SP ADR",
-          "",
-          0,
-          4.98
-        ],
-        [
-          "INTL BUSINESS MACHINES CORP",
-          "",
-          0,
-          2.39
-        ]
-      ],
-      "source": "Naver stock ETF API + Naver chart domestic dayCandle + minute10 + WiseReport ETF holdings"
+      "holdings": [],
+      "source": "Naver stock ETF API + Naver chart domestic dayCandle + minute10"
     },
     {
       "code": "496090",
