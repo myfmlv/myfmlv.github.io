@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-13T01:41:55.752Z",
+  "generatedAt": "2026-06-13T11:29:39.905Z",
   "source": [
     "https://stock.naver.com/api/stockSecurity/etfs/v1/domestic",
     "https://api.stock.naver.com/chart/domestic/item/{code}?periodType=dayCandle",
@@ -8,7 +8,7 @@
   "totalCount": 1137,
   "usListedCount": 286,
   "chartCount": 1137,
-  "holdingCount": 1051,
+  "holdingCount": 1060,
   "themes": [
     {
       "largeCategoryCode": "0101",
@@ -5774,8 +5774,69 @@
         "volume": 37452399,
         "amount": 1984977147000
       },
-      "holdings": [],
-      "source": "Naver stock ETF API + Naver chart domestic dayCandle + minute10"
+      "holdings": [
+        [
+          "SK하이닉스",
+          "000660",
+          34.85,
+          433
+        ],
+        [
+          "삼성전자",
+          "005930",
+          25.56,
+          2117
+        ],
+        [
+          "한미반도체",
+          "042700",
+          13.54,
+          1002
+        ],
+        [
+          "원익IPS",
+          "240810",
+          5.23,
+          762
+        ],
+        [
+          "DB하이텍",
+          "000990",
+          4.75,
+          728
+        ],
+        [
+          "리노공업",
+          "058470",
+          4.63,
+          1183
+        ],
+        [
+          "이오테크닉스",
+          "039030",
+          4.58,
+          200
+        ],
+        [
+          "HPSP",
+          "403870",
+          3.05,
+          1140
+        ],
+        [
+          "ISC",
+          "095340",
+          2.09,
+          243
+        ],
+        [
+          "솔브레인",
+          "357780",
+          1.65,
+          100
+        ]
+      ],
+      "source": "Naver stock ETF API + Naver chart domestic dayCandle + minute10 + WiseReport ETF holdings"
     },
     {
       "code": "0195R0",
@@ -6129,8 +6190,21 @@
         "volume": 64777027,
         "amount": 1317240844045
       },
-      "holdings": [],
-      "source": "Naver stock ETF API + Naver chart domestic dayCandle + minute10"
+      "holdings": [
+        [
+          "SK하이닉스",
+          "000660",
+          93.42,
+          212
+        ],
+        [
+          "SK하이닉스선물2607",
+          "",
+          0,
+          25
+        ]
+      ],
+      "source": "Naver stock ETF API + Naver chart domestic dayCandle + minute10 + WiseReport ETF holdings"
     },
     {
       "code": "091160",
@@ -225358,8 +225432,21 @@
         "volume": 290265,
         "amount": 6546927075
       },
-      "holdings": [],
-      "source": "Naver stock ETF API + Naver chart domestic dayCandle + minute10"
+      "holdings": [
+        [
+          "삼성전자",
+          "005930",
+          33.53,
+          102
+        ],
+        [
+          "삼성전자   F 202607 (  10)",
+          "",
+          0,
+          55
+        ]
+      ],
+      "source": "Naver stock ETF API + Naver chart domestic dayCandle + minute10 + WiseReport ETF holdings"
     },
     {
       "code": "435420",
@@ -477310,8 +477397,27 @@
         "volume": 34711,
         "amount": 1109016450
       },
-      "holdings": [],
-      "source": "Naver stock ETF API + Naver chart domestic dayCandle + minute10"
+      "holdings": [
+        [
+          "State Street SPDR S&P 500 ETF",
+          "",
+          0,
+          86.32
+        ],
+        [
+          "2026-06 달러선물",
+          "",
+          0,
+          -21.28
+        ],
+        [
+          "Emini S&P500 FUT(ES) 2026 06",
+          "",
+          0,
+          2.66
+        ]
+      ],
+      "source": "Naver stock ETF API + Naver chart domestic dayCandle + minute10 + WiseReport ETF holdings"
     },
     {
       "code": "415760",
@@ -490125,8 +490231,15 @@
         "volume": 82901,
         "amount": 1005589130
       },
-      "holdings": [],
-      "source": "Naver stock ETF API + Naver chart domestic dayCandle + minute10"
+      "holdings": [
+        [
+          "iShares Broad USD High Yield C",
+          "",
+          0,
+          2130.66
+        ]
+      ],
+      "source": "Naver stock ETF API + Naver chart domestic dayCandle + minute10 + WiseReport ETF holdings"
     },
     {
       "code": "0087F0",
@@ -681202,8 +681315,93 @@
         "volume": 31874,
         "amount": 269335300
       },
-      "holdings": [],
-      "source": "Naver stock ETF API + Naver chart domestic dayCandle + minute10"
+      "holdings": [
+        [
+          "엘앤씨바이오",
+          "290650",
+          14.44,
+          788
+        ],
+        [
+          "휴젤",
+          "145020",
+          13.69,
+          235
+        ],
+        [
+          "클래시스",
+          "214150",
+          9.78,
+          934
+        ],
+        [
+          "파마리서치",
+          "214450",
+          9.43,
+          137
+        ],
+        [
+          "메디톡스",
+          "086900",
+          8.61,
+          425
+        ],
+        [
+          "대웅제약",
+          "069620",
+          8.1,
+          283
+        ],
+        [
+          "원텍",
+          "336570",
+          6.68,
+          3978
+        ],
+        [
+          "덴티움",
+          "145720",
+          6.57,
+          604
+        ],
+        [
+          "한스바이오메드",
+          "042520",
+          5.63,
+          931
+        ],
+        [
+          "바이오플러스",
+          "099430",
+          4.29,
+          3886
+        ],
+        [
+          "휴메딕스",
+          "200670",
+          3.7,
+          549
+        ],
+        [
+          "한국비엔씨",
+          "256840",
+          3.35,
+          4890
+        ],
+        [
+          "아스테라시스",
+          "450950",
+          3.33,
+          1870
+        ],
+        [
+          "엘앤케이바이오",
+          "156100",
+          2.05,
+          1642
+        ]
+      ],
+      "source": "Naver stock ETF API + Naver chart domestic dayCandle + minute10 + WiseReport ETF holdings"
     },
     {
       "code": "466810",
@@ -689827,8 +690025,489 @@
         "volume": 20052,
         "amount": 236713860
       },
-      "holdings": [],
-      "source": "Naver stock ETF API + Naver chart domestic dayCandle + minute10"
+      "holdings": [
+        [
+          "CHINA THREE GORGES RENEWAB-A",
+          "",
+          0,
+          14020
+        ],
+        [
+          "CHINA YANGTZE POWER CO LTD-A",
+          "",
+          0,
+          11990
+        ],
+        [
+          "CHINA DATANG CORP RENEWABL-H",
+          "",
+          0,
+          9500
+        ],
+        [
+          "PLUG POWER INC",
+          "PLUG",
+          0,
+          8540.2
+        ],
+        [
+          "CHINA LONGYUAN POWER GROUP-H",
+          "",
+          0,
+          8000
+        ],
+        [
+          "JINKO SOLAR CO LTD-A",
+          "",
+          0,
+          4900
+        ],
+        [
+          "GOLDWIND SCIENCE&TECHNOLOG-H",
+          "",
+          0,
+          4680
+        ],
+        [
+          "HUANENG LANCANG RIVER HYDR-A",
+          "",
+          0,
+          4570
+        ],
+        [
+          "LONGI GREEN ENERGY TECHNOL-A",
+          "",
+          0,
+          3720
+        ],
+        [
+          "EDP SA",
+          "",
+          0,
+          3489.1
+        ],
+        [
+          "CECEP WIND POWER CORP-A",
+          "",
+          0,
+          3150
+        ],
+        [
+          "ISHARES GLOBAL CLEAN ENERGY",
+          "",
+          0,
+          3050
+        ],
+        [
+          "GCL SYSTEM INTEGRATION TEC-A",
+          "",
+          0,
+          2870
+        ],
+        [
+          "EQUATORIAL SA - ORD",
+          "",
+          0,
+          2770
+        ],
+        [
+          "SICHUAN CHUANTOU ENERGY CO-A",
+          "",
+          0,
+          2390
+        ],
+        [
+          "TCL ZHONGHUAN RENEWABLE EN-A",
+          "",
+          0,
+          1985
+        ],
+        [
+          "GUANGXI GUIGUAN ELECTRIC-A",
+          "",
+          0,
+          1930
+        ],
+        [
+          "CECEP SOLAR ENERGY CO LT-A",
+          "",
+          0,
+          1922.4
+        ],
+        [
+          "CSI SOLAR CO LTD-A",
+          "",
+          0,
+          1786.2
+        ],
+        [
+          "JA SOLAR TECHNOLOGY CO LTD-A",
+          "",
+          0,
+          1620
+        ],
+        [
+          "CHINA SOUTHERN POWER GRID-A",
+          "",
+          0,
+          1570
+        ],
+        [
+          "AUREN ENERGIA SA - ON",
+          "",
+          0,
+          1481.4
+        ],
+        [
+          "JIAZE RENEWABLES CO LTD",
+          "",
+          0,
+          1430
+        ],
+        [
+          "T1 ENERGY INC",
+          "TE",
+          0,
+          1245.5
+        ],
+        [
+          "TRINA SOLAR CO LTD-A",
+          "",
+          0,
+          1148.4
+        ],
+        [
+          "CECEP ENVIRONMENTAL PROTEC-A",
+          "",
+          0,
+          1140
+        ],
+        [
+          "MING YANG SMART ENERGY GRO-A",
+          "",
+          0,
+          1110
+        ],
+        [
+          "SHANGHAI AIKO SOLAR ENERGY-A",
+          "",
+          0,
+          1040
+        ],
+        [
+          "ENERGISA SA-UNITS",
+          "",
+          0,
+          1035
+        ],
+        [
+          "SHOALS TECHNOLOGIES GROUP -A",
+          "",
+          0,
+          1027.2
+        ],
+        [
+          "GREEN DEVELOPMENT ELECTRIC-A",
+          "",
+          0,
+          1010
+        ],
+        [
+          "NYOCOR CO LTD-A",
+          "",
+          0,
+          980
+        ],
+        [
+          "CHONGQING THREE GORGES-A",
+          "",
+          0,
+          940
+        ],
+        [
+          "CHUBU ELECTRIC POWER CO INC",
+          "",
+          0,
+          940
+        ],
+        [
+          "ARRAY TECHNOLOGIES INC",
+          "ARRY",
+          0,
+          937.6
+        ],
+        [
+          "SICHUAN NEW ENERGY POWER C-A",
+          "",
+          0,
+          900
+        ],
+        [
+          "VESTAS WIND SYSTEMS A/S",
+          "",
+          0,
+          893.4
+        ],
+        [
+          "TITAN WIND ENERGY SUZHOU-A",
+          "",
+          0,
+          885.6
+        ],
+        [
+          "ENPHASE ENERGY INC",
+          "ENPH",
+          0,
+          803.1
+        ],
+        [
+          "CERES POWER HOLDINGS PLC",
+          "",
+          0,
+          749.4
+        ],
+        [
+          "CPFL ENERGIA SA",
+          "",
+          0,
+          720
+        ],
+        [
+          "ENGIE BRASIL ENERGIA SA",
+          "",
+          0,
+          708
+        ],
+        [
+          "RISEN ENERGY CO LTD-A",
+          "",
+          0,
+          560
+        ],
+        [
+          "ORSTED A/S",
+          "",
+          0,
+          559.7
+        ],
+        [
+          "RENEW ENERGY GLOBAL PLC-A",
+          "",
+          0,
+          552.4
+        ],
+        [
+          "JOLYWOOD SUZHOU SUNWATT CO-A",
+          "",
+          0,
+          530
+        ],
+        [
+          "NEXTPOWER INC-CL A",
+          "",
+          0,
+          498.4
+        ],
+        [
+          "MERIDIAN ENERGY LTD",
+          "",
+          0,
+          451.5
+        ],
+        [
+          "EDP RENEWABLES SA",
+          "",
+          0,
+          441
+        ],
+        [
+          "GREEN PLAINS INC",
+          "GPRE",
+          0,
+          429.1
+        ],
+        [
+          "BLOOM ENERGY CORP- A",
+          "",
+          0,
+          395.2
+        ],
+        [
+          "CLEARWAY ENERGY INC-C",
+          "",
+          0,
+          380
+        ],
+        [
+          "SANY RENEWABLE ENERGY CO L-A",
+          "",
+          0,
+          376.2
+        ],
+        [
+          "SOLAREDGE TECHNOLOGIES INC",
+          "SEDG",
+          0,
+          367
+        ],
+        [
+          "CONTACT ENERGY LTD",
+          "",
+          0,
+          346
+        ],
+        [
+          "SOLARIA ENERGIA Y MEDIO AMBI",
+          "",
+          0,
+          311
+        ],
+        [
+          "DAJIN HEAVY INDUSTRY CO LT-A",
+          "",
+          0,
+          310
+        ],
+        [
+          "FIRST SOLAR INC",
+          "FSLR",
+          0,
+          288.9
+        ],
+        [
+          "CANADIAN SOLAR INC",
+          "",
+          0,
+          278.6
+        ],
+        [
+          "두산퓨얼셀",
+          "336260",
+          0,
+          271.3
+        ],
+        [
+          "GINLONG TECHNOLOGIES CO LT-A",
+          "",
+          0,
+          200
+        ],
+        [
+          "RENOVA INC",
+          "",
+          0,
+          190
+        ],
+        [
+          "JINKOSOLAR HOLDING CO-ADR",
+          "",
+          0,
+          187
+        ],
+        [
+          "SHENZHEN SC NEW ENERGY TEC-A",
+          "",
+          0,
+          170
+        ],
+        [
+          "JINLEI TECHNOLOGY CO LTD -A",
+          "",
+          0,
+          160
+        ],
+        [
+          "NORDEX SE",
+          "",
+          0,
+          155.3
+        ],
+        [
+          "WUXI AUTOWELL TECHNOLOGY C-A",
+          "",
+          0,
+          154.6
+        ],
+        [
+          "SUZHOU MAXWELL TECHNOLOGIE-A",
+          "",
+          0,
+          140
+        ],
+        [
+          "BORALEX INC -A",
+          "",
+          0,
+          130
+        ],
+        [
+          "ERG SPA",
+          "",
+          0,
+          123.7
+        ],
+        [
+          "GOODWE TECHNOLOGIES CO LTD-A",
+          "",
+          0,
+          119
+        ],
+        [
+          "CORP ACCIONA ENERGIAS RENOVA",
+          "",
+          0,
+          115
+        ],
+        [
+          "HAINAN DRINDA NEW ENERGY T-A",
+          "",
+          0,
+          110
+        ],
+        [
+          "JIANGSU HAILI WIND POWER E-A",
+          "",
+          0,
+          110
+        ],
+        [
+          "씨에스윈드",
+          "112610",
+          0,
+          75.3
+        ],
+        [
+          "HOYMILES POWER ELECTRONICS-A",
+          "",
+          0,
+          60.8
+        ],
+        [
+          "REX AMERICAN RESOURCES CORP",
+          "REX",
+          0,
+          57.4
+        ],
+        [
+          "VERBUND AG",
+          "",
+          0,
+          53.9
+        ],
+        [
+          "SMA SOLAR TECHNOLOGY AG",
+          "",
+          0,
+          33.9
+        ],
+        [
+          "VERBIO SE",
+          "",
+          0,
+          33.1
+        ]
+      ],
+      "source": "Naver stock ETF API + Naver chart domestic dayCandle + minute10 + WiseReport ETF holdings"
     },
     {
       "code": "230480",
@@ -892058,8 +892737,27 @@
         "volume": 3628,
         "amount": 38638200
       },
-      "holdings": [],
-      "source": "Naver stock ETF API + Naver chart domestic dayCandle + minute10"
+      "holdings": [
+        [
+          "KRANESHARES GLOBAL CARBON ET",
+          "",
+          0,
+          170
+        ],
+        [
+          "ECX EMISSION 2026 12",
+          "",
+          0,
+          0.72
+        ],
+        [
+          "2026-06 달러선물",
+          "",
+          0,
+          -0.58
+        ]
+      ],
+      "source": "Naver stock ETF API + Naver chart domestic dayCandle + minute10 + WiseReport ETF holdings"
     },
     {
       "code": "493420",
@@ -900992,8 +901690,249 @@
         "volume": 2935,
         "amount": 31742025
       },
-      "holdings": [],
-      "source": "Naver stock ETF API + Naver chart domestic dayCandle + minute10"
+      "holdings": [
+        [
+          "GOLDEN AGRI-RESOURCES LTD",
+          "",
+          0,
+          7953.8
+        ],
+        [
+          "WILMAR INTERNATIONAL LTD",
+          "",
+          0,
+          3999.98
+        ],
+        [
+          "CHINA MENGNIU DAIRY CO",
+          "",
+          0,
+          3384.6
+        ],
+        [
+          "RUMO SA",
+          "",
+          0,
+          1446.15
+        ],
+        [
+          "DYNO NOBEL LTD",
+          "",
+          0,
+          1412.76
+        ],
+        [
+          "KUBOTA CORP",
+          "",
+          0,
+          999.99
+        ],
+        [
+          "CNH INDUSTRIAL NV",
+          "",
+          0,
+          773.46
+        ],
+        [
+          "TREASURY WINE ESTATES LTD",
+          "",
+          0,
+          749
+        ],
+        [
+          "BAYER AG-REG",
+          "",
+          0,
+          697.53
+        ],
+        [
+          "ICL GROUP LTD",
+          "ICL",
+          0,
+          585.07
+        ],
+        [
+          "MOWI ASA",
+          "",
+          0,
+          560.23
+        ],
+        [
+          "LEROY SEAFOOD GROUP ASA",
+          "",
+          0,
+          396.69
+        ],
+        [
+          "CORTEVA INC",
+          "CTVA",
+          0,
+          333.61
+        ],
+        [
+          "NISSUI CORP",
+          "",
+          0,
+          323.08
+        ],
+        [
+          "ARCHER-DANIELS-MIDLAND CO",
+          "ADM",
+          0,
+          313.38
+        ],
+        [
+          "MOSAIC CO/THE",
+          "",
+          0,
+          305.84
+        ],
+        [
+          "NUTRIEN LTD",
+          "",
+          0,
+          305.31
+        ],
+        [
+          "TYSON FOODS INC-CL A",
+          "",
+          0,
+          303.61
+        ],
+        [
+          "ELANCO ANIMAL HEALTH INC",
+          "ELAN",
+          0,
+          246.46
+        ],
+        [
+          "ZOETIS INC",
+          "ZTS",
+          0,
+          235.84
+        ],
+        [
+          "K+S AG-REG",
+          "",
+          0,
+          218.15
+        ],
+        [
+          "YARA INTERNATIONAL ASA",
+          "",
+          0,
+          202.08
+        ],
+        [
+          "NEOGEN CORP",
+          "NEOG",
+          0,
+          197.23
+        ],
+        [
+          "UMIOS CORP",
+          "",
+          0,
+          176.92
+        ],
+        [
+          "DARLING INGREDIENTS INC",
+          "DAR",
+          0,
+          168.54
+        ],
+        [
+          "OCI NV",
+          "",
+          0,
+          167.69
+        ],
+        [
+          "CF INDUSTRIES HOLDINGS INC",
+          "CF",
+          0,
+          161.08
+        ],
+        [
+          "FMC CORP",
+          "FMC",
+          0,
+          131.08
+        ],
+        [
+          "BUNGE GLOBAL SA",
+          "",
+          0,
+          123.38
+        ],
+        [
+          "SALMAR ASA",
+          "",
+          0,
+          107.54
+        ],
+        [
+          "NH FOODS LTD",
+          "",
+          0,
+          100
+        ],
+        [
+          "TORO CO",
+          "TORO",
+          0,
+          96.15
+        ],
+        [
+          "GENUS PLC",
+          "",
+          0,
+          67.85
+        ],
+        [
+          "AGCO CORP",
+          "AGCO",
+          0,
+          60.54
+        ],
+        [
+          "PILGRIMS PRIDE CORP",
+          "PPC",
+          0,
+          60.54
+        ],
+        [
+          "BAKKAFROST P/F",
+          "",
+          0,
+          54.69
+        ],
+        [
+          "DEERE & CO",
+          "DE",
+          0,
+          54.38
+        ],
+        [
+          "CAL-MAINE FOODS INC",
+          "CALM",
+          0,
+          51.54
+        ],
+        [
+          "SCHOUW & CO",
+          "",
+          0,
+          17
+        ],
+        [
+          "BUCHER INDUSTRIES AG-REG",
+          "",
+          0,
+          8.31
+        ]
+      ],
+      "source": "Naver stock ETF API + Naver chart domestic dayCandle + minute10 + WiseReport ETF holdings"
     },
     {
       "code": "438740",
