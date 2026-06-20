@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-19T12:59:18.231Z",
+  "generatedAt": "2026-06-20T01:37:33.672Z",
   "source": [
     "https://stock.naver.com/api/domestic/market/stock/default",
     "https://stock.naver.com/api/domestic/market/searchTop",
@@ -1197,8 +1197,8 @@
         "amount": 15404259000000,
         "marketCap": 2069582627000000,
         "source": "Naver stock searchTop API",
-        "viewCount": 46236,
-        "rankedAt": "2026-06-19T21:02:00"
+        "viewCount": 17409,
+        "rankedAt": "2026-06-20T10:01:00"
       },
       {
         "rank": 2,
@@ -1212,26 +1212,11 @@
         "amount": 19613614000000,
         "marketCap": 1969909336000000,
         "source": "Naver stock searchTop API",
-        "viewCount": 39458,
-        "rankedAt": "2026-06-19T21:02:00"
+        "viewCount": 14897,
+        "rankedAt": "2026-06-20T10:01:00"
       },
       {
         "rank": 3,
-        "ticker": "009150",
-        "name": "삼성전기",
-        "market": "KOSPI",
-        "price": 2270000,
-        "changeRate": 3.18,
-        "changeAmount": 70000,
-        "volume": 1696640,
-        "amount": 3886730000000,
-        "marketCap": 169554689000000,
-        "source": "Naver stock searchTop API",
-        "viewCount": 10591,
-        "rankedAt": "2026-06-19T21:02:00"
-      },
-      {
-        "rank": 4,
         "ticker": "005380",
         "name": "현대차",
         "market": "KOSPI",
@@ -1242,11 +1227,11 @@
         "amount": 1094208000000,
         "marketCap": 125516510000000,
         "source": "Naver stock searchTop API",
-        "viewCount": 10150,
-        "rankedAt": "2026-06-19T21:02:00"
+        "viewCount": 5033,
+        "rankedAt": "2026-06-20T10:01:00"
       },
       {
-        "rank": 5,
+        "rank": 4,
         "ticker": "066570",
         "name": "LG전자",
         "market": "KOSPI",
@@ -1257,41 +1242,26 @@
         "amount": 616347000000,
         "marketCap": 34450100000000,
         "source": "Naver stock searchTop API",
-        "viewCount": 7411,
-        "rankedAt": "2026-06-19T21:02:00"
+        "viewCount": 4363,
+        "rankedAt": "2026-06-20T10:01:00"
+      },
+      {
+        "rank": 5,
+        "ticker": "009150",
+        "name": "삼성전기",
+        "market": "KOSPI",
+        "price": 2270000,
+        "changeRate": 3.18,
+        "changeAmount": 70000,
+        "volume": 1696640,
+        "amount": 3886730000000,
+        "marketCap": 169554689000000,
+        "source": "Naver stock searchTop API",
+        "viewCount": 4295,
+        "rankedAt": "2026-06-20T10:01:00"
       },
       {
         "rank": 6,
-        "ticker": "402340",
-        "name": "SK스퀘어",
-        "market": "KOSPI",
-        "price": 1780000,
-        "changeRate": 4.71,
-        "changeAmount": 80000,
-        "volume": 1488102,
-        "amount": 2677016000000,
-        "marketCap": 234885927000000,
-        "source": "Naver stock searchTop API",
-        "viewCount": 6257,
-        "rankedAt": "2026-06-19T21:02:00"
-      },
-      {
-        "rank": 7,
-        "ticker": "006400",
-        "name": "삼성SDI",
-        "market": "KOSPI",
-        "price": 555000,
-        "changeRate": 6.32,
-        "changeAmount": 33000,
-        "volume": 949969,
-        "amount": 527035000000,
-        "marketCap": 44724969000000,
-        "source": "Naver stock searchTop API",
-        "viewCount": 5898,
-        "rankedAt": "2026-06-19T21:02:00"
-      },
-      {
-        "rank": 8,
         "ticker": "035420",
         "name": "NAVER",
         "market": "KOSPI",
@@ -1302,11 +1272,11 @@
         "amount": 488122000000,
         "marketCap": 36005719000000,
         "source": "Naver stock searchTop API",
-        "viewCount": 5748,
-        "rankedAt": "2026-06-19T21:02:00"
+        "viewCount": 3163,
+        "rankedAt": "2026-06-20T10:01:00"
       },
       {
-        "rank": 9,
+        "rank": 7,
         "ticker": "042660",
         "name": "한화오션",
         "market": "KOSPI",
@@ -1317,26 +1287,26 @@
         "amount": 409988000000,
         "marketCap": 39343479000000,
         "source": "Naver stock searchTop API",
-        "viewCount": 5674,
-        "rankedAt": "2026-06-19T21:02:00"
+        "viewCount": 2980,
+        "rankedAt": "2026-06-20T10:01:00"
       },
       {
-        "rank": 10,
-        "ticker": "042700",
-        "name": "한미반도체",
+        "rank": 8,
+        "ticker": "006400",
+        "name": "삼성SDI",
         "market": "KOSPI",
-        "price": 295000,
-        "changeRate": -6.5,
-        "changeAmount": -20500,
-        "volume": 4124752,
-        "amount": 1254644000000,
-        "marketCap": 28117099000000,
+        "price": 555000,
+        "changeRate": 6.32,
+        "changeAmount": 33000,
+        "volume": 949969,
+        "amount": 527035000000,
+        "marketCap": 44724969000000,
         "source": "Naver stock searchTop API",
-        "viewCount": 5162,
-        "rankedAt": "2026-06-19T21:02:00"
+        "viewCount": 2722,
+        "rankedAt": "2026-06-20T10:01:00"
       },
       {
-        "rank": 11,
+        "rank": 9,
         "ticker": "034020",
         "name": "두산에너빌리티",
         "market": "KOSPI",
@@ -1347,8 +1317,38 @@
         "amount": 427653000000,
         "marketCap": 62710936000000,
         "source": "Naver stock searchTop API",
-        "viewCount": 5059,
-        "rankedAt": "2026-06-19T21:02:00"
+        "viewCount": 2547,
+        "rankedAt": "2026-06-20T10:01:00"
+      },
+      {
+        "rank": 10,
+        "ticker": "402340",
+        "name": "SK스퀘어",
+        "market": "KOSPI",
+        "price": 1780000,
+        "changeRate": 4.71,
+        "changeAmount": 80000,
+        "volume": 1488102,
+        "amount": 2677016000000,
+        "marketCap": 234885927000000,
+        "source": "Naver stock searchTop API",
+        "viewCount": 2427,
+        "rankedAt": "2026-06-20T10:01:00"
+      },
+      {
+        "rank": 11,
+        "ticker": "042700",
+        "name": "한미반도체",
+        "market": "KOSPI",
+        "price": 295000,
+        "changeRate": -6.5,
+        "changeAmount": -20500,
+        "volume": 4124752,
+        "amount": 1254644000000,
+        "marketCap": 28117099000000,
+        "source": "Naver stock searchTop API",
+        "viewCount": 2408,
+        "rankedAt": "2026-06-20T10:01:00"
       },
       {
         "rank": 12,
@@ -1362,8 +1362,8 @@
         "amount": 832163000000,
         "marketCap": 27098837000000,
         "source": "Naver stock searchTop API",
-        "viewCount": 3717,
-        "rankedAt": "2026-06-19T21:02:00"
+        "viewCount": 1978,
+        "rankedAt": "2026-06-20T10:01:00"
       },
       {
         "rank": 13,
@@ -1377,101 +1377,11 @@
         "amount": 723131000000,
         "marketCap": 38850000000000,
         "source": "Naver stock searchTop API",
-        "viewCount": 3465,
-        "rankedAt": "2026-06-19T21:02:00"
+        "viewCount": 1867,
+        "rankedAt": "2026-06-20T10:01:00"
       },
       {
         "rank": 14,
-        "ticker": "347850",
-        "name": "디앤디파마텍",
-        "market": "KOSDAQ",
-        "price": 111200,
-        "changeRate": 2.68,
-        "changeAmount": 2900,
-        "volume": 2431755,
-        "amount": 270682801000,
-        "marketCap": 4871021000000,
-        "source": "Naver stock searchTop API",
-        "viewCount": 3426,
-        "rankedAt": "2026-06-19T21:02:00"
-      },
-      {
-        "rank": 15,
-        "ticker": "085620",
-        "name": "미래에셋생명",
-        "market": "KOSPI",
-        "price": 34550,
-        "changeRate": 7.97,
-        "changeAmount": 2550,
-        "volume": 4559248,
-        "amount": 160332000000,
-        "marketCap": 4670469000000,
-        "source": "Naver stock searchTop API",
-        "viewCount": 2842,
-        "rankedAt": "2026-06-19T21:02:00"
-      },
-      {
-        "rank": 16,
-        "ticker": "010140",
-        "name": "삼성중공업",
-        "market": "KOSPI",
-        "price": 27550,
-        "changeRate": -0.54,
-        "changeAmount": -150,
-        "volume": 6267691,
-        "amount": 171055000000,
-        "marketCap": 24244000000000,
-        "source": "Naver stock searchTop API",
-        "viewCount": 2614,
-        "rankedAt": "2026-06-19T21:02:00"
-      },
-      {
-        "rank": 17,
-        "ticker": "012330",
-        "name": "현대모비스",
-        "market": "KOSPI",
-        "price": 612000,
-        "changeRate": 1.49,
-        "changeAmount": 9000,
-        "volume": 897399,
-        "amount": 552233000000,
-        "marketCap": 55528340000000,
-        "source": "Naver stock searchTop API",
-        "viewCount": 2443,
-        "rankedAt": "2026-06-19T21:02:00"
-      },
-      {
-        "rank": 18,
-        "ticker": "006800",
-        "name": "미래에셋증권",
-        "market": "KOSPI",
-        "price": 48750,
-        "changeRate": -3.85,
-        "changeAmount": -1950,
-        "volume": 4037262,
-        "amount": 197676000000,
-        "marketCap": 27278885000000,
-        "source": "Naver stock searchTop API",
-        "viewCount": 2435,
-        "rankedAt": "2026-06-19T21:02:00"
-      },
-      {
-        "rank": 19,
-        "ticker": "086520",
-        "name": "에코프로",
-        "market": "KOSDAQ",
-        "price": 116000,
-        "changeRate": -1.28,
-        "changeAmount": -1500,
-        "volume": 1236032,
-        "amount": 143326969000,
-        "marketCap": 15750033000000,
-        "source": "Naver stock searchTop API",
-        "viewCount": 2433,
-        "rankedAt": "2026-06-19T21:02:00"
-      },
-      {
-        "rank": 20,
         "ticker": "064400",
         "name": "LG씨엔에스",
         "market": "KOSPI",
@@ -1482,26 +1392,26 @@
         "amount": 125517000000,
         "marketCap": 8312814000000,
         "source": "Naver stock searchTop API",
-        "viewCount": 2424,
-        "rankedAt": "2026-06-19T21:02:00"
+        "viewCount": 1650,
+        "rankedAt": "2026-06-20T10:01:00"
       },
       {
-        "rank": 21,
-        "ticker": "005935",
-        "name": "삼성전자우",
-        "market": "KOSPI",
-        "price": 222000,
-        "changeRate": -2.84,
-        "changeAmount": -6500,
-        "volume": 6141800,
-        "amount": 1396678000000,
-        "marketCap": 178126407000000,
+        "rank": 15,
+        "ticker": "086520",
+        "name": "에코프로",
+        "market": "KOSDAQ",
+        "price": 116000,
+        "changeRate": -1.28,
+        "changeAmount": -1500,
+        "volume": 1236032,
+        "amount": 143326969000,
+        "marketCap": 15750033000000,
         "source": "Naver stock searchTop API",
-        "viewCount": 2319,
-        "rankedAt": "2026-06-19T21:02:00"
+        "viewCount": 1504,
+        "rankedAt": "2026-06-20T10:01:00"
       },
       {
-        "rank": 22,
+        "rank": 16,
         "ticker": "036930",
         "name": "주성엔지니어링",
         "market": "KOSDAQ",
@@ -1512,41 +1422,41 @@
         "amount": 524272149000,
         "marketCap": 8975504000000,
         "source": "Naver stock searchTop API",
-        "viewCount": 2159,
-        "rankedAt": "2026-06-19T21:02:00"
+        "viewCount": 1341,
+        "rankedAt": "2026-06-20T10:01:00"
       },
       {
-        "rank": 23,
-        "ticker": "005490",
-        "name": "POSCO홀딩스",
-        "market": "KOSPI",
-        "price": 356500,
-        "changeRate": -2.86,
-        "changeAmount": -10500,
-        "volume": 535534,
-        "amount": 192204000000,
-        "marketCap": 28249604000000,
-        "source": "Naver stock searchTop API",
-        "viewCount": 2157,
-        "rankedAt": "2026-06-19T21:02:00"
-      },
-      {
-        "rank": 24,
-        "ticker": "293490",
-        "name": "카카오게임즈",
+        "rank": 17,
+        "ticker": "347850",
+        "name": "디앤디파마텍",
         "market": "KOSDAQ",
-        "price": 8810,
-        "changeRate": -1.12,
-        "changeAmount": -100,
-        "volume": 211486,
-        "amount": 1840505000,
-        "marketCap": 791022000000,
+        "price": 111200,
+        "changeRate": 2.68,
+        "changeAmount": 2900,
+        "volume": 2431755,
+        "amount": 270682801000,
+        "marketCap": 4871021000000,
         "source": "Naver stock searchTop API",
-        "viewCount": 2073,
-        "rankedAt": "2026-06-19T21:02:00"
+        "viewCount": 1332,
+        "rankedAt": "2026-06-20T10:01:00"
       },
       {
-        "rank": 25,
+        "rank": 18,
+        "ticker": "010140",
+        "name": "삼성중공업",
+        "market": "KOSPI",
+        "price": 27550,
+        "changeRate": -0.54,
+        "changeAmount": -150,
+        "volume": 6267691,
+        "amount": 171055000000,
+        "marketCap": 24244000000000,
+        "source": "Naver stock searchTop API",
+        "viewCount": 1239,
+        "rankedAt": "2026-06-20T10:01:00"
+      },
+      {
+        "rank": 19,
         "ticker": "047040",
         "name": "대우건설",
         "market": "KOSPI",
@@ -1557,56 +1467,26 @@
         "amount": 205505000000,
         "marketCap": 8731787000000,
         "source": "Naver stock searchTop API",
-        "viewCount": 2023,
-        "rankedAt": "2026-06-19T21:02:00"
+        "viewCount": 1224,
+        "rankedAt": "2026-06-20T10:01:00"
       },
       {
-        "rank": 26,
-        "ticker": "011790",
-        "name": "SKC",
+        "rank": 20,
+        "ticker": "012330",
+        "name": "현대모비스",
         "market": "KOSPI",
-        "price": 119600,
-        "changeRate": -4.78,
-        "changeAmount": -6000,
-        "volume": 913231,
-        "amount": 110689000000,
-        "marketCap": 5931956000000,
+        "price": 612000,
+        "changeRate": 1.49,
+        "changeAmount": 9000,
+        "volume": 897399,
+        "amount": 552233000000,
+        "marketCap": 55528340000000,
         "source": "Naver stock searchTop API",
-        "viewCount": 1999,
-        "rankedAt": "2026-06-19T21:02:00"
+        "viewCount": 1159,
+        "rankedAt": "2026-06-20T10:01:00"
       },
       {
-        "rank": 27,
-        "ticker": "028260",
-        "name": "삼성물산",
-        "market": "KOSPI",
-        "price": 491500,
-        "changeRate": 1.24,
-        "changeAmount": 6000,
-        "volume": 1374021,
-        "amount": 702284000000,
-        "marketCap": 79705366000000,
-        "source": "Naver stock searchTop API",
-        "viewCount": 1989,
-        "rankedAt": "2026-06-19T21:02:00"
-      },
-      {
-        "rank": 28,
-        "ticker": "035720",
-        "name": "카카오",
-        "market": "KOSPI",
-        "price": 37750,
-        "changeRate": -3.94,
-        "changeAmount": -1550,
-        "volume": 2016741,
-        "amount": 77036000000,
-        "marketCap": 16713632000000,
-        "source": "Naver stock searchTop API",
-        "viewCount": 1899,
-        "rankedAt": "2026-06-19T21:02:00"
-      },
-      {
-        "rank": 29,
+        "rank": 21,
         "ticker": "403870",
         "name": "HPSP",
         "market": "KOSDAQ",
@@ -1617,11 +1497,86 @@
         "amount": 591213361000,
         "marketCap": 4658180000000,
         "source": "Naver stock searchTop API",
-        "viewCount": 1825,
-        "rankedAt": "2026-06-19T21:02:00"
+        "viewCount": 1154,
+        "rankedAt": "2026-06-20T10:01:00"
       },
       {
-        "rank": 30,
+        "rank": 22,
+        "ticker": "247540",
+        "name": "에코프로비엠",
+        "market": "KOSDAQ",
+        "price": 169400,
+        "changeRate": -1.68,
+        "changeAmount": -2900,
+        "volume": 893376,
+        "amount": 151638424000,
+        "marketCap": 16572475000000,
+        "source": "Naver stock searchTop API",
+        "viewCount": 1140,
+        "rankedAt": "2026-06-20T10:01:00"
+      },
+      {
+        "rank": 23,
+        "ticker": "010170",
+        "name": "대한광통신",
+        "market": "KOSDAQ",
+        "price": 16330,
+        "changeRate": -7.48,
+        "changeAmount": -1320,
+        "volume": 9474118,
+        "amount": 157543775000,
+        "marketCap": 2539080000000,
+        "source": "Naver stock searchTop API",
+        "viewCount": 1097,
+        "rankedAt": "2026-06-20T10:01:00"
+      },
+      {
+        "rank": 24,
+        "ticker": "006800",
+        "name": "미래에셋증권",
+        "market": "KOSPI",
+        "price": 48750,
+        "changeRate": -3.85,
+        "changeAmount": -1950,
+        "volume": 4037262,
+        "amount": 197676000000,
+        "marketCap": 27278885000000,
+        "source": "Naver stock searchTop API",
+        "viewCount": 1092,
+        "rankedAt": "2026-06-20T10:01:00"
+      },
+      {
+        "rank": 25,
+        "ticker": "005935",
+        "name": "삼성전자우",
+        "market": "KOSPI",
+        "price": 222000,
+        "changeRate": -2.84,
+        "changeAmount": -6500,
+        "volume": 6141800,
+        "amount": 1396678000000,
+        "marketCap": 178126407000000,
+        "source": "Naver stock searchTop API",
+        "viewCount": 1073,
+        "rankedAt": "2026-06-20T10:01:00"
+      },
+      {
+        "rank": 26,
+        "ticker": "005490",
+        "name": "POSCO홀딩스",
+        "market": "KOSPI",
+        "price": 356500,
+        "changeRate": -2.86,
+        "changeAmount": -10500,
+        "volume": 535534,
+        "amount": 192204000000,
+        "marketCap": 28249604000000,
+        "source": "Naver stock searchTop API",
+        "viewCount": 1071,
+        "rankedAt": "2026-06-20T10:01:00"
+      },
+      {
+        "rank": 27,
         "ticker": "080220",
         "name": "제주반도체",
         "market": "KOSDAQ",
@@ -1632,8 +1587,53 @@
         "amount": 969660028000,
         "marketCap": 3936815000000,
         "source": "Naver stock searchTop API",
-        "viewCount": 1792,
-        "rankedAt": "2026-06-19T21:02:00"
+        "viewCount": 1060,
+        "rankedAt": "2026-06-20T10:01:00"
+      },
+      {
+        "rank": 28,
+        "ticker": "028050",
+        "name": "삼성E&A",
+        "market": "KOSPI",
+        "price": 48650,
+        "changeRate": -2.11,
+        "changeAmount": -1050,
+        "volume": 3427709,
+        "amount": 170109000000,
+        "marketCap": 9535400000000,
+        "source": "Naver stock searchTop API",
+        "viewCount": 979,
+        "rankedAt": "2026-06-20T10:01:00"
+      },
+      {
+        "rank": 29,
+        "ticker": "035720",
+        "name": "카카오",
+        "market": "KOSPI",
+        "price": 37750,
+        "changeRate": -3.94,
+        "changeAmount": -1550,
+        "volume": 2016741,
+        "amount": 77036000000,
+        "marketCap": 16713632000000,
+        "source": "Naver stock searchTop API",
+        "viewCount": 963,
+        "rankedAt": "2026-06-20T10:01:00"
+      },
+      {
+        "rank": 30,
+        "ticker": "373220",
+        "name": "LG에너지솔루션",
+        "market": "KOSPI",
+        "price": 404500,
+        "changeRate": 1.13,
+        "changeAmount": 4500,
+        "volume": 746415,
+        "amount": 302829000000,
+        "marketCap": 94653000000000,
+        "source": "Naver stock searchTop API",
+        "viewCount": 890,
+        "rankedAt": "2026-06-20T10:01:00"
       }
     ]
   },
@@ -89269,296 +89269,6 @@
       },
       {
         "rank": 4,
-        "symbol": "INTC",
-        "naverCode": "INTC.O",
-        "name": "인텔",
-        "sector": "반도체",
-        "price": 133.99,
-        "changeRate": 10.64,
-        "amount": 31065672000,
-        "volume": 233906555,
-        "marketCap": 673433740000,
-        "priceHistory": [
-          [
-            "20260324",
-            44.06
-          ],
-          [
-            "20260325",
-            47.18
-          ],
-          [
-            "20260326",
-            44.1
-          ],
-          [
-            "20260327",
-            43.13
-          ],
-          [
-            "20260330",
-            41.19
-          ],
-          [
-            "20260331",
-            44.13
-          ],
-          [
-            "20260401",
-            48.03
-          ],
-          [
-            "20260402",
-            50.38
-          ],
-          [
-            "20260406",
-            50.78
-          ],
-          [
-            "20260407",
-            52.91
-          ],
-          [
-            "20260408",
-            58.95
-          ],
-          [
-            "20260409",
-            61.72
-          ],
-          [
-            "20260410",
-            62.38
-          ],
-          [
-            "20260413",
-            65.18
-          ],
-          [
-            "20260414",
-            63.81
-          ],
-          [
-            "20260415",
-            64.94
-          ],
-          [
-            "20260416",
-            68.5
-          ],
-          [
-            "20260417",
-            68.5
-          ],
-          [
-            "20260420",
-            65.7
-          ],
-          [
-            "20260421",
-            66.26
-          ],
-          [
-            "20260422",
-            65.27
-          ],
-          [
-            "20260423",
-            66.78
-          ],
-          [
-            "20260424",
-            82.54
-          ],
-          [
-            "20260427",
-            84.99
-          ],
-          [
-            "20260428",
-            84.52
-          ],
-          [
-            "20260429",
-            94.75
-          ],
-          [
-            "20260430",
-            94.48
-          ],
-          [
-            "20260501",
-            99.62
-          ],
-          [
-            "20260504",
-            95.78
-          ],
-          [
-            "20260505",
-            108.15
-          ],
-          [
-            "20260506",
-            113.01
-          ],
-          [
-            "20260507",
-            109.62
-          ],
-          [
-            "20260508",
-            124.92
-          ],
-          [
-            "20260511",
-            129.44
-          ],
-          [
-            "20260512",
-            120.61
-          ],
-          [
-            "20260513",
-            120.29
-          ],
-          [
-            "20260514",
-            115.93
-          ],
-          [
-            "20260515",
-            108.77
-          ],
-          [
-            "20260518",
-            108.17
-          ],
-          [
-            "20260519",
-            110.8
-          ],
-          [
-            "20260520",
-            118.96
-          ],
-          [
-            "20260521",
-            118.5
-          ],
-          [
-            "20260522",
-            119.84
-          ],
-          [
-            "20260526",
-            123.52
-          ],
-          [
-            "20260527",
-            121.77
-          ],
-          [
-            "20260528",
-            120.89
-          ],
-          [
-            "20260529",
-            114.68
-          ],
-          [
-            "20260601",
-            109.33
-          ],
-          [
-            "20260602",
-            107.93
-          ],
-          [
-            "20260603",
-            112.71
-          ],
-          [
-            "20260604",
-            111.78
-          ],
-          [
-            "20260605",
-            99.17
-          ],
-          [
-            "20260608",
-            110.27
-          ],
-          [
-            "20260609",
-            107.92
-          ],
-          [
-            "20260610",
-            107.04
-          ],
-          [
-            "20260611",
-            116.96
-          ],
-          [
-            "20260612",
-            124.57
-          ],
-          [
-            "20260615",
-            127.86
-          ],
-          [
-            "20260616",
-            117.05
-          ],
-          [
-            "20260617",
-            121.1
-          ],
-          [
-            "20260618",
-            133.99
-          ]
-        ],
-        "dayTrend": [
-          134.62,
-          129.6,
-          129.89,
-          129.78,
-          130.82,
-          131.88,
-          131.14,
-          133.03,
-          132.25,
-          133.63,
-          133.97,
-          133.98,
-          134.08,
-          133.1,
-          134.62,
-          133.85,
-          133.91,
-          133.9,
-          133.91,
-          133.8,
-          133.99
-        ],
-        "latestCandle": {
-          "date": "20260618",
-          "open": 131.81,
-          "high": 135.48,
-          "low": 127.9,
-          "close": 133.99,
-          "volume": 233906555
-        },
-        "source": "Naver foreign market API + Naver chart dayCandle + Yahoo 20m intraday"
-      },
-      {
-        "rank": 5,
         "symbol": "TSLA",
         "naverCode": "TSLA.O",
         "name": "테슬라",
@@ -89844,6 +89554,296 @@
           "low": 384.7,
           "close": 400.49,
           "volume": 58384713
+        },
+        "source": "Naver foreign market API + Naver chart dayCandle + Yahoo 20m intraday"
+      },
+      {
+        "rank": 5,
+        "symbol": "INTC",
+        "naverCode": "INTC.O",
+        "name": "인텔",
+        "sector": "반도체",
+        "price": 133.99,
+        "changeRate": 10.64,
+        "amount": 31065672000,
+        "volume": 233906555,
+        "marketCap": 673433740000,
+        "priceHistory": [
+          [
+            "20260324",
+            44.06
+          ],
+          [
+            "20260325",
+            47.18
+          ],
+          [
+            "20260326",
+            44.1
+          ],
+          [
+            "20260327",
+            43.13
+          ],
+          [
+            "20260330",
+            41.19
+          ],
+          [
+            "20260331",
+            44.13
+          ],
+          [
+            "20260401",
+            48.03
+          ],
+          [
+            "20260402",
+            50.38
+          ],
+          [
+            "20260406",
+            50.78
+          ],
+          [
+            "20260407",
+            52.91
+          ],
+          [
+            "20260408",
+            58.95
+          ],
+          [
+            "20260409",
+            61.72
+          ],
+          [
+            "20260410",
+            62.38
+          ],
+          [
+            "20260413",
+            65.18
+          ],
+          [
+            "20260414",
+            63.81
+          ],
+          [
+            "20260415",
+            64.94
+          ],
+          [
+            "20260416",
+            68.5
+          ],
+          [
+            "20260417",
+            68.5
+          ],
+          [
+            "20260420",
+            65.7
+          ],
+          [
+            "20260421",
+            66.26
+          ],
+          [
+            "20260422",
+            65.27
+          ],
+          [
+            "20260423",
+            66.78
+          ],
+          [
+            "20260424",
+            82.54
+          ],
+          [
+            "20260427",
+            84.99
+          ],
+          [
+            "20260428",
+            84.52
+          ],
+          [
+            "20260429",
+            94.75
+          ],
+          [
+            "20260430",
+            94.48
+          ],
+          [
+            "20260501",
+            99.62
+          ],
+          [
+            "20260504",
+            95.78
+          ],
+          [
+            "20260505",
+            108.15
+          ],
+          [
+            "20260506",
+            113.01
+          ],
+          [
+            "20260507",
+            109.62
+          ],
+          [
+            "20260508",
+            124.92
+          ],
+          [
+            "20260511",
+            129.44
+          ],
+          [
+            "20260512",
+            120.61
+          ],
+          [
+            "20260513",
+            120.29
+          ],
+          [
+            "20260514",
+            115.93
+          ],
+          [
+            "20260515",
+            108.77
+          ],
+          [
+            "20260518",
+            108.17
+          ],
+          [
+            "20260519",
+            110.8
+          ],
+          [
+            "20260520",
+            118.96
+          ],
+          [
+            "20260521",
+            118.5
+          ],
+          [
+            "20260522",
+            119.84
+          ],
+          [
+            "20260526",
+            123.52
+          ],
+          [
+            "20260527",
+            121.77
+          ],
+          [
+            "20260528",
+            120.89
+          ],
+          [
+            "20260529",
+            114.68
+          ],
+          [
+            "20260601",
+            109.33
+          ],
+          [
+            "20260602",
+            107.93
+          ],
+          [
+            "20260603",
+            112.71
+          ],
+          [
+            "20260604",
+            111.78
+          ],
+          [
+            "20260605",
+            99.17
+          ],
+          [
+            "20260608",
+            110.27
+          ],
+          [
+            "20260609",
+            107.92
+          ],
+          [
+            "20260610",
+            107.04
+          ],
+          [
+            "20260611",
+            116.96
+          ],
+          [
+            "20260612",
+            124.57
+          ],
+          [
+            "20260615",
+            127.86
+          ],
+          [
+            "20260616",
+            117.05
+          ],
+          [
+            "20260617",
+            121.1
+          ],
+          [
+            "20260618",
+            133.99
+          ]
+        ],
+        "dayTrend": [
+          134.62,
+          129.6,
+          129.89,
+          129.78,
+          130.82,
+          131.88,
+          131.14,
+          133.03,
+          132.25,
+          133.63,
+          133.97,
+          133.98,
+          134.08,
+          133.1,
+          134.62,
+          133.85,
+          133.91,
+          133.9,
+          133.91,
+          133.8,
+          133.99
+        ],
+        "latestCandle": {
+          "date": "20260618",
+          "open": 131.81,
+          "high": 135.48,
+          "low": 127.9,
+          "close": 133.99,
+          "volume": 233906555
         },
         "source": "Naver foreign market API + Naver chart dayCandle + Yahoo 20m intraday"
       },
@@ -90139,6 +90139,296 @@
       },
       {
         "rank": 7,
+        "symbol": "MRVL",
+        "naverCode": "MRVL.O",
+        "name": "마벨 테크놀로지 그룹",
+        "sector": "반도체",
+        "price": 310.58,
+        "changeRate": 7.27,
+        "amount": 78758612000,
+        "volume": 250989360,
+        "marketCap": 271695384000,
+        "priceHistory": [
+          [
+            "20260324",
+            92.36
+          ],
+          [
+            "20260325",
+            98.45
+          ],
+          [
+            "20260326",
+            97.68
+          ],
+          [
+            "20260327",
+            94.88
+          ],
+          [
+            "20260330",
+            87.81
+          ],
+          [
+            "20260331",
+            99.05
+          ],
+          [
+            "20260401",
+            106.71
+          ],
+          [
+            "20260402",
+            107.11
+          ],
+          [
+            "20260406",
+            109.51
+          ],
+          [
+            "20260407",
+            109.38
+          ],
+          [
+            "20260408",
+            114.45
+          ],
+          [
+            "20260409",
+            119.93
+          ],
+          [
+            "20260410",
+            128.49
+          ],
+          [
+            "20260413",
+            131.3
+          ],
+          [
+            "20260414",
+            133.83
+          ],
+          [
+            "20260415",
+            134.6
+          ],
+          [
+            "20260416",
+            133.37
+          ],
+          [
+            "20260417",
+            139.69
+          ],
+          [
+            "20260420",
+            147.84
+          ],
+          [
+            "20260421",
+            151.31
+          ],
+          [
+            "20260422",
+            157.32
+          ],
+          [
+            "20260423",
+            165.56
+          ],
+          [
+            "20260424",
+            164.31
+          ],
+          [
+            "20260427",
+            158.21
+          ],
+          [
+            "20260428",
+            153.23
+          ],
+          [
+            "20260429",
+            156.57
+          ],
+          [
+            "20260430",
+            165.15
+          ],
+          [
+            "20260501",
+            164.95
+          ],
+          [
+            "20260504",
+            163.66
+          ],
+          [
+            "20260505",
+            168.75
+          ],
+          [
+            "20260506",
+            172.15
+          ],
+          [
+            "20260507",
+            160.01
+          ],
+          [
+            "20260508",
+            170.13
+          ],
+          [
+            "20260511",
+            170.84
+          ],
+          [
+            "20260512",
+            164.5
+          ],
+          [
+            "20260513",
+            177.95
+          ],
+          [
+            "20260514",
+            182.58
+          ],
+          [
+            "20260515",
+            176.89
+          ],
+          [
+            "20260518",
+            168.93
+          ],
+          [
+            "20260519",
+            176.27
+          ],
+          [
+            "20260520",
+            186.8
+          ],
+          [
+            "20260521",
+            190.69
+          ],
+          [
+            "20260522",
+            196.33
+          ],
+          [
+            "20260526",
+            208.26
+          ],
+          [
+            "20260527",
+            198.7
+          ],
+          [
+            "20260528",
+            204.83
+          ],
+          [
+            "20260529",
+            205
+          ],
+          [
+            "20260601",
+            219.43
+          ],
+          [
+            "20260602",
+            290.79
+          ],
+          [
+            "20260603",
+            301.65
+          ],
+          [
+            "20260604",
+            316.43
+          ],
+          [
+            "20260605",
+            263.47
+          ],
+          [
+            "20260608",
+            288.85
+          ],
+          [
+            "20260609",
+            266.88
+          ],
+          [
+            "20260610",
+            252.59
+          ],
+          [
+            "20260611",
+            280.71
+          ],
+          [
+            "20260612",
+            279.7
+          ],
+          [
+            "20260615",
+            308.88
+          ],
+          [
+            "20260616",
+            278.67
+          ],
+          [
+            "20260617",
+            289.54
+          ],
+          [
+            "20260618",
+            310.58
+          ]
+        ],
+        "dayTrend": [
+          310.19,
+          309.68,
+          317.6,
+          320.13,
+          322,
+          323.42,
+          322.71,
+          324.04,
+          327.35,
+          324.45,
+          324.34,
+          325.03,
+          327.91,
+          325.18,
+          324.98,
+          323.57,
+          323.49,
+          326.8,
+          328.71,
+          310.85,
+          310.58
+        ],
+        "latestCandle": {
+          "date": "20260618",
+          "open": 305.46,
+          "high": 329.88,
+          "low": 302.36,
+          "close": 310.58,
+          "volume": 250989360
+        },
+        "source": "Naver foreign market API + Naver chart dayCandle + Yahoo 20m intraday"
+      },
+      {
+        "rank": 8,
         "symbol": "AVGO",
         "naverCode": "AVGO.O",
         "name": "브로드컴",
@@ -90428,7 +90718,7 @@
         "source": "Naver foreign market API + Naver chart dayCandle + Yahoo 20m intraday"
       },
       {
-        "rank": 8,
+        "rank": 9,
         "symbol": "IONQ",
         "naverCode": "IONQ.K",
         "name": "아이온큐",
@@ -90718,7 +91008,7 @@
         "source": "Naver foreign market API + Naver chart dayCandle + Yahoo 20m intraday"
       },
       {
-        "rank": 9,
+        "rank": 10,
         "symbol": "MSFT",
         "naverCode": "MSFT.O",
         "name": "마이크로소프트",
@@ -91004,296 +91294,6 @@
           "low": 373.28,
           "close": 379.4,
           "volume": 59714157
-        },
-        "source": "Naver foreign market API + Naver chart dayCandle + Yahoo 20m intraday"
-      },
-      {
-        "rank": 10,
-        "symbol": "MRVL",
-        "naverCode": "MRVL.O",
-        "name": "마벨 테크놀로지 그룹",
-        "sector": "반도체",
-        "price": 310.58,
-        "changeRate": 7.27,
-        "amount": 78758612000,
-        "volume": 250989360,
-        "marketCap": 271695384000,
-        "priceHistory": [
-          [
-            "20260324",
-            92.36
-          ],
-          [
-            "20260325",
-            98.45
-          ],
-          [
-            "20260326",
-            97.68
-          ],
-          [
-            "20260327",
-            94.88
-          ],
-          [
-            "20260330",
-            87.81
-          ],
-          [
-            "20260331",
-            99.05
-          ],
-          [
-            "20260401",
-            106.71
-          ],
-          [
-            "20260402",
-            107.11
-          ],
-          [
-            "20260406",
-            109.51
-          ],
-          [
-            "20260407",
-            109.38
-          ],
-          [
-            "20260408",
-            114.45
-          ],
-          [
-            "20260409",
-            119.93
-          ],
-          [
-            "20260410",
-            128.49
-          ],
-          [
-            "20260413",
-            131.3
-          ],
-          [
-            "20260414",
-            133.83
-          ],
-          [
-            "20260415",
-            134.6
-          ],
-          [
-            "20260416",
-            133.37
-          ],
-          [
-            "20260417",
-            139.69
-          ],
-          [
-            "20260420",
-            147.84
-          ],
-          [
-            "20260421",
-            151.31
-          ],
-          [
-            "20260422",
-            157.32
-          ],
-          [
-            "20260423",
-            165.56
-          ],
-          [
-            "20260424",
-            164.31
-          ],
-          [
-            "20260427",
-            158.21
-          ],
-          [
-            "20260428",
-            153.23
-          ],
-          [
-            "20260429",
-            156.57
-          ],
-          [
-            "20260430",
-            165.15
-          ],
-          [
-            "20260501",
-            164.95
-          ],
-          [
-            "20260504",
-            163.66
-          ],
-          [
-            "20260505",
-            168.75
-          ],
-          [
-            "20260506",
-            172.15
-          ],
-          [
-            "20260507",
-            160.01
-          ],
-          [
-            "20260508",
-            170.13
-          ],
-          [
-            "20260511",
-            170.84
-          ],
-          [
-            "20260512",
-            164.5
-          ],
-          [
-            "20260513",
-            177.95
-          ],
-          [
-            "20260514",
-            182.58
-          ],
-          [
-            "20260515",
-            176.89
-          ],
-          [
-            "20260518",
-            168.93
-          ],
-          [
-            "20260519",
-            176.27
-          ],
-          [
-            "20260520",
-            186.8
-          ],
-          [
-            "20260521",
-            190.69
-          ],
-          [
-            "20260522",
-            196.33
-          ],
-          [
-            "20260526",
-            208.26
-          ],
-          [
-            "20260527",
-            198.7
-          ],
-          [
-            "20260528",
-            204.83
-          ],
-          [
-            "20260529",
-            205
-          ],
-          [
-            "20260601",
-            219.43
-          ],
-          [
-            "20260602",
-            290.79
-          ],
-          [
-            "20260603",
-            301.65
-          ],
-          [
-            "20260604",
-            316.43
-          ],
-          [
-            "20260605",
-            263.47
-          ],
-          [
-            "20260608",
-            288.85
-          ],
-          [
-            "20260609",
-            266.88
-          ],
-          [
-            "20260610",
-            252.59
-          ],
-          [
-            "20260611",
-            280.71
-          ],
-          [
-            "20260612",
-            279.7
-          ],
-          [
-            "20260615",
-            308.88
-          ],
-          [
-            "20260616",
-            278.67
-          ],
-          [
-            "20260617",
-            289.54
-          ],
-          [
-            "20260618",
-            310.58
-          ]
-        ],
-        "dayTrend": [
-          310.19,
-          309.68,
-          317.6,
-          320.13,
-          322,
-          323.42,
-          322.71,
-          324.04,
-          327.35,
-          324.45,
-          324.34,
-          325.03,
-          327.91,
-          325.18,
-          324.98,
-          323.57,
-          323.49,
-          326.8,
-          328.71,
-          310.85,
-          310.58
-        ],
-        "latestCandle": {
-          "date": "20260618",
-          "open": 305.46,
-          "high": 329.88,
-          "low": 302.36,
-          "close": 310.58,
-          "volume": 250989360
         },
         "source": "Naver foreign market API + Naver chart dayCandle + Yahoo 20m intraday"
       },
@@ -91879,296 +91879,6 @@
       },
       {
         "rank": 13,
-        "symbol": "AAPL",
-        "naverCode": "AAPL.O",
-        "name": "애플",
-        "sector": "전화 및 소형 장치",
-        "price": 298.01,
-        "changeRate": 0.7,
-        "amount": 25712177000,
-        "volume": 85962201,
-        "marketCap": 4376978961560,
-        "priceHistory": [
-          [
-            "20260324",
-            251.64
-          ],
-          [
-            "20260325",
-            252.62
-          ],
-          [
-            "20260326",
-            252.89
-          ],
-          [
-            "20260327",
-            248.8
-          ],
-          [
-            "20260330",
-            246.63
-          ],
-          [
-            "20260331",
-            253.79
-          ],
-          [
-            "20260401",
-            255.63
-          ],
-          [
-            "20260402",
-            255.92
-          ],
-          [
-            "20260406",
-            258.86
-          ],
-          [
-            "20260407",
-            253.5
-          ],
-          [
-            "20260408",
-            258.9
-          ],
-          [
-            "20260409",
-            260.49
-          ],
-          [
-            "20260410",
-            260.48
-          ],
-          [
-            "20260413",
-            259.2
-          ],
-          [
-            "20260414",
-            258.83
-          ],
-          [
-            "20260415",
-            266.43
-          ],
-          [
-            "20260416",
-            263.4
-          ],
-          [
-            "20260417",
-            270.23
-          ],
-          [
-            "20260420",
-            273.05
-          ],
-          [
-            "20260421",
-            266.17
-          ],
-          [
-            "20260422",
-            273.17
-          ],
-          [
-            "20260423",
-            273.43
-          ],
-          [
-            "20260424",
-            271.06
-          ],
-          [
-            "20260427",
-            267.61
-          ],
-          [
-            "20260428",
-            270.71
-          ],
-          [
-            "20260429",
-            270.17
-          ],
-          [
-            "20260430",
-            271.35
-          ],
-          [
-            "20260501",
-            280.14
-          ],
-          [
-            "20260504",
-            276.83
-          ],
-          [
-            "20260505",
-            284.18
-          ],
-          [
-            "20260506",
-            287.51
-          ],
-          [
-            "20260507",
-            287.44
-          ],
-          [
-            "20260508",
-            293.32
-          ],
-          [
-            "20260511",
-            292.68
-          ],
-          [
-            "20260512",
-            294.8
-          ],
-          [
-            "20260513",
-            298.87
-          ],
-          [
-            "20260514",
-            298.21
-          ],
-          [
-            "20260515",
-            300.23
-          ],
-          [
-            "20260518",
-            297.84
-          ],
-          [
-            "20260519",
-            298.97
-          ],
-          [
-            "20260520",
-            302.25
-          ],
-          [
-            "20260521",
-            304.99
-          ],
-          [
-            "20260522",
-            308.82
-          ],
-          [
-            "20260526",
-            308.33
-          ],
-          [
-            "20260527",
-            310.85
-          ],
-          [
-            "20260528",
-            312.51
-          ],
-          [
-            "20260529",
-            312.06
-          ],
-          [
-            "20260601",
-            306.31
-          ],
-          [
-            "20260602",
-            315.2
-          ],
-          [
-            "20260603",
-            310.26
-          ],
-          [
-            "20260604",
-            311.23
-          ],
-          [
-            "20260605",
-            307.34
-          ],
-          [
-            "20260608",
-            301.54
-          ],
-          [
-            "20260609",
-            290.55
-          ],
-          [
-            "20260610",
-            291.58
-          ],
-          [
-            "20260611",
-            295.63
-          ],
-          [
-            "20260612",
-            291.13
-          ],
-          [
-            "20260615",
-            296.42
-          ],
-          [
-            "20260616",
-            299.24
-          ],
-          [
-            "20260617",
-            295.95
-          ],
-          [
-            "20260618",
-            298.01
-          ]
-        ],
-        "dayTrend": [
-          296.36,
-          298.27,
-          299.27,
-          299.42,
-          299.18,
-          297.37,
-          297.08,
-          297.38,
-          297.33,
-          297.61,
-          297.13,
-          298.22,
-          297.8,
-          297.57,
-          297.6,
-          297.4,
-          297.7,
-          297.3,
-          297.46,
-          297.89,
-          298.01
-        ],
-        "latestCandle": {
-          "date": "20260618",
-          "open": 298.11,
-          "high": 300.57,
-          "low": 295.62,
-          "close": 298.01,
-          "volume": 85962201
-        },
-        "source": "Naver foreign market API + Naver chart dayCandle + Yahoo 20m intraday"
-      },
-      {
-        "rank": 14,
         "symbol": "SMR",
         "naverCode": "SMR",
         "name": "뉴스케일 파워",
@@ -92458,297 +92168,297 @@
         "source": "Naver foreign market API + Naver chart dayCandle + Yahoo 20m intraday"
       },
       {
-        "rank": 15,
-        "symbol": "AMD",
-        "naverCode": "AMD.O",
-        "name": "AMD(어드밴스드 마이크로 디바이시스)",
-        "sector": "반도체",
-        "price": 537.37,
-        "changeRate": 4.86,
-        "amount": 23392150000,
-        "volume": 43805645,
-        "marketCap": 876235865379,
+        "rank": 14,
+        "symbol": "AAPL",
+        "naverCode": "AAPL.O",
+        "name": "애플",
+        "sector": "전화 및 소형 장치",
+        "price": 298.01,
+        "changeRate": 0.7,
+        "amount": 25712177000,
+        "volume": 85962201,
+        "marketCap": 4376978961560,
         "priceHistory": [
           [
             "20260324",
-            205.37
+            251.64
           ],
           [
             "20260325",
-            220.27
+            252.62
           ],
           [
             "20260326",
-            203.77
+            252.89
           ],
           [
             "20260327",
-            201.99
+            248.8
           ],
           [
             "20260330",
-            196.04
+            246.63
           ],
           [
             "20260331",
-            203.43
+            253.79
           ],
           [
             "20260401",
-            210.21
+            255.63
           ],
           [
             "20260402",
-            217.5
+            255.92
           ],
           [
             "20260406",
-            220.18
+            258.86
           ],
           [
             "20260407",
-            221.53
+            253.5
           ],
           [
             "20260408",
-            231.82
+            258.9
           ],
           [
             "20260409",
-            236.64
+            260.49
           ],
           [
             "20260410",
-            245.04
+            260.48
           ],
           [
             "20260413",
-            246.83
+            259.2
           ],
           [
             "20260414",
-            255.07
+            258.83
           ],
           [
             "20260415",
-            258.12
+            266.43
           ],
           [
             "20260416",
-            278.26
+            263.4
           ],
           [
             "20260417",
-            278.39
+            270.23
           ],
           [
             "20260420",
-            274.95
+            273.05
           ],
           [
             "20260421",
-            284.49
+            266.17
           ],
           [
             "20260422",
-            303.46
+            273.17
           ],
           [
             "20260423",
-            305.33
+            273.43
           ],
           [
             "20260424",
-            347.81
+            271.06
           ],
           [
             "20260427",
-            334.63
+            267.61
           ],
           [
             "20260428",
-            323.21
+            270.71
           ],
           [
             "20260429",
-            337.11
+            270.17
           ],
           [
             "20260430",
-            354.49
+            271.35
           ],
           [
             "20260501",
-            360.54
+            280.14
           ],
           [
             "20260504",
-            341.54
+            276.83
           ],
           [
             "20260505",
-            355.26
+            284.18
           ],
           [
             "20260506",
-            421.39
+            287.51
           ],
           [
             "20260507",
-            408.46
+            287.44
           ],
           [
             "20260508",
-            455.19
+            293.32
           ],
           [
             "20260511",
-            458.79
+            292.68
           ],
           [
             "20260512",
-            448.29
+            294.8
           ],
           [
             "20260513",
-            445.5
+            298.87
           ],
           [
             "20260514",
-            449.7
+            298.21
           ],
           [
             "20260515",
-            424.1
+            300.23
           ],
           [
             "20260518",
-            420.99
+            297.84
           ],
           [
             "20260519",
-            414.05
+            298.97
           ],
           [
             "20260520",
-            447.58
+            302.25
           ],
           [
             "20260521",
-            449.59
+            304.99
           ],
           [
             "20260522",
-            467.51
+            308.82
           ],
           [
             "20260526",
-            503.89
+            308.33
           ],
           [
             "20260527",
-            495.54
+            310.85
           ],
           [
             "20260528",
-            518.09
+            312.51
           ],
           [
             "20260529",
-            516.1
+            312.06
           ],
           [
             "20260601",
-            510.13
+            306.31
           ],
           [
             "20260602",
-            521.54
+            315.2
           ],
           [
             "20260603",
-            542.52
+            310.26
           ],
           [
             "20260604",
-            523.2
+            311.23
           ],
           [
             "20260605",
-            466.38
+            307.34
           ],
           [
             "20260608",
-            490.33
+            301.54
           ],
           [
             "20260609",
-            475.51
+            290.55
           ],
           [
             "20260610",
-            452.4
+            291.58
           ],
           [
             "20260611",
-            488.45
+            295.63
           ],
           [
             "20260612",
-            511.57
+            291.13
           ],
           [
             "20260615",
-            547.26
+            296.42
           ],
           [
             "20260616",
-            507.29
+            299.24
           ],
           [
             "20260617",
-            512.48
+            295.95
           ],
           [
             "20260618",
-            537.37
+            298.01
           ]
         ],
         "dayTrend": [
-          533.14,
-          530.28,
-          533.45,
-          530.77,
-          533.49,
-          534.69,
-          528.5,
-          535.08,
-          533.55,
-          533.53,
-          534,
-          534.13,
-          534.04,
-          534.22,
-          532.99,
-          530.67,
-          531.33,
-          533.74,
-          532.72,
-          536.83,
-          537.37
+          296.36,
+          298.27,
+          299.27,
+          299.42,
+          299.18,
+          297.37,
+          297.08,
+          297.38,
+          297.33,
+          297.61,
+          297.13,
+          298.22,
+          297.8,
+          297.57,
+          297.6,
+          297.4,
+          297.7,
+          297.3,
+          297.46,
+          297.89,
+          298.01
         ],
         "latestCandle": {
           "date": "20260618",
-          "open": 531.58,
-          "high": 539.69,
-          "low": 526.32,
-          "close": 537.37,
-          "volume": 43805645
+          "open": 298.11,
+          "high": 300.57,
+          "low": 295.62,
+          "close": 298.01,
+          "volume": 85962201
         },
         "source": "Naver foreign market API + Naver chart dayCandle + Yahoo 20m intraday"
       },
       {
-        "rank": 16,
+        "rank": 15,
         "symbol": "PLTR",
         "naverCode": "PLTR.O",
         "name": "팔란티어 테크놀로지스",
@@ -93038,877 +92748,297 @@
         "source": "Naver foreign market API + Naver chart dayCandle + Yahoo 20m intraday"
       },
       {
+        "rank": 16,
+        "symbol": "AMD",
+        "naverCode": "AMD.O",
+        "name": "AMD(어드밴스드 마이크로 디바이시스)",
+        "sector": "반도체",
+        "price": 537.37,
+        "changeRate": 4.86,
+        "amount": 23392150000,
+        "volume": 43805645,
+        "marketCap": 876235865379,
+        "priceHistory": [
+          [
+            "20260324",
+            205.37
+          ],
+          [
+            "20260325",
+            220.27
+          ],
+          [
+            "20260326",
+            203.77
+          ],
+          [
+            "20260327",
+            201.99
+          ],
+          [
+            "20260330",
+            196.04
+          ],
+          [
+            "20260331",
+            203.43
+          ],
+          [
+            "20260401",
+            210.21
+          ],
+          [
+            "20260402",
+            217.5
+          ],
+          [
+            "20260406",
+            220.18
+          ],
+          [
+            "20260407",
+            221.53
+          ],
+          [
+            "20260408",
+            231.82
+          ],
+          [
+            "20260409",
+            236.64
+          ],
+          [
+            "20260410",
+            245.04
+          ],
+          [
+            "20260413",
+            246.83
+          ],
+          [
+            "20260414",
+            255.07
+          ],
+          [
+            "20260415",
+            258.12
+          ],
+          [
+            "20260416",
+            278.26
+          ],
+          [
+            "20260417",
+            278.39
+          ],
+          [
+            "20260420",
+            274.95
+          ],
+          [
+            "20260421",
+            284.49
+          ],
+          [
+            "20260422",
+            303.46
+          ],
+          [
+            "20260423",
+            305.33
+          ],
+          [
+            "20260424",
+            347.81
+          ],
+          [
+            "20260427",
+            334.63
+          ],
+          [
+            "20260428",
+            323.21
+          ],
+          [
+            "20260429",
+            337.11
+          ],
+          [
+            "20260430",
+            354.49
+          ],
+          [
+            "20260501",
+            360.54
+          ],
+          [
+            "20260504",
+            341.54
+          ],
+          [
+            "20260505",
+            355.26
+          ],
+          [
+            "20260506",
+            421.39
+          ],
+          [
+            "20260507",
+            408.46
+          ],
+          [
+            "20260508",
+            455.19
+          ],
+          [
+            "20260511",
+            458.79
+          ],
+          [
+            "20260512",
+            448.29
+          ],
+          [
+            "20260513",
+            445.5
+          ],
+          [
+            "20260514",
+            449.7
+          ],
+          [
+            "20260515",
+            424.1
+          ],
+          [
+            "20260518",
+            420.99
+          ],
+          [
+            "20260519",
+            414.05
+          ],
+          [
+            "20260520",
+            447.58
+          ],
+          [
+            "20260521",
+            449.59
+          ],
+          [
+            "20260522",
+            467.51
+          ],
+          [
+            "20260526",
+            503.89
+          ],
+          [
+            "20260527",
+            495.54
+          ],
+          [
+            "20260528",
+            518.09
+          ],
+          [
+            "20260529",
+            516.1
+          ],
+          [
+            "20260601",
+            510.13
+          ],
+          [
+            "20260602",
+            521.54
+          ],
+          [
+            "20260603",
+            542.52
+          ],
+          [
+            "20260604",
+            523.2
+          ],
+          [
+            "20260605",
+            466.38
+          ],
+          [
+            "20260608",
+            490.33
+          ],
+          [
+            "20260609",
+            475.51
+          ],
+          [
+            "20260610",
+            452.4
+          ],
+          [
+            "20260611",
+            488.45
+          ],
+          [
+            "20260612",
+            511.57
+          ],
+          [
+            "20260615",
+            547.26
+          ],
+          [
+            "20260616",
+            507.29
+          ],
+          [
+            "20260617",
+            512.48
+          ],
+          [
+            "20260618",
+            537.37
+          ]
+        ],
+        "dayTrend": [
+          533.14,
+          530.28,
+          533.45,
+          530.77,
+          533.49,
+          534.69,
+          528.5,
+          535.08,
+          533.55,
+          533.53,
+          534,
+          534.13,
+          534.04,
+          534.22,
+          532.99,
+          530.67,
+          531.33,
+          533.74,
+          532.72,
+          536.83,
+          537.37
+        ],
+        "latestCandle": {
+          "date": "20260618",
+          "open": 531.58,
+          "high": 539.69,
+          "low": 526.32,
+          "close": 537.37,
+          "volume": 43805645
+        },
+        "source": "Naver foreign market API + Naver chart dayCandle + Yahoo 20m intraday"
+      },
+      {
         "rank": 17,
-        "symbol": "RKLB",
-        "naverCode": "RKLB.O",
-        "name": "로켓 랩",
-        "sector": "항공우주 및 방위",
-        "price": 107.24,
-        "changeRate": -0.69,
-        "amount": 7487097000,
-        "volume": 70325989,
-        "marketCap": 62077748019,
-        "priceHistory": [
-          [
-            "20260324",
-            66.07
-          ],
-          [
-            "20260325",
-            72.88
-          ],
-          [
-            "20260326",
-            65.94
-          ],
-          [
-            "20260327",
-            60.93
-          ],
-          [
-            "20260330",
-            57.38
-          ],
-          [
-            "20260331",
-            64.22
-          ],
-          [
-            "20260401",
-            65.52
-          ],
-          [
-            "20260402",
-            67.73
-          ],
-          [
-            "20260406",
-            67.67
-          ],
-          [
-            "20260407",
-            66.32
-          ],
-          [
-            "20260408",
-            69.08
-          ],
-          [
-            "20260409",
-            66.74
-          ],
-          [
-            "20260410",
-            68.05
-          ],
-          [
-            "20260413",
-            70.62
-          ],
-          [
-            "20260414",
-            72.22
-          ],
-          [
-            "20260415",
-            73.6
-          ],
-          [
-            "20260416",
-            82.93
-          ],
-          [
-            "20260417",
-            84.8
-          ],
-          [
-            "20260420",
-            89.46
-          ],
-          [
-            "20260421",
-            86.64
-          ],
-          [
-            "20260422",
-            90.04
-          ],
-          [
-            "20260423",
-            84.6
-          ],
-          [
-            "20260424",
-            79.68
-          ],
-          [
-            "20260427",
-            82.29
-          ],
-          [
-            "20260428",
-            78.59
-          ],
-          [
-            "20260429",
-            77.02
-          ],
-          [
-            "20260430",
-            82.51
-          ],
-          [
-            "20260501",
-            78.81
-          ],
-          [
-            "20260504",
-            80.31
-          ],
-          [
-            "20260505",
-            78.76
-          ],
-          [
-            "20260506",
-            84.65
-          ],
-          [
-            "20260507",
-            78.58
-          ],
-          [
-            "20260508",
-            105.47
-          ],
-          [
-            "20260511",
-            117.35
-          ],
-          [
-            "20260512",
-            117.56
-          ],
-          [
-            "20260513",
-            124.15
-          ],
-          [
-            "20260514",
-            132.55
-          ],
-          [
-            "20260515",
-            124.77
-          ],
-          [
-            "20260518",
-            131.16
-          ],
-          [
-            "20260519",
-            127.31
-          ],
-          [
-            "20260520",
-            134.28
-          ],
-          [
-            "20260521",
-            125.45
-          ],
-          [
-            "20260522",
-            135.76
-          ],
-          [
-            "20260526",
-            143.2
-          ],
-          [
-            "20260527",
-            150.23
-          ],
-          [
-            "20260528",
-            148.03
-          ],
-          [
-            "20260529",
-            143.48
-          ],
-          [
-            "20260601",
-            122.39
-          ],
-          [
-            "20260602",
-            123.32
-          ],
-          [
-            "20260603",
-            114.7
-          ],
-          [
-            "20260604",
-            119.95
-          ],
-          [
-            "20260605",
-            110.08
-          ],
-          [
-            "20260608",
-            113.65
-          ],
-          [
-            "20260609",
-            108.23
-          ],
-          [
-            "20260610",
-            105.05
-          ],
-          [
-            "20260611",
-            114.78
-          ],
-          [
-            "20260612",
-            102.39
-          ],
-          [
-            "20260615",
-            109.25
-          ],
-          [
-            "20260616",
-            104.63
-          ],
-          [
-            "20260617",
-            107.98
-          ],
-          [
-            "20260618",
-            107.24
-          ]
-        ],
-        "dayTrend": [
-          104.06,
-          101.45,
-          103,
-          103.54,
-          104.78,
-          105.01,
-          105,
-          105,
-          104.21,
-          103.82,
-          103.85,
-          104.19,
-          104.03,
-          103.92,
-          103.28,
-          104.04,
-          104.4,
-          106.25,
-          106.36,
-          107.3,
-          107.24
-        ],
-        "latestCandle": {
-          "date": "20260618",
-          "open": 108.83,
-          "high": 109.55,
-          "low": 100.96,
-          "close": 107.24,
-          "volume": 70325989
-        },
-        "source": "Naver foreign market API + Naver chart dayCandle + Yahoo 20m intraday"
-      },
-      {
-        "rank": 18,
-        "symbol": "CRCL",
-        "naverCode": "CRCL.K",
-        "name": "써클 인터넷 그룹",
-        "sector": "핀테크",
-        "price": 80.23,
-        "changeRate": -0.45,
-        "amount": 1179111000,
-        "volume": 14862985,
-        "marketCap": 19943254887,
-        "priceHistory": [
-          [
-            "20260324",
-            101.17
-          ],
-          [
-            "20260325",
-            103.86
-          ],
-          [
-            "20260326",
-            98.27
-          ],
-          [
-            "20260327",
-            93.66
-          ],
-          [
-            "20260330",
-            89.91
-          ],
-          [
-            "20260331",
-            95.41
-          ],
-          [
-            "20260401",
-            90.74
-          ],
-          [
-            "20260402",
-            90.26
-          ],
-          [
-            "20260406",
-            92.15
-          ],
-          [
-            "20260407",
-            94.12
-          ],
-          [
-            "20260408",
-            94.44
-          ],
-          [
-            "20260409",
-            85.1
-          ],
-          [
-            "20260410",
-            88.04
-          ],
-          [
-            "20260413",
-            98.68
-          ],
-          [
-            "20260414",
-            105.49
-          ],
-          [
-            "20260415",
-            105.52
-          ],
-          [
-            "20260416",
-            107.46
-          ],
-          [
-            "20260417",
-            105.91
-          ],
-          [
-            "20260420",
-            106.36
-          ],
-          [
-            "20260421",
-            96.02
-          ],
-          [
-            "20260422",
-            104.36
-          ],
-          [
-            "20260423",
-            100.01
-          ],
-          [
-            "20260424",
-            99.66
-          ],
-          [
-            "20260427",
-            95.44
-          ],
-          [
-            "20260428",
-            94.35
-          ],
-          [
-            "20260429",
-            95.56
-          ],
-          [
-            "20260430",
-            90.88
-          ],
-          [
-            "20260501",
-            99.7
-          ],
-          [
-            "20260504",
-            119.53
-          ],
-          [
-            "20260505",
-            114.19
-          ],
-          [
-            "20260506",
-            121.8
-          ],
-          [
-            "20260507",
-            113.25
-          ],
-          [
-            "20260508",
-            113.67
-          ],
-          [
-            "20260511",
-            131.76
-          ],
-          [
-            "20260512",
-            123.65
-          ],
-          [
-            "20260513",
-            126.57
-          ],
-          [
-            "20260514",
-            123.88
-          ],
-          [
-            "20260515",
-            114
-          ],
-          [
-            "20260518",
-            111.39
-          ],
-          [
-            "20260519",
-            111.03
-          ],
-          [
-            "20260520",
-            111.62
-          ],
-          [
-            "20260521",
-            114.88
-          ],
-          [
-            "20260522",
-            113.12
-          ],
-          [
-            "20260526",
-            104.17
-          ],
-          [
-            "20260527",
-            102.64
-          ],
-          [
-            "20260528",
-            108.24
-          ],
-          [
-            "20260529",
-            113
-          ],
-          [
-            "20260601",
-            104.97
-          ],
-          [
-            "20260602",
-            100.85
-          ],
-          [
-            "20260603",
-            90.13
-          ],
-          [
-            "20260604",
-            90.54
-          ],
-          [
-            "20260605",
-            80.28
-          ],
-          [
-            "20260608",
-            82.53
-          ],
-          [
-            "20260609",
-            81.1
-          ],
-          [
-            "20260610",
-            78.93
-          ],
-          [
-            "20260611",
-            82.63
-          ],
-          [
-            "20260612",
-            77.84
-          ],
-          [
-            "20260615",
-            83.37
-          ],
-          [
-            "20260616",
-            79.72
-          ],
-          [
-            "20260617",
-            80.59
-          ],
-          [
-            "20260618",
-            80.23
-          ]
-        ],
-        "dayTrend": [
-          78.69,
-          78.81,
-          80.86,
-          80.73,
-          81.13,
-          79.67,
-          78.76,
-          78.72,
-          78.34,
-          78,
-          77.84,
-          77.75,
-          77.52,
-          77.6,
-          77.4,
-          76.98,
-          77.42,
-          77.59,
-          79.21,
-          80.18,
-          80.23
-        ],
-        "latestCandle": {
-          "date": "20260618",
-          "open": 80.28,
-          "high": 81.4,
-          "low": 76.84,
-          "close": 80.23,
-          "volume": 14862985
-        },
-        "source": "Naver foreign market API + Naver chart dayCandle + Yahoo 20m intraday"
-      },
-      {
-        "rank": 19,
-        "symbol": "AMZN",
-        "naverCode": "AMZN.O",
-        "name": "아마존닷컴",
-        "sector": "백화점",
-        "price": 244.39,
-        "changeRate": 2.9,
-        "amount": 18345232000,
-        "volume": 75624415,
-        "marketCap": 2628929975064,
-        "priceHistory": [
-          [
-            "20260324",
-            207.24
-          ],
-          [
-            "20260325",
-            211.71
-          ],
-          [
-            "20260326",
-            207.54
-          ],
-          [
-            "20260327",
-            199.34
-          ],
-          [
-            "20260330",
-            200.95
-          ],
-          [
-            "20260331",
-            208.27
-          ],
-          [
-            "20260401",
-            210.57
-          ],
-          [
-            "20260402",
-            209.77
-          ],
-          [
-            "20260406",
-            212.79
-          ],
-          [
-            "20260407",
-            213.77
-          ],
-          [
-            "20260408",
-            221.25
-          ],
-          [
-            "20260409",
-            233.65
-          ],
-          [
-            "20260410",
-            238.38
-          ],
-          [
-            "20260413",
-            239.89
-          ],
-          [
-            "20260414",
-            249.02
-          ],
-          [
-            "20260415",
-            248.5
-          ],
-          [
-            "20260416",
-            249.7
-          ],
-          [
-            "20260417",
-            250.56
-          ],
-          [
-            "20260420",
-            248.28
-          ],
-          [
-            "20260421",
-            249.91
-          ],
-          [
-            "20260422",
-            255.36
-          ],
-          [
-            "20260423",
-            255.08
-          ],
-          [
-            "20260424",
-            263.99
-          ],
-          [
-            "20260427",
-            261.12
-          ],
-          [
-            "20260428",
-            259.7
-          ],
-          [
-            "20260429",
-            263.04
-          ],
-          [
-            "20260430",
-            265.06
-          ],
-          [
-            "20260501",
-            268.26
-          ],
-          [
-            "20260504",
-            272.05
-          ],
-          [
-            "20260505",
-            273.55
-          ],
-          [
-            "20260506",
-            274.99
-          ],
-          [
-            "20260507",
-            271.17
-          ],
-          [
-            "20260508",
-            272.68
-          ],
-          [
-            "20260511",
-            268.99
-          ],
-          [
-            "20260512",
-            265.82
-          ],
-          [
-            "20260513",
-            270.13
-          ],
-          [
-            "20260514",
-            267.22
-          ],
-          [
-            "20260515",
-            264.14
-          ],
-          [
-            "20260518",
-            264.86
-          ],
-          [
-            "20260519",
-            259.34
-          ],
-          [
-            "20260520",
-            265.01
-          ],
-          [
-            "20260521",
-            268.46
-          ],
-          [
-            "20260522",
-            266.32
-          ],
-          [
-            "20260526",
-            265.29
-          ],
-          [
-            "20260527",
-            271.85
-          ],
-          [
-            "20260528",
-            274
-          ],
-          [
-            "20260529",
-            270.64
-          ],
-          [
-            "20260601",
-            261.26
-          ],
-          [
-            "20260602",
-            256.52
-          ],
-          [
-            "20260603",
-            250.02
-          ],
-          [
-            "20260604",
-            253.79
-          ],
-          [
-            "20260605",
-            246.03
-          ],
-          [
-            "20260608",
-            245.22
-          ],
-          [
-            "20260609",
-            244.19
-          ],
-          [
-            "20260610",
-            238
-          ],
-          [
-            "20260611",
-            241.51
-          ],
-          [
-            "20260612",
-            238.55
-          ],
-          [
-            "20260615",
-            246.02
-          ],
-          [
-            "20260616",
-            246
-          ],
-          [
-            "20260617",
-            237.5
-          ],
-          [
-            "20260618",
-            244.39
-          ]
-        ],
-        "dayTrend": [
-          236.79,
-          238.93,
-          240.18,
-          240.06,
-          239.9,
-          241.5,
-          242.13,
-          243.8,
-          242.57,
-          244.03,
-          243.49,
-          244.88,
-          244.64,
-          244.02,
-          242.91,
-          242.91,
-          243.13,
-          243.03,
-          243.43,
-          244.35,
-          244.39
-        ],
-        "latestCandle": {
-          "date": "20260618",
-          "open": 240.12,
-          "high": 245.73,
-          "low": 236.02,
-          "close": 244.39,
-          "volume": 75624415
-        },
-        "source": "Naver foreign market API + Naver chart dayCandle + Yahoo 20m intraday"
-      },
-      {
-        "rank": 20,
         "symbol": "ASML",
         "naverCode": "ASML.O",
         "name": "ASML 홀딩 ADR",
@@ -94198,877 +93328,7 @@
         "source": "Naver foreign market API + Naver chart dayCandle + Yahoo 20m intraday"
       },
       {
-        "rank": 21,
-        "symbol": "JOBY",
-        "naverCode": "JOBY.K",
-        "name": "조비 에비에이션",
-        "sector": "항공우주 및 방위",
-        "price": 10,
-        "changeRate": 6.5,
-        "amount": 439002000,
-        "volume": 44916479,
-        "marketCap": 9836428520,
-        "priceHistory": [
-          [
-            "20260324",
-            8.99
-          ],
-          [
-            "20260325",
-            8.97
-          ],
-          [
-            "20260326",
-            8.47
-          ],
-          [
-            "20260327",
-            8.1
-          ],
-          [
-            "20260330",
-            7.94
-          ],
-          [
-            "20260331",
-            8.26
-          ],
-          [
-            "20260401",
-            8.27
-          ],
-          [
-            "20260402",
-            8.5
-          ],
-          [
-            "20260406",
-            8.7
-          ],
-          [
-            "20260407",
-            8.38
-          ],
-          [
-            "20260408",
-            8.63
-          ],
-          [
-            "20260409",
-            8.28
-          ],
-          [
-            "20260410",
-            8.34
-          ],
-          [
-            "20260413",
-            8.52
-          ],
-          [
-            "20260414",
-            8.8
-          ],
-          [
-            "20260415",
-            9.13
-          ],
-          [
-            "20260416",
-            9.22
-          ],
-          [
-            "20260417",
-            9.22
-          ],
-          [
-            "20260420",
-            9.14
-          ],
-          [
-            "20260421",
-            8.97
-          ],
-          [
-            "20260422",
-            9.14
-          ],
-          [
-            "20260423",
-            8.49
-          ],
-          [
-            "20260424",
-            8.5
-          ],
-          [
-            "20260427",
-            9.04
-          ],
-          [
-            "20260428",
-            8.93
-          ],
-          [
-            "20260429",
-            8.7
-          ],
-          [
-            "20260430",
-            9.19
-          ],
-          [
-            "20260501",
-            9.25
-          ],
-          [
-            "20260504",
-            8.86
-          ],
-          [
-            "20260505",
-            8.68
-          ],
-          [
-            "20260506",
-            10.52
-          ],
-          [
-            "20260507",
-            10.01
-          ],
-          [
-            "20260508",
-            10.87
-          ],
-          [
-            "20260511",
-            10.74
-          ],
-          [
-            "20260512",
-            10.49
-          ],
-          [
-            "20260513",
-            11.06
-          ],
-          [
-            "20260514",
-            10.64
-          ],
-          [
-            "20260515",
-            10.36
-          ],
-          [
-            "20260518",
-            10.35
-          ],
-          [
-            "20260519",
-            10
-          ],
-          [
-            "20260520",
-            10.07
-          ],
-          [
-            "20260521",
-            10.4
-          ],
-          [
-            "20260522",
-            10.92
-          ],
-          [
-            "20260526",
-            11.52
-          ],
-          [
-            "20260527",
-            11.48
-          ],
-          [
-            "20260528",
-            12.3
-          ],
-          [
-            "20260529",
-            11.9
-          ],
-          [
-            "20260601",
-            11.97
-          ],
-          [
-            "20260602",
-            11.87
-          ],
-          [
-            "20260603",
-            11.43
-          ],
-          [
-            "20260604",
-            11.14
-          ],
-          [
-            "20260605",
-            9.55
-          ],
-          [
-            "20260608",
-            9.7
-          ],
-          [
-            "20260609",
-            9.27
-          ],
-          [
-            "20260610",
-            8.86
-          ],
-          [
-            "20260611",
-            9.36
-          ],
-          [
-            "20260612",
-            9.15
-          ],
-          [
-            "20260615",
-            9.67
-          ],
-          [
-            "20260616",
-            9.34
-          ],
-          [
-            "20260617",
-            9.39
-          ],
-          [
-            "20260618",
-            10
-          ]
-        ],
-        "dayTrend": [
-          9.42,
-          9.4,
-          9.59,
-          9.59,
-          9.86,
-          9.78,
-          9.7,
-          9.69,
-          9.64,
-          9.66,
-          9.69,
-          9.77,
-          9.73,
-          9.74,
-          9.68,
-          9.71,
-          9.77,
-          9.89,
-          9.9,
-          9.98,
-          10
-        ],
-        "latestCandle": {
-          "date": "20260618",
-          "open": 9.5,
-          "high": 10.02,
-          "low": 9.27,
-          "close": 10,
-          "volume": 44916479
-        },
-        "source": "Naver foreign market API + Naver chart dayCandle + Yahoo 20m intraday"
-      },
-      {
-        "rank": 22,
-        "symbol": "IREN",
-        "naverCode": "IREN.O",
-        "name": "아이렌",
-        "sector": "블록 체인 및 암호화폐",
-        "price": 59.96,
-        "changeRate": 3.18,
-        "amount": 2357437000,
-        "volume": 39394562,
-        "marketCap": 21428425293,
-        "priceHistory": [
-          [
-            "20260324",
-            41.12
-          ],
-          [
-            "20260325",
-            41.43
-          ],
-          [
-            "20260326",
-            37.45
-          ],
-          [
-            "20260327",
-            35.09
-          ],
-          [
-            "20260330",
-            31.62
-          ],
-          [
-            "20260331",
-            34.28
-          ],
-          [
-            "20260401",
-            34.09
-          ],
-          [
-            "20260402",
-            34.77
-          ],
-          [
-            "20260406",
-            35.13
-          ],
-          [
-            "20260407",
-            35.74
-          ],
-          [
-            "20260408",
-            36.83
-          ],
-          [
-            "20260409",
-            37.06
-          ],
-          [
-            "20260410",
-            39.32
-          ],
-          [
-            "20260413",
-            43.07
-          ],
-          [
-            "20260414",
-            47.37
-          ],
-          [
-            "20260415",
-            48.82
-          ],
-          [
-            "20260416",
-            47.7
-          ],
-          [
-            "20260417",
-            48.12
-          ],
-          [
-            "20260420",
-            48.72
-          ],
-          [
-            "20260421",
-            45.17
-          ],
-          [
-            "20260422",
-            48.39
-          ],
-          [
-            "20260423",
-            52.02
-          ],
-          [
-            "20260424",
-            50.64
-          ],
-          [
-            "20260427",
-            48.36
-          ],
-          [
-            "20260428",
-            44.44
-          ],
-          [
-            "20260429",
-            42.86
-          ],
-          [
-            "20260430",
-            45.51
-          ],
-          [
-            "20260501",
-            45.66
-          ],
-          [
-            "20260504",
-            49.48
-          ],
-          [
-            "20260505",
-            54.74
-          ],
-          [
-            "20260506",
-            60.98
-          ],
-          [
-            "20260507",
-            56.85
-          ],
-          [
-            "20260508",
-            61.2
-          ],
-          [
-            "20260511",
-            55.15
-          ],
-          [
-            "20260512",
-            56.56
-          ],
-          [
-            "20260513",
-            55.17
-          ],
-          [
-            "20260514",
-            58.4
-          ],
-          [
-            "20260515",
-            52.94
-          ],
-          [
-            "20260518",
-            50.46
-          ],
-          [
-            "20260519",
-            47.74
-          ],
-          [
-            "20260520",
-            52.71
-          ],
-          [
-            "20260521",
-            58.06
-          ],
-          [
-            "20260522",
-            56.83
-          ],
-          [
-            "20260526",
-            59.78
-          ],
-          [
-            "20260527",
-            67.84
-          ],
-          [
-            "20260528",
-            64.05
-          ],
-          [
-            "20260529",
-            63.54
-          ],
-          [
-            "20260601",
-            65.33
-          ],
-          [
-            "20260602",
-            66.6
-          ],
-          [
-            "20260603",
-            65.48
-          ],
-          [
-            "20260604",
-            61.86
-          ],
-          [
-            "20260605",
-            54.35
-          ],
-          [
-            "20260608",
-            59.19
-          ],
-          [
-            "20260609",
-            54.02
-          ],
-          [
-            "20260610",
-            51.52
-          ],
-          [
-            "20260611",
-            56.71
-          ],
-          [
-            "20260612",
-            59.77
-          ],
-          [
-            "20260615",
-            60.85
-          ],
-          [
-            "20260616",
-            59.18
-          ],
-          [
-            "20260617",
-            58.11
-          ],
-          [
-            "20260618",
-            59.96
-          ]
-        ],
-        "dayTrend": [
-          59.5,
-          58.63,
-          59.74,
-          59.65,
-          60.73,
-          60.29,
-          59.72,
-          60.51,
-          59.95,
-          60.58,
-          60.22,
-          60.5,
-          59.92,
-          60.31,
-          59.85,
-          59.79,
-          58.92,
-          58.49,
-          58.9,
-          60.03,
-          59.96
-        ],
-        "latestCandle": {
-          "date": "20260618",
-          "open": 61.28,
-          "high": 61.53,
-          "low": 58,
-          "close": 59.96,
-          "volume": 39394562
-        },
-        "source": "Naver foreign market API + Naver chart dayCandle + Yahoo 20m intraday"
-      },
-      {
-        "rank": 23,
-        "symbol": "LRCX",
-        "naverCode": "LRCX.O",
-        "name": "램 리서치",
-        "sector": "반도체 장비 및 테스트",
-        "price": 389.04,
-        "changeRate": 3.97,
-        "amount": 8881041000,
-        "volume": 22686620,
-        "marketCap": 486522141840,
-        "priceHistory": [
-          [
-            "20260324",
-            238.84
-          ],
-          [
-            "20260325",
-            233.45
-          ],
-          [
-            "20260326",
-            211.62
-          ],
-          [
-            "20260327",
-            211.41
-          ],
-          [
-            "20260330",
-            199.93
-          ],
-          [
-            "20260331",
-            213.66
-          ],
-          [
-            "20260401",
-            222.01
-          ],
-          [
-            "20260402",
-            218.44
-          ],
-          [
-            "20260406",
-            220.65
-          ],
-          [
-            "20260407",
-            224.35
-          ],
-          [
-            "20260408",
-            246.49
-          ],
-          [
-            "20260409",
-            258.76
-          ],
-          [
-            "20260410",
-            263.66
-          ],
-          [
-            "20260413",
-            267.32
-          ],
-          [
-            "20260414",
-            272.41
-          ],
-          [
-            "20260415",
-            265.16
-          ],
-          [
-            "20260416",
-            260.96
-          ],
-          [
-            "20260417",
-            267.6
-          ],
-          [
-            "20260420",
-            263.16
-          ],
-          [
-            "20260421",
-            258.37
-          ],
-          [
-            "20260422",
-            265.55
-          ],
-          [
-            "20260423",
-            258.56
-          ],
-          [
-            "20260424",
-            267.78
-          ],
-          [
-            "20260427",
-            259.47
-          ],
-          [
-            "20260428",
-            251.23
-          ],
-          [
-            "20260429",
-            248.75
-          ],
-          [
-            "20260430",
-            257.86
-          ],
-          [
-            "20260501",
-            256.72
-          ],
-          [
-            "20260504",
-            258.57
-          ],
-          [
-            "20260505",
-            275.8
-          ],
-          [
-            "20260506",
-            297.17
-          ],
-          [
-            "20260507",
-            286.52
-          ],
-          [
-            "20260508",
-            294.05
-          ],
-          [
-            "20260511",
-            296.05
-          ],
-          [
-            "20260512",
-            289.24
-          ],
-          [
-            "20260513",
-            295.44
-          ],
-          [
-            "20260514",
-            299.15
-          ],
-          [
-            "20260515",
-            284.72
-          ],
-          [
-            "20260518",
-            277.96
-          ],
-          [
-            "20260519",
-            273.38
-          ],
-          [
-            "20260520",
-            292.09
-          ],
-          [
-            "20260521",
-            302.24
-          ],
-          [
-            "20260522",
-            305.35
-          ],
-          [
-            "20260526",
-            322.68
-          ],
-          [
-            "20260527",
-            318.93
-          ],
-          [
-            "20260528",
-            318
-          ],
-          [
-            "20260529",
-            318.18
-          ],
-          [
-            "20260601",
-            317.12
-          ],
-          [
-            "20260602",
-            334.41
-          ],
-          [
-            "20260603",
-            343.71
-          ],
-          [
-            "20260604",
-            336.41
-          ],
-          [
-            "20260605",
-            303.28
-          ],
-          [
-            "20260608",
-            324.45
-          ],
-          [
-            "20260609",
-            327.16
-          ],
-          [
-            "20260610",
-            321.8
-          ],
-          [
-            "20260611",
-            362.52
-          ],
-          [
-            "20260612",
-            366.81
-          ],
-          [
-            "20260615",
-            388.92
-          ],
-          [
-            "20260616",
-            369.34
-          ],
-          [
-            "20260617",
-            374.18
-          ],
-          [
-            "20260618",
-            389.04
-          ]
-        ],
-        "dayTrend": [
-          398.67,
-          399.49,
-          397.05,
-          394.71,
-          397.55,
-          394.43,
-          395.44,
-          395.77,
-          397.52,
-          397.18,
-          395.29,
-          396.86,
-          395.33,
-          395.73,
-          392.71,
-          393.02,
-          394.71,
-          394.11,
-          394.23,
-          388.45,
-          389.04
-        ],
-        "latestCandle": {
-          "date": "20260618",
-          "open": 397.22,
-          "high": 401,
-          "low": 386.9,
-          "close": 389.04,
-          "volume": 22686620
-        },
-        "source": "Naver foreign market API + Naver chart dayCandle + Yahoo 20m intraday"
-      },
-      {
-        "rank": 24,
+        "rank": 18,
         "symbol": "META",
         "naverCode": "META.O",
         "name": "메타",
@@ -95358,297 +93618,1167 @@
         "source": "Naver foreign market API + Naver chart dayCandle + Yahoo 20m intraday"
       },
       {
-        "rank": 25,
-        "symbol": "ARM",
-        "naverCode": "ARM.O",
-        "name": "암 홀딩스 ADR",
-        "sector": "반도체",
-        "price": 439.46,
-        "changeRate": 4.91,
-        "amount": 15024013000,
-        "volume": 34221913,
-        "marketCap": 469377891870,
+        "rank": 19,
+        "symbol": "RKLB",
+        "naverCode": "RKLB.O",
+        "name": "로켓 랩",
+        "sector": "항공우주 및 방위",
+        "price": 107.24,
+        "changeRate": -0.69,
+        "amount": 7487097000,
+        "volume": 70325989,
+        "marketCap": 62077748019,
         "priceHistory": [
           [
             "20260324",
-            134.96
+            66.07
           ],
           [
             "20260325",
-            157.07
+            72.88
           ],
           [
             "20260326",
-            154.8
+            65.94
           ],
           [
             "20260327",
-            144.13
+            60.93
           ],
           [
             "20260330",
-            136.96
+            57.38
           ],
           [
             "20260331",
-            151.28
+            64.22
           ],
           [
             "20260401",
-            155.07
+            65.52
           ],
           [
             "20260402",
-            149.11
+            67.73
           ],
           [
             "20260406",
-            148.77
+            67.67
           ],
           [
             "20260407",
-            143.86
+            66.32
           ],
           [
             "20260408",
-            148.91
+            69.08
           ],
           [
             "20260409",
-            149.79
+            66.74
           ],
           [
             "20260410",
-            148.93
+            68.05
           ],
           [
             "20260413",
-            157.58
+            70.62
           ],
           [
             "20260414",
-            161.22
+            72.22
           ],
           [
             "20260415",
-            159.34
+            73.6
           ],
           [
             "20260416",
-            162.33
+            82.93
           ],
           [
             "20260417",
-            166.73
+            84.8
           ],
           [
             "20260420",
-            175.1
+            89.46
           ],
           [
             "20260421",
-            175.49
+            86.64
           ],
           [
             "20260422",
-            196.57
+            90.04
           ],
           [
             "20260423",
-            204.61
+            84.6
           ],
           [
             "20260424",
-            234.81
+            79.68
           ],
           [
             "20260427",
-            215.88
+            82.29
           ],
           [
             "20260428",
-            198.65
+            78.59
           ],
           [
             "20260429",
-            201.69
+            77.02
           ],
           [
             "20260430",
-            210.32
+            82.51
           ],
           [
             "20260501",
-            211.18
+            78.81
           ],
           [
             "20260504",
-            203.26
+            80.31
           ],
           [
             "20260505",
-            208.84
+            78.76
           ],
           [
             "20260506",
-            237.3
+            84.65
           ],
           [
             "20260507",
-            213.31
+            78.58
           ],
           [
             "20260508",
-            213.27
+            105.47
           ],
           [
             "20260511",
-            212.65
+            117.35
           ],
           [
             "20260512",
-            207.92
+            117.56
           ],
           [
             "20260513",
-            221.21
+            124.15
           ],
           [
             "20260514",
-            228.5
+            132.55
           ],
           [
             "20260515",
-            209.16
+            124.77
           ],
           [
             "20260518",
-            215.12
+            131.16
           ],
           [
             "20260519",
-            223.15
+            127.31
           ],
           [
             "20260520",
-            256.73
+            134.28
           ],
           [
             "20260521",
-            298.23
+            125.45
           ],
           [
             "20260522",
-            306.51
+            135.76
           ],
           [
             "20260526",
-            321.22
+            143.2
           ],
           [
             "20260527",
-            302.71
+            150.23
           ],
           [
             "20260528",
-            335.27
+            148.03
           ],
           [
             "20260529",
-            353.29
+            143.48
           ],
           [
             "20260601",
-            408.85
+            122.39
           ],
           [
             "20260602",
-            402.71
+            123.32
           ],
           [
             "20260603",
-            411.83
+            114.7
           ],
           [
             "20260604",
-            393.44
+            119.95
           ],
           [
             "20260605",
-            342.93
+            110.08
           ],
           [
             "20260608",
-            346.39
+            113.65
           ],
           [
             "20260609",
-            324.86
+            108.23
           ],
           [
             "20260610",
-            307.43
+            105.05
           ],
           [
             "20260611",
-            342.23
+            114.78
           ],
           [
             "20260612",
-            380.81
+            102.39
           ],
           [
             "20260615",
-            412.55
+            109.25
           ],
           [
             "20260616",
-            396.34
+            104.63
           ],
           [
             "20260617",
-            418.88
+            107.98
           ],
           [
             "20260618",
-            439.46
+            107.24
           ]
         ],
         "dayTrend": [
-          448.14,
-          440.73,
-          439.66,
-          442.11,
-          447.11,
-          444.94,
-          441.87,
-          443.9,
-          444.46,
-          430.76,
-          426.4,
-          432.5,
-          428.67,
-          424.6,
-          427.27,
-          432.2,
-          432,
-          435.78,
-          436,
-          439.75,
-          439.46
+          104.06,
+          101.45,
+          103,
+          103.54,
+          104.78,
+          105.01,
+          105,
+          105,
+          104.21,
+          103.82,
+          103.85,
+          104.19,
+          104.03,
+          103.92,
+          103.28,
+          104.04,
+          104.4,
+          106.25,
+          106.36,
+          107.3,
+          107.24
         ],
         "latestCandle": {
           "date": "20260618",
-          "open": 440.25,
-          "high": 452.7,
-          "low": 423.62,
-          "close": 439.46,
-          "volume": 34221913
+          "open": 108.83,
+          "high": 109.55,
+          "low": 100.96,
+          "close": 107.24,
+          "volume": 70325989
         },
         "source": "Naver foreign market API + Naver chart dayCandle + Yahoo 20m intraday"
       },
       {
-        "rank": 26,
+        "rank": 20,
+        "symbol": "CRCL",
+        "naverCode": "CRCL.K",
+        "name": "써클 인터넷 그룹",
+        "sector": "핀테크",
+        "price": 80.23,
+        "changeRate": -0.45,
+        "amount": 1179111000,
+        "volume": 14862985,
+        "marketCap": 19943254887,
+        "priceHistory": [
+          [
+            "20260324",
+            101.17
+          ],
+          [
+            "20260325",
+            103.86
+          ],
+          [
+            "20260326",
+            98.27
+          ],
+          [
+            "20260327",
+            93.66
+          ],
+          [
+            "20260330",
+            89.91
+          ],
+          [
+            "20260331",
+            95.41
+          ],
+          [
+            "20260401",
+            90.74
+          ],
+          [
+            "20260402",
+            90.26
+          ],
+          [
+            "20260406",
+            92.15
+          ],
+          [
+            "20260407",
+            94.12
+          ],
+          [
+            "20260408",
+            94.44
+          ],
+          [
+            "20260409",
+            85.1
+          ],
+          [
+            "20260410",
+            88.04
+          ],
+          [
+            "20260413",
+            98.68
+          ],
+          [
+            "20260414",
+            105.49
+          ],
+          [
+            "20260415",
+            105.52
+          ],
+          [
+            "20260416",
+            107.46
+          ],
+          [
+            "20260417",
+            105.91
+          ],
+          [
+            "20260420",
+            106.36
+          ],
+          [
+            "20260421",
+            96.02
+          ],
+          [
+            "20260422",
+            104.36
+          ],
+          [
+            "20260423",
+            100.01
+          ],
+          [
+            "20260424",
+            99.66
+          ],
+          [
+            "20260427",
+            95.44
+          ],
+          [
+            "20260428",
+            94.35
+          ],
+          [
+            "20260429",
+            95.56
+          ],
+          [
+            "20260430",
+            90.88
+          ],
+          [
+            "20260501",
+            99.7
+          ],
+          [
+            "20260504",
+            119.53
+          ],
+          [
+            "20260505",
+            114.19
+          ],
+          [
+            "20260506",
+            121.8
+          ],
+          [
+            "20260507",
+            113.25
+          ],
+          [
+            "20260508",
+            113.67
+          ],
+          [
+            "20260511",
+            131.76
+          ],
+          [
+            "20260512",
+            123.65
+          ],
+          [
+            "20260513",
+            126.57
+          ],
+          [
+            "20260514",
+            123.88
+          ],
+          [
+            "20260515",
+            114
+          ],
+          [
+            "20260518",
+            111.39
+          ],
+          [
+            "20260519",
+            111.03
+          ],
+          [
+            "20260520",
+            111.62
+          ],
+          [
+            "20260521",
+            114.88
+          ],
+          [
+            "20260522",
+            113.12
+          ],
+          [
+            "20260526",
+            104.17
+          ],
+          [
+            "20260527",
+            102.64
+          ],
+          [
+            "20260528",
+            108.24
+          ],
+          [
+            "20260529",
+            113
+          ],
+          [
+            "20260601",
+            104.97
+          ],
+          [
+            "20260602",
+            100.85
+          ],
+          [
+            "20260603",
+            90.13
+          ],
+          [
+            "20260604",
+            90.54
+          ],
+          [
+            "20260605",
+            80.28
+          ],
+          [
+            "20260608",
+            82.53
+          ],
+          [
+            "20260609",
+            81.1
+          ],
+          [
+            "20260610",
+            78.93
+          ],
+          [
+            "20260611",
+            82.63
+          ],
+          [
+            "20260612",
+            77.84
+          ],
+          [
+            "20260615",
+            83.37
+          ],
+          [
+            "20260616",
+            79.72
+          ],
+          [
+            "20260617",
+            80.59
+          ],
+          [
+            "20260618",
+            80.23
+          ]
+        ],
+        "dayTrend": [
+          78.69,
+          78.81,
+          80.86,
+          80.73,
+          81.13,
+          79.67,
+          78.76,
+          78.72,
+          78.34,
+          78,
+          77.84,
+          77.75,
+          77.52,
+          77.6,
+          77.4,
+          76.98,
+          77.42,
+          77.59,
+          79.21,
+          80.18,
+          80.23
+        ],
+        "latestCandle": {
+          "date": "20260618",
+          "open": 80.28,
+          "high": 81.4,
+          "low": 76.84,
+          "close": 80.23,
+          "volume": 14862985
+        },
+        "source": "Naver foreign market API + Naver chart dayCandle + Yahoo 20m intraday"
+      },
+      {
+        "rank": 21,
+        "symbol": "AMZN",
+        "naverCode": "AMZN.O",
+        "name": "아마존닷컴",
+        "sector": "백화점",
+        "price": 244.39,
+        "changeRate": 2.9,
+        "amount": 18345232000,
+        "volume": 75624415,
+        "marketCap": 2628929975064,
+        "priceHistory": [
+          [
+            "20260324",
+            207.24
+          ],
+          [
+            "20260325",
+            211.71
+          ],
+          [
+            "20260326",
+            207.54
+          ],
+          [
+            "20260327",
+            199.34
+          ],
+          [
+            "20260330",
+            200.95
+          ],
+          [
+            "20260331",
+            208.27
+          ],
+          [
+            "20260401",
+            210.57
+          ],
+          [
+            "20260402",
+            209.77
+          ],
+          [
+            "20260406",
+            212.79
+          ],
+          [
+            "20260407",
+            213.77
+          ],
+          [
+            "20260408",
+            221.25
+          ],
+          [
+            "20260409",
+            233.65
+          ],
+          [
+            "20260410",
+            238.38
+          ],
+          [
+            "20260413",
+            239.89
+          ],
+          [
+            "20260414",
+            249.02
+          ],
+          [
+            "20260415",
+            248.5
+          ],
+          [
+            "20260416",
+            249.7
+          ],
+          [
+            "20260417",
+            250.56
+          ],
+          [
+            "20260420",
+            248.28
+          ],
+          [
+            "20260421",
+            249.91
+          ],
+          [
+            "20260422",
+            255.36
+          ],
+          [
+            "20260423",
+            255.08
+          ],
+          [
+            "20260424",
+            263.99
+          ],
+          [
+            "20260427",
+            261.12
+          ],
+          [
+            "20260428",
+            259.7
+          ],
+          [
+            "20260429",
+            263.04
+          ],
+          [
+            "20260430",
+            265.06
+          ],
+          [
+            "20260501",
+            268.26
+          ],
+          [
+            "20260504",
+            272.05
+          ],
+          [
+            "20260505",
+            273.55
+          ],
+          [
+            "20260506",
+            274.99
+          ],
+          [
+            "20260507",
+            271.17
+          ],
+          [
+            "20260508",
+            272.68
+          ],
+          [
+            "20260511",
+            268.99
+          ],
+          [
+            "20260512",
+            265.82
+          ],
+          [
+            "20260513",
+            270.13
+          ],
+          [
+            "20260514",
+            267.22
+          ],
+          [
+            "20260515",
+            264.14
+          ],
+          [
+            "20260518",
+            264.86
+          ],
+          [
+            "20260519",
+            259.34
+          ],
+          [
+            "20260520",
+            265.01
+          ],
+          [
+            "20260521",
+            268.46
+          ],
+          [
+            "20260522",
+            266.32
+          ],
+          [
+            "20260526",
+            265.29
+          ],
+          [
+            "20260527",
+            271.85
+          ],
+          [
+            "20260528",
+            274
+          ],
+          [
+            "20260529",
+            270.64
+          ],
+          [
+            "20260601",
+            261.26
+          ],
+          [
+            "20260602",
+            256.52
+          ],
+          [
+            "20260603",
+            250.02
+          ],
+          [
+            "20260604",
+            253.79
+          ],
+          [
+            "20260605",
+            246.03
+          ],
+          [
+            "20260608",
+            245.22
+          ],
+          [
+            "20260609",
+            244.19
+          ],
+          [
+            "20260610",
+            238
+          ],
+          [
+            "20260611",
+            241.51
+          ],
+          [
+            "20260612",
+            238.55
+          ],
+          [
+            "20260615",
+            246.02
+          ],
+          [
+            "20260616",
+            246
+          ],
+          [
+            "20260617",
+            237.5
+          ],
+          [
+            "20260618",
+            244.39
+          ]
+        ],
+        "dayTrend": [
+          236.79,
+          238.93,
+          240.18,
+          240.06,
+          239.9,
+          241.5,
+          242.13,
+          243.8,
+          242.57,
+          244.03,
+          243.49,
+          244.88,
+          244.64,
+          244.02,
+          242.91,
+          242.91,
+          243.13,
+          243.03,
+          243.43,
+          244.35,
+          244.39
+        ],
+        "latestCandle": {
+          "date": "20260618",
+          "open": 240.12,
+          "high": 245.73,
+          "low": 236.02,
+          "close": 244.39,
+          "volume": 75624415
+        },
+        "source": "Naver foreign market API + Naver chart dayCandle + Yahoo 20m intraday"
+      },
+      {
+        "rank": 22,
+        "symbol": "CPNG",
+        "naverCode": "CPNG.K",
+        "name": "쿠팡",
+        "sector": "백화점",
+        "price": 18,
+        "changeRate": -4.41,
+        "amount": 546458000,
+        "volume": 30240771,
+        "marketCap": 32311155618,
+        "priceHistory": [
+          [
+            "20260324",
+            18.52
+          ],
+          [
+            "20260325",
+            18.8
+          ],
+          [
+            "20260326",
+            18.37
+          ],
+          [
+            "20260327",
+            18.09
+          ],
+          [
+            "20260330",
+            18.26
+          ],
+          [
+            "20260331",
+            18.88
+          ],
+          [
+            "20260401",
+            18.92
+          ],
+          [
+            "20260402",
+            18.95
+          ],
+          [
+            "20260406",
+            19.51
+          ],
+          [
+            "20260407",
+            19.19
+          ],
+          [
+            "20260408",
+            19.68
+          ],
+          [
+            "20260409",
+            19.66
+          ],
+          [
+            "20260410",
+            19.76
+          ],
+          [
+            "20260413",
+            20.15
+          ],
+          [
+            "20260414",
+            20.72
+          ],
+          [
+            "20260415",
+            21.29
+          ],
+          [
+            "20260416",
+            21.49
+          ],
+          [
+            "20260417",
+            21.55
+          ],
+          [
+            "20260420",
+            21.51
+          ],
+          [
+            "20260421",
+            20.41
+          ],
+          [
+            "20260422",
+            20.6
+          ],
+          [
+            "20260423",
+            20.58
+          ],
+          [
+            "20260424",
+            20.51
+          ],
+          [
+            "20260427",
+            20.49
+          ],
+          [
+            "20260428",
+            20.34
+          ],
+          [
+            "20260429",
+            20.31
+          ],
+          [
+            "20260430",
+            19.98
+          ],
+          [
+            "20260501",
+            20.59
+          ],
+          [
+            "20260504",
+            20.26
+          ],
+          [
+            "20260505",
+            20.76
+          ],
+          [
+            "20260506",
+            17.89
+          ],
+          [
+            "20260507",
+            17.22
+          ],
+          [
+            "20260508",
+            16.98
+          ],
+          [
+            "20260511",
+            16.13
+          ],
+          [
+            "20260512",
+            15.9
+          ],
+          [
+            "20260513",
+            15.96
+          ],
+          [
+            "20260514",
+            16.59
+          ],
+          [
+            "20260515",
+            16.12
+          ],
+          [
+            "20260518",
+            15.7
+          ],
+          [
+            "20260519",
+            15.26
+          ],
+          [
+            "20260520",
+            15.62
+          ],
+          [
+            "20260521",
+            15.73
+          ],
+          [
+            "20260522",
+            16.12
+          ],
+          [
+            "20260526",
+            15.47
+          ],
+          [
+            "20260527",
+            16.46
+          ],
+          [
+            "20260528",
+            16.2
+          ],
+          [
+            "20260529",
+            16.6
+          ],
+          [
+            "20260601",
+            16.62
+          ],
+          [
+            "20260602",
+            16.73
+          ],
+          [
+            "20260603",
+            16.42
+          ],
+          [
+            "20260604",
+            16.53
+          ],
+          [
+            "20260605",
+            15.15
+          ],
+          [
+            "20260608",
+            15.18
+          ],
+          [
+            "20260609",
+            15.91
+          ],
+          [
+            "20260610",
+            15.12
+          ],
+          [
+            "20260611",
+            17.25
+          ],
+          [
+            "20260612",
+            16.82
+          ],
+          [
+            "20260615",
+            17.13
+          ],
+          [
+            "20260616",
+            18.03
+          ],
+          [
+            "20260617",
+            18.83
+          ],
+          [
+            "20260618",
+            18
+          ]
+        ],
+        "dayTrend": [
+          18.48,
+          18.28,
+          18.24,
+          18.17,
+          18.27,
+          18.24,
+          18.15,
+          18.07,
+          18.03,
+          18.03,
+          18.02,
+          18.03,
+          18.08,
+          18.07,
+          17.82,
+          17.78,
+          17.93,
+          17.87,
+          18.01,
+          18.02,
+          18
+        ],
+        "latestCandle": {
+          "date": "20260618",
+          "open": 18.59,
+          "high": 18.8,
+          "low": 17.77,
+          "close": 18,
+          "volume": 30240771
+        },
+        "source": "Naver foreign market API + Naver chart dayCandle + Yahoo 20m intraday"
+      },
+      {
+        "rank": 23,
         "symbol": "BE",
         "naverCode": "BE",
         "name": "블룸 에너지",
@@ -95934,6 +95064,876 @@
           "low": 294.81,
           "close": 328.91,
           "volume": 16009219
+        },
+        "source": "Naver foreign market API + Naver chart dayCandle + Yahoo 20m intraday"
+      },
+      {
+        "rank": 24,
+        "symbol": "IREN",
+        "naverCode": "IREN.O",
+        "name": "아이렌",
+        "sector": "블록 체인 및 암호화폐",
+        "price": 59.96,
+        "changeRate": 3.18,
+        "amount": 2357437000,
+        "volume": 39394562,
+        "marketCap": 21428425293,
+        "priceHistory": [
+          [
+            "20260324",
+            41.12
+          ],
+          [
+            "20260325",
+            41.43
+          ],
+          [
+            "20260326",
+            37.45
+          ],
+          [
+            "20260327",
+            35.09
+          ],
+          [
+            "20260330",
+            31.62
+          ],
+          [
+            "20260331",
+            34.28
+          ],
+          [
+            "20260401",
+            34.09
+          ],
+          [
+            "20260402",
+            34.77
+          ],
+          [
+            "20260406",
+            35.13
+          ],
+          [
+            "20260407",
+            35.74
+          ],
+          [
+            "20260408",
+            36.83
+          ],
+          [
+            "20260409",
+            37.06
+          ],
+          [
+            "20260410",
+            39.32
+          ],
+          [
+            "20260413",
+            43.07
+          ],
+          [
+            "20260414",
+            47.37
+          ],
+          [
+            "20260415",
+            48.82
+          ],
+          [
+            "20260416",
+            47.7
+          ],
+          [
+            "20260417",
+            48.12
+          ],
+          [
+            "20260420",
+            48.72
+          ],
+          [
+            "20260421",
+            45.17
+          ],
+          [
+            "20260422",
+            48.39
+          ],
+          [
+            "20260423",
+            52.02
+          ],
+          [
+            "20260424",
+            50.64
+          ],
+          [
+            "20260427",
+            48.36
+          ],
+          [
+            "20260428",
+            44.44
+          ],
+          [
+            "20260429",
+            42.86
+          ],
+          [
+            "20260430",
+            45.51
+          ],
+          [
+            "20260501",
+            45.66
+          ],
+          [
+            "20260504",
+            49.48
+          ],
+          [
+            "20260505",
+            54.74
+          ],
+          [
+            "20260506",
+            60.98
+          ],
+          [
+            "20260507",
+            56.85
+          ],
+          [
+            "20260508",
+            61.2
+          ],
+          [
+            "20260511",
+            55.15
+          ],
+          [
+            "20260512",
+            56.56
+          ],
+          [
+            "20260513",
+            55.17
+          ],
+          [
+            "20260514",
+            58.4
+          ],
+          [
+            "20260515",
+            52.94
+          ],
+          [
+            "20260518",
+            50.46
+          ],
+          [
+            "20260519",
+            47.74
+          ],
+          [
+            "20260520",
+            52.71
+          ],
+          [
+            "20260521",
+            58.06
+          ],
+          [
+            "20260522",
+            56.83
+          ],
+          [
+            "20260526",
+            59.78
+          ],
+          [
+            "20260527",
+            67.84
+          ],
+          [
+            "20260528",
+            64.05
+          ],
+          [
+            "20260529",
+            63.54
+          ],
+          [
+            "20260601",
+            65.33
+          ],
+          [
+            "20260602",
+            66.6
+          ],
+          [
+            "20260603",
+            65.48
+          ],
+          [
+            "20260604",
+            61.86
+          ],
+          [
+            "20260605",
+            54.35
+          ],
+          [
+            "20260608",
+            59.19
+          ],
+          [
+            "20260609",
+            54.02
+          ],
+          [
+            "20260610",
+            51.52
+          ],
+          [
+            "20260611",
+            56.71
+          ],
+          [
+            "20260612",
+            59.77
+          ],
+          [
+            "20260615",
+            60.85
+          ],
+          [
+            "20260616",
+            59.18
+          ],
+          [
+            "20260617",
+            58.11
+          ],
+          [
+            "20260618",
+            59.96
+          ]
+        ],
+        "dayTrend": [
+          59.5,
+          58.63,
+          59.74,
+          59.65,
+          60.73,
+          60.29,
+          59.72,
+          60.51,
+          59.95,
+          60.58,
+          60.22,
+          60.5,
+          59.92,
+          60.31,
+          59.85,
+          59.79,
+          58.92,
+          58.49,
+          58.9,
+          60.03,
+          59.96
+        ],
+        "latestCandle": {
+          "date": "20260618",
+          "open": 61.28,
+          "high": 61.53,
+          "low": 58,
+          "close": 59.96,
+          "volume": 39394562
+        },
+        "source": "Naver foreign market API + Naver chart dayCandle + Yahoo 20m intraday"
+      },
+      {
+        "rank": 25,
+        "symbol": "OKLO",
+        "naverCode": "OKLO.K",
+        "name": "오클로",
+        "sector": "전력 유틸리티",
+        "price": 61.17,
+        "changeRate": 4,
+        "amount": 877743000,
+        "volume": 14443988,
+        "marketCap": 10643028675,
+        "priceHistory": [
+          [
+            "20260324",
+            54.96
+          ],
+          [
+            "20260325",
+            55.27
+          ],
+          [
+            "20260326",
+            51.81
+          ],
+          [
+            "20260327",
+            50.23
+          ],
+          [
+            "20260330",
+            45.58
+          ],
+          [
+            "20260331",
+            49.59
+          ],
+          [
+            "20260401",
+            48.07
+          ],
+          [
+            "20260402",
+            48.13
+          ],
+          [
+            "20260406",
+            48.76
+          ],
+          [
+            "20260407",
+            46.59
+          ],
+          [
+            "20260408",
+            50.21
+          ],
+          [
+            "20260409",
+            47.75
+          ],
+          [
+            "20260410",
+            50.25
+          ],
+          [
+            "20260413",
+            53.94
+          ],
+          [
+            "20260414",
+            58.58
+          ],
+          [
+            "20260415",
+            63.35
+          ],
+          [
+            "20260416",
+            64.21
+          ],
+          [
+            "20260417",
+            66.81
+          ],
+          [
+            "20260420",
+            68.13
+          ],
+          [
+            "20260421",
+            62.61
+          ],
+          [
+            "20260422",
+            72.41
+          ],
+          [
+            "20260423",
+            76.46
+          ],
+          [
+            "20260424",
+            71
+          ],
+          [
+            "20260427",
+            75.93
+          ],
+          [
+            "20260428",
+            69.09
+          ],
+          [
+            "20260429",
+            64.98
+          ],
+          [
+            "20260430",
+            72.5
+          ],
+          [
+            "20260501",
+            70.4
+          ],
+          [
+            "20260504",
+            68.6
+          ],
+          [
+            "20260505",
+            68.38
+          ],
+          [
+            "20260506",
+            79.62
+          ],
+          [
+            "20260507",
+            71.83
+          ],
+          [
+            "20260508",
+            72.51
+          ],
+          [
+            "20260511",
+            78.13
+          ],
+          [
+            "20260512",
+            73.63
+          ],
+          [
+            "20260513",
+            69.66
+          ],
+          [
+            "20260514",
+            67.21
+          ],
+          [
+            "20260515",
+            62.25
+          ],
+          [
+            "20260518",
+            58.56
+          ],
+          [
+            "20260519",
+            55.88
+          ],
+          [
+            "20260520",
+            62.58
+          ],
+          [
+            "20260521",
+            65.09
+          ],
+          [
+            "20260522",
+            65.88
+          ],
+          [
+            "20260526",
+            68.7
+          ],
+          [
+            "20260527",
+            67.82
+          ],
+          [
+            "20260528",
+            68.09
+          ],
+          [
+            "20260529",
+            66.88
+          ],
+          [
+            "20260601",
+            66.89
+          ],
+          [
+            "20260602",
+            73.47
+          ],
+          [
+            "20260603",
+            65.21
+          ],
+          [
+            "20260604",
+            65.39
+          ],
+          [
+            "20260605",
+            58.09
+          ],
+          [
+            "20260608",
+            58.94
+          ],
+          [
+            "20260609",
+            56.48
+          ],
+          [
+            "20260610",
+            54.02
+          ],
+          [
+            "20260611",
+            57.86
+          ],
+          [
+            "20260612",
+            57.49
+          ],
+          [
+            "20260615",
+            60.74
+          ],
+          [
+            "20260616",
+            57.45
+          ],
+          [
+            "20260617",
+            58.82
+          ],
+          [
+            "20260618",
+            61.17
+          ]
+        ],
+        "dayTrend": [
+          59.78,
+          59.14,
+          59.52,
+          59.96,
+          62.01,
+          61.44,
+          60.68,
+          60.61,
+          60.35,
+          60.11,
+          60.2,
+          60.18,
+          60.1,
+          60.13,
+          59.68,
+          60.01,
+          59.97,
+          60.24,
+          60.29,
+          61.28,
+          61.17
+        ],
+        "latestCandle": {
+          "date": "20260618",
+          "open": 59.83,
+          "high": 63,
+          "low": 58.56,
+          "close": 61.17,
+          "volume": 14443988
+        },
+        "source": "Naver foreign market API + Naver chart dayCandle + Yahoo 20m intraday"
+      },
+      {
+        "rank": 26,
+        "symbol": "MSTR",
+        "naverCode": "MSTR.O",
+        "name": "스트래티지",
+        "sector": "소프트웨어",
+        "price": 112.53,
+        "changeRate": -3.46,
+        "amount": 3981098000,
+        "volume": 35530741,
+        "marketCap": 39435899036,
+        "priceHistory": [
+          [
+            "20260324",
+            136.25
+          ],
+          [
+            "20260325",
+            139.13
+          ],
+          [
+            "20260326",
+            132.93
+          ],
+          [
+            "20260327",
+            126.03
+          ],
+          [
+            "20260330",
+            121.44
+          ],
+          [
+            "20260331",
+            124.8
+          ],
+          [
+            "20260401",
+            122.78
+          ],
+          [
+            "20260402",
+            119.83
+          ],
+          [
+            "20260406",
+            127.69
+          ],
+          [
+            "20260407",
+            123.72
+          ],
+          [
+            "20260408",
+            128.3
+          ],
+          [
+            "20260409",
+            128.86
+          ],
+          [
+            "20260410",
+            128.64
+          ],
+          [
+            "20260413",
+            132.36
+          ],
+          [
+            "20260414",
+            137.41
+          ],
+          [
+            "20260415",
+            143.54
+          ],
+          [
+            "20260416",
+            148.94
+          ],
+          [
+            "20260417",
+            166.52
+          ],
+          [
+            "20260420",
+            170.81
+          ],
+          [
+            "20260421",
+            163.97
+          ],
+          [
+            "20260422",
+            179.36
+          ],
+          [
+            "20260423",
+            172.47
+          ],
+          [
+            "20260424",
+            171.02
+          ],
+          [
+            "20260427",
+            169.2
+          ],
+          [
+            "20260428",
+            165.71
+          ],
+          [
+            "20260429",
+            158.19
+          ],
+          [
+            "20260430",
+            165.45
+          ],
+          [
+            "20260501",
+            177.17
+          ],
+          [
+            "20260504",
+            183.8
+          ],
+          [
+            "20260505",
+            186.9
+          ],
+          [
+            "20260506",
+            186.82
+          ],
+          [
+            "20260507",
+            179.84
+          ],
+          [
+            "20260508",
+            187.59
+          ],
+          [
+            "20260511",
+            195.94
+          ],
+          [
+            "20260512",
+            184.42
+          ],
+          [
+            "20260513",
+            178.03
+          ],
+          [
+            "20260514",
+            186.97
+          ],
+          [
+            "20260515",
+            177.42
+          ],
+          [
+            "20260518",
+            166.63
+          ],
+          [
+            "20260519",
+            164.63
+          ],
+          [
+            "20260520",
+            165.81
+          ],
+          [
+            "20260521",
+            164.85
+          ],
+          [
+            "20260522",
+            159.89
+          ],
+          [
+            "20260526",
+            159.93
+          ],
+          [
+            "20260527",
+            154.2
+          ],
+          [
+            "20260528",
+            151.64
+          ],
+          [
+            "20260529",
+            159.09
+          ],
+          [
+            "20260601",
+            149.78
+          ],
+          [
+            "20260602",
+            136.08
+          ],
+          [
+            "20260603",
+            126.55
+          ],
+          [
+            "20260604",
+            129.37
+          ],
+          [
+            "20260605",
+            120.44
+          ],
+          [
+            "20260608",
+            127.2
+          ],
+          [
+            "20260609",
+            117.02
+          ],
+          [
+            "20260610",
+            115.35
+          ],
+          [
+            "20260611",
+            120.15
+          ],
+          [
+            "20260612",
+            123.97
+          ],
+          [
+            "20260615",
+            131.14
+          ],
+          [
+            "20260616",
+            122.81
+          ],
+          [
+            "20260617",
+            116.56
+          ],
+          [
+            "20260618",
+            112.53
+          ]
+        ],
+        "dayTrend": [
+          115.06,
+          113.21,
+          113.43,
+          114,
+          114.75,
+          112.46,
+          110.95,
+          110.56,
+          111.68,
+          111.19,
+          110.28,
+          109.88,
+          108.88,
+          109.23,
+          109.41,
+          109.12,
+          109.85,
+          110.46,
+          111.79,
+          112.56,
+          112.53
+        ],
+        "latestCandle": {
+          "date": "20260618",
+          "open": 117.64,
+          "high": 117.75,
+          "low": 107.85,
+          "close": 112.53,
+          "volume": 35530741
         },
         "source": "Naver foreign market API + Naver chart dayCandle + Yahoo 20m intraday"
       },
@@ -96229,235 +96229,525 @@
       },
       {
         "rank": 28,
-        "symbol": "PLUG",
-        "naverCode": "PLUG.O",
-        "name": "플러그 파워",
-        "sector": "재생 가능 에너지 장비 및 서비스",
-        "price": 2.85,
-        "changeRate": 7.55,
-        "amount": 183769000,
-        "volume": 66373900,
-        "marketCap": 3975946884,
+        "symbol": "ARM",
+        "naverCode": "ARM.O",
+        "name": "암 홀딩스 ADR",
+        "sector": "반도체",
+        "price": 439.46,
+        "changeRate": 4.91,
+        "amount": 15024013000,
+        "volume": 34221913,
+        "marketCap": 469377891870,
         "priceHistory": [
           [
             "20260324",
-            2.29
+            134.96
           ],
           [
             "20260325",
-            2.27
+            157.07
           ],
           [
             "20260326",
-            2.25
+            154.8
           ],
           [
             "20260327",
-            2.18
+            144.13
           ],
           [
             "20260330",
-            2.14
+            136.96
           ],
           [
             "20260331",
-            2.26
+            151.28
           ],
           [
             "20260401",
-            2.25
+            155.07
           ],
           [
             "20260402",
-            2.41
+            149.11
           ],
           [
             "20260406",
-            2.69
+            148.77
           ],
           [
             "20260407",
-            2.52
+            143.86
           ],
           [
             "20260408",
-            2.65
+            148.91
           ],
           [
             "20260409",
-            2.74
+            149.79
           ],
           [
             "20260410",
-            2.74
+            148.93
           ],
           [
             "20260413",
-            2.77
+            157.58
           ],
           [
             "20260414",
-            2.94
+            161.22
           ],
           [
             "20260415",
-            2.93
+            159.34
           ],
           [
             "20260416",
-            2.86
+            162.33
           ],
           [
             "20260417",
-            2.78
+            166.73
           ],
           [
             "20260420",
-            3.22
+            175.1
           ],
           [
             "20260421",
-            3.08
+            175.49
           ],
           [
             "20260422",
-            3.19
+            196.57
           ],
           [
             "20260423",
-            3.18
+            204.61
           ],
           [
             "20260424",
-            3.14
+            234.81
           ],
           [
             "20260427",
-            3.08
+            215.88
           ],
           [
             "20260428",
-            3.03
+            198.65
           ],
           [
             "20260429",
-            3.41
+            201.69
           ],
           [
             "20260430",
-            3.13
+            210.32
           ],
           [
             "20260501",
-            3.11
+            211.18
           ],
           [
             "20260504",
-            3.13
+            203.26
           ],
           [
             "20260505",
-            3.32
+            208.84
           ],
           [
             "20260506",
-            3.31
+            237.3
           ],
           [
             "20260507",
-            3.13
+            213.31
           ],
           [
             "20260508",
-            3.12
+            213.27
           ],
           [
             "20260511",
-            3.52
+            212.65
           ],
           [
             "20260512",
-            3.56
+            207.92
           ],
           [
             "20260513",
-            3.96
+            221.21
           ],
           [
             "20260514",
-            3.79
+            228.5
           ],
           [
             "20260515",
-            3.78
+            209.16
           ],
           [
             "20260518",
-            3.45
+            215.12
           ],
           [
             "20260519",
-            3.31
+            223.15
           ],
           [
             "20260520",
-            3.31
+            256.73
           ],
           [
             "20260521",
-            3.78
+            298.23
           ],
           [
             "20260522",
-            3.78
+            306.51
           ],
           [
             "20260526",
-            3.84
+            321.22
           ],
           [
             "20260527",
-            4.14
+            302.71
           ],
           [
             "20260528",
-            4.12
+            335.27
           ],
           [
             "20260529",
-            3.95
+            353.29
           ],
           [
             "20260601",
-            3.94
+            408.85
           ],
           [
             "20260602",
-            4.09
+            402.71
           ],
           [
             "20260603",
-            3.69
+            411.83
           ],
           [
             "20260604",
-            3.6
+            393.44
           ],
           [
             "20260605",
-            3.22
+            342.93
           ],
           [
             "20260608",
-            3.19
+            346.39
           ],
           [
             "20260609",
-            2.91
+            324.86
           ],
           [
             "20260610",
-            2.86
+            307.43
+          ],
+          [
+            "20260611",
+            342.23
+          ],
+          [
+            "20260612",
+            380.81
+          ],
+          [
+            "20260615",
+            412.55
+          ],
+          [
+            "20260616",
+            396.34
+          ],
+          [
+            "20260617",
+            418.88
+          ],
+          [
+            "20260618",
+            439.46
+          ]
+        ],
+        "dayTrend": [
+          448.14,
+          440.73,
+          439.66,
+          442.11,
+          447.11,
+          444.94,
+          441.87,
+          443.9,
+          444.46,
+          430.76,
+          426.4,
+          432.5,
+          428.67,
+          424.6,
+          427.27,
+          432.2,
+          432,
+          435.78,
+          436,
+          439.75,
+          439.46
+        ],
+        "latestCandle": {
+          "date": "20260618",
+          "open": 440.25,
+          "high": 452.7,
+          "low": 423.62,
+          "close": 439.46,
+          "volume": 34221913
+        },
+        "source": "Naver foreign market API + Naver chart dayCandle + Yahoo 20m intraday"
+      },
+      {
+        "rank": 29,
+        "symbol": "SLDP",
+        "naverCode": "SLDP.O",
+        "name": "솔리드 파워",
+        "sector": "자동차, 트럭 및 오토바이 부품",
+        "price": 2.87,
+        "changeRate": 6.3,
+        "amount": 19846000,
+        "volume": 7011354,
+        "marketCap": 645703196,
+        "priceHistory": [
+          [
+            "20260324",
+            3.09
+          ],
+          [
+            "20260325",
+            3.08
+          ],
+          [
+            "20260326",
+            3.01
+          ],
+          [
+            "20260327",
+            2.92
+          ],
+          [
+            "20260330",
+            2.82
+          ],
+          [
+            "20260331",
+            3
+          ],
+          [
+            "20260401",
+            2.94
+          ],
+          [
+            "20260402",
+            2.94
+          ],
+          [
+            "20260406",
+            2.91
+          ],
+          [
+            "20260407",
+            2.84
+          ],
+          [
+            "20260408",
+            3
+          ],
+          [
+            "20260409",
+            2.96
+          ],
+          [
+            "20260410",
+            2.95
+          ],
+          [
+            "20260413",
+            2.98
+          ],
+          [
+            "20260414",
+            3.15
+          ],
+          [
+            "20260415",
+            3.26
+          ],
+          [
+            "20260416",
+            3.26
+          ],
+          [
+            "20260417",
+            3.37
+          ],
+          [
+            "20260420",
+            3.4
+          ],
+          [
+            "20260421",
+            3.54
+          ],
+          [
+            "20260422",
+            3.96
+          ],
+          [
+            "20260423",
+            3.7
+          ],
+          [
+            "20260424",
+            3.67
+          ],
+          [
+            "20260427",
+            3.57
+          ],
+          [
+            "20260428",
+            3.49
+          ],
+          [
+            "20260429",
+            3.35
+          ],
+          [
+            "20260430",
+            3.45
+          ],
+          [
+            "20260501",
+            3.42
+          ],
+          [
+            "20260504",
+            3.46
+          ],
+          [
+            "20260505",
+            3.51
+          ],
+          [
+            "20260506",
+            3.35
+          ],
+          [
+            "20260507",
+            2.92
+          ],
+          [
+            "20260508",
+            3.08
+          ],
+          [
+            "20260511",
+            3.15
+          ],
+          [
+            "20260512",
+            3
+          ],
+          [
+            "20260513",
+            3.06
+          ],
+          [
+            "20260514",
+            2.98
+          ],
+          [
+            "20260515",
+            2.88
+          ],
+          [
+            "20260518",
+            2.72
+          ],
+          [
+            "20260519",
+            2.63
+          ],
+          [
+            "20260520",
+            2.77
+          ],
+          [
+            "20260521",
+            2.97
+          ],
+          [
+            "20260522",
+            3.06
+          ],
+          [
+            "20260526",
+            3.23
+          ],
+          [
+            "20260527",
+            3.36
+          ],
+          [
+            "20260528",
+            3.39
+          ],
+          [
+            "20260529",
+            3.31
+          ],
+          [
+            "20260601",
+            3.41
+          ],
+          [
+            "20260602",
+            3.63
+          ],
+          [
+            "20260603",
+            3.32
+          ],
+          [
+            "20260604",
+            3.32
+          ],
+          [
+            "20260605",
+            2.94
+          ],
+          [
+            "20260608",
+            2.96
+          ],
+          [
+            "20260609",
+            2.8
+          ],
+          [
+            "20260610",
+            2.77
           ],
           [
             "20260611",
@@ -96465,635 +96755,345 @@
           ],
           [
             "20260612",
-            2.76
-          ],
-          [
-            "20260615",
             2.8
           ],
           [
+            "20260615",
+            2.84
+          ],
+          [
             "20260616",
-            2.71
+            2.74
           ],
           [
             "20260617",
-            2.65
+            2.7
           ],
           [
             "20260618",
-            2.85
+            2.87
           ]
         ],
         "dayTrend": [
-          2.66,
+          2.74,
           2.73,
-          2.73,
-          2.69,
-          2.74,
-          2.74,
-          2.75,
-          2.75,
-          2.74,
-          2.75,
-          2.75,
-          2.77,
           2.76,
           2.76,
-          2.75,
-          2.77,
+          2.83,
+          2.83,
+          2.82,
+          2.83,
+          2.81,
           2.81,
           2.82,
+          2.83,
+          2.82,
+          2.82,
+          2.81,
+          2.82,
+          2.82,
           2.84,
-          2.86,
-          2.85
+          2.83,
+          2.87,
+          2.87
         ],
         "latestCandle": {
           "date": "20260618",
-          "open": 2.73,
-          "high": 2.86,
-          "low": 2.64,
-          "close": 2.85,
-          "volume": 66373900
-        },
-        "source": "Naver foreign market API + Naver chart dayCandle + Yahoo 20m intraday"
-      },
-      {
-        "rank": 29,
-        "symbol": "MSTR",
-        "naverCode": "MSTR.O",
-        "name": "스트래티지",
-        "sector": "소프트웨어",
-        "price": 112.53,
-        "changeRate": -3.46,
-        "amount": 3981098000,
-        "volume": 35530741,
-        "marketCap": 39435899036,
-        "priceHistory": [
-          [
-            "20260324",
-            136.25
-          ],
-          [
-            "20260325",
-            139.13
-          ],
-          [
-            "20260326",
-            132.93
-          ],
-          [
-            "20260327",
-            126.03
-          ],
-          [
-            "20260330",
-            121.44
-          ],
-          [
-            "20260331",
-            124.8
-          ],
-          [
-            "20260401",
-            122.78
-          ],
-          [
-            "20260402",
-            119.83
-          ],
-          [
-            "20260406",
-            127.69
-          ],
-          [
-            "20260407",
-            123.72
-          ],
-          [
-            "20260408",
-            128.3
-          ],
-          [
-            "20260409",
-            128.86
-          ],
-          [
-            "20260410",
-            128.64
-          ],
-          [
-            "20260413",
-            132.36
-          ],
-          [
-            "20260414",
-            137.41
-          ],
-          [
-            "20260415",
-            143.54
-          ],
-          [
-            "20260416",
-            148.94
-          ],
-          [
-            "20260417",
-            166.52
-          ],
-          [
-            "20260420",
-            170.81
-          ],
-          [
-            "20260421",
-            163.97
-          ],
-          [
-            "20260422",
-            179.36
-          ],
-          [
-            "20260423",
-            172.47
-          ],
-          [
-            "20260424",
-            171.02
-          ],
-          [
-            "20260427",
-            169.2
-          ],
-          [
-            "20260428",
-            165.71
-          ],
-          [
-            "20260429",
-            158.19
-          ],
-          [
-            "20260430",
-            165.45
-          ],
-          [
-            "20260501",
-            177.17
-          ],
-          [
-            "20260504",
-            183.8
-          ],
-          [
-            "20260505",
-            186.9
-          ],
-          [
-            "20260506",
-            186.82
-          ],
-          [
-            "20260507",
-            179.84
-          ],
-          [
-            "20260508",
-            187.59
-          ],
-          [
-            "20260511",
-            195.94
-          ],
-          [
-            "20260512",
-            184.42
-          ],
-          [
-            "20260513",
-            178.03
-          ],
-          [
-            "20260514",
-            186.97
-          ],
-          [
-            "20260515",
-            177.42
-          ],
-          [
-            "20260518",
-            166.63
-          ],
-          [
-            "20260519",
-            164.63
-          ],
-          [
-            "20260520",
-            165.81
-          ],
-          [
-            "20260521",
-            164.85
-          ],
-          [
-            "20260522",
-            159.89
-          ],
-          [
-            "20260526",
-            159.93
-          ],
-          [
-            "20260527",
-            154.2
-          ],
-          [
-            "20260528",
-            151.64
-          ],
-          [
-            "20260529",
-            159.09
-          ],
-          [
-            "20260601",
-            149.78
-          ],
-          [
-            "20260602",
-            136.08
-          ],
-          [
-            "20260603",
-            126.55
-          ],
-          [
-            "20260604",
-            129.37
-          ],
-          [
-            "20260605",
-            120.44
-          ],
-          [
-            "20260608",
-            127.2
-          ],
-          [
-            "20260609",
-            117.02
-          ],
-          [
-            "20260610",
-            115.35
-          ],
-          [
-            "20260611",
-            120.15
-          ],
-          [
-            "20260612",
-            123.97
-          ],
-          [
-            "20260615",
-            131.14
-          ],
-          [
-            "20260616",
-            122.81
-          ],
-          [
-            "20260617",
-            116.56
-          ],
-          [
-            "20260618",
-            112.53
-          ]
-        ],
-        "dayTrend": [
-          115.06,
-          113.21,
-          113.43,
-          114,
-          114.75,
-          112.46,
-          110.95,
-          110.56,
-          111.68,
-          111.19,
-          110.28,
-          109.88,
-          108.88,
-          109.23,
-          109.41,
-          109.12,
-          109.85,
-          110.46,
-          111.79,
-          112.56,
-          112.53
-        ],
-        "latestCandle": {
-          "date": "20260618",
-          "open": 117.64,
-          "high": 117.75,
-          "low": 107.85,
-          "close": 112.53,
-          "volume": 35530741
+          "open": 2.81,
+          "high": 2.88,
+          "low": 2.72,
+          "close": 2.87,
+          "volume": 7011354
         },
         "source": "Naver foreign market API + Naver chart dayCandle + Yahoo 20m intraday"
       },
       {
         "rank": 30,
-        "symbol": "OKLO",
-        "naverCode": "OKLO.K",
-        "name": "오클로",
-        "sector": "전력 유틸리티",
-        "price": 61.17,
-        "changeRate": 4,
-        "amount": 877743000,
-        "volume": 14443988,
-        "marketCap": 10643028675,
+        "symbol": "RGTI",
+        "naverCode": "RGTI.O",
+        "name": "리게티 컴퓨팅",
+        "sector": "반도체",
+        "price": 21.36,
+        "changeRate": 5.48,
+        "amount": 739701000,
+        "volume": 35772751,
+        "marketCap": 7100038518,
         "priceHistory": [
           [
             "20260324",
-            54.96
+            15.6
           ],
           [
             "20260325",
-            55.27
+            15.14
           ],
           [
             "20260326",
-            51.81
+            14.41
           ],
           [
             "20260327",
-            50.23
+            13.32
           ],
           [
             "20260330",
-            45.58
+            12.9
           ],
           [
             "20260331",
-            49.59
+            14.04
           ],
           [
             "20260401",
-            48.07
+            13.5
           ],
           [
             "20260402",
-            48.13
+            14.19
           ],
           [
             "20260406",
-            48.76
+            14.2
           ],
           [
             "20260407",
-            46.59
+            13.84
           ],
           [
             "20260408",
-            50.21
+            14.53
           ],
           [
             "20260409",
-            47.75
+            14.31
           ],
           [
             "20260410",
-            50.25
+            14.68
           ],
           [
             "20260413",
-            53.94
+            15.13
           ],
           [
             "20260414",
-            58.58
+            16.87
           ],
           [
             "20260415",
-            63.35
+            19.11
           ],
           [
             "20260416",
-            64.21
+            19.45
           ],
           [
             "20260417",
-            66.81
+            19.81
           ],
           [
             "20260420",
-            68.13
+            19.64
           ],
           [
             "20260421",
-            62.61
+            18.25
           ],
           [
             "20260422",
-            72.41
+            18.38
           ],
           [
             "20260423",
-            76.46
+            16.86
           ],
           [
             "20260424",
-            71
+            16.61
           ],
           [
             "20260427",
-            75.93
+            16.91
           ],
           [
             "20260428",
-            69.09
+            16.39
           ],
           [
             "20260429",
-            64.98
+            16.08
           ],
           [
             "20260430",
-            72.5
+            17.45
           ],
           [
             "20260501",
-            70.4
+            17.5
           ],
           [
             "20260504",
-            68.6
+            17.7
           ],
           [
             "20260505",
-            68.38
+            18.27
           ],
           [
             "20260506",
-            79.62
+            20.09
           ],
           [
             "20260507",
-            71.83
+            18.34
           ],
           [
             "20260508",
-            72.51
+            18.94
           ],
           [
             "20260511",
-            78.13
+            20.51
           ],
           [
             "20260512",
-            73.63
+            19.07
           ],
           [
             "20260513",
-            69.66
+            18.42
           ],
           [
             "20260514",
-            67.21
+            19.27
           ],
           [
             "20260515",
-            62.25
+            17.85
           ],
           [
             "20260518",
-            58.56
+            16.62
           ],
           [
             "20260519",
-            55.88
+            15.96
           ],
           [
             "20260520",
-            62.58
+            16.88
           ],
           [
             "20260521",
-            65.09
+            22.04
           ],
           [
             "20260522",
-            65.88
+            26.42
           ],
           [
             "20260526",
-            68.7
+            25.07
           ],
           [
             "20260527",
-            67.82
+            24.62
           ],
           [
             "20260528",
-            68.09
+            27.03
           ],
           [
             "20260529",
-            66.88
+            25.54
           ],
           [
             "20260601",
-            66.89
+            25.63
           ],
           [
             "20260602",
-            73.47
+            26.88
           ],
           [
             "20260603",
-            65.21
+            24.1
           ],
           [
             "20260604",
-            65.39
+            24.16
           ],
           [
             "20260605",
-            58.09
+            20.68
           ],
           [
             "20260608",
-            58.94
+            21.77
           ],
           [
             "20260609",
-            56.48
+            19.69
           ],
           [
             "20260610",
-            54.02
+            19.45
           ],
           [
             "20260611",
-            57.86
+            20.63
           ],
           [
             "20260612",
-            57.49
+            20.98
           ],
           [
             "20260615",
-            60.74
+            22.7
           ],
           [
             "20260616",
-            57.45
+            20.64
           ],
           [
             "20260617",
-            58.82
+            20.25
           ],
           [
             "20260618",
-            61.17
+            21.36
           ]
         ],
         "dayTrend": [
-          59.78,
-          59.14,
-          59.52,
-          59.96,
-          62.01,
-          61.44,
-          60.68,
-          60.61,
-          60.35,
-          60.11,
-          60.2,
-          60.18,
-          60.1,
-          60.13,
-          59.68,
-          60.01,
-          59.97,
-          60.24,
-          60.29,
-          61.28,
-          61.17
+          19.97,
+          19.75,
+          20.35,
+          20.35,
+          20.86,
+          20.61,
+          20.48,
+          20.52,
+          20.33,
+          20.43,
+          20.47,
+          20.76,
+          20.67,
+          20.63,
+          20.58,
+          20.68,
+          20.8,
+          20.91,
+          20.92,
+          21.35,
+          21.36
         ],
         "latestCandle": {
           "date": "20260618",
-          "open": 59.83,
-          "high": 63,
-          "low": 58.56,
-          "close": 61.17,
-          "volume": 14443988
+          "open": 20.78,
+          "high": 21.48,
+          "low": 19.53,
+          "close": 21.36,
+          "volume": 35772751
         },
         "source": "Naver foreign market API + Naver chart dayCandle + Yahoo 20m intraday"
       }
