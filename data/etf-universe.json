@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-27T01:32:06.111Z",
+  "generatedAt": "2026-06-27T11:12:29.094Z",
   "source": [
     "https://stock.naver.com/api/stockSecurity/etfs/v1/domestic",
     "https://api.stock.naver.com/chart/domestic/item/{code}?periodType=dayCandle",
