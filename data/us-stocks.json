@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-30T01:33:05.090Z",
+  "generatedAt": "2026-06-30T11:59:05.361Z",
   "source": "https://api.stock.naver.com/chart/foreign/item/{code}?periodType=dayCandle",
   "stocks": [
     {
@@ -290,7 +290,7 @@
         "volume": 148835724
       },
       "chartSource": "Naver chart foreign dayCandle + Yahoo 20m intraday",
-      "updatedAt": "2026-06-30T01:32:58.563Z"
+      "updatedAt": "2026-06-30T11:58:58.611Z"
     },
     {
       "symbol": "MSFT",
@@ -580,7 +580,7 @@
         "volume": 51229885
       },
       "chartSource": "Naver chart foreign dayCandle + Yahoo 20m intraday",
-      "updatedAt": "2026-06-30T01:32:58.827Z"
+      "updatedAt": "2026-06-30T11:58:58.899Z"
     },
     {
       "symbol": "AAPL",
@@ -870,7 +870,7 @@
         "volume": 66427002
       },
       "chartSource": "Naver chart foreign dayCandle + Yahoo 20m intraday",
-      "updatedAt": "2026-06-30T01:32:59.086Z"
+      "updatedAt": "2026-06-30T11:58:59.183Z"
     },
     {
       "symbol": "AMZN",
@@ -1160,7 +1160,7 @@
         "volume": 77619228
       },
       "chartSource": "Naver chart foreign dayCandle + Yahoo 20m intraday",
-      "updatedAt": "2026-06-30T01:32:59.395Z"
+      "updatedAt": "2026-06-30T11:58:59.461Z"
     },
     {
       "symbol": "GOOGL",
@@ -1450,7 +1450,7 @@
         "volume": 34213932
       },
       "chartSource": "Naver chart foreign dayCandle + Yahoo 20m intraday",
-      "updatedAt": "2026-06-30T01:32:59.657Z"
+      "updatedAt": "2026-06-30T11:58:59.737Z"
     },
     {
       "symbol": "META",
@@ -1740,7 +1740,7 @@
         "volume": 15011399
       },
       "chartSource": "Naver chart foreign dayCandle + Yahoo 20m intraday",
-      "updatedAt": "2026-06-30T01:32:59.915Z"
+      "updatedAt": "2026-06-30T11:58:59.988Z"
     },
     {
       "symbol": "TSLA",
@@ -2030,7 +2030,7 @@
         "volume": 57645798
       },
       "chartSource": "Naver chart foreign dayCandle + Yahoo 20m intraday",
-      "updatedAt": "2026-06-30T01:33:00.174Z"
+      "updatedAt": "2026-06-30T11:59:00.248Z"
     },
     {
       "symbol": "AVGO",
@@ -2320,7 +2320,7 @@
         "volume": 24285239
       },
       "chartSource": "Naver chart foreign dayCandle + Yahoo 20m intraday",
-      "updatedAt": "2026-06-30T01:33:00.436Z"
+      "updatedAt": "2026-06-30T11:59:00.505Z"
     },
     {
       "symbol": "BRK.B",
@@ -2610,7 +2610,7 @@
         "volume": 5200695
       },
       "chartSource": "Naver chart foreign dayCandle + Yahoo 20m intraday",
-      "updatedAt": "2026-06-30T01:33:00.736Z"
+      "updatedAt": "2026-06-30T11:59:00.767Z"
     },
     {
       "symbol": "LLY",
@@ -2900,7 +2900,7 @@
         "volume": 3684723
       },
       "chartSource": "Naver chart foreign dayCandle + Yahoo 20m intraday",
-      "updatedAt": "2026-06-30T01:33:01.006Z"
+      "updatedAt": "2026-06-30T11:59:01.065Z"
     },
     {
       "symbol": "JPM",
@@ -3190,7 +3190,7 @@
         "volume": 7981795
       },
       "chartSource": "Naver chart foreign dayCandle + Yahoo 20m intraday",
-      "updatedAt": "2026-06-30T01:33:01.259Z"
+      "updatedAt": "2026-06-30T11:59:01.346Z"
     },
     {
       "symbol": "V",
@@ -3480,7 +3480,7 @@
         "volume": 11710917
       },
       "chartSource": "Naver chart foreign dayCandle + Yahoo 20m intraday",
-      "updatedAt": "2026-06-30T01:33:01.547Z"
+      "updatedAt": "2026-06-30T11:59:01.621Z"
     },
     {
       "symbol": "MA",
@@ -3770,7 +3770,7 @@
         "volume": 4812041
       },
       "chartSource": "Naver chart foreign dayCandle + Yahoo 20m intraday",
-      "updatedAt": "2026-06-30T01:33:01.900Z"
+      "updatedAt": "2026-06-30T11:59:01.907Z"
     },
     {
       "symbol": "NFLX",
@@ -4060,7 +4060,7 @@
         "volume": 42429603
       },
       "chartSource": "Naver chart foreign dayCandle + Yahoo 20m intraday",
-      "updatedAt": "2026-06-30T01:33:02.160Z"
+      "updatedAt": "2026-06-30T11:59:02.191Z"
     },
     {
       "symbol": "COST",
@@ -4350,7 +4350,7 @@
         "volume": 2450035
       },
       "chartSource": "Naver chart foreign dayCandle + Yahoo 20m intraday",
-      "updatedAt": "2026-06-30T01:33:02.425Z"
+      "updatedAt": "2026-06-30T11:59:02.496Z"
     },
     {
       "symbol": "ORCL",
@@ -4640,7 +4640,7 @@
         "volume": 34310313
       },
       "chartSource": "Naver chart foreign dayCandle + Yahoo 20m intraday",
-      "updatedAt": "2026-06-30T01:33:02.698Z"
+      "updatedAt": "2026-06-30T11:59:02.800Z"
     },
     {
       "symbol": "AMD",
@@ -4930,7 +4930,7 @@
         "volume": 26671016
       },
       "chartSource": "Naver chart foreign dayCandle + Yahoo 20m intraday",
-      "updatedAt": "2026-06-30T01:33:02.955Z"
+      "updatedAt": "2026-06-30T11:59:03.097Z"
     },
     {
       "symbol": "PLTR",
@@ -5220,7 +5220,7 @@
         "volume": 45017376
       },
       "chartSource": "Naver chart foreign dayCandle + Yahoo 20m intraday",
-      "updatedAt": "2026-06-30T01:33:03.214Z"
+      "updatedAt": "2026-06-30T11:59:03.413Z"
     },
     {
       "symbol": "CRM",
@@ -5510,7 +5510,7 @@
         "volume": 12664074
       },
       "chartSource": "Naver chart foreign dayCandle + Yahoo 20m intraday",
-      "updatedAt": "2026-06-30T01:33:03.515Z"
+      "updatedAt": "2026-06-30T11:59:03.674Z"
     },
     {
       "symbol": "COIN",
@@ -5800,7 +5800,7 @@
         "volume": 7141106
       },
       "chartSource": "Naver chart foreign dayCandle + Yahoo 20m intraday",
-      "updatedAt": "2026-06-30T01:33:03.771Z"
+      "updatedAt": "2026-06-30T11:59:03.985Z"
     },
     {
       "symbol": "SMCI",
@@ -6090,7 +6090,7 @@
         "volume": 91157911
       },
       "chartSource": "Naver chart foreign dayCandle + Yahoo 20m intraday",
-      "updatedAt": "2026-06-30T01:33:04.050Z"
+      "updatedAt": "2026-06-30T11:59:04.262Z"
     },
     {
       "symbol": "MU",
@@ -6380,7 +6380,7 @@
         "volume": 60694113
       },
       "chartSource": "Naver chart foreign dayCandle + Yahoo 20m intraday",
-      "updatedAt": "2026-06-30T01:33:04.307Z"
+      "updatedAt": "2026-06-30T11:59:04.534Z"
     },
     {
       "symbol": "HOOD",
@@ -6670,7 +6670,7 @@
         "volume": 20681628
       },
       "chartSource": "Naver chart foreign dayCandle + Yahoo 20m intraday",
-      "updatedAt": "2026-06-30T01:33:04.575Z"
+      "updatedAt": "2026-06-30T11:59:04.806Z"
     },
     {
       "symbol": "SHOP",
@@ -6960,7 +6960,7 @@
         "volume": 9919038
       },
       "chartSource": "Naver chart foreign dayCandle + Yahoo 20m intraday",
-      "updatedAt": "2026-06-30T01:33:04.835Z"
+      "updatedAt": "2026-06-30T11:59:05.104Z"
     },
     {
       "symbol": "ABCL",
@@ -7250,7 +7250,7 @@
         "volume": 16241861
       },
       "chartSource": "Naver chart foreign dayCandle + Yahoo 20m intraday",
-      "updatedAt": "2026-06-30T01:33:05.089Z"
+      "updatedAt": "2026-06-30T11:59:05.361Z"
     }
   ]
 }
