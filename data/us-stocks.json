@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-29T13:51:43.426Z",
+  "generatedAt": "2026-06-30T01:33:05.090Z",
   "source": "https://api.stock.naver.com/chart/foreign/item/{code}?periodType=dayCandle",
   "stocks": [
     {
@@ -9,9 +9,9 @@
       "sector": "AI 반도체",
       "marketCap": "4.35T",
       "popularity": 98,
-      "price": 194.25,
-      "changeRate": 0.89,
-      "amount": "2.0B",
+      "price": 194.97,
+      "changeRate": 1.27,
+      "amount": "29.0B",
       "priceHistory": [
         [
           "20260401",
@@ -255,23 +255,42 @@
         ],
         [
           "20260629",
-          194.25
+          194.97
         ]
       ],
       "dayTrend": [
         194.24,
-        195.2
+        193.3,
+        190.99,
+        194.09,
+        194.86,
+        194.29,
+        194.11,
+        193.96,
+        193.67,
+        193,
+        193.82,
+        194.65,
+        194.34,
+        193.96,
+        193.84,
+        194.11,
+        193.98,
+        194.39,
+        194.85,
+        194.9,
+        194.97
       ],
       "latestCandle": {
         "date": "20260629",
-        "open": 193.65,
-        "high": 194.9,
-        "low": 192,
-        "close": 194.25,
-        "volume": 10285698
+        "open": 193.85,
+        "high": 196.18,
+        "low": 189.8,
+        "close": 194.97,
+        "volume": 148835724
       },
       "chartSource": "Naver chart foreign dayCandle + Yahoo 20m intraday",
-      "updatedAt": "2026-06-29T13:51:37.157Z"
+      "updatedAt": "2026-06-30T01:32:58.563Z"
     },
     {
       "symbol": "MSFT",
@@ -280,9 +299,9 @@
       "sector": "클라우드",
       "marketCap": "3.79T",
       "popularity": 91,
-      "price": 378.72,
-      "changeRate": 1.54,
-      "amount": "1.6B",
+      "price": 368.57,
+      "changeRate": -1.18,
+      "amount": "18.9B",
       "priceHistory": [
         [
           "20260401",
@@ -526,23 +545,42 @@
         ],
         [
           "20260629",
-          378.72
+          368.57
         ]
       ],
       "dayTrend": [
         378.88,
-        378.75
+        379.2,
+        376.14,
+        375.74,
+        371.99,
+        372.55,
+        372.4,
+        371.56,
+        367.96,
+        368.17,
+        368.96,
+        369.98,
+        369.63,
+        368.81,
+        367.79,
+        368.45,
+        368.13,
+        368.55,
+        367.67,
+        368.5,
+        368.57
       ],
       "latestCandle": {
         "date": "20260629",
-        "open": 376.25,
-        "high": 379.77,
-        "low": 374.53,
-        "close": 378.72,
-        "volume": 4331855
+        "open": 377.5,
+        "high": 380.5,
+        "low": 359.9,
+        "close": 368.57,
+        "volume": 51229885
       },
       "chartSource": "Naver chart foreign dayCandle + Yahoo 20m intraday",
-      "updatedAt": "2026-06-29T13:51:37.442Z"
+      "updatedAt": "2026-06-30T01:32:58.827Z"
     },
     {
       "symbol": "AAPL",
@@ -551,9 +589,9 @@
       "sector": "소비자기술",
       "marketCap": "3.67T",
       "popularity": 87,
-      "price": 284.01,
-      "changeRate": 0.08,
-      "amount": "1.5B",
+      "price": 281.74,
+      "changeRate": -0.72,
+      "amount": "18.7B",
       "priceHistory": [
         [
           "20260401",
@@ -797,23 +835,42 @@
         ],
         [
           "20260629",
-          284.01
+          281.74
         ]
       ],
       "dayTrend": [
         285.68,
-        284.52
+        283.96,
+        282.06,
+        281.48,
+        281.82,
+        282.28,
+        282.25,
+        281.51,
+        280.48,
+        280.53,
+        280.31,
+        281.15,
+        281.59,
+        282.02,
+        281.43,
+        281.93,
+        282.07,
+        282.61,
+        282.3,
+        281.63,
+        281.74
       ],
       "latestCandle": {
         "date": "20260629",
-        "open": 286.79,
+        "open": 286.73,
         "high": 288.37,
-        "low": 283.56,
-        "close": 284.01,
-        "volume": 5271382
+        "low": 279.85,
+        "close": 281.74,
+        "volume": 66427002
       },
       "chartSource": "Naver chart foreign dayCandle + Yahoo 20m intraday",
-      "updatedAt": "2026-06-29T13:51:37.704Z"
+      "updatedAt": "2026-06-30T01:32:59.086Z"
     },
     {
       "symbol": "AMZN",
@@ -822,9 +879,9 @@
       "sector": "커머스·클라우드",
       "marketCap": "2.44T",
       "popularity": 84,
-      "price": 239.87,
-      "changeRate": 3.09,
-      "amount": "2.0B",
+      "price": 240.14,
+      "changeRate": 3.2,
+      "amount": "18.6B",
       "priceHistory": [
         [
           "20260401",
@@ -1068,23 +1125,42 @@
         ],
         [
           "20260629",
-          239.87
+          240.14
         ]
       ],
       "dayTrend": [
         239.38,
-        241.92
+        241.6,
+        244.44,
+        243.91,
+        245.2,
+        242.58,
+        242.04,
+        242.22,
+        240.12,
+        240.01,
+        241.35,
+        240.65,
+        240.63,
+        241.17,
+        240.26,
+        240.25,
+        241.21,
+        241,
+        240.01,
+        240.12,
+        240.14
       ],
       "latestCandle": {
         "date": "20260629",
-        "open": 234.21,
-        "high": 240.4,
+        "open": 234.22,
+        "high": 249.71,
         "low": 233.8,
-        "close": 239.87,
-        "volume": 8210880
+        "close": 240.14,
+        "volume": 77619228
       },
       "chartSource": "Naver chart foreign dayCandle + Yahoo 20m intraday",
-      "updatedAt": "2026-06-29T13:51:37.953Z"
+      "updatedAt": "2026-06-30T01:32:59.395Z"
     },
     {
       "symbol": "GOOGL",
@@ -1093,9 +1169,9 @@
       "sector": "검색·AI",
       "marketCap": "2.27T",
       "popularity": 82,
-      "price": 346.96,
-      "changeRate": 2.84,
-      "amount": "1.5B",
+      "price": 353.65,
+      "changeRate": 4.82,
+      "amount": "12.1B",
       "priceHistory": [
         [
           "20260401",
@@ -1339,23 +1415,42 @@
         ],
         [
           "20260629",
-          346.96
+          353.65
         ]
       ],
       "dayTrend": [
         347.33,
-        347.76
+        348.07,
+        348.17,
+        351.1,
+        350.45,
+        351.24,
+        351.59,
+        352.55,
+        352.52,
+        351.15,
+        351.59,
+        352.55,
+        353.39,
+        353.43,
+        352.42,
+        353.1,
+        352.39,
+        352.7,
+        353.61,
+        353.47,
+        353.65
       ],
       "latestCandle": {
         "date": "20260629",
-        "open": 342.49,
-        "high": 348.59,
+        "open": 341.83,
+        "high": 354.35,
         "low": 340.67,
-        "close": 346.96,
-        "volume": 4433249
+        "close": 353.65,
+        "volume": 34213932
       },
       "chartSource": "Naver chart foreign dayCandle + Yahoo 20m intraday",
-      "updatedAt": "2026-06-29T13:51:38.242Z"
+      "updatedAt": "2026-06-30T01:32:59.657Z"
     },
     {
       "symbol": "META",
@@ -1364,9 +1459,9 @@
       "sector": "소셜·AI",
       "marketCap": "1.62T",
       "popularity": 80,
-      "price": 565.05,
-      "changeRate": 2.69,
-      "amount": "1.1B",
+      "price": 562.6,
+      "changeRate": 2.24,
+      "amount": "8.4B",
       "priceHistory": [
         [
           "20260401",
@@ -1610,23 +1705,42 @@
         ],
         [
           "20260629",
-          565.05
+          562.6
         ]
       ],
       "dayTrend": [
         566.5,
-        568.9
+        566.54,
+        567.01,
+        568.4,
+        565.53,
+        563.97,
+        565.84,
+        564.74,
+        563.72,
+        564.14,
+        565.07,
+        565.09,
+        564.55,
+        565.27,
+        565.24,
+        566.06,
+        565.55,
+        565.11,
+        565.6,
+        562.33,
+        562.6
       ],
       "latestCandle": {
         "date": "20260629",
-        "open": 560.79,
-        "high": 568.05,
+        "open": 560,
+        "high": 570.9,
         "low": 558,
-        "close": 565.05,
-        "volume": 1983666
+        "close": 562.6,
+        "volume": 15011399
       },
       "chartSource": "Naver chart foreign dayCandle + Yahoo 20m intraday",
-      "updatedAt": "2026-06-29T13:51:38.492Z"
+      "updatedAt": "2026-06-30T01:32:59.915Z"
     },
     {
       "symbol": "TSLA",
@@ -1635,9 +1749,9 @@
       "sector": "전기차",
       "marketCap": "1.08T",
       "popularity": 96,
-      "price": 391.83,
-      "changeRate": 3.19,
-      "amount": "1.9B",
+      "price": 411.84,
+      "changeRate": 8.46,
+      "amount": "23.7B",
       "priceHistory": [
         [
           "20260401",
@@ -1881,23 +1995,42 @@
         ],
         [
           "20260629",
-          391.83
+          411.84
         ]
       ],
       "dayTrend": [
         387.68,
-        392.23
+        391.8,
+        391.56,
+        395.83,
+        397.61,
+        395.91,
+        399.93,
+        400.56,
+        402.04,
+        403.53,
+        403.64,
+        407.18,
+        409.63,
+        408.93,
+        409,
+        410.29,
+        410.31,
+        412.51,
+        412.67,
+        411.79,
+        411.84
       ],
       "latestCandle": {
         "date": "20260629",
-        "open": 381.22,
-        "high": 391.99,
+        "open": 381.79,
+        "high": 413.27,
         "low": 379.3,
-        "close": 391.83,
-        "volume": 4945218
+        "close": 411.84,
+        "volume": 57645798
       },
       "chartSource": "Naver chart foreign dayCandle + Yahoo 20m intraday",
-      "updatedAt": "2026-06-29T13:51:38.746Z"
+      "updatedAt": "2026-06-30T01:33:00.174Z"
     },
     {
       "symbol": "AVGO",
@@ -1906,9 +2039,9 @@
       "sector": "반도체",
       "marketCap": "1.55T",
       "popularity": 74,
-      "price": 371.36,
-      "changeRate": 1.74,
-      "amount": "830.6M",
+      "price": 372.45,
+      "changeRate": 2.04,
+      "amount": "9.0B",
       "priceHistory": [
         [
           "20260401",
@@ -2152,23 +2285,42 @@
         ],
         [
           "20260629",
-          371.36
+          372.45
         ]
       ],
       "dayTrend": [
         374.49,
-        372.22
+        369.39,
+        363.28,
+        369.06,
+        370.79,
+        369.11,
+        370.32,
+        371.46,
+        370.7,
+        370.39,
+        370.93,
+        374.83,
+        374.9,
+        374.84,
+        374.68,
+        375.29,
+        374.42,
+        372.17,
+        373.97,
+        372.44,
+        372.45
       ],
       "latestCandle": {
         "date": "20260629",
-        "open": 373.29,
-        "high": 375.21,
-        "low": 370.78,
-        "close": 371.36,
-        "volume": 2236648
+        "open": 373.62,
+        "high": 376.21,
+        "low": 360.46,
+        "close": 372.45,
+        "volume": 24285239
       },
       "chartSource": "Naver chart foreign dayCandle + Yahoo 20m intraday",
-      "updatedAt": "2026-06-29T13:51:38.998Z"
+      "updatedAt": "2026-06-30T01:33:00.436Z"
     },
     {
       "symbol": "BRK.B",
@@ -2177,9 +2329,9 @@
       "sector": "복합지주",
       "marketCap": "1.15T",
       "popularity": 62,
-      "price": 498.2,
-      "changeRate": -0.09,
-      "amount": "177.3M",
+      "price": 496,
+      "changeRate": -0.53,
+      "amount": "2.6B",
       "priceHistory": [
         [
           "20260401",
@@ -2423,23 +2575,42 @@
         ],
         [
           "20260629",
-          498.2
+          496
         ]
       ],
       "dayTrend": [
         497.32,
-        497.93
+        498.14,
+        498.65,
+        497.83,
+        497.47,
+        498.15,
+        497.58,
+        496.93,
+        496.23,
+        496.36,
+        496.12,
+        496.08,
+        495.98,
+        496.46,
+        496.53,
+        496.32,
+        496.48,
+        496.05,
+        495.7,
+        495.88,
+        496
       ],
       "latestCandle": {
         "date": "20260629",
-        "open": 497.52,
-        "high": 498.33,
-        "low": 495.9,
-        "close": 498.2,
-        "volume": 355891
+        "open": 497.79,
+        "high": 500.02,
+        "low": 495,
+        "close": 496,
+        "volume": 5200695
       },
       "chartSource": "Naver chart foreign dayCandle + Yahoo 20m intraday",
-      "updatedAt": "2026-06-29T13:51:39.259Z"
+      "updatedAt": "2026-06-30T01:33:00.736Z"
     },
     {
       "symbol": "LLY",
@@ -2448,9 +2619,9 @@
       "sector": "비만치료제",
       "marketCap": "1.07T",
       "popularity": 78,
-      "price": 1228.28,
-      "changeRate": 1.67,
-      "amount": "538.0M",
+      "price": 1229.93,
+      "changeRate": 1.81,
+      "amount": "4.5B",
       "priceHistory": [
         [
           "20260401",
@@ -2694,23 +2865,42 @@
         ],
         [
           "20260629",
-          1228.28
+          1229.93
         ]
       ],
       "dayTrend": [
-        1236.9,
-        1223.98
+        1236.52,
+        1222.23,
+        1224.42,
+        1230.31,
+        1214.35,
+        1208.26,
+        1205.18,
+        1211.06,
+        1214.72,
+        1216.91,
+        1215.99,
+        1212.56,
+        1217.53,
+        1219.5,
+        1223.97,
+        1224.53,
+        1225.28,
+        1227.67,
+        1227.78,
+        1229.05,
+        1229.93
       ],
       "latestCandle": {
         "date": "20260629",
-        "open": 1216.41,
+        "open": 1222.78,
         "high": 1238,
-        "low": 1216.01,
-        "close": 1228.28,
-        "volume": 437995
+        "low": 1203.14,
+        "close": 1229.93,
+        "volume": 3684723
       },
       "chartSource": "Naver chart foreign dayCandle + Yahoo 20m intraday",
-      "updatedAt": "2026-06-29T13:51:39.506Z"
+      "updatedAt": "2026-06-30T01:33:01.006Z"
     },
     {
       "symbol": "JPM",
@@ -2719,9 +2909,9 @@
       "sector": "은행",
       "marketCap": "846B",
       "popularity": 68,
-      "price": 330.21,
-      "changeRate": 0.35,
-      "amount": "222.7M",
+      "price": 329.39,
+      "changeRate": 0.1,
+      "amount": "2.6B",
       "priceHistory": [
         [
           "20260401",
@@ -2965,23 +3155,42 @@
         ],
         [
           "20260629",
-          330.21
+          329.39
         ]
       ],
       "dayTrend": [
         329.18,
-        330.28
+        329.64,
+        330.27,
+        331.79,
+        331.46,
+        331.39,
+        331.52,
+        331.85,
+        332.37,
+        332.1,
+        331.85,
+        331.1,
+        331.13,
+        331.34,
+        331.45,
+        331.12,
+        331.02,
+        330.49,
+        330.48,
+        329.44,
+        329.39
       ],
       "latestCandle": {
         "date": "20260629",
-        "open": 328.19,
-        "high": 330.32,
-        "low": 327.23,
-        "close": 330.21,
-        "volume": 674423
+        "open": 328.28,
+        "high": 332.39,
+        "low": 327.2,
+        "close": 329.39,
+        "volume": 7981795
       },
       "chartSource": "Naver chart foreign dayCandle + Yahoo 20m intraday",
-      "updatedAt": "2026-06-29T13:51:39.760Z"
+      "updatedAt": "2026-06-30T01:33:01.259Z"
     },
     {
       "symbol": "V",
@@ -2990,9 +3199,9 @@
       "sector": "결제",
       "marketCap": "681B",
       "popularity": 66,
-      "price": 340.89,
-      "changeRate": 1.39,
-      "amount": "194.6M",
+      "price": 341.65,
+      "changeRate": 1.61,
+      "amount": "4.0B",
       "priceHistory": [
         [
           "20260401",
@@ -3236,23 +3445,42 @@
         ],
         [
           "20260629",
-          340.89
+          341.65
         ]
       ],
       "dayTrend": [
         340.15,
-        342.52
+        342.61,
+        343.35,
+        345.27,
+        344.03,
+        342.39,
+        342.48,
+        341.48,
+        341.4,
+        341.08,
+        340.92,
+        341.53,
+        341.63,
+        342.02,
+        342.08,
+        342.13,
+        342.21,
+        342.14,
+        341.92,
+        341.69,
+        341.65
       ],
       "latestCandle": {
         "date": "20260629",
-        "open": 338.57,
-        "high": 340.95,
-        "low": 338.36,
-        "close": 340.89,
-        "volume": 570946
+        "open": 338.27,
+        "high": 345.81,
+        "low": 338.27,
+        "close": 341.65,
+        "volume": 11710917
       },
       "chartSource": "Naver chart foreign dayCandle + Yahoo 20m intraday",
-      "updatedAt": "2026-06-29T13:51:40.006Z"
+      "updatedAt": "2026-06-30T01:33:01.547Z"
     },
     {
       "symbol": "MA",
@@ -3261,9 +3489,9 @@
       "sector": "결제",
       "marketCap": "529B",
       "popularity": 61,
-      "price": 508.16,
-      "changeRate": 1.83,
-      "amount": "208.4M",
+      "price": 509.64,
+      "changeRate": 2.13,
+      "amount": "2.5B",
       "priceHistory": [
         [
           "20260401",
@@ -3507,23 +3735,42 @@
         ],
         [
           "20260629",
-          508.16
+          509.64
         ]
       ],
       "dayTrend": [
         504.66,
-        508.92
+        509.06,
+        511.3,
+        514.19,
+        512.79,
+        510.9,
+        511.28,
+        510.22,
+        511,
+        510.44,
+        509.49,
+        511.61,
+        511.18,
+        511.43,
+        511.72,
+        511.68,
+        511.79,
+        511.8,
+        512.14,
+        509.64,
+        509.64
       ],
       "latestCandle": {
         "date": "20260629",
-        "open": 503.59,
-        "high": 509.88,
-        "low": 503,
-        "close": 508.16,
-        "volume": 410155
+        "open": 502.5,
+        "high": 515.45,
+        "low": 502.5,
+        "close": 509.64,
+        "volume": 4812041
       },
       "chartSource": "Naver chart foreign dayCandle + Yahoo 20m intraday",
-      "updatedAt": "2026-06-29T13:51:40.268Z"
+      "updatedAt": "2026-06-30T01:33:01.900Z"
     },
     {
       "symbol": "NFLX",
@@ -3532,9 +3779,9 @@
       "sector": "스트리밍",
       "marketCap": "492B",
       "popularity": 73,
-      "price": 75.43,
-      "changeRate": 2.19,
-      "amount": "403.1M",
+      "price": 73.78,
+      "changeRate": -0.04,
+      "amount": "3.1B",
       "priceHistory": [
         [
           "20260401",
@@ -3778,23 +4025,42 @@
         ],
         [
           "20260629",
-          75.43
+          73.78
         ]
       ],
       "dayTrend": [
         75.07,
-        75.43
+        75.73,
+        75.39,
+        75.75,
+        75.4,
+        75.63,
+        75.44,
+        74.93,
+        74.79,
+        74.72,
+        74.5,
+        74.55,
+        74.56,
+        74.32,
+        74.03,
+        74.15,
+        74.01,
+        74.04,
+        73.89,
+        73.75,
+        73.78
       ],
       "latestCandle": {
         "date": "20260629",
-        "open": 74.7,
-        "high": 75.57,
-        "low": 74.05,
-        "close": 75.43,
-        "volume": 5344542
+        "open": 74.61,
+        "high": 76.07,
+        "low": 73.73,
+        "close": 73.78,
+        "volume": 42429603
       },
       "chartSource": "Naver chart foreign dayCandle + Yahoo 20m intraday",
-      "updatedAt": "2026-06-29T13:51:40.516Z"
+      "updatedAt": "2026-06-30T01:33:02.160Z"
     },
     {
       "symbol": "COST",
@@ -3803,9 +4069,9 @@
       "sector": "소매",
       "marketCap": "449B",
       "popularity": 58,
-      "price": 963.38,
-      "changeRate": 1.14,
-      "amount": "124.9M",
+      "price": 946.68,
+      "changeRate": -0.62,
+      "amount": "2.3B",
       "priceHistory": [
         [
           "20260401",
@@ -4049,23 +4315,42 @@
         ],
         [
           "20260629",
-          963.38
+          946.68
         ]
       ],
       "dayTrend": [
         963.52,
-        963.26
+        965.29,
+        965.43,
+        961.34,
+        957.17,
+        959.76,
+        955.95,
+        953.41,
+        947.83,
+        948.09,
+        946.01,
+        945.05,
+        947.55,
+        945,
+        944.47,
+        943.51,
+        945.23,
+        944.83,
+        943.42,
+        946.3,
+        946.68
       ],
       "latestCandle": {
         "date": "20260629",
         "open": 958.55,
-        "high": 964.01,
-        "low": 953.91,
-        "close": 963.38,
-        "volume": 129664
+        "high": 969.86,
+        "low": 942.38,
+        "close": 946.68,
+        "volume": 2450035
       },
       "chartSource": "Naver chart foreign dayCandle + Yahoo 20m intraday",
-      "updatedAt": "2026-06-29T13:51:40.779Z"
+      "updatedAt": "2026-06-30T01:33:02.425Z"
     },
     {
       "symbol": "ORCL",
@@ -4074,9 +4359,9 @@
       "sector": "클라우드",
       "marketCap": "805B",
       "popularity": 79,
-      "price": 151.82,
-      "changeRate": 2.22,
-      "amount": "539.5M",
+      "price": 147.76,
+      "changeRate": -0.52,
+      "amount": "5.1B",
       "priceHistory": [
         [
           "20260401",
@@ -4320,23 +4605,42 @@
         ],
         [
           "20260629",
-          151.82
+          147.76
         ]
       ],
       "dayTrend": [
         153.83,
-        151.81
+        149.35,
+        146.13,
+        148.51,
+        148.47,
+        147.79,
+        149,
+        148.93,
+        148.35,
+        147.87,
+        147.54,
+        149.24,
+        148.7,
+        148.58,
+        148.01,
+        148.3,
+        147.89,
+        147.71,
+        148.75,
+        147.79,
+        147.76
       ],
       "latestCandle": {
         "date": "20260629",
-        "open": 153.92,
+        "open": 153.94,
         "high": 154.5,
-        "low": 151.18,
-        "close": 151.82,
-        "volume": 3553756
+        "low": 145.2,
+        "close": 147.76,
+        "volume": 34310313
       },
       "chartSource": "Naver chart foreign dayCandle + Yahoo 20m intraday",
-      "updatedAt": "2026-06-29T13:51:41.029Z"
+      "updatedAt": "2026-06-30T01:33:02.698Z"
     },
     {
       "symbol": "AMD",
@@ -4345,9 +4649,9 @@
       "sector": "AI 반도체",
       "marketCap": "366B",
       "popularity": 89,
-      "price": 532,
-      "changeRate": 2,
-      "amount": "1.4B",
+      "price": 539.49,
+      "changeRate": 3.43,
+      "amount": "14.4B",
       "priceHistory": [
         [
           "20260401",
@@ -4591,23 +4895,42 @@
         ],
         [
           "20260629",
-          532
+          539.49
         ]
       ],
       "dayTrend": [
         527.8,
-        525.6
+        513.03,
+        502.55,
+        508.21,
+        514.52,
+        520.75,
+        523.5,
+        523.83,
+        528.65,
+        530.23,
+        531.6,
+        536.92,
+        538.47,
+        540.02,
+        540.01,
+        539.34,
+        537.51,
+        536.32,
+        537.6,
+        539.56,
+        539.49
       ],
       "latestCandle": {
         "date": "20260629",
-        "open": 522.5,
-        "high": 535.16,
-        "low": 517.46,
-        "close": 532,
-        "volume": 2600331
+        "open": 522.84,
+        "high": 542.19,
+        "low": 495.35,
+        "close": 539.49,
+        "volume": 26671016
       },
       "chartSource": "Naver chart foreign dayCandle + Yahoo 20m intraday",
-      "updatedAt": "2026-06-29T13:51:41.309Z"
+      "updatedAt": "2026-06-30T01:33:02.955Z"
     },
     {
       "symbol": "PLTR",
@@ -4616,9 +4939,9 @@
       "sector": "AI 소프트웨어",
       "marketCap": "482B",
       "popularity": 95,
-      "price": 117.71,
-      "changeRate": 4.23,
-      "amount": "793.1M",
+      "price": 115.7,
+      "changeRate": 2.45,
+      "amount": "5.2B",
       "priceHistory": [
         [
           "20260401",
@@ -4862,23 +5185,42 @@
         ],
         [
           "20260629",
-          117.71
+          115.7
         ]
       ],
       "dayTrend": [
         117.73,
-        117.74
+        118.21,
+        116.98,
+        117.94,
+        117.72,
+        116.61,
+        116.03,
+        115.51,
+        115.71,
+        115.6,
+        115.18,
+        116.54,
+        116.59,
+        116.64,
+        116.42,
+        116.48,
+        116.5,
+        116.21,
+        116.19,
+        115.67,
+        115.7
       ],
       "latestCandle": {
         "date": "20260629",
-        "open": 116.25,
-        "high": 117.73,
-        "low": 115.6,
-        "close": 117.71,
-        "volume": 6737523
+        "open": 116.23,
+        "high": 119.08,
+        "low": 114.7,
+        "close": 115.7,
+        "volume": 45017376
       },
       "chartSource": "Naver chart foreign dayCandle + Yahoo 20m intraday",
-      "updatedAt": "2026-06-29T13:51:41.587Z"
+      "updatedAt": "2026-06-30T01:33:03.214Z"
     },
     {
       "symbol": "CRM",
@@ -4887,9 +5229,9 @@
       "sector": "SaaS",
       "marketCap": "274B",
       "popularity": 55,
-      "price": 159.34,
-      "changeRate": 0.61,
-      "amount": "196.9M",
+      "price": 157.93,
+      "changeRate": -0.28,
+      "amount": "2.0B",
       "priceHistory": [
         [
           "20260401",
@@ -5133,23 +5475,42 @@
         ],
         [
           "20260629",
-          159.34
+          157.93
         ]
       ],
       "dayTrend": [
         158.79,
-        159.14
+        160.04,
+        159.3,
+        160.72,
+        160.72,
+        159.7,
+        159.72,
+        158.94,
+        158.49,
+        158.84,
+        158.3,
+        158.55,
+        158.48,
+        157.98,
+        157.93,
+        158.36,
+        158.55,
+        158.54,
+        158.26,
+        157.95,
+        157.93
       ],
       "latestCandle": {
         "date": "20260629",
-        "open": 160.47,
-        "high": 160.82,
+        "open": 160.27,
+        "high": 161.76,
         "low": 157.7,
-        "close": 159.34,
-        "volume": 1235476
+        "close": 157.93,
+        "volume": 12664074
       },
       "chartSource": "Naver chart foreign dayCandle + Yahoo 20m intraday",
-      "updatedAt": "2026-06-29T13:51:41.853Z"
+      "updatedAt": "2026-06-30T01:33:03.515Z"
     },
     {
       "symbol": "COIN",
@@ -5158,9 +5519,9 @@
       "sector": "가상자산",
       "marketCap": "99B",
       "popularity": 88,
-      "price": 147.5,
-      "changeRate": -1.05,
-      "amount": "166.2M",
+      "price": 151.65,
+      "changeRate": 1.74,
+      "amount": "1.1B",
       "priceHistory": [
         [
           "20260401",
@@ -5404,23 +5765,42 @@
         ],
         [
           "20260629",
-          147.5
+          151.65
         ]
       ],
       "dayTrend": [
         149.37,
-        147.51
+        148.87,
+        146.79,
+        148.33,
+        147.84,
+        147.09,
+        148.6,
+        148.09,
+        148.6,
+        148.72,
+        148.56,
+        151.03,
+        150.02,
+        150.63,
+        150.78,
+        150.57,
+        151.1,
+        150.61,
+        151.07,
+        151.65,
+        151.65
       ],
       "latestCandle": {
         "date": "20260629",
-        "open": 151.62,
-        "high": 152.38,
-        "low": 147.14,
-        "close": 147.5,
-        "volume": 1127043
+        "open": 150.82,
+        "high": 152.44,
+        "low": 145.29,
+        "close": 151.65,
+        "volume": 7141106
       },
       "chartSource": "Naver chart foreign dayCandle + Yahoo 20m intraday",
-      "updatedAt": "2026-06-29T13:51:42.112Z"
+      "updatedAt": "2026-06-30T01:33:03.771Z"
     },
     {
       "symbol": "SMCI",
@@ -5429,9 +5809,9 @@
       "sector": "AI 서버",
       "marketCap": "43B",
       "popularity": 86,
-      "price": 30.42,
-      "changeRate": -0.69,
-      "amount": "180.6M",
+      "price": 28.15,
+      "changeRate": -8.1,
+      "amount": "2.6B",
       "priceHistory": [
         [
           "20260401",
@@ -5675,23 +6055,42 @@
         ],
         [
           "20260629",
-          30.42
+          28.15
         ]
       ],
       "dayTrend": [
         30.88,
-        30.57
+        30.08,
+        29.54,
+        29.97,
+        30.05,
+        30,
+        30.17,
+        30.23,
+        30.23,
+        30.05,
+        30.17,
+        30.5,
+        30.36,
+        29.39,
+        28.49,
+        28.6,
+        28.3,
+        28.51,
+        28.79,
+        28.14,
+        28.15
       ],
       "latestCandle": {
         "date": "20260629",
-        "open": 30.96,
+        "open": 31,
         "high": 31.22,
-        "low": 30.41,
-        "close": 30.42,
-        "volume": 5937248
+        "low": 27.75,
+        "close": 28.15,
+        "volume": 91157911
       },
       "chartSource": "Naver chart foreign dayCandle + Yahoo 20m intraday",
-      "updatedAt": "2026-06-29T13:51:42.361Z"
+      "updatedAt": "2026-06-30T01:33:04.050Z"
     },
     {
       "symbol": "MU",
@@ -5700,9 +6099,9 @@
       "sector": "메모리",
       "marketCap": "193B",
       "popularity": 76,
-      "price": 1090.91,
-      "changeRate": -3.66,
-      "amount": "6.3B",
+      "price": 1145.28,
+      "changeRate": 1.14,
+      "amount": "69.5B",
       "priceHistory": [
         [
           "20260401",
@@ -5946,23 +6345,42 @@
         ],
         [
           "20260629",
-          1090.91
+          1145.28
         ]
       ],
       "dayTrend": [
         1090.82,
-        1091.47
+        1061.77,
+        1037.92,
+        1052.1,
+        1062.89,
+        1067.48,
+        1086.5,
+        1093.31,
+        1112.66,
+        1114,
+        1121.79,
+        1122.22,
+        1114.64,
+        1113,
+        1128.37,
+        1129.5,
+        1129.52,
+        1136.67,
+        1138.31,
+        1145.31,
+        1145.28
       ],
       "latestCandle": {
         "date": "20260629",
-        "open": 1125.46,
-        "high": 1128.7,
-        "low": 1083,
-        "close": 1090.91,
-        "volume": 5729649
+        "open": 1128.7,
+        "high": 1148.79,
+        "low": 1023.65,
+        "close": 1145.28,
+        "volume": 60694113
       },
       "chartSource": "Naver chart foreign dayCandle + Yahoo 20m intraday",
-      "updatedAt": "2026-06-29T13:51:42.606Z"
+      "updatedAt": "2026-06-30T01:33:04.307Z"
     },
     {
       "symbol": "HOOD",
@@ -5971,9 +6389,9 @@
       "sector": "증권 플랫폼",
       "marketCap": "122B",
       "popularity": 84,
-      "price": 100.27,
-      "changeRate": 1.6,
-      "amount": "268.2M",
+      "price": 101.83,
+      "changeRate": 3.18,
+      "amount": "2.1B",
       "priceHistory": [
         [
           "20260401",
@@ -6217,23 +6635,42 @@
         ],
         [
           "20260629",
-          100.27
+          101.83
         ]
       ],
       "dayTrend": [
         99.57,
-        101.06
+        101.45,
+        99.25,
+        100.41,
+        100.36,
+        99.25,
+        100.04,
+        100.35,
+        101.46,
+        101.71,
+        101.69,
+        102.41,
+        101.98,
+        102.07,
+        101.82,
+        101.72,
+        102.19,
+        102.11,
+        102.55,
+        101.82,
+        101.83
       ],
       "latestCandle": {
         "date": "20260629",
-        "open": 100.68,
-        "high": 100.91,
-        "low": 98.98,
-        "close": 100.27,
-        "volume": 2674371
+        "open": 100.66,
+        "high": 102.85,
+        "low": 98.05,
+        "close": 101.83,
+        "volume": 20681628
       },
       "chartSource": "Naver chart foreign dayCandle + Yahoo 20m intraday",
-      "updatedAt": "2026-06-29T13:51:42.856Z"
+      "updatedAt": "2026-06-30T01:33:04.575Z"
     },
     {
       "symbol": "SHOP",
@@ -6242,9 +6679,9 @@
       "sector": "커머스 SaaS",
       "marketCap": "210B",
       "popularity": 72,
-      "price": 119.03,
-      "changeRate": 1.86,
-      "amount": "138.3M",
+      "price": 114.21,
+      "changeRate": -2.27,
+      "amount": "1.1B",
       "priceHistory": [
         [
           "20260401",
@@ -6488,23 +6925,42 @@
         ],
         [
           "20260629",
-          119.03
+          114.21
         ]
       ],
       "dayTrend": [
         119.61,
-        119.17
+        119.5,
+        118.75,
+        118.5,
+        118.32,
+        117.18,
+        116.95,
+        116.34,
+        114.74,
+        115.24,
+        115,
+        115.29,
+        115.93,
+        115.63,
+        115.02,
+        115.38,
+        115.15,
+        114.76,
+        114.25,
+        114.21,
+        114.21
       ],
       "latestCandle": {
         "date": "20260629",
         "open": 118.38,
         "high": 120.62,
-        "low": 117.49,
-        "close": 119.03,
-        "volume": 1161783
+        "low": 113.99,
+        "close": 114.21,
+        "volume": 9919038
       },
       "chartSource": "Naver chart foreign dayCandle + Yahoo 20m intraday",
-      "updatedAt": "2026-06-29T13:51:43.147Z"
+      "updatedAt": "2026-06-30T01:33:04.835Z"
     },
     {
       "symbol": "ABCL",
@@ -6513,9 +6969,9 @@
       "sector": "바이오테크",
       "marketCap": "1.2B",
       "popularity": 42,
-      "price": 8.03,
-      "changeRate": 8.81,
-      "amount": "28.1M",
+      "price": 8.12,
+      "changeRate": 10.03,
+      "amount": "131.9M",
       "priceHistory": [
         [
           "20260401",
@@ -6759,23 +7215,42 @@
         ],
         [
           "20260629",
-          8.03
+          8.12
         ]
       ],
       "dayTrend": [
         7.93,
-        8.21
+        8.27,
+        8.19,
+        8.23,
+        8.22,
+        7.94,
+        7.95,
+        7.9,
+        7.97,
+        7.89,
+        7.95,
+        8.06,
+        8.06,
+        8.18,
+        8.1,
+        8.09,
+        8.15,
+        8.15,
+        8.11,
+        8.11,
+        8.12
       ],
       "latestCandle": {
         "date": "20260629",
-        "open": 7.52,
-        "high": 8.22,
+        "open": 7.56,
+        "high": 8.42,
         "low": 7.39,
-        "close": 8.03,
-        "volume": 3499063
+        "close": 8.12,
+        "volume": 16241861
       },
       "chartSource": "Naver chart foreign dayCandle + Yahoo 20m intraday",
-      "updatedAt": "2026-06-29T13:51:43.426Z"
+      "updatedAt": "2026-06-30T01:33:05.089Z"
     }
   ]
 }
