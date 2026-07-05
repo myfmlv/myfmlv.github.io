@@ -7,7 +7,7 @@
     "tone": "down",
     "source": "Naver Finance",
     "sourceUrl": "https://finance.naver.com/marketindex/",
-    "updatedAt": "2026-07-05T01:18:38.939Z"
+    "updatedAt": "2026-07-05T11:16:39.365Z"
   },
   {
     "name": "원엔",
@@ -17,7 +17,7 @@
     "tone": "down",
     "source": "Naver Finance",
     "sourceUrl": "https://finance.naver.com/marketindex/",
-    "updatedAt": "2026-07-05T01:18:38.940Z"
+    "updatedAt": "2026-07-05T11:16:39.366Z"
   },
   {
     "name": "WTI",
@@ -27,7 +27,7 @@
     "tone": "up",
     "source": "Naver Finance",
     "sourceUrl": "https://finance.naver.com/marketindex/",
-    "updatedAt": "2026-07-05T01:18:38.940Z"
+    "updatedAt": "2026-07-05T11:16:39.366Z"
   },
   {
     "name": "국제 금",
@@ -37,6 +37,6 @@
     "tone": "up",
     "source": "Naver Finance",
     "sourceUrl": "https://finance.naver.com/marketindex/",
-    "updatedAt": "2026-07-05T01:18:38.940Z"
+    "updatedAt": "2026-07-05T11:16:39.366Z"
   }
 ]
