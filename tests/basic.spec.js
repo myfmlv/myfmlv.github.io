@@ -126,6 +126,31 @@ test('ETF 상세는 비중이 없는 구성종목도 CU 수량으로 표시한�
   await expect(page.locator('#etfDetail')).toContainText(/CU\s+[\d,.]+/)
 })
 
+test('ETFnow 대체 화면은 iNAV·괴리율·위험지표와 관심 ETF를 제공한다', async ({ page }) => {
+  await page.goto('/')
+  await page.locator('button[data-view="etf"]').click()
+
+  await expect(page.locator('#etfHeroTitle')).toContainText('iNAV')
+  await expect(page.locator('#etfHeroStatus')).toContainText(/개 ETF/)
+  await expect(page.locator('#etfThemeGrid')).toContainText('괴리율 주목 ETF')
+
+  await page.getByRole('tab', { name: 'ETF 찾기' }).click()
+  await page.locator('#etfSearch').fill('KODEX 미국S&P500')
+  await page.locator('#etfList button').first().click()
+
+  const detail = page.locator('#etfDetail')
+  await expect(detail).toContainText('공식 iNAV')
+  await expect(detail).toContainText('괴리율')
+  await expect(detail).toContainText('기간 수익률')
+  await expect(detail).toContainText('위험지표')
+
+  const selectedName = (await detail.locator('h2').textContent())?.trim()
+  await detail.locator('button[data-favorite-etf]').click()
+  await page.getByRole('tab', { name: '관심 ETF' }).click()
+  await expect(page.locator('#etfFavoritesSummary')).toContainText('1개')
+  await expect(page.locator('#etfList')).toContainText(selectedName)
+})
+
 test('모바일 폭에서도 핵심 콘텐츠와 카드형 리스트가 보인다', async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 })
   await page.goto('/')

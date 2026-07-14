@@ -1,0 +1,98 @@
+{
+  "recoveredAt": "2026-07-14T13:05:00.000Z",
+  "site": "https://etfnow.co.kr/",
+  "availability": {
+    "dns": "unresolved",
+    "formerRailwayTarget": "91ft5vvj.up.railway.app",
+    "formerRailwayResponse": {
+      "status": 404,
+      "message": "Application not found"
+    }
+  },
+  "recoverablePublicMetadata": {
+    "serviceStarted": "2026-04",
+    "latestSearchIndexRecency": "2026-07-14",
+    "publishedSources": [
+      "KRX",
+      "Naver Finance",
+      "Yahoo Finance",
+      "NASDAQ Trader",
+      "Upbit",
+      "asset-manager disclosures"
+    ],
+    "publishedCadence": {
+      "officialInav": "KRX regular session, approximately every 10 seconds",
+      "estimatedInav": "after KRX close, approximately every 5 minutes",
+      "riskMetrics": "daily around 06:00 KST"
+    },
+    "publishedMethodOutline": "Use the closing official iNAV as an anchor, then apply weighted constituent-price and FX changes while removing the portion already absorbed during the Korean session.",
+    "publishedRiskMetrics": [
+      "volatility",
+      "maximum drawdown",
+      "Sharpe ratio",
+      "Sortino ratio",
+      "Calmar ratio"
+    ],
+    "historicalDatasetStatements": [
+      {
+        "asOf": "2026-05-29",
+        "listedKoreanEtfCount": 1131,
+        "note": "Count stated in a publicly indexed ETFnow issuer guide"
+      },
+      {
+        "asOf": "2026-04",
+        "usEtfCount": 5117,
+        "note": "Count stated in the publicly indexed ETFnow service history"
+      }
+    ]
+  },
+  "indexedPages": [
+    "https://etfnow.co.kr/",
+    "https://etfnow.co.kr/about",
+    "https://etfnow.co.kr/guide",
+    "https://etfnow.co.kr/finder",
+    "https://etfnow.co.kr/indices",
+    "https://etfnow.co.kr/blog/how-etfnow-works",
+    "https://etfnow.co.kr/blog/inav",
+    "https://etfnow.co.kr/terms",
+    "https://etfnow.co.kr/privacy"
+  ],
+  "waybackApiCaptures": [
+    {
+      "capturedAt": "2026-04-28T11:32:39Z",
+      "original": "https://etfnow.co.kr/api/etf-highlights",
+      "file": "etfnow-api-etf-highlights-20260428.json",
+      "records": 15
+    },
+    {
+      "capturedAt": "2026-04-28T11:32:39Z",
+      "original": "https://etfnow.co.kr/api/hot",
+      "file": "etfnow-api-hot-20260428.json",
+      "snapshotAt": "2026-04-28T15:29:37.677486+09:00",
+      "inavUpdated": "04/28 20:30"
+    },
+    {
+      "capturedAt": "2026-04-28T11:32:39Z",
+      "original": "https://etfnow.co.kr/api/market/holidays?years=2026,2027",
+      "file": "etfnow-api-market-holidays-20260428.json"
+    },
+    {
+      "capturedAt": "2026-04-28T11:32:39Z",
+      "original": "https://etfnow.co.kr/api/market/status",
+      "file": "etfnow-api-market-status-20260428.json",
+      "sourceTimestamp": "2026-04-28T20:32:40.295855+09:00"
+    }
+  ],
+  "notRecovered": [
+    "ETFnow private database",
+    "five-minute historical estimated iNAV series beyond the single archived 2026-04-28 snapshot",
+    "user portfolios, favorites, or login-linked data",
+    "server-side calculation code"
+  ],
+  "replacementSnapshot": "etf-universe-20260714.json",
+  "replacementProvenance": [
+    "https://stock.naver.com/api/stockSecurity/etfs/v1/domestic",
+    "https://api.stock.naver.com/chart/domestic/item/{code}?periodType=dayCandle",
+    "https://navercomp.wisereport.co.kr/v2/ETF/index.aspx?cmp_cd={code}"
+  ]
+}

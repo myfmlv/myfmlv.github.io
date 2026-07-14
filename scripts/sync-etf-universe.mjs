@@ -371,7 +371,9 @@ function normalizeEtf(item, usListedCodes, chart, holdings) {
     themes: inferThemes(item, usListed),
     price: chartPrice || numberValue(item.currentPrice),
     changeRate: Number(item.changeRate) || 0,
-    amount: numberValue(item.tradingValue) * 1_000_000,
+    // Naver's ETF endpoint already returns tradingValue in KRW. Multiplying it
+    // by 1,000,000 inflated the displayed trading value by one million times.
+    amount: numberValue(item.tradingValue),
     marketCap,
     etfType: item.etfType ?? '',
     returnRate1m: Number(item.returnRate1m) || null,

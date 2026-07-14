@@ -72,9 +72,10 @@
           </nav>
 
           <nav class="sub-tabs control-group" id="etfSubTabs" role="tablist" aria-label="ETF 중분류" hidden>
-            <button class="active" type="button" role="tab" data-etf-section="theme" aria-selected="true" aria-controls="etfThemePane">테마</button>
-            <button type="button" role="tab" data-etf-section="search" aria-selected="false" aria-controls="etfSearchPane">검색</button>
-            <button type="button" role="tab" data-etf-section="us" aria-selected="false" aria-controls="etfUsPane">국내상장 미국 ETF</button>
+            <button class="active" type="button" role="tab" data-etf-section="theme" aria-selected="true" aria-controls="etfThemePane">HOT ETF</button>
+            <button type="button" role="tab" data-etf-section="search" aria-selected="false" aria-controls="etfSearchPane">ETF 찾기</button>
+            <button type="button" role="tab" data-etf-section="us" aria-selected="false" aria-controls="etfUsPane">미국 ETF</button>
+            <button type="button" role="tab" data-etf-section="favorites" aria-selected="false" aria-controls="etfFavoritesPane">관심 ETF</button>
           </nav>
 
           <label class="sr-only" for="marketSearch">종목명 또는 종목코드 검색</label>
@@ -226,6 +227,15 @@
       </section>
 
       <section class="view" id="etfView" role="tabpanel" aria-label="ETF" hidden>
+        <section class="etf-hero" aria-labelledby="etfHeroTitle">
+          <div>
+            <p class="eyebrow">MYFMLV ETF NOW</p>
+            <h2 id="etfHeroTitle">ETF를 찾고, iNAV와 구성종목까지 한 번에</h2>
+            <p>공식 iNAV·괴리율·기간 수익률·위험지표를 공개 데이터 기준으로 비교합니다.</p>
+          </div>
+          <div class="etf-hero-status" id="etfHeroStatus" aria-live="polite">ETF 데이터를 확인하는 중입니다.</div>
+        </section>
+
         <section class="etf-subview active" id="etfThemePane" data-etf-pane="theme" role="tabpanel" aria-label="ETF 테마">
           <div class="section-grid compact" id="etfThemeGrid"></div>
         </section>
@@ -244,6 +254,10 @@
 
         <section class="etf-subview" id="etfUsPane" data-etf-pane="us" role="tabpanel" aria-label="국내상장 미국 ETF" hidden>
           <div class="section-grid compact" id="etfUsGrid"></div>
+        </section>
+
+        <section class="etf-subview" id="etfFavoritesPane" data-etf-pane="favorites" role="tabpanel" aria-label="관심 ETF" hidden>
+          <div class="etf-favorites-summary" id="etfFavoritesSummary">관심 ETF를 등록하면 여기에 모아 볼 수 있습니다.</div>
         </section>
 
         <section class="etf-layout">

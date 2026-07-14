@@ -20,6 +20,7 @@ const US_STOCKS_URL = './data/us-stocks.json'
 const US_SYMBOLS_URL = './data/us-symbols.json'
 const ETF_UNIVERSE_URL = './data/etf-universe.json'
 const UPDATE_STATUS_URL = './data/update-status.json'
+const ETF_FAVORITES_KEY = 'myfmlv.etf.favorites.v1'
 
 const themeUp = [
   ['반도체 제품(전력반도체)', 10.4, [21, 24, 23, 29, 31, 38, 44]],
@@ -469,6 +470,7 @@ const fallbackEtfUniverse = [
 ]
 
 let etfUniverse = [...fallbackEtfUniverse]
+let etfGeneratedAt = null
 
 const dataSourceDefaults = {
   krx: { label: 'KRX 연기금', state: 'loading', detail: 'index.json 확인 중' },
@@ -518,6 +520,7 @@ const state = {
   etfTheme: etfThemes[0][0],
   selectedEtfCode: etfUniverse[0].code,
   selectedHolding: null,
+  favoriteEtfCodes: new Set(),
   meta: null,
   dataSources: Object.fromEntries(Object.entries(dataSourceDefaults).map(([key, value]) => [key, { ...value }])),
 }
@@ -997,6 +1000,10 @@ function normalizeLoadedEtf(item) {
     changeRate,
     amount: Number(item.amount) || 0,
     marketCap: Number(item.marketCap) || 0,
+    iNav: Number(item.iNav) || null,
+    returnRate1m: finiteNumber(item.returnRate1m),
+    returnRate3m: finiteNumber(item.returnRate3m),
+    returnRate6m: finiteNumber(item.returnRate6m),
     etfType: String(item.etfType ?? ''),
     trend: trend.length > 0 ? trend : [price].filter(Boolean),
     dayTrend,
@@ -1013,6 +1020,59 @@ function normalizeLoadedEtf(item) {
       : [],
     source: String(item.source ?? '로컬 ETF 데이터'),
   }
+}
+
+function loadFavoriteEtfCodes() {
+  try {
+    const saved = JSON.parse(localStorage.getItem(ETF_FAVORITES_KEY) ?? '[]')
+    state.favoriteEtfCodes = new Set(Array.isArray(saved) ? saved.map(String) : [])
+  } catch {
+    state.favoriteEtfCodes = new Set()
+  }
+}
+
+function saveFavoriteEtfCodes() {
+  try {
+    localStorage.setItem(ETF_FAVORITES_KEY, JSON.stringify([...state.favoriteEtfCodes]))
+  } catch {
+    // 읽기 전용·사생활 보호 모드에서는 현재 세션에서만 유지합니다.
+  }
+}
+
+function toggleFavoriteEtf(code) {
+  if (state.favoriteEtfCodes.has(code)) state.favoriteEtfCodes.delete(code)
+  else state.favoriteEtfCodes.add(code)
+  saveFavoriteEtfCodes()
+  renderEtfSections()
+}
+
+function etfPremiumRate(item) {
+  const price = finiteNumber(item?.price)
+  const iNav = finiteNumber(item?.iNav)
+  if (price === null || iNav === null || iNav <= 0) return null
+  return ((price - iNav) / iNav) * 100
+}
+
+function etfRiskMetrics(item) {
+  const prices = numericHistoryValues(item?.priceHistory).filter((value) => value > 0)
+  if (prices.length < 3) return { volatility: null, maxDrawdown: null, sharpe: null }
+  const returns = prices.slice(1).map((price, index) => (price / prices[index]) - 1)
+  const average = returns.reduce((sum, value) => sum + value, 0) / returns.length
+  const variance = returns.reduce((sum, value) => sum + ((value - average) ** 2), 0) / Math.max(returns.length - 1, 1)
+  const volatility = Math.sqrt(variance) * Math.sqrt(252) * 100
+  let peak = prices[0]
+  let maxDrawdown = 0
+  prices.forEach((price) => {
+    peak = Math.max(peak, price)
+    maxDrawdown = Math.min(maxDrawdown, ((price - peak) / peak) * 100)
+  })
+  const annualReturn = average * 252
+  const sharpe = volatility > 0 ? ((annualReturn - 0.035) / (volatility / 100)) : null
+  return { volatility, maxDrawdown, sharpe }
+}
+
+function formatMetric(value, suffix = '') {
+  return Number.isFinite(value) ? `${Number(value).toFixed(2)}${suffix}` : '-'
 }
 
 function etfTrend(item) {
@@ -2201,6 +2261,7 @@ function filteredEtfs() {
 
   return etfUniverse.filter((item) => {
     if (state.etfSection === 'us' && !isUsListedEtf(item)) return false
+    if (state.etfSection === 'favorites' && !state.favoriteEtfCodes.has(item.code)) return false
     if (state.etfSection === 'theme' && state.etfTheme && !item.themes?.includes(state.etfTheme)) return false
     if (!query) return true
     const holdings = Array.isArray(item.holdings) ? item.holdings : []
@@ -2244,6 +2305,7 @@ function holdingValueLabel(holding) {
 
 function renderEtfSections() {
   const themePanels = [
+    { title: '괴리율 주목 ETF', meta: '공식 iNAV 기준', items: etfPremiumPanelItems() },
     { title: '거래대금 많은 ETF', meta: '거래대금', items: etfPanelItems('amount') },
     { title: '가장 많이 오른 ETF', meta: '상승률', items: etfPanelItems('allUp') },
   ]
@@ -2254,13 +2316,38 @@ function renderEtfSections() {
 
   document.querySelector('#etfThemeGrid').innerHTML = themePanels.map(renderListPanel).join('')
   document.querySelector('#etfUsGrid').innerHTML = usPanels.map(renderListPanel).join('')
+  const favoriteCount = state.favoriteEtfCodes.size
+  document.querySelector('#etfFavoritesSummary').textContent = favoriteCount > 0
+    ? `관심 ETF ${favoriteCount.toLocaleString('ko-KR')}개를 저장했습니다. 이 정보는 현재 브라우저에만 보관됩니다.`
+    : 'ETF 상세 화면의 별 버튼을 누르면 관심 ETF를 여기에 모아 볼 수 있습니다.'
   renderEtfList()
   renderEtfDetail()
+}
+
+function etfPremiumPanelItems() {
+  return etfUniverse
+    .map((item) => ({ item, premium: etfPremiumRate(item) }))
+    // 거래정지·청산 절차처럼 기준가가 비정상적으로 고정된 상품은
+    // 일반적인 괴리율 랭킹에서 제외해 사용자가 오해하지 않게 합니다.
+    .filter(({ premium }) => premium !== null && Math.abs(premium) <= 25)
+    .sort((a, b) => Math.abs(b.premium) - Math.abs(a.premium))
+    .slice(0, 10)
+    .map(({ item, premium }, index) => ({
+      rank: index + 1,
+      name: item.name,
+      sub: `${item.code} · iNAV ${formatPrice(item.iNav)}`,
+      value: formatSignedPercent(premium),
+      tone: toneForValue(premium),
+      trend: etfTrend(item),
+      action: 'etf-select',
+      actionValue: item.code,
+    }))
 }
 
 function etfListTitle() {
   if (state.etfSection === 'search') return 'ETF 검색 결과'
   if (state.etfSection === 'us') return '국내상장 미국 ETF'
+  if (state.etfSection === 'favorites') return '관심 ETF'
   return state.etfTheme ? `${state.etfTheme} ETF` : '테마 ETF'
 }
 
@@ -2272,6 +2359,7 @@ function etfListMeta(items, visibleCount = items.length) {
   }
 
   if (state.etfSection === 'us') return `국내상장 미국 ETF · ${countText}`
+  if (state.etfSection === 'favorites') return `브라우저 저장 · ${countText}`
   return state.etfTheme
     ? `${state.etfTheme} · ${countText}`
     : countText
@@ -2339,6 +2427,10 @@ function renderEtfDetail() {
   const hasHoldings = holdings.length > 0
   const changeRate = etfChangeRate(item)
   const tone = toneForValue(changeRate)
+  const premiumRate = etfPremiumRate(item)
+  const premiumTone = toneForValue(premiumRate)
+  const risk = etfRiskMetrics(item)
+  const isFavorite = state.favoriteEtfCodes.has(item.code)
 
   document.querySelector('#etfDetail').innerHTML = `
     <div class="panel-head">
@@ -2346,15 +2438,25 @@ function renderEtfDetail() {
         <p>${escapeHtml(item.code)} · ${escapeHtml(item.issuer)}</p>
         <h2>${escapeHtml(item.name)}</h2>
       </div>
-      <span class="panel-meta">${escapeHtml(item.category)}</span>
+      <div class="etf-detail-actions">
+        <span class="panel-meta">${escapeHtml(item.category)}</span>
+        <button class="favorite-button" type="button" data-favorite-etf="${escapeHtml(item.code)}" aria-pressed="${isFavorite ? 'true' : 'false'}" aria-label="${escapeHtml(item.name)} 관심 ETF ${isFavorite ? '해제' : '등록'}">${isFavorite ? '★ 관심' : '☆ 관심'}</button>
+      </div>
     </div>
     <div class="etf-metrics">
       <div><span>가격</span><strong>${formatPrice(item.price)}</strong></div>
+      <div><span>공식 iNAV</span><strong>${item.iNav ? formatPrice(item.iNav) : '-'}</strong></div>
+      <div><span>괴리율</span><strong class="${premiumTone}">${premiumRate === null ? '-' : formatSignedPercent(premiumRate)}</strong></div>
       <div><span>등락률</span><strong class="${tone}">${formatSignedPercent(changeRate)}</strong></div>
       <div><span>시가총액</span><strong>${formatMarketCap(item.marketCap)}</strong></div>
       <div><span>거래대금</span><strong>${formatMoney(etfPeriodAmount(item))}</strong></div>
     </div>
+    <p class="etf-data-note">iNAV는 정규장 공식 기준값입니다. 장 마감 후 추정값이 아니며 실제 체결가와 다를 수 있습니다.</p>
     <div class="chart-card">${sparkline(etfTrend(item), tone)}</div>
+    <div class="etf-performance" aria-label="기간 수익률과 위험지표">
+      <section><h3>기간 수익률</h3><dl><div><dt>1개월</dt><dd>${formatMetric(item.returnRate1m, '%')}</dd></div><div><dt>3개월</dt><dd>${formatMetric(item.returnRate3m, '%')}</dd></div><div><dt>6개월</dt><dd>${formatMetric(item.returnRate6m, '%')}</dd></div></dl></section>
+      <section><h3>위험지표</h3><dl><div><dt>연환산 변동성</dt><dd>${formatMetric(risk.volatility, '%')}</dd></div><div><dt>최대낙폭</dt><dd>${formatMetric(risk.maxDrawdown, '%')}</dd></div><div><dt>Sharpe</dt><dd>${formatMetric(risk.sharpe)}</dd></div></dl></section>
+    </div>
     <div class="holding-grid">
       <section>
         <h3>구성종목</h3>
@@ -2645,7 +2747,7 @@ function setEtfSection(section) {
     state.etfTheme ||= etfThemes[0][0]
   } else {
     state.etfTheme = null
-    if (section === 'us') state.etfQuery = ''
+    if (section === 'us' || section === 'favorites') state.etfQuery = ''
   }
 
   document.querySelector('#etfSearch').value = state.etfQuery
@@ -2864,6 +2966,12 @@ function bindControls() {
   })
 
   document.querySelector('#etfDetail').addEventListener('click', (event) => {
+    const favoriteButton = event.target.closest('button[data-favorite-etf]')
+    if (favoriteButton) {
+      toggleFavoriteEtf(favoriteButton.dataset.favoriteEtf)
+      return
+    }
+
     const holdingButton = event.target.closest('button[data-holding-key]')
     if (holdingButton) {
       state.selectedHolding = holdingButton.dataset.holdingKey
@@ -3077,6 +3185,7 @@ async function loadEtfUniverse() {
     etfUniverse = payload.etfs
       .map(normalizeLoadedEtf)
       .filter((item) => item.code && item.name)
+    etfGeneratedAt = payload.generatedAt ?? null
 
     if (!etfUniverse.some((item) => item.code === state.selectedEtfCode)) {
       state.selectedEtfCode = etfUniverse[0]?.code ?? null
@@ -3085,6 +3194,10 @@ async function loadEtfUniverse() {
       state: 'live',
       detail: `${etfUniverse.length.toLocaleString('ko-KR')}개 ETF · 구성종목 ${Number(payload.holdingCount ?? 0).toLocaleString('ko-KR')}개 · 생성 ${formatDateTime(payload.generatedAt) ?? '-'}`,
     })
+    const heroStatus = document.querySelector('#etfHeroStatus')
+    if (heroStatus) {
+      heroStatus.textContent = `${etfUniverse.length.toLocaleString('ko-KR')}개 ETF · ${formatDateTime(etfGeneratedAt) ?? '갱신시각 미확인'} 기준`
+    }
   } catch (error) {
     etfUniverse = fallbackEtfUniverse.map(normalizeLoadedEtf)
     recordDataFallback('etf-universe', error)
@@ -3092,6 +3205,8 @@ async function loadEtfUniverse() {
       state: 'sample',
       detail: `ETF 로딩 실패: ${error.message}. 내장 샘플 ${etfUniverse.length.toLocaleString('ko-KR')}개 사용`,
     })
+    const heroStatus = document.querySelector('#etfHeroStatus')
+    if (heroStatus) heroStatus.textContent = `백업 ETF ${etfUniverse.length.toLocaleString('ko-KR')}개 사용 중`
   }
 }
 
@@ -3128,6 +3243,7 @@ async function main() {
   appDataStatus = currentDataStatus
   try {
     initAdminDataStatusToggle()
+    loadFavoriteEtfCodes()
     bindControls()
     renderDataStatus()
     renderTableState(document.querySelector('#stockTableBody'), '데이터를 불러오는 중입니다.')

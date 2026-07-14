@@ -358,6 +358,104 @@ function validateUpdateStatus() {
   ok('Update status validated')
 }
 
+function validateEtfUniverse() {
+  const relativePath = 'data/etf-universe.json'
+  const data = readJson(relativePath)
+  if (!data) return
+
+  validateCommonFields(relativePath, data)
+
+  if (!isPlainRecord(data) || !Array.isArray(data.etfs) || data.etfs.length === 0) {
+    fail(`${relativePath} must have a non-empty "etfs" array`)
+    return
+  }
+
+  const seenCodes = new Set()
+  let chartCount = 0
+  let holdingCount = 0
+
+  data.etfs.forEach((item, index) => {
+    if (!isPlainRecord(item)) {
+      fail(`${relativePath}.etfs[${index}] must be an object`)
+      return
+    }
+
+    if (!item.code || typeof item.code !== 'string') {
+      fail(`${relativePath}.etfs[${index}].code must be a non-empty string`)
+    } else if (seenCodes.has(item.code)) {
+      fail(`${relativePath} contains duplicate ETF code ${item.code}`)
+    } else {
+      seenCodes.add(item.code)
+    }
+
+    if (!item.name || typeof item.name !== 'string') {
+      fail(`${relativePath}.etfs[${index}].name must be a non-empty string`)
+    }
+
+    const amount = Number(item.amount)
+    if (!Number.isFinite(amount) || amount < 0) {
+      fail(`${relativePath}.etfs[${index}].amount must be a non-negative number`)
+    }
+
+    const latestAmount = Number(item.latestCandle?.amount)
+    if (amount > 0 && Number.isFinite(latestAmount) && latestAmount > 0) {
+      const ratio = amount / latestAmount
+      if (ratio > 1_000 || ratio < 0.001) {
+        fail(`${relativePath}.etfs[${index}].amount has an implausible unit ratio to latestCandle.amount (${ratio.toFixed(2)})`)
+      }
+    }
+
+    if (Array.isArray(item.priceHistory) && item.priceHistory.length > 0) chartCount += 1
+    if (Array.isArray(item.holdings) && item.holdings.length > 0) holdingCount += 1
+  })
+
+  if (Number(data.totalCount) !== data.etfs.length) {
+    fail(`${relativePath}.totalCount must match etfs.length`)
+  }
+
+  if (Number(data.chartCount) !== chartCount) {
+    fail(`${relativePath}.chartCount must match ETF records with price history`)
+  }
+
+  if (Number(data.holdingCount) !== holdingCount) {
+    fail(`${relativePath}.holdingCount must match ETF records with holdings`)
+  }
+
+  ok(`ETF universe validated (${data.etfs.length.toLocaleString('en-US')} entries)`)
+}
+
+function validateRecoveryArchive() {
+  const relativePath = 'data/archive/etfnow-public-cache-20260714.json'
+  const manifest = readJson(relativePath, { optional: true })
+  if (!manifest) return
+
+  if (!Array.isArray(manifest.waybackApiCaptures) || manifest.waybackApiCaptures.length === 0) {
+    fail(`${relativePath}.waybackApiCaptures must be a non-empty array`)
+    return
+  }
+
+  manifest.waybackApiCaptures.forEach((capture, index) => {
+    if (!capture?.file || typeof capture.file !== 'string') {
+      fail(`${relativePath}.waybackApiCaptures[${index}].file must be a string`)
+      return
+    }
+
+    readJson(path.posix.join('data/archive', capture.file))
+  })
+
+  if (!manifest.replacementSnapshot || typeof manifest.replacementSnapshot !== 'string') {
+    fail(`${relativePath}.replacementSnapshot must be a string`)
+  } else {
+    const snapshotPath = path.posix.join('data/archive', manifest.replacementSnapshot)
+    const snapshot = readJson(snapshotPath)
+    if (snapshot && (!Array.isArray(snapshot.etfs) || snapshot.etfs.length === 0)) {
+      fail(`${snapshotPath} must contain a non-empty etfs array`)
+    }
+  }
+
+  ok(`ETF recovery archive validated (${manifest.waybackApiCaptures.length} Wayback API captures)`)
+}
+
 for (const relativePath of requiredJsonFiles) {
   const data = readJson(relativePath, { optionalEmpty: false })
   if (data) validateCommonFields(relativePath, data)
@@ -368,6 +466,8 @@ validateMarketIndex()
 validateNaverMarket()
 validateStockMeta()
 validateUpdateStatus()
+validateEtfUniverse()
+validateRecoveryArchive()
 
 if (process.exitCode) {
   process.exit(process.exitCode)
