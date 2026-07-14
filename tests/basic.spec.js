@@ -198,12 +198,39 @@ test('모바일에서도 하단 탐색과 검색 카드가 사용 가능하다',
 
   const mobileNav = page.locator('.mobile-nav')
   await expect(mobileNav).toBeVisible()
+  const navLabelFontSize = await mobileNav.locator('small').first().evaluate((element) => Number.parseFloat(getComputedStyle(element).fontSize))
+  expect(navLabelFontSize).toBeGreaterThanOrEqual(11)
+
+  const heroTitleStyle = await page.locator('#homeTitle').evaluate((element) => {
+    const style = getComputedStyle(element)
+    return { fontSize: Number.parseFloat(style.fontSize), wordBreak: style.wordBreak }
+  })
+  expect(heroTitleStyle.fontSize).toBeGreaterThanOrEqual(34)
+  expect(heroTitleStyle.wordBreak).toBe('keep-all')
+
   await mobileNav.getByRole('button', { name: '찾기' }).click()
   await page.locator('#finderSearch').fill('삼성전자')
   await expect(page.locator('#finderResults .etf-card').first()).toBeVisible()
 
   const fontSize = await page.locator('#finderSearch').evaluate((element) => Number.parseFloat(getComputedStyle(element).fontSize))
   expect(fontSize).toBeGreaterThanOrEqual(16)
+
+  await mobileNav.getByRole('button', { name: '포트폴리오' }).click()
+  const portfolioTitleMetrics = await page.locator('#portfolioTitle').evaluate((element) => {
+    const style = getComputedStyle(element)
+    const rect = element.getBoundingClientRect()
+    return { height: rect.height, lineHeight: Number.parseFloat(style.lineHeight), whiteSpace: style.whiteSpace }
+  })
+  expect(portfolioTitleMetrics.height).toBeLessThanOrEqual(portfolioTitleMetrics.lineHeight * 1.2)
+  expect(portfolioTitleMetrics.whiteSpace).toBe('nowrap')
+
+  for (const button of await page.locator('.portfolio-header-actions button').all()) {
+    const whiteSpace = await button.evaluate((element) => getComputedStyle(element).whiteSpace)
+    expect(whiteSpace).toBe('nowrap')
+  }
+
+  const documentWidth = await page.evaluate(() => ({ client: document.documentElement.clientWidth, scroll: document.documentElement.scrollWidth }))
+  expect(documentWidth.scroll).toBeLessThanOrEqual(documentWidth.client)
 })
 
 test('라이트·다크 테마를 기기 설정으로 저장한다', async ({ page }) => {

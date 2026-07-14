@@ -1,4 +1,4 @@
-const CACHE_VERSION = '20260714-1'
+const CACHE_VERSION = '20260715-1'
 const SHELL_CACHE = `myfmlv-etf-shell-${CACHE_VERSION}`
 const DATA_CACHE = `myfmlv-etf-data-${CACHE_VERSION}`
 const APP_SHELL = [

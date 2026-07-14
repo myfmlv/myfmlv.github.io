@@ -1045,7 +1045,10 @@ function openPortfolioForm(code = null) {
   document.querySelector('#portfolioAveragePrice').value = existing?.averagePrice ?? item?.price ?? ''
   document.querySelector('#portfolioSearchResults').hidden = true
   renderPortfolioSelection()
-  if (!dialog.open) dialog.showModal()
+  if (!dialog.open) {
+    dialog.dataset.returnScrollY = String(window.scrollY)
+    dialog.showModal()
+  }
   requestAnimationFrame(() => (item ? document.querySelector('#portfolioQuantity') : document.querySelector('#portfolioSearch')).focus())
 }
 
@@ -1330,6 +1333,14 @@ function bindEvents() {
   document.querySelectorAll('dialog').forEach((dialog) => {
     dialog.addEventListener('click', (event) => {
       if (event.target === dialog) dialog.close()
+    })
+    dialog.addEventListener('close', () => {
+      if (dialog.dataset.returnScrollY === undefined) return
+      const returnScrollY = Number(dialog.dataset.returnScrollY)
+      delete dialog.dataset.returnScrollY
+      if (Number.isFinite(returnScrollY)) {
+        requestAnimationFrame(() => window.scrollTo({ top: returnScrollY, behavior: 'auto' }))
+      }
     })
   })
 
