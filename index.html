@@ -1,286 +1,264 @@
 <!doctype html>
-<html lang="ko">
+<html lang="ko" data-theme="dark">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <meta
       name="description"
-      content="국내 주식 연기금 수급, ETF, 테마, 시장지표를 한눈에 확인하는 투자 대시보드"
+      content="한국 상장 ETF를 이름과 구성종목으로 찾고, iNAV·괴리율·구성종목·포트폴리오를 한곳에서 확인하세요."
     />
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self'; base-uri 'self'; form-action 'self'; object-src 'none';" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self'; worker-src 'self'; manifest-src 'self'; base-uri 'self'; form-action 'self'; object-src 'none';" />
     <link rel="canonical" href="https://myfmlv.github.io/" />
     <meta name="robots" content="index, follow" />
-    <meta name="theme-color" content="#0f172a" />
+    <meta name="theme-color" content="#07111f" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="MYFMLV ETF" />
+    <meta name="format-detection" content="telephone=no" />
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="MYFMLV Market" />
+    <meta property="og:title" content="MYFMLV ETF" />
     <meta
       property="og:description"
-      content="국내 주식 연기금 수급, ETF, 테마, 시장지표를 한눈에 확인하는 투자 대시보드"
+      content="ETF를 찾는 가장 빠른 방법. 종목 역검색부터 구성종목, 포트폴리오까지."
     />
     <meta property="og:url" content="https://myfmlv.github.io/" />
-    <meta property="og:site_name" content="MYFMLV Market" />
+    <meta property="og:site_name" content="MYFMLV ETF" />
     <meta property="og:locale" content="ko_KR" />
-    <meta property="og:image" content="https://myfmlv.github.io/og-image.png" />
+    <meta property="og:image" content="https://myfmlv.github.io/og-image-etf.png" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="MYFMLV Market" />
-    <meta
-      name="twitter:description"
-      content="국내 주식 연기금 수급, ETF, 테마, 시장지표를 한눈에 확인하는 투자 대시보드"
-    />
-    <meta name="twitter:image" content="https://myfmlv.github.io/og-image.png" />
-    <title>MYFMLV Market</title>
-    <link rel="stylesheet" href="./styles.css?v=mobile-zoom-20260429" />
+    <meta name="twitter:title" content="MYFMLV ETF" />
+    <meta name="twitter:description" content="종목으로 ETF를 찾고, 구성종목과 내 포트폴리오를 한눈에." />
+    <meta name="twitter:image" content="https://myfmlv.github.io/og-image-etf.png" />
+    <title>MYFMLV ETF — ETF 찾기·구성종목·포트폴리오</title>
+    <link rel="manifest" href="./manifest.webmanifest" />
+    <link rel="icon" type="image/png" sizes="32x32" href="./icons/favicon-32.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="./icons/apple-touch-icon.png" />
+    <link rel="stylesheet" href="./etf-app.css?v=20260714" />
   </head>
   <body>
     <noscript>
       <section class="noscript-warning">
-        이 사이트는 JavaScript가 필요합니다. 국내 주식 연기금 수급, ETF, 테마 데이터를 보려면 브라우저에서 JavaScript를 활성화하세요.
+        이 사이트는 JavaScript가 필요합니다. ETF 검색과 포트폴리오를 사용하려면 브라우저에서 JavaScript를 활성화하세요.
       </section>
     </noscript>
-    <main class="shell">
-      <header class="topbar">
-        <a class="brand" href="./">MYFMLV</a>
-        <nav class="view-tabs" id="viewTabs" role="tablist" aria-label="시장 분류">
-          <button class="active" type="button" role="tab" data-view="stock" aria-selected="true" aria-controls="stockView">주식</button>
-          <button type="button" role="tab" data-view="etf" aria-selected="false" aria-controls="etfView">ETF</button>
+
+    <div class="app-shell">
+      <header class="app-header">
+        <a class="brand" href="#home" aria-label="MYFMLV ETF 홈">
+          <span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span>
+          <span><strong>MYFMLV</strong><small>ETF INTELLIGENCE</small></span>
+        </a>
+
+        <nav class="desktop-nav" aria-label="주요 메뉴">
+          <button class="active" type="button" data-route="home">발견</button>
+          <button type="button" data-route="finder">ETF 찾기</button>
+          <button type="button" data-route="portfolio">포트폴리오</button>
+          <button type="button" data-route="favorites">관심</button>
         </nav>
-      </header>
-      <h1 class="visually-hidden">MYFMLV Market 투자 체크 대시보드</h1>
 
-      <section class="control-panel" id="controlPanel" aria-label="화면 컨트롤">
-        <div class="control-row">
-          <nav class="sub-tabs control-group" id="stockCountryTabs" role="tablist" aria-label="주식 국가">
-            <button class="active" type="button" role="tab" data-stock-country="kr" aria-selected="true" aria-controls="stockCountryKrPanel">국내</button>
-            <button type="button" role="tab" data-stock-country="us" aria-selected="false" aria-controls="stockCountryUsPanel">미국</button>
-          </nav>
-
-          <nav class="sub-tabs control-group" id="krStockSubTabs" role="tablist" aria-label="국내 주식 중분류">
-            <button class="active" type="button" role="tab" data-kr-stock-section="market" aria-selected="true" aria-controls="marketStockPane">시장</button>
-            <button type="button" role="tab" data-kr-stock-section="theme" aria-selected="false" aria-controls="themeStockPane">테마</button>
-            <button type="button" role="tab" data-kr-stock-section="pension" aria-selected="false" aria-controls="pensionStockPane">연기금 수급</button>
-          </nav>
-
-          <nav class="sub-tabs control-group" id="usStockSubTabs" role="tablist" aria-label="미국 주식 중분류" hidden>
-            <button class="active" type="button" role="tab" data-us-stock-section="market" aria-selected="true" aria-controls="usMarketPane">시장</button>
-            <button type="button" role="tab" data-us-stock-section="theme" aria-selected="false" aria-controls="usThemePane">테마</button>
-            <button type="button" role="tab" data-us-stock-section="pension" aria-selected="false" aria-controls="usFlowPane">연기금 수급</button>
-          </nav>
-
-          <nav class="sub-tabs control-group compact-subtabs" id="pensionSubTabs" role="tablist" aria-label="연기금 수급 중분류" hidden>
-            <button class="active" type="button" role="tab" data-pension-section="trend" aria-selected="true" aria-controls="pensionTrendPane">매매 동향</button>
-            <button type="button" role="tab" data-pension-section="search" aria-selected="false" aria-controls="pensionSearchPane">검색</button>
-          </nav>
-
-          <nav class="sub-tabs control-group" id="etfSubTabs" role="tablist" aria-label="ETF 중분류" hidden>
-            <button class="active" type="button" role="tab" data-etf-section="theme" aria-selected="true" aria-controls="etfThemePane">HOT ETF</button>
-            <button type="button" role="tab" data-etf-section="search" aria-selected="false" aria-controls="etfSearchPane">ETF 찾기</button>
-            <button type="button" role="tab" data-etf-section="us" aria-selected="false" aria-controls="etfUsPane">미국 ETF</button>
-            <button type="button" role="tab" data-etf-section="favorites" aria-selected="false" aria-controls="etfFavoritesPane">관심 ETF</button>
-          </nav>
-
-          <label class="sr-only" for="marketSearch">종목명 또는 종목코드 검색</label>
-          <label class="search-box control-search" id="marketSearchControl">
-            <span>종목 검색</span>
-            <input id="marketSearch" type="search" placeholder="종목명 또는 코드" autocomplete="off" />
-          </label>
-
-          <nav class="period-tabs control-group" id="chartPeriodTabs" aria-label="차트 기간">
-            <button type="button" data-chart-period="1" aria-pressed="false">1일</button>
-            <button class="active" type="button" data-chart-period="5" aria-pressed="true">5일</button>
-            <button type="button" data-chart-period="20" aria-pressed="false">20일</button>
-            <button type="button" data-chart-period="60" aria-pressed="false">60일</button>
-          </nav>
+        <div class="header-actions">
+          <button class="header-search" id="headerSearchButton" type="button" aria-label="ETF 검색 열기">
+            <span aria-hidden="true">⌕</span><span>ETF 검색</span><kbd>/</kbd>
+          </button>
+          <button class="icon-button" id="themeToggle" type="button" aria-label="화면 테마 변경" aria-pressed="true">◐</button>
         </div>
-        <div class="search-results market-search-results" id="marketSearchResults" hidden></div>
-      </section>
-      <div id="resultStatus" class="sr-only" aria-live="polite"></div>
+      </header>
 
-      <button
-        id="adminDataStatusToggle"
-        class="admin-data-status-toggle"
-        type="button"
-        hidden
-        aria-expanded="false"
-        aria-controls="adminDataStatusPanel"
-      >
-        DATA
-      </button>
+      <main id="mainContent">
+        <section class="route-view active" id="homeView" data-view="home" aria-labelledby="homeTitle">
+          <div class="hero-section">
+            <div class="hero-orbit hero-orbit-one" aria-hidden="true"></div>
+            <div class="hero-orbit hero-orbit-two" aria-hidden="true"></div>
+            <div class="hero-copy">
+              <p class="eyebrow"><span class="live-dot"></span> KRX ETF DATA · DAILY UPDATE</p>
+              <h1 id="homeTitle">이름 말고,<br /><em>무엇을 담았는지</em>로 찾으세요.</h1>
+              <p class="hero-description">한국 상장 ETF <strong id="heroEtfCount">1,100+</strong>개를 이름·테마·구성종목으로 탐색하고, 내 포트폴리오의 실제 노출까지 확인합니다.</p>
 
-      <section
-        id="adminDataStatusPanel"
-        class="data-status-panel data-status"
-        data-status="loading"
-        data-state="loading"
-        hidden
-        aria-live="polite"
-        aria-label="데이터 상태"
-      >
-        <div class="data-status-main" id="dataStatusMain">데이터 상태 초기화 중</div>
-        <div class="data-status-meta" id="dataStatusMeta">-</div>
-        <details class="data-status-details">
-          <summary>상세 로그</summary>
-          <dl class="data-source-list" id="dataSourceList"></dl>
-          <pre id="dataStatusDebug">{}</pre>
-        </details>
-      </section>
-
-      <section class="view active" id="stockView" role="tabpanel" aria-label="주식">
-        <section class="stock-country active" id="stockCountryKrPanel" data-stock-country-pane="kr" role="tabpanel" aria-label="국내 주식">
-          <section class="stock-subview active" id="marketStockPane" data-kr-stock-pane="market" role="tabpanel" aria-label="국내 시장">
-            <div class="section-grid compact" id="marketInsightGrid">
-              <article class="list-panel static-panel">
-                <div class="panel-head">
-                  <div><p>KRX/Naver</p><h2>시장 데이터 로딩 대기</h2></div>
-                  <span class="panel-meta">정적 초기 화면</span>
-                </div>
-                <p class="empty-state">JavaScript 실행 후 최신 시장 요약, 거래대금, 검색 상위 데이터로 교체됩니다.</p>
-              </article>
-              <article class="list-panel static-panel">
-                <div class="panel-head">
-                  <div><p>KRX 연기금</p><h2>수급 데이터 로딩 대기</h2></div>
-                  <span class="panel-meta">정적 초기 화면</span>
-                </div>
-                <p class="empty-state">데이터 로딩 실패 시 해당 영역에 오류 또는 제한 상태가 표시됩니다.</p>
-              </article>
-            </div>
-            <div class="section-grid compact" id="marketRankingGrid"></div>
-          </section>
-
-          <section class="stock-subview" id="themeStockPane" data-kr-stock-pane="theme" role="tabpanel" aria-label="주식 테마" hidden>
-            <div class="section-grid" id="themeSectionGrid"></div>
-            <article class="wide-panel theme-detail" id="themeDetail"></article>
-          </section>
-
-          <section class="stock-subview" id="pensionStockPane" data-kr-stock-pane="pension" role="tabpanel" aria-label="연기금 수급" hidden>
-            <section class="pension-subview active" id="pensionTrendPane" data-pension-pane="trend" role="tabpanel" aria-label="연기금 매매 동향">
-              <div class="section-grid compact" id="pensionSectionGrid"></div>
-            </section>
-
-            <section class="pension-subview" id="pensionSearchPane" data-pension-pane="search" role="tabpanel" aria-label="연기금 종목 검색" hidden>
-              <section class="stock-toolbar" aria-label="연기금 종목 검색과 정렬">
-                <div class="toolbar-head">
-                  <label class="sr-only" for="stockSearch">종목명 또는 종목코드 검색</label>
-                  <label class="search-box">
-                    <span>종목 검색</span>
-                    <input id="stockSearch" type="search" placeholder="종목명 또는 코드" autocomplete="off" />
-                  </label>
-                  <div class="sort-row" id="sortRow">
-                    <button class="active" type="button" data-sort="netBuy">순매수금액</button>
-                    <button type="button" data-sort="netSell">순매도금액</button>
-                    <button type="button" data-sort="buyStreak">연속 순매수</button>
-                    <button type="button" data-sort="sellStreak">연속 순매도</button>
-                    <button type="button" data-sort="buyToMarketCap">시총대비 매수금액</button>
-                    <button type="button" data-sort="marketCapAsc">시가총액 작은순</button>
-                  </div>
-                </div>
-                <div class="search-results" id="searchResults" hidden></div>
-              </section>
-
-              <article class="wide-panel">
-                <div class="panel-head">
-                  <div>
-                    <p>연기금 수급</p>
-                    <h2>연기금 수급 랭킹</h2>
-                  </div>
-                  <span class="panel-meta" id="rankingMeta" aria-live="polite">20개 표시</span>
-                </div>
-                <div class="table-wrap stock-table-wrap">
-                  <table aria-describedby="rankingMeta">
-                    <caption class="visually-hidden">KRX 연기금 수급 종목 랭킹</caption>
-                    <thead>
-                      <tr>
-                        <th scope="col">순위</th>
-                        <th scope="col">종목</th>
-                        <th scope="col">수급금액</th>
-                        <th scope="col">수급수량</th>
-                        <th scope="col">매수금액</th>
-                        <th scope="col">시가총액</th>
-                        <th scope="col">매수/시총</th>
-                        <th scope="col">연속일</th>
-                        <th scope="col">미니 차트</th>
-                      </tr>
-                    </thead>
-                    <tbody id="stockTableBody">
-                      <tr class="table-state table-state--muted"><td colspan="9">데이터를 불러오는 중입니다.</td></tr>
-                    </tbody>
-                  </table>
-                </div>
-                <div class="mobile-stock-list" id="mobileStockList" aria-label="모바일 종목 목록"></div>
-                <button class="load-more" id="loadMoreButton" type="button" hidden>아래로 20개 더 보기 ↓</button>
-              </article>
-            </section>
-          </section>
-        </section>
-
-        <section class="stock-country" id="stockCountryUsPanel" data-stock-country-pane="us" role="tabpanel" aria-label="미국 주식" hidden>
-          <section class="stock-subview active" id="usMarketPane" data-us-stock-pane="market" role="tabpanel" aria-label="미국 시장">
-            <div class="section-grid compact" id="usMarketGrid"></div>
-          </section>
-          <section class="stock-subview" id="usThemePane" data-us-stock-pane="theme" role="tabpanel" aria-label="미국 테마" hidden>
-            <div class="section-grid" id="usThemeGrid"></div>
-            <article class="wide-panel theme-detail" id="usThemeDetail"></article>
-          </section>
-          <section class="stock-subview" id="usFlowPane" data-us-stock-pane="pension" role="tabpanel" aria-label="미국 연기금 수급" hidden>
-            <div class="section-grid compact" id="usFlowGrid"></div>
-          </section>
-        </section>
-      </section>
-
-      <section class="view" id="etfView" role="tabpanel" aria-label="ETF" hidden>
-        <section class="etf-hero" aria-labelledby="etfHeroTitle">
-          <div>
-            <p class="eyebrow">MYFMLV ETF NOW</p>
-            <h2 id="etfHeroTitle">ETF를 찾고, iNAV와 구성종목까지 한 번에</h2>
-            <p>공식 iNAV·괴리율·기간 수익률·위험지표를 공개 데이터 기준으로 비교합니다.</p>
-          </div>
-          <div class="etf-hero-status" id="etfHeroStatus" aria-live="polite">ETF 데이터를 확인하는 중입니다.</div>
-        </section>
-
-        <section class="etf-subview active" id="etfThemePane" data-etf-pane="theme" role="tabpanel" aria-label="ETF 테마">
-          <div class="section-grid compact" id="etfThemeGrid"></div>
-        </section>
-
-        <section class="etf-subview" id="etfSearchPane" data-etf-pane="search" role="tabpanel" aria-label="ETF 검색" hidden>
-          <section class="stock-toolbar etf-toolbar" aria-label="ETF 검색">
-            <div class="toolbar-head">
-              <label class="sr-only" for="etfSearch">ETF명, 코드, 구성종목 검색</label>
-              <label class="search-box">
-                <span>ETF 검색</span>
-                <input id="etfSearch" type="search" placeholder="ETF명, 코드, 구성종목" autocomplete="off" />
-              </label>
-            </div>
-          </section>
-        </section>
-
-        <section class="etf-subview" id="etfUsPane" data-etf-pane="us" role="tabpanel" aria-label="국내상장 미국 ETF" hidden>
-          <div class="section-grid compact" id="etfUsGrid"></div>
-        </section>
-
-        <section class="etf-subview" id="etfFavoritesPane" data-etf-pane="favorites" role="tabpanel" aria-label="관심 ETF" hidden>
-          <div class="etf-favorites-summary" id="etfFavoritesSummary">관심 ETF를 등록하면 여기에 모아 볼 수 있습니다.</div>
-        </section>
-
-        <section class="etf-layout">
-          <article class="wide-panel">
-            <div class="panel-head">
-              <div>
-                <p>ETF 목록</p>
-                <h2 id="etfListTitle">ETF 목록</h2>
+              <form class="hero-search" id="heroSearchForm" role="search">
+                <label class="visually-hidden" for="heroSearch">ETF 또는 구성종목 검색</label>
+                <span class="search-icon" aria-hidden="true">⌕</span>
+                <input id="heroSearch" type="search" placeholder="예: 삼성전자, 엔비디아, S&P500, 월배당" autocomplete="off" />
+                <button type="submit">찾기 <span aria-hidden="true">→</span></button>
+              </form>
+              <div class="quick-searches" aria-label="추천 검색어">
+                <span>빠른 검색</span>
+                <button type="button" data-quick-query="삼성전자" data-search-mode="holding">삼성전자 포함 ETF</button>
+                <button type="button" data-quick-query="엔비디아" data-search-mode="holding">엔비디아 포함 ETF</button>
+                <button type="button" data-quick-query="미국S&P500">미국 S&amp;P500</button>
+                <button type="button" data-quick-query="월배당">월배당</button>
               </div>
-              <span class="panel-meta" id="etfListMeta">-</span>
             </div>
-            <ol class="etf-list" id="etfList"></ol>
-            <button class="load-more" id="etfLoadMoreButton" type="button" hidden>아래로 20개 더 보기 ↓</button>
-          </article>
-          <article class="wide-panel etf-detail" id="etfDetail"></article>
-        </section>
-      </section>
 
-      <footer class="footer">
-        <strong>MYFMLV</strong>
-        <span>개인 데이터 정리용입니다. 투자 판단 책임은 사용자에게 있습니다.</span>
+            <aside class="hero-snapshot" aria-label="ETF 데이터 요약">
+              <div class="snapshot-head">
+                <span>MARKET SNAPSHOT</span>
+                <small id="heroUpdatedAt">데이터 확인 중</small>
+              </div>
+              <div class="snapshot-main" id="heroSnapshotMain">
+                <div class="skeleton skeleton-title"></div>
+                <div class="skeleton skeleton-value"></div>
+                <div class="skeleton skeleton-line"></div>
+              </div>
+              <div class="snapshot-stats" id="heroSnapshotStats">
+                <div><span>상승</span><strong>—</strong></div>
+                <div><span>하락</span><strong>—</strong></div>
+                <div><span>보합</span><strong>—</strong></div>
+              </div>
+            </aside>
+          </div>
+
+          <section class="home-shortcuts" aria-label="자주 쓰는 기능">
+            <button class="shortcut-card" type="button" data-route="portfolio">
+              <span class="shortcut-icon portfolio-icon" aria-hidden="true">◫</span>
+              <span><small>MY PORTFOLIO</small><strong id="homePortfolioTitle">내 ETF 한눈에 보기</strong><em id="homePortfolioMeta">보유 ETF를 등록해 평가금액과 노출을 확인하세요</em></span>
+              <b aria-hidden="true">→</b>
+            </button>
+            <button class="shortcut-card" type="button" data-route="finder" data-preset-mode="holding">
+              <span class="shortcut-icon finder-icon" aria-hidden="true">⌁</span>
+              <span><small>REVERSE FINDER</small><strong>종목으로 ETF 찾기</strong><em>개별 종목을 담고 있는 ETF를 비중순으로</em></span>
+              <b aria-hidden="true">→</b>
+            </button>
+            <button class="shortcut-card" type="button" id="openCompareShortcut">
+              <span class="shortcut-icon compare-icon" aria-hidden="true">≋</span>
+              <span><small>DEEP COMPARE</small><strong>ETF 정밀 비교</strong><em>수익률·위험·구성종목을 최대 4개까지</em></span>
+              <b aria-hidden="true">→</b>
+            </button>
+          </section>
+
+          <section class="market-section" aria-labelledby="marketSectionTitle">
+            <div class="section-heading">
+              <div><p class="eyebrow">TODAY'S ETF</p><h2 id="marketSectionTitle">오늘 시장에서 눈에 띄는 ETF</h2></div>
+              <button class="text-button" type="button" data-route="finder">전체 ETF 보기 <span>→</span></button>
+            </div>
+            <div class="ranking-grid" id="homeRankingGrid" aria-live="polite">
+              <article class="ranking-card loading-card"><div class="skeleton skeleton-line"></div><div class="skeleton skeleton-value"></div></article>
+              <article class="ranking-card loading-card"><div class="skeleton skeleton-line"></div><div class="skeleton skeleton-value"></div></article>
+              <article class="ranking-card loading-card"><div class="skeleton skeleton-line"></div><div class="skeleton skeleton-value"></div></article>
+            </div>
+          </section>
+
+          <section class="recent-section" id="recentSection" aria-labelledby="recentTitle" hidden>
+            <div class="section-heading compact"><div><p class="eyebrow">RECENTLY VIEWED</p><h2 id="recentTitle">최근 본 ETF</h2></div></div>
+            <div class="etf-card-grid compact-grid" id="recentGrid"></div>
+          </section>
+        </section>
+
+        <section class="route-view" id="finderView" data-view="finder" aria-labelledby="finderTitle" hidden>
+          <header class="page-intro">
+            <div><p class="eyebrow">ETF FINDER</p><h1 id="finderTitle">ETF 찾기</h1><p>ETF 이름뿐 아니라 실제 구성종목과 테마까지 한 번에 검색합니다.</p></div>
+            <div class="data-stamp" id="finderDataStamp">데이터 불러오는 중</div>
+          </header>
+
+          <section class="finder-panel">
+            <div class="search-mode-tabs" role="tablist" aria-label="검색 방식">
+              <button class="active" type="button" role="tab" data-search-mode="all" aria-selected="true">통합 검색</button>
+              <button type="button" role="tab" data-search-mode="etf" aria-selected="false">ETF 이름</button>
+              <button type="button" role="tab" data-search-mode="holding" aria-selected="false">구성종목 역검색</button>
+            </div>
+            <form class="finder-search" id="finderSearchForm" role="search">
+              <label class="visually-hidden" for="finderSearch">ETF 검색어</label>
+              <span class="search-icon" aria-hidden="true">⌕</span>
+              <input id="finderSearch" type="search" placeholder="ETF명, 코드, 운용사, 테마, 구성종목" autocomplete="off" />
+              <button class="clear-search" id="clearFinderSearch" type="button" aria-label="검색어 지우기" hidden>×</button>
+              <button class="primary-button" type="submit">검색</button>
+            </form>
+            <p class="search-helper" id="searchHelper">예: KODEX 200, 069500, 반도체, 삼성전자, NVIDIA</p>
+
+            <div class="filter-row">
+              <label><span>자산·지역</span><select id="categoryFilter"><option value="all">전체</option></select></label>
+              <label><span>운용사</span><select id="issuerFilter"><option value="all">전체</option></select></label>
+              <label><span>구조</span><select id="structureFilter"><option value="all">전체</option><option value="general">일반형</option><option value="active">액티브</option><option value="covered">커버드콜</option><option value="leverage">레버리지</option><option value="inverse">인버스</option></select></label>
+              <label><span>정렬</span><select id="sortFilter"><option value="relevance">검색 연관도</option><option value="amount">거래대금 높은순</option><option value="marketCap">시가총액 높은순</option><option value="return1m">1개월 수익률순</option><option value="premium">괴리율 큰순</option></select></label>
+              <button class="reset-filter" id="resetFilters" type="button">필터 초기화</button>
+            </div>
+          </section>
+
+          <div class="result-toolbar">
+            <div><strong id="finderResultTitle">전체 ETF</strong><span id="finderResultCount">0개</span></div>
+            <span class="result-hint" id="finderResultHint">ETF를 선택하면 구성종목과 위험지표를 볼 수 있습니다.</span>
+          </div>
+          <div class="etf-card-grid" id="finderResults" aria-live="polite"></div>
+          <button class="load-more-button" id="finderLoadMore" type="button" hidden>ETF 더 보기</button>
+        </section>
+
+        <section class="route-view" id="portfolioView" data-view="portfolio" aria-labelledby="portfolioTitle" hidden>
+          <header class="page-intro portfolio-intro">
+            <div><p class="eyebrow">MY PORTFOLIO</p><h1 id="portfolioTitle">포트폴리오</h1><p>수량과 평균단가를 입력하면 평가손익과 실제 종목 노출을 계산합니다.</p></div>
+            <div class="portfolio-header-actions">
+              <button class="ghost-button" id="exportPortfolioData" type="button">백업</button>
+              <button class="ghost-button" id="importPortfolioData" type="button">복원</button>
+              <input id="importPortfolioFile" type="file" accept="application/json,.json" aria-label="포트폴리오 백업 파일 선택" hidden />
+              <button class="primary-button" id="addPortfolioButton" type="button"><span>＋</span> ETF 추가</button>
+            </div>
+          </header>
+          <div id="portfolioDashboard" aria-live="polite"></div>
+        </section>
+
+        <section class="route-view" id="favoritesView" data-view="favorites" aria-labelledby="favoritesTitle" hidden>
+          <header class="page-intro">
+            <div><p class="eyebrow">WATCHLIST</p><h1 id="favoritesTitle">관심 ETF</h1><p>별표한 ETF를 모아 가격·괴리율·수익률을 빠르게 확인합니다.</p></div>
+            <span class="data-stamp" id="favoriteCount">0개</span>
+          </header>
+          <div class="etf-card-grid" id="favoritesGrid"></div>
+        </section>
+      </main>
+
+      <footer class="app-footer">
+        <div><strong>MYFMLV ETF</strong><span>공개 데이터로 만든 개인 투자정보 도구</span></div>
+        <p id="footerDataNote">가격·iNAV·수익률은 참고용이며 실제 체결가와 다를 수 있습니다.</p>
       </footer>
-    </main>
-    <script type="module" src="./src/app.js?v=theme-amount-20260429"></script>
+
+      <nav class="mobile-nav" aria-label="모바일 주요 메뉴">
+        <button class="active" type="button" data-route="home"><span aria-hidden="true">⌂</span><small>발견</small></button>
+        <button type="button" data-route="finder"><span aria-hidden="true">⌕</span><small>찾기</small></button>
+        <button type="button" data-route="portfolio"><span aria-hidden="true">◫</span><small>포트폴리오</small></button>
+        <button type="button" data-route="favorites"><span aria-hidden="true">☆</span><small>관심</small></button>
+      </nav>
+    </div>
+
+    <div class="compare-tray" id="compareTray" hidden>
+      <div><span>비교함</span><div id="compareTrayItems"></div></div>
+      <div><button class="ghost-button" id="clearCompare" type="button">비우기</button><button class="primary-button" id="openCompare" type="button">비교하기 <b id="compareCount">0</b></button></div>
+    </div>
+
+    <dialog class="sheet-dialog detail-dialog" id="etfDetailDialog" aria-labelledby="detailDialogTitle">
+      <div class="dialog-frame">
+        <button class="dialog-close" type="button" data-close-dialog="etfDetailDialog" aria-label="ETF 상세 닫기">×</button>
+        <div id="etfDetailContent"></div>
+      </div>
+    </dialog>
+
+    <dialog class="sheet-dialog portfolio-dialog" id="portfolioDialog" aria-labelledby="portfolioDialogTitle">
+      <form class="dialog-frame portfolio-form" id="portfolioForm">
+        <button class="dialog-close" type="button" data-close-dialog="portfolioDialog" aria-label="포트폴리오 입력 닫기">×</button>
+        <p class="eyebrow">PORTFOLIO POSITION</p>
+        <h2 id="portfolioDialogTitle">ETF 추가</h2>
+        <p class="dialog-description">종목을 선택하고 보유 수량과 평균 매수가를 입력하세요.</p>
+        <input id="portfolioCode" type="hidden" />
+        <label class="form-field"><span>ETF</span><input id="portfolioSearch" type="search" placeholder="ETF명 또는 종목코드" autocomplete="off" required /></label>
+        <div class="portfolio-search-results" id="portfolioSearchResults" hidden></div>
+        <div class="form-grid">
+          <label class="form-field"><span>보유 수량</span><input id="portfolioQuantity" type="number" min="0.0001" step="0.0001" inputmode="decimal" placeholder="0" required /></label>
+          <label class="form-field"><span>평균 매수가</span><div class="input-with-unit"><input id="portfolioAveragePrice" type="number" min="0" step="1" inputmode="numeric" placeholder="0" required /><span>원</span></div></label>
+        </div>
+        <div class="selected-etf-preview" id="portfolioSelectedPreview" hidden></div>
+        <div class="dialog-actions"><button class="ghost-button" type="button" data-close-dialog="portfolioDialog">취소</button><button class="primary-button" type="submit">포트폴리오에 저장</button></div>
+      </form>
+    </dialog>
+
+    <dialog class="sheet-dialog compare-dialog" id="compareDialog" aria-labelledby="compareDialogTitle">
+      <div class="dialog-frame">
+        <button class="dialog-close" type="button" data-close-dialog="compareDialog" aria-label="ETF 비교 닫기">×</button>
+        <p class="eyebrow">DEEP COMPARE</p>
+        <h2 id="compareDialogTitle">ETF 정밀 비교</h2>
+        <div id="compareContent"></div>
+      </div>
+    </dialog>
+
+    <div class="toast-region" id="toastRegion" aria-live="polite" aria-atomic="true"></div>
+    <div id="resultStatus" class="visually-hidden" aria-live="polite"></div>
+
+    <script type="module" src="./src/etf-app.js?v=20260714"></script>
   </body>
 </html>
